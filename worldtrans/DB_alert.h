@@ -17,5 +17,7 @@
 
 - (NSInteger) fn_get_unread_msg_count;
 
+- (NSMutableArray *) fn_get_all_msg;
+
 @end
 

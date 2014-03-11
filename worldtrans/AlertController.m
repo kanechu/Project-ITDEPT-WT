@@ -16,6 +16,7 @@
 #import "Res_color.h"
 #import "Web_get_alert.h"
 #import "DB_alert.h"
+#import "NSString.h"
 
 
 @interface AlertController ()
@@ -32,13 +33,6 @@
     [self fn_get_data];
     
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -78,33 +72,30 @@
     
    // NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
   //  ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];    // Configure Cell
-    RespAlert *ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
-    //ls_status_desc =[ldict_dictionary valueForKey:@"status_desc"];
-    //ls_act_status_date =[ldict_dictionary valueForKey:@"act_status_date"];
-    //ls_ct_type =[ldict_dictionary valueForKey:@"ct_type"];
+    //RespAlert *ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
+    NSDictionary *ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
     
-    
-    cell.ilb_status_desc.text = ldict_dictionary.status_desc;
-    cell.ilb_act_status_date.text = ldict_dictionary.act_status_date;
-    
-    
-    
-    
+    NSString *ls_status_desc =[ldict_dictionary valueForKey:@"status_desc"];
+    NSString *ls_act_status_date =[ldict_dictionary valueForKey:@"act_status_date"];
+    NSString *ls_msg_recv_date =[ldict_dictionary valueForKey:@"msg_recv_date"];
+    NSString *ls_ct_type =[ldict_dictionary valueForKey:@"ct_type"];
+    NSString *ls_show_no = @"";
+    if ([ls_ct_type containsString:@"so"])
+        ls_show_no = [@"BOOKING#: " stringByAppendingString:[ldict_dictionary valueForKey:@"so_no"]];
+    else
+        ls_show_no = [@"HBL#: " stringByAppendingString:[ldict_dictionary valueForKey:@"hbl_no"]];
+    cell.ilb_status_desc.text = ls_status_desc;
+    cell.ilb_act_status_date.text = ls_act_status_date;
+    cell.ilb_alert_date.text = ls_msg_recv_date;
+    cell.ilb_ct_nos.text = ls_show_no;
     return cell;
 }
 
 - (void) fn_get_data
 {
-    Web_get_alert *web_get_alert = [[Web_get_alert alloc] init];
-    web_get_alert.iobj_target = self;
-    web_get_alert.isel_action = @selector(fn_web_fill_data:);
-    [web_get_alert fn_get_data:@"SA" withPwd:@"SA1"];
-}
-
-- (void) fn_web_fill_data: (NSMutableArray *) alist_alert {
-    ilist_alert = alist_alert;
     DB_alert * ldb_alert = [[DB_alert alloc] init];
-    [ldb_alert fn_save_data:ilist_alert];
+    ilist_alert = [ldb_alert fn_get_all_msg];
     [self.tableView reloadData];
 }
+
 @end

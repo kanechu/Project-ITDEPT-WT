@@ -13,8 +13,6 @@
 @property (strong,nonatomic) NSMutableArray *ilist_alert;
 
 
-- (void) fn_web_fill_data: (NSMutableArray *) alist_alert;
-
 @end
 
 

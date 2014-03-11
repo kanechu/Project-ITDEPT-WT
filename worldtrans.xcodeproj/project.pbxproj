@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B22446D518CF2C7500049F8C /* NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = B22446D418CF2C7500049F8C /* NSString.m */; };
 		B2307AFC18BC7E25000502BE /* Cell_exhbl_general_hdr.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307AFB18BC7E25000502BE /* Cell_exhbl_general_hdr.m */; };
 		B2307B0318BC9057000502BE /* Cell_milestone.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B0218BC9057000502BE /* Cell_milestone.m */; };
 		B2307B0618BC920F000502BE /* MilestoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B0518BC920F000502BE /* MilestoneController.m */; };
@@ -107,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B22446D318CF2C7500049F8C /* NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString.h; sourceTree = "<group>"; };
+		B22446D418CF2C7500049F8C /* NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString.m; sourceTree = "<group>"; };
 		B2307AFA18BC7E25000502BE /* Cell_exhbl_general_hdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_exhbl_general_hdr.h; sourceTree = "<group>"; };
 		B2307AFB18BC7E25000502BE /* Cell_exhbl_general_hdr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_exhbl_general_hdr.m; sourceTree = "<group>"; };
 		B2307B0118BC9057000502BE /* Cell_milestone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_milestone.h; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 			children = (
 				B2C216DC18C8AC7A00A46809 /* NSDictionary.h */,
 				B2C216DD18C8AC7A00A46809 /* NSDictionary.m */,
+				B22446D318CF2C7500049F8C /* NSString.h */,
+				B22446D418CF2C7500049F8C /* NSString.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 				B2A9770B18CF18290096BD4B /* FMResultSet.m in Sources */,
 				B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */,
 				B26CAC5418AA302A00C97C83 /* main.m in Sources */,
+				B22446D518CF2C7500049F8C /* NSString.m in Sources */,
 				B2307B1918BDC748000502BE /* AlertController.m in Sources */,
 				B2307B2218BE0564000502BE /* HomeTabController.m in Sources */,
 				B2B020C818ACB69F00EECD92 /* DBTest.m in Sources */,
