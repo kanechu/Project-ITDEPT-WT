@@ -23,10 +23,27 @@
 -(void)initBackgroundColor{
     [self.view setBackgroundColor:[UIColor blackColor]];
 }
+-(void)addBound:(UIButton*)_sender{
+   
+
+    [_sender.layer setMasksToBounds:YES];
+    
+    [_sender.layer setContentsScale:22];
+    [_sender.layer setCornerRadius:2.0];
+    [_sender.layer setBorderWidth:1.0];
+    
+    CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
+   
+    CGColorRef colorRef=CGColorCreate(colorSpace, (CGFloat[]){0,0,255,2});
+    [_sender.layer setBorderColor:colorRef];
+
+}
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
+    [self addBound:_lbtn_exhbl_search];
+    [self addBound:_lbtn_exhbl_AirSearch];
     [self initBackgroundColor];
     /*
     ReqExhblContract *req_form = [[ReqExhblContract alloc] init];
