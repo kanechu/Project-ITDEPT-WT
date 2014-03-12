@@ -21,9 +21,24 @@
     UITabBarItem *tabBarItem=[tabBar.items objectAtIndex:1];
     tabBarItem.title=@"Alert";
     [tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_message"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_message"] ];
+    
     //Change the tab bar background
     
-    [[UITabBar appearance]setSelectedImageTintColor:[UIColor blueColor]];
+    //颜色创建image
+    CGSize imageSize=CGSizeMake(80, 45);
+    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+    [[UIColor colorWithWhite:0.6 alpha:0.8]set];
+    
+    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+    UIImage *pColor=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    [[UITabBar appearance]setSelectionIndicatorImage:pColor];
+    
+    //set tabBar backgroundColor
+    [[UITabBar appearance]setBackgroundColor:[UIColor orangeColor]];
+    
     
     
     //Change the title color of tab Bar items
@@ -39,6 +54,7 @@
     
     if (self) {
         // Custom initialization
+       
     }
     return self;
 }
