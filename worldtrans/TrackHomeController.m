@@ -20,9 +20,14 @@
 
 @implementation TrackHomeController
 
+-(void)initBackgroundColor{
+    [self.view setBackgroundColor:[UIColor blackColor]];
+}
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    [self initBackgroundColor];
     /*
     ReqExhblContract *req_form = [[ReqExhblContract alloc] init];
     
