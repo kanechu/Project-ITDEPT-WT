@@ -132,8 +132,17 @@
     
     if([segue.identifier isEqualToString:@"segue_exhbl"]){
         ExhblListController *controller = (ExhblListController *)segue.destinationViewController;
-       controller.is_search_no = @"999";
+        controller.is_search_no = @"999";
     }
+    /*
+    if([segue.identifier isEqualToString:@"showDetailSegue"]){
+        AehblListController *controller=(AehblListController*)segue.destinationViewController;
+    }
+    
+    if ([segue.identifier isEqualToString:@"segue_aehbl"]) {
+        AehblListController *controller=(AehblListController*)segue.destinationViewController;
+        controller.is_search_no=@"222";
+    }*/
 }
 
 
