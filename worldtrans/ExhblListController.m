@@ -79,8 +79,9 @@
         return 0.000001f;
     else return 80; // put 22 in case of plain one..
 }
-
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *ls_TableIdentifier = @"cell_exhbl_list";
