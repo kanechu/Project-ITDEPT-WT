@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B22446D518CF2C7500049F8C /* NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = B22446D418CF2C7500049F8C /* NSString.m */; };
+		B22D6C1418D18D0500DE4DB5 /* Cell_aehbl_list.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D6C1318D18D0500DE4DB5 /* Cell_aehbl_list.m */; };
+		B22D6C1C18D1A7CB00DE4DB5 /* AehblHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D6C1B18D1A7CB00DE4DB5 /* AehblHomeController.m */; };
 		B2307AFC18BC7E25000502BE /* Cell_exhbl_general_hdr.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307AFB18BC7E25000502BE /* Cell_exhbl_general_hdr.m */; };
 		B2307B0318BC9057000502BE /* Cell_milestone.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B0218BC9057000502BE /* Cell_milestone.m */; };
 		B2307B0618BC920F000502BE /* MilestoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B0518BC920F000502BE /* MilestoneController.m */; };
@@ -22,10 +24,10 @@
 		B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2918BEEE36000502BE /* AppConstants.m */; };
 		B242208618B7470B00D4A75C /* Cell_exhbl_list.m in Sources */ = {isa = PBXBuildFile; fileRef = B242208518B7470B00D4A75C /* Cell_exhbl_list.m */; };
 		B242208C18B8467300D4A75C /* Res_color.m in Sources */ = {isa = PBXBuildFile; fileRef = B242208B18B8467300D4A75C /* Res_color.m */; };
-		B242208F18B8669900D4A75C /* AehblViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242208E18B8669900D4A75C /* AehblViewController.m */; };
 		B242209218BAED3000D4A75C /* ExhblHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209118BAED3000D4A75C /* ExhblHomeController.m */; };
 		B242209818BB2F1C00D4A75C /* Cell_exhbl_general_detail.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209718BB2F1C00D4A75C /* Cell_exhbl_general_detail.m */; };
 		B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209A18BB303600D4A75C /* ExhblGeneralController.m */; };
+		B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24555CE18D166A500D47DC7 /* AehblListController.m */; };
 		B26CAC4818AA302A00C97C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4718AA302A00C97C83 /* Foundation.framework */; };
 		B26CAC4A18AA302A00C97C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4918AA302A00C97C83 /* CoreGraphics.framework */; };
 		B26CAC4C18AA302A00C97C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4B18AA302A00C97C83 /* UIKit.framework */; };
@@ -110,6 +112,10 @@
 /* Begin PBXFileReference section */
 		B22446D318CF2C7500049F8C /* NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString.h; sourceTree = "<group>"; };
 		B22446D418CF2C7500049F8C /* NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString.m; sourceTree = "<group>"; };
+		B22D6C1218D18D0500DE4DB5 /* Cell_aehbl_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_aehbl_list.h; sourceTree = "<group>"; };
+		B22D6C1318D18D0500DE4DB5 /* Cell_aehbl_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_aehbl_list.m; sourceTree = "<group>"; };
+		B22D6C1A18D1A7CB00DE4DB5 /* AehblHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblHomeController.h; sourceTree = "<group>"; };
+		B22D6C1B18D1A7CB00DE4DB5 /* AehblHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblHomeController.m; sourceTree = "<group>"; };
 		B2307AFA18BC7E25000502BE /* Cell_exhbl_general_hdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_exhbl_general_hdr.h; sourceTree = "<group>"; };
 		B2307AFB18BC7E25000502BE /* Cell_exhbl_general_hdr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_exhbl_general_hdr.m; sourceTree = "<group>"; };
 		B2307B0118BC9057000502BE /* Cell_milestone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_milestone.h; sourceTree = "<group>"; };
@@ -138,14 +144,14 @@
 		B242208518B7470B00D4A75C /* Cell_exhbl_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_exhbl_list.m; sourceTree = "<group>"; };
 		B242208A18B8467300D4A75C /* Res_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Res_color.h; sourceTree = "<group>"; };
 		B242208B18B8467300D4A75C /* Res_color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Res_color.m; sourceTree = "<group>"; };
-		B242208D18B8669900D4A75C /* AehblViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblViewController.h; sourceTree = "<group>"; };
-		B242208E18B8669900D4A75C /* AehblViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblViewController.m; sourceTree = "<group>"; };
 		B242209018BAED3000D4A75C /* ExhblHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhblHomeController.h; sourceTree = "<group>"; };
 		B242209118BAED3000D4A75C /* ExhblHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhblHomeController.m; sourceTree = "<group>"; };
 		B242209618BB2F1C00D4A75C /* Cell_exhbl_general_detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_exhbl_general_detail.h; sourceTree = "<group>"; };
 		B242209718BB2F1C00D4A75C /* Cell_exhbl_general_detail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_exhbl_general_detail.m; sourceTree = "<group>"; };
 		B242209918BB303600D4A75C /* ExhblGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhblGeneralController.h; sourceTree = "<group>"; };
 		B242209A18BB303600D4A75C /* ExhblGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhblGeneralController.m; sourceTree = "<group>"; };
+		B24555CD18D166A500D47DC7 /* AehblListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblListController.h; sourceTree = "<group>"; };
+		B24555CE18D166A500D47DC7 /* AehblListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblListController.m; sourceTree = "<group>"; };
 		B26CAC4418AA302A00C97C83 /* worldtrans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worldtrans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26CAC4718AA302A00C97C83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B26CAC4918AA302A00C97C83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -284,8 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				B26CAC5F18AA302A00C97C83 /* TrackHomeController.h */,
-				B242208D18B8669900D4A75C /* AehblViewController.h */,
-				B242208E18B8669900D4A75C /* AehblViewController.m */,
 				B26CAC6018AA302A00C97C83 /* TrackHomeController.m */,
 				B2B020B618AB52D100EECD92 /* ExhblListController.h */,
 				B2B020B718AB52D100EECD92 /* ExhblListController.m */,
@@ -299,6 +303,10 @@
 				B2307B1818BDC748000502BE /* AlertController.m */,
 				B2307B2018BE0564000502BE /* HomeTabController.h */,
 				B2307B2118BE0564000502BE /* HomeTabController.m */,
+				B24555CD18D166A500D47DC7 /* AehblListController.h */,
+				B24555CE18D166A500D47DC7 /* AehblListController.m */,
+				B22D6C1A18D1A7CB00DE4DB5 /* AehblHomeController.h */,
+				B22D6C1B18D1A7CB00DE4DB5 /* AehblHomeController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -316,6 +324,8 @@
 				B2307B0218BC9057000502BE /* Cell_milestone.m */,
 				B2307B1418BDC36B000502BE /* Cell_alert_list.h */,
 				B2307B1518BDC36B000502BE /* Cell_alert_list.m */,
+				B22D6C1218D18D0500DE4DB5 /* Cell_aehbl_list.h */,
+				B22D6C1318D18D0500DE4DB5 /* Cell_aehbl_list.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -666,20 +676,22 @@
 			files = (
 				B2B020C418AB5F6500EECD92 /* CandyTableViewController.m in Sources */,
 				B2A9770718CF18290096BD4B /* FMDatabase.m in Sources */,
+				B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */,
 				B2307B2618BEEA82000502BE /* Web_get_alert.m in Sources */,
 				B2B020B818AB52D100EECD92 /* ExhblListController.m in Sources */,
 				B26CAC6418AA302A00C97C83 /* SecondViewController.m in Sources */,
 				B26CAC5818AA302A00C97C83 /* AppDelegate.m in Sources */,
 				B2307B0918BC960C000502BE /* RespMilestone.m in Sources */,
 				B2307B1F18BDE888000502BE /* DBManager.m in Sources */,
+				B22D6C1C18D1A7CB00DE4DB5 /* AehblHomeController.m in Sources */,
 				B2A9770818CF18290096BD4B /* FMDatabaseAdditions.m in Sources */,
 				B2C216DE18C8AC7A00A46809 /* NSDictionary.m in Sources */,
 				B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */,
 				B2307AFC18BC7E25000502BE /* Cell_exhbl_general_hdr.m in Sources */,
-				B242208F18B8669900D4A75C /* AehblViewController.m in Sources */,
 				B2C2380518B37466001E13C9 /* SearchFormContract.m in Sources */,
 				B2307B1618BDC36B000502BE /* Cell_alert_list.m in Sources */,
 				B2307B0318BC9057000502BE /* Cell_milestone.m in Sources */,
+				B22D6C1418D18D0500DE4DB5 /* Cell_aehbl_list.m in Sources */,
 				B2307B1C18BDD532000502BE /* RespAlert.m in Sources */,
 				B2B020BD18AB5DFE00EECD92 /* Candy.m in Sources */,
 				B2C237FF18B37153001E13C9 /* AuthContract.m in Sources */,
