@@ -119,7 +119,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
     NSString *ls_hbl_uid = @"";
     NSString *ls_so_uid = @"";
-    NSString *ls_os_column = @"";
+   // NSString *ls_os_column = @"";
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_exhbl objectAtIndex:indexPath.row];    // Configure Cell
     ls_hbl_uid = [ldict_dictionary valueForKey:@"hbl_uid"];
