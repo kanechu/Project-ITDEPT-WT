@@ -12,10 +12,10 @@
 #import "AuthContract.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
-#import "RespExhbl.h"
+#import "RespAehbl.h"
 #import "Cell_aehbl_list.h"
 #import "Res_color.h"
-#import "ExhblHomeController.h"
+#import "AehblHomeController.h"
 #import "ExhblGeneralController.h"
 #import "MBProgressHUD.h"
 @interface AehblListController ()
@@ -104,7 +104,7 @@
     cell.ilb_hbl_no.text = [ldict_dictionary valueForKey:@"hbl_no"];
     cell.ilb_so_no.text = [ldict_dictionary valueForKey:@"so_no"];
     
-    cell.ilb_date.text = [NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+    cell.ilb_date.text = [NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"act_status_date"],[ldict_dictionary valueForKey:@"eta"]];
     
     return cell;
 }
@@ -122,7 +122,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     ls_hbl_uid = [ldict_dictionary valueForKey:@"hbl_uid"];
     ls_so_uid = [ldict_dictionary valueForKey:@"so_uid"];
     
-    [self performSegueWithIdentifier:@"segue_exhbl_home" sender:self];
+    [self performSegueWithIdentifier:@"segue_aehbl_home" sender:self];
 }
 
 - (void) fn_get_data: (NSString*)as_search_no
@@ -172,11 +172,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
                                                                                    objectClass:[RequestContract class]
                                                                                    rootKeyPath:nil method:RKRequestMethodPOST];
     
-    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespExhbl class]];
+    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespAehbl class]];
     [respExhblMapping addAttributeMappingsFromArray:@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"vsl_voy", @"etd", @"eta", @"eta_dest"
-                                                       , @"prt_onboard_date", @"ship_pkg", @"ship_kgs", @"ship_cbm", @"ship_unit", @"prt_tran_inter_port", @"feeder_vsl_voy", @"feeder_etd", @"no_of_cntr_1"
-                                                       , @"no_of_cntr_2", @"no_of_cntr_3", @"no_of_cntr_4", @"place_of_receipt", @"delivery_name", @"status_desc", @"act_status_date"]];
+                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flght_date",@"eta"
+                                        , @"hbl_pkg", @"hbl_chrg_cbm", @"hbl_act_cbm", @"hbl_kgs", @"hbl_unit", @"cntrloff_list", @"delivery_name", @"status_desc", @"act_status_date"
+                                                       ]];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respExhblMapping
                                                                                             method:RKRequestMethodPOST
                                                                                        pathPattern:nil
@@ -248,8 +248,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         ls_os_value = ls_so_uid;
     }
     
-    if ([[segue identifier] isEqualToString:@"segue_exhbl_home"]) {
-        ExhblHomeController *exhblHomeController = [segue destinationViewController];
+    if ([[segue identifier] isEqualToString:@"segue_aehbl_home"]) {
+        AehblHomeController *exhblHomeController = [segue destinationViewController];
         exhblHomeController.is_search_column = ls_os_column;
         exhblHomeController.is_search_value = ls_os_value;
     }
