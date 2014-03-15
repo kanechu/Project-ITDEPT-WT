@@ -18,6 +18,7 @@
 #import "AehblHomeController.h"
 #import "ExhblGeneralController.h"
 #import "MBProgressHUD.h"
+#import "NSDictionary.h"
 @interface AehblListController ()
 
 @end
@@ -62,7 +63,7 @@
     return [ilist_aehbl count];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 80;
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -77,7 +78,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 1 )
         return 0.000001f;
-    else return 60; // put 22 in case of plain one..
+    else return 80; // put 22 in case of plain one..
 }
 
 
@@ -93,6 +94,10 @@
     }
     
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+   // ldict_dictionary = [ [NSDictionary dictionaryWithPropertiesOfObject:[ilist_aehbl objectAtIndex:indexPath.row]] mutableCopy];    // Configure Cell
+    RespAehbl *lespAehbl = [[RespAehbl alloc] init];
+    lespAehbl = [ilist_aehbl objectAtIndex:indexPath.row];    // Configure Cell
+    
     ldict_dictionary = [ilist_aehbl objectAtIndex:indexPath.row];    // Configure Cell
     
     if( [indexPath row] % 2)
@@ -101,10 +106,18 @@
         [cell setBackgroundColor:COLOR_EERIE_BLACK];
     
     
-    cell.ilb_hbl_no.text = [ldict_dictionary valueForKey:@"hbl_no"];
-    cell.ilb_so_no.text = [ldict_dictionary valueForKey:@"so_no"];
+    //cell.ilb_hbl_no.text = [ldict_dictionary valueForKey:@"hbl_no"];
+    //cell.ilb_so_no.text = [ldict_dictionary valueForKey:@"so_no"];
     
-    cell.ilb_date.text = [NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"act_status_date"],[ldict_dictionary valueForKey:@"eta"]];
+    cell.ilb_hbl_no.text = lespAehbl.hbl_no;
+    cell.ilb_so_no.text = lespAehbl.so_no;
+    
+    cell.ilb_load_port.text =[ldict_dictionary valueForKey:@"load_port"];
+    cell.ilb_dest_port.text=[ldict_dictionary valueForKey:@"dest_name"];
+    //cell.ilb_flight_noAnddate.text=[NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"flight_no"],[ldict_dictionary valueForKey:@"prt_flight_date"]];
+    cell.ilb_flight_noAnddate.text=[NSString stringWithFormat:@"%@/%@", lespAehbl.flight_no,lespAehbl.prt_flight_date];
+    
+    cell.ilb_status_latest.text=[ldict_dictionary valueForKey:@"status_desc"];
     
     return cell;
 }
@@ -116,7 +129,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
     NSString *ls_hbl_uid = @"";
     NSString *ls_so_uid = @"";
-    NSString *ls_os_column = @"";
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_aehbl objectAtIndex:indexPath.row];    // Configure Cell
     ls_hbl_uid = [ldict_dictionary valueForKey:@"hbl_uid"];
@@ -174,7 +186,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     
     RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespAehbl class]];
     [respExhblMapping addAttributeMappingsFromArray:@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flght_date",@"eta"
+                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flight_date",@"eta"
                                         , @"hbl_pkg", @"hbl_chrg_cbm", @"hbl_act_cbm", @"hbl_kgs", @"hbl_unit", @"cntrloff_list", @"delivery_name", @"status_desc", @"act_status_date"
                                                        ]];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respExhblMapping
