@@ -68,7 +68,6 @@
                 a.is_docu_type = @"aehbl";
             }
             a.is_docu_uid = self.is_search_value;
-            
             return a;
             break;
     }
