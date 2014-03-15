@@ -17,7 +17,7 @@
 #import "ExhblHomeController.h"
 #import "ExhblGeneralController.h"
 #import "MBProgressHUD.h"
-
+#import "AppConstants.h"
 @interface ExhblListController ()
 
 @end
@@ -170,7 +170,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     [reqMapping addPropertyMapping:authRelationship];
     [reqMapping addPropertyMapping:searchRelationship];
     
-    NSString* path = @"itleo.web/api/cargotracking/exhbl";
+    NSString* path = STR_SEA_URL;
     RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
                                                                                    objectClass:[RequestContract class]
                                                                                    rootKeyPath:nil method:RKRequestMethodPOST];
@@ -186,7 +186,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
                                                                                            keyPath:nil
                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://demo.itdept.com.hk"]];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:STR_BASE_URL]];
     [manager addRequestDescriptor:requestDescriptor];
     [manager addResponseDescriptor:responseDescriptor];
     manager.requestSerializationMIMEType = RKMIMETypeJSON;

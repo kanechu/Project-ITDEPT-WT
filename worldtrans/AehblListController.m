@@ -9,7 +9,7 @@
 #import "AehblListController.h"
 #import <RestKit/RestKit.h>
 #import "AuthContract.h"
-#import "AuthContract.h"
+#import "AppConstants.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
 #import "RespAehbl.h"
@@ -179,7 +179,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     [reqMapping addPropertyMapping:authRelationship];
     [reqMapping addPropertyMapping:searchRelationship];
     
-    NSString* path = @"itleo.web/api/cargotracking/aehbl";
+    NSString* path = STR_AIR_URL;
     RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
                                                                                    objectClass:[RequestContract class]
                                                                                    rootKeyPath:nil method:RKRequestMethodPOST];
@@ -195,7 +195,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
                                                                                            keyPath:nil
                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://demo.itdept.com.hk"]];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:STR_BASE_URL]];
     [manager addRequestDescriptor:requestDescriptor];
     [manager addResponseDescriptor:responseDescriptor];
     manager.requestSerializationMIMEType = RKMIMETypeJSON;

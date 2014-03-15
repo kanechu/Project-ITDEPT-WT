@@ -10,6 +10,10 @@
 
 #ifdef DEBUG
 NSString* const STR_BASE_URL = @"http://demo.itdept.com.hk/";
+NSString* const STR_SEA_URL =@"itleo.web/api/cargotracking/exhbl";
+NSString* const STR_AIR_URL =@"itleo.web/api/cargotracking/aehbl";
 #else
 NSString* const STR_BASE_URL = @"http://demo.itdept.com.hk/";
+NSString* const STR_SEA_URL =@"itleo.web/api/cargotracking/exhbl";
+NSString* const STR_AIR_URL =@"itleo.web/api/cargotracking/aehbl";
 #endif

@@ -11,5 +11,6 @@
 @interface AppConstants : NSObject
 
 extern NSString* const STR_BASE_URL;
-
+extern NSString* const STR_SEA_URL;
+extern NSString* const STR_AIR_URL;
 @end
