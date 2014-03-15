@@ -11,7 +11,7 @@
 #import "AuthContract.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
-#import "RespExhbl.h"
+#import "RespAehbl.h"
 #import "Cell_exhbl_general_detail.h"
 #import "Cell_exhbl_general_hdr.h"
 #import "Res_color.h"
@@ -92,8 +92,8 @@
     
     if ( indexPath.row == 0)
     {
-        cell.ilb_header.text = @"ETD / ETA";
-        cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+        cell.ilb_header.text = @" ETA";
+        cell.ilb_value.text =[ldict_dictionary valueForKey:@"eta"];
     }
     if ( indexPath.row == 1)
     {
@@ -102,48 +102,15 @@
     }
     if ( indexPath.row == 2)
     {
-        NSString *ls_no_of_cntr_1 = [ldict_dictionary valueForKey:@"no_of_cntr_1"];
-        NSInteger li_no_of_cntr_1 = [ls_no_of_cntr_1 integerValue];
-        NSString *ls_no_of_cntr_2 = [ldict_dictionary valueForKey:@"no_of_cntr_2"];
-        NSInteger li_no_of_cntr_2 = [ls_no_of_cntr_2 integerValue];
-        NSString *ls_no_of_cntr_3 = [ldict_dictionary valueForKey:@"no_of_cntr_3"];
-        NSInteger li_no_of_cntr_3 = [ls_no_of_cntr_3 integerValue];
-        NSString *ls_no_of_cntr_4 = [ldict_dictionary valueForKey:@"no_of_cntr_4"];
-        NSInteger li_no_of_cntr_4 = [ls_no_of_cntr_4 integerValue];
-        NSInteger li_fcl_sum = li_no_of_cntr_1 + li_no_of_cntr_2 + li_no_of_cntr_3 + li_no_of_cntr_4;
-        
-        
-        NSString *ls_ship_pkg = [ldict_dictionary valueForKey:@"ship_pkg"];
-        NSString *ls_ship_kgs = [ldict_dictionary valueForKey:@"ship_kgs"];
-        NSString *ls_ship_cbm = [ldict_dictionary valueForKey:@"ship_cbm"];
-        if (!(li_fcl_sum == 0) ) {
-            ls_os_column = @"FCL";
-            if (!(li_no_of_cntr_1 == 0)) {
-                ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@"%@ x %@, ", ls_no_of_cntr_1, @"20'"]];
-            }
-            if (!(li_no_of_cntr_2 == 0)) {
-                ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@"%@ x %@, ", ls_no_of_cntr_2, @"40'"]];
-            }
-            if (!(li_no_of_cntr_3 == 0)) {
-                ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@"%@ x %@, ", ls_no_of_cntr_3, @"40'HQ"]];
-            }
-            if (!(li_no_of_cntr_4 == 0)) {
-                ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@"%@ x %@, ", ls_no_of_cntr_4, @"45'HQ"]];
-            }
-            ls_os_value = [ls_os_value substringToIndex:[ls_os_value length]-2];
-        }
-        else {
-            ls_os_column = @"LCL PKG / KGS / CBM";
-            ls_os_value = [NSString stringWithFormat:@"%@ / %@ / %@ ", ls_ship_pkg, ls_ship_kgs, ls_ship_cbm];
-        }
-        
-        cell.ilb_header.text = ls_os_column;
-        cell.ilb_value.text = ls_os_value;
+                                  
+        cell.ilb_header.text = @"PKG/ACT_KGS/CHRG_KGS";
+        cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@/ %@", [ldict_dictionary valueForKey:@"hbl_pkg"], [ldict_dictionary valueForKey:@"hbl_act_cbm"], [ldict_dictionary valueForKey:@"hbl_chrg_cbm"]];
     }
+    
     if ( indexPath.row == 3)
     {
-        cell.ilb_header.text = @"Vessel / Voyage";
-        cell.ilb_value.text = [ldict_dictionary valueForKey:@"vsl_voy"];
+        cell.ilb_header.text = @"Flight#/ Flight Date";
+        cell.ilb_value.text =[NSString stringWithFormat:@"%@/%@",[ldict_dictionary valueForKey:@"flight_no"],[ldict_dictionary valueForKey:@"prt_flight_date"]];
     }
     if ( indexPath.row == 4)
     {
@@ -209,11 +176,11 @@
                                                                                    objectClass:[RequestContract class]
                                                                                    rootKeyPath:nil method:RKRequestMethodPOST];
     
-    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespExhbl class]];
+    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespAehbl class]];
     [respExhblMapping addAttributeMappingsFromArray:@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"vsl_voy", @"etd", @"eta", @"eta_dest"
-                                                       , @"prt_onboard_date", @"ship_pkg", @"ship_kgs", @"ship_cbm", @"ship_unit", @"prt_tran_inter_port", @"feeder_vsl_voy", @"feeder_etd", @"no_of_cntr_1"
-                                                       , @"no_of_cntr_2", @"no_of_cntr_3", @"no_of_cntr_4", @"place_of_receipt", @"delivery_name", @"status_desc", @"act_status_date"]];
+                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flight_date",@"eta"
+                                                       , @"hbl_pkg", @"hbl_chrg_cbm", @"hbl_act_cbm", @"hbl_kgs", @"hbl_unit", @"cntrloff_list", @"delivery_name", @"status_desc", @"act_status_date"
+                                                       ]];
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respExhblMapping
                                                                                             method:RKRequestMethodPOST
                                                                                        pathPattern:nil
