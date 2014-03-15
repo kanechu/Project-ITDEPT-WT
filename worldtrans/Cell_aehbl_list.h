@@ -10,8 +10,13 @@
 
 @interface Cell_aehbl_list : UITableViewCell
 @property (nonatomic) IBOutlet UILabel *ilb_so_no;
-@property ( nonatomic) IBOutlet UILabel *ilb_date;
 
 @property ( nonatomic) IBOutlet UILabel *ilb_hbl_no;
+@property ( nonatomic) IBOutlet UILabel *ilb_load_port;
+@property ( nonatomic) IBOutlet UILabel *ilb_dest_port;
+
+@property ( nonatomic) IBOutlet UILabel *ilb_flight_noAnddate;
+@property ( nonatomic) IBOutlet UILabel *ilb_status_latest;
+
 
 @end
