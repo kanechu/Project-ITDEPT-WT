@@ -146,4 +146,6 @@
 }
 
 
+- (IBAction)LoginOrRegister:(UISegmentedControl *)sender {
+}
 @end
