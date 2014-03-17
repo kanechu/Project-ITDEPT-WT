@@ -284,7 +284,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="96L-qi-ezI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1767" y="-537"/>
+            <point key="canvasLocation" x="1799" y="-569"/>
         </scene>
         <!--AehblList Controller-Air Export-->
         <scene sceneID="otX-T3-GQ7">
@@ -362,14 +362,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pUJ-FJ-nLI" userLabel="Label - Booking No.">
-                                            <rect key="frame" x="29" y="-1" width="147" height="21"/>
+                                            <rect key="frame" x="29" y="5" width="147" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HBL No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KyI-hk-ZOI" userLabel="Label - HBL No.">
-                                            <rect key="frame" x="179" y="-1" width="118" height="21"/>
+                                            <rect key="frame" x="179" y="5" width="118" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -390,14 +390,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight# /Flight  Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s3X-AR-gEO" userLabel="Label - FlightNoandFlightDate">
-                                            <rect key="frame" x="28" y="57" width="156" height="21"/>
+                                            <rect key="frame" x="29" y="52" width="156" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" red="1" green="0.8044820265" blue="0.095491752979999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest Status" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqf-14-KAR">
-                                            <rect key="frame" x="179" y="57" width="140" height="21"/>
+                                            <rect key="frame" x="179" y="52" width="140" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" red="1" green="0.31165574350000003" blue="0.11493936690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -575,6 +575,19 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sea Export" id="9fF-43-3kL">
                         <barButtonItem key="backBarButtonItem" title="Preivous" id="c0K-UR-DhD"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="pGN-yn-h3w">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="i1H-QO-Sj7">
+                                <rect key="frame" x="194" y="8" width="110" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Login"/>
+                                    <segment title="Register"/>
+                                </segments>
+                                <connections>
+                                    <action selector="LoginOrRegister:" destination="CZ4-MO-1fc" eventType="valueChanged" id="iqy-kB-EJL"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
@@ -690,6 +703,7 @@
         <scene sceneID="Vex-rW-GRa">
             <objects>
                 <tabBarController title="IT Department Limited" id="8YX-ce-x5E" customClass="HomeTabController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5kr-iR-tw5"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
