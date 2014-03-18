@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *lbtn_exhbl_AirSearch;
 @property (weak, nonatomic) IBOutlet UITextField *ltf_search_no;
-- (IBAction)LoginOrRegister:(UISegmentedControl *)sender;
+
+- (IBAction)UserLogin:(id)sender;
 
 @end

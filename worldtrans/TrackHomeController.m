@@ -12,7 +12,8 @@
 #import "RequestContract.h"
 #import "SearchFormContract.h"
 #import "RespExhbl.h"
-
+#import "MZFormSheetController.h"
+#import "LoginViewController.h"
 @interface TrackHomeController ()
 
 
@@ -134,18 +135,25 @@
         ExhblListController *controller = (ExhblListController *)segue.destinationViewController;
         controller.is_search_no = @"999";
     }
-    /*
-    if([segue.identifier isEqualToString:@"showDetailSegue"]){
-        AehblListController *controller=(AehblListController*)segue.destinationViewController;
-    }
-    
-    if ([segue.identifier isEqualToString:@"segue_aehbl"]) {
-        AehblListController *controller=(AehblListController*)segue.destinationViewController;
-        controller.is_search_no=@"222";
-    }*/
+   
 }
 
 
-- (IBAction)LoginOrRegister:(UISegmentedControl *)sender {
+- (IBAction)UserLogin:(id)sender {
+    
+    UIViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
+    MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
+    //弹出视图的大小
+    formSheet.presentedFormSheetSize=CGSizeMake(284, 250);
+    formSheet.shadowRadius = 2.0;
+    //阴影的不透明度
+    formSheet.shadowOpacity = 0.3;
+    //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
+    formSheet.shouldDismissOnBackgroundViewTap = NO;
+    //中心垂直，默认为NO
+    formSheet.shouldCenterVertically =YES;
+    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
+    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
+
 }
 @end
