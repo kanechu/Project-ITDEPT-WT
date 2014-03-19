@@ -130,6 +130,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 
 - (void) fn_get_data: (NSString*)as_search_no
 {
+    // request
+    // request - login
     RequestContract *req_form = [[RequestContract alloc] init];
     
     req_form.Auth = [[AuthContract alloc] init];
@@ -138,6 +140,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     req_form.Auth.password = @"SA1";
     req_form.Auth.system = @"ITNEW";
     
+    
+    // request - additional searching criteria
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = @"search_no";
     search.os_value = as_search_no;
