@@ -54,15 +54,9 @@
     req_form.Auth.password = user_pass;
     req_form.Auth.system = @"ITNEW";
     
-    SearchFormContract *search = [[SearchFormContract alloc]init];
-    //search.os_column = user_code;
-    //search.os_value = user_pass;
-    
-    req_form.SearchForm = [NSSet setWithObjects:search, nil];
-    
     
     RKObjectMapping *searchMapping = [RKObjectMapping requestMapping];
-    [searchMapping addAttributeMappingsFromArray:@[@"user_code",@"password"]];
+    [searchMapping addAttributeMappingsFromArray:@[@"os_column",@"os_value"]];
     
     
     RKObjectMapping *authMapping = [RKObjectMapping requestMapping];
@@ -108,7 +102,7 @@
     [manager postObject:req_form path:path parameters:nil
                 success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
                      RKLogInfo(@"Load collection of Articles: %@", result.array);
-                    loginData = [NSMutableDictionary dictionaryWithDictionary:result.dictionary];
+                    loginData = [NSDictionary dictionaryWithPropertiesOfObject:[result.array objectAtIndex: 0]];
                 
                     
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
