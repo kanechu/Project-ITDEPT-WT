@@ -13,4 +13,5 @@
 extern NSString* const STR_BASE_URL;
 extern NSString* const STR_SEA_URL;
 extern NSString* const STR_AIR_URL;
+extern NSString* const STR_LOGIN_URL;
 @end
