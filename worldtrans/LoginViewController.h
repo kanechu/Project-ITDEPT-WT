@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class TrackHomeController;
 @interface LoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *user_Password;
 @property (weak, nonatomic) IBOutlet UITextField *user_ID;
+@property(nonatomic,strong)NSMutableDictionary *loginData;
+
 - (IBAction)UserLogin:(id)sender;
 - (IBAction)closeLoginUI:(id)sender;
+
 
 @end
