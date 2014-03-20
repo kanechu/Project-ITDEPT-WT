@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import "TrackHomeController.h"
 #import "MZFormSheetController.h"
-
 #import <RestKit/RestKit.h>
 #import "AuthContract.h"
 #import "AppConstants.h"
@@ -17,12 +16,15 @@
 #import "SearchFormContract.h"
 #import "RespLogin.h"
 #import "NSDictionary.h"
+#import "DB_login.h"
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
 @synthesize loginData;
+@synthesize iobj_target;
+@synthesize isel_action;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
 	// Do any additional setup after loading the view.
 }
 
@@ -79,7 +82,7 @@
     
     [reqMapping addPropertyMapping:authRelationship];
     [reqMapping addPropertyMapping:searchRelationship];
-    /// finished mapping
+    // finished mapping
     NSString* path = STR_LOGIN_URL;
     RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
                                                                                    objectClass:[RequestContract class]
@@ -103,8 +106,19 @@
                 success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
                      RKLogInfo(@"Load collection of Articles: %@", result.array);
                     loginData = [NSDictionary dictionaryWithPropertiesOfObject:[result.array objectAtIndex: 0]];
-                
                     
+                    if ([[loginData valueForKey:@"pass"] isEqualToString:@"true"]) {
+                        DB_login *dbLogin=[[DB_login alloc]init];
+                        [dbLogin fn_save_data:_user_ID.text password:_user_Password.text];
+                    
+                       
+                        [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
+                         [iobj_target performSelector:isel_action withObject:_user_ID.text];
+                        
+                    }else{
+                        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"您输入的用户名或密码不匹配" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"cancle", nil];
+                        [alert show];
+                    }
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                     RKLogError(@"Operation failed with error: %@", error);
                 }];
@@ -116,12 +130,8 @@
 - (IBAction)UserLogin:(id)sender {
     
     [self fn_get_data:_user_ID.text :_user_Password.text];
-    if ([[loginData valueForKey:@"pass"] isEqualToString:@"true"]) {
-         [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
-    }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"您输入的用户名或密码不匹配" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"cancle", nil];
-        [alert show];
-    }
+
+
    
 }
 

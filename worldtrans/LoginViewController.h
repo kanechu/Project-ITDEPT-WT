@@ -10,9 +10,12 @@
 
 @class TrackHomeController;
 @interface LoginViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITextField *user_Password;
 @property (weak, nonatomic) IBOutlet UITextField *user_ID;
-@property(nonatomic,strong)NSMutableDictionary *loginData;
+@property(nonatomic,strong)NSDictionary *loginData;
+@property (strong,nonatomic) id iobj_target;
+@property (nonatomic, assign) SEL isel_action;
 
 - (IBAction)UserLogin:(id)sender;
 - (IBAction)closeLoginUI:(id)sender;
