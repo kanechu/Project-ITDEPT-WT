@@ -8,15 +8,11 @@
 #import "ExhblListController.h"
 #import "AehblListController.h"
 #import <UIKit/UIKit.h>
-
-@interface TrackHomeController : UIViewController
+#import "LoginViewController.h"
+@interface TrackHomeController : UIViewController<UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *lbtn_exhbl_search;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *lbtn_exhbl_AirSearch;
 @property (weak, nonatomic) IBOutlet UITextField *ltf_search_no;
-
 - (IBAction)UserLogin:(id)sender;
-
 @end

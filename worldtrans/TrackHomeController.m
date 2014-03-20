@@ -13,17 +13,17 @@
 #import "SearchFormContract.h"
 #import "RespExhbl.h"
 #import "MZFormSheetController.h"
-#import "LoginViewController.h"
+#import "DB_login.h"
 @interface TrackHomeController ()
 
 
 @end
 
 @implementation TrackHomeController
-
 -(void)initBackgroundColor{
     [self.view setBackgroundColor:[UIColor blackColor]];
 }
+//给按钮添加边框的方法
 -(void)addBound:(UIButton*)_sender{
    
 
@@ -35,7 +35,9 @@
     
     CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
    
+    //前三位是RGB 0,0,255
     CGColorRef colorRef=CGColorCreate(colorSpace, (CGFloat[]){0,0,255,2});
+    
     [_sender.layer setBorderColor:colorRef];
 
 }
@@ -46,78 +48,7 @@
     [self addBound:_lbtn_exhbl_search];
     [self addBound:_lbtn_exhbl_AirSearch];
     [self initBackgroundColor];
-    /*
-    ReqExhblContract *req_form = [[ReqExhblContract alloc] init];
     
-    req_form.Auth = [[AuthContract alloc] init];
-    
-    req_form.Auth.user_code = @"SA";
-    req_form.Auth.password = @"SA1"; 
-    req_form.Auth.system = @"ITNEW";
-    
-    SearchFormContract *search = [[SearchFormContract alloc]init];
-    search.os_column = @"search_no";
-    search.os_value = @"999";
-
-    req_form.SearchForm = [NSSet setWithObjects:search, nil];
-    
-    
-    RKObjectMapping *searchMapping = [RKObjectMapping requestMapping];
-    [searchMapping addAttributeMappingsFromArray:@[@"os_column",@"os_value"]];
-    
-    
-    RKObjectMapping *authMapping = [RKObjectMapping requestMapping];
-    [authMapping addAttributeMappingsFromDictionary:@{ @"user_code": @"user_code",
-                                                       @"password": @"password",
-                                                       @"system": @"system" }];
-    
-    RKObjectMapping *reqMapping = [RKObjectMapping requestMapping];
-    
-    RKRelationshipMapping *searchRelationship = [RKRelationshipMapping
-                                                relationshipMappingFromKeyPath:@"SearchForm"
-                                                toKeyPath:@"SearchForm"
-                                                withMapping:searchMapping];
-    
-    
-    RKRelationshipMapping *authRelationship = [RKRelationshipMapping
-                                                 relationshipMappingFromKeyPath:@"Auth"
-                                                 toKeyPath:@"Auth"
-                                                 withMapping:authMapping];
-    
-     
-    [reqMapping addPropertyMapping:authRelationship];
-     
-    [reqMapping addPropertyMapping:searchRelationship];
-    
-    NSString* path = @"itleo.web/api/cargotracking/exhbl";
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
-                     objectClass:[ReqExhblContract class]
-                     rootKeyPath:nil method:RKRequestMethodPOST];
-    
-    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespExhbl class]];
-    [respExhblMapping addAttributeMappingsFromArray:@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"vsl_voy", @"etd", @"eta", @"eta_dest"
-                                                       , @"prt_onboard_date", @"ship_pkg", @"ship_kgs", @"ship_cbm", @"ship_unit", @"prt_tran_inter_port", @"feeder_vsl_voy", @"feeder_etd", @"no_of_cntr_1"
-                                                       , @"no_of_cntr_2", @"no_of_cntr_3", @"no_of_cntr_4", @"place_of_receipt", @"delivery_name", @"status_desc", @"act_status_date"]];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respExhblMapping
-                                                                                            method:RKRequestMethodPOST
-                                                                                       pathPattern:nil
-                                                                                           keyPath:nil
-                                                                                       statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://demo.itdept.com.hk"]];
-    [manager addRequestDescriptor:requestDescriptor];
-    [manager addResponseDescriptor:responseDescriptor];
-    manager.requestSerializationMIMEType = RKMIMETypeJSON;
-    [manager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-    
-    [manager postObject:req_form path:path parameters:nil
-                success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-                    RKLogInfo(@"Load collection of Articles: %@", result.array);
-                    
-                } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    RKLogError(@"Operation failed with error: %@", error);
-                }];*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -141,8 +72,10 @@
 
 - (IBAction)UserLogin:(id)sender {
     
-    UIViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
+    LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
+    VC.iobj_target =self;
+    VC.isel_action = @selector(changeRightItem:);
     //弹出视图的大小
     formSheet.presentedFormSheetSize=CGSizeMake(284, 250);
     formSheet.shadowRadius = 2.0;
@@ -154,6 +87,31 @@
     formSheet.shouldCenterVertically =YES;
     formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
     [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
+  
 
+}
+//登录成功后，导航的按钮项显示为用户的名称
+-(void)changeRightItem:(NSString*)userName{
+    UIBarButtonItem *btnItem=[[UIBarButtonItem alloc]initWithTitle:userName style:UIBarButtonItemStyleBordered target:self action:@selector(LogOut)];
+    self.navigationItem.rightBarButtonItem=btnItem;
+    
+}
+//点击用户名称项，会调用这个方法，提示是否退出
+-(void)LogOut{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否退出登录" delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+    [alert show];
+    
+}
+#pragma mark -UIAlertviewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //确定退出登录后，删除登录记录
+    if (buttonIndex==0) {
+        DB_login *dbLogin=[[DB_login alloc]init];
+        [dbLogin fn_delete_record];
+        UIBarButtonItem *btnItem=[[UIBarButtonItem alloc]initWithTitle:@"Login" style:UIBarButtonItemStyleBordered target:self action:@selector(UserLogin:)];
+        self.navigationItem.rightBarButtonItem=btnItem;
+        
+    }
+    
 }
 @end
