@@ -575,15 +575,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sea Export" id="9fF-43-3kL">
                         <barButtonItem key="backBarButtonItem" title="Preivous" id="c0K-UR-DhD"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="zch-el-Wjv">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LSv-4Z-d9k">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="UserLogin:" destination="CZ4-MO-1fc" eventType="touchUpInside" id="bqJ-Rz-cCB"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="zRn-oU-wgW">
+                            <connections>
+                                <action selector="UserLogin:" destination="CZ4-MO-1fc" id="3AR-co-tba"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
