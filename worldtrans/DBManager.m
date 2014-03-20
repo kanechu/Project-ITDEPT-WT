@@ -40,7 +40,8 @@ static int DB_VERSION = 1;
 
 -(BOOL)fn_create_db{
     NSArray *llist_paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *ls_documentDirectory = [llist_paths objectAtIndex:0];    NSString *ls_dbPath = [ls_documentDirectory stringByAppendingPathComponent:@"itdept.db"];
+    NSString *ls_documentDirectory = [llist_paths objectAtIndex:0];
+    NSString *ls_dbPath = [ls_documentDirectory stringByAppendingPathComponent:@"itdept.db"];
     
     BOOL lb_Success = YES;
     database= [FMDatabase databaseWithPath:ls_dbPath] ;
@@ -62,7 +63,9 @@ static int DB_VERSION = 1;
     } else {
         NSString *ls_sql_stmt =
         @"CREATE TABLE IF NOT EXISTS alert ( unique_id INTEGER PRIMARY KEY, ct_type TEXT NOT NULL DEFAULT '', so_uid TEXT NOT NULL DEFAULT '', so_no TEXT NOT NULL DEFAULT '', hbl_uid TEXT NOT NULL DEFAULT '', hbl_no TEXT NOT NULL DEFAULT '', status_desc TEXT NOT NULL DEFAULT '', act_status_date TEXT NOT NULL DEFAULT '', act_status_time TEXT NOT NULL DEFAULT '', msg_recv_date TEXT NOT NULL DEFAULT '', is_read INT DEFAULT 0);";
+        NSString *ls_sql_login = @"CREATE TABLE IF NOT EXISTS loginInfo ( unique_id INTEGER PRIMARY KEY, user_code TEXT NOT NULL DEFAULT '', password TEXT NOT NULL DEFAULT '')";
         [database executeUpdate:ls_sql_stmt];
+        [database executeUpdate:ls_sql_login];
         [database close];
         return  lb_Success;
     }
