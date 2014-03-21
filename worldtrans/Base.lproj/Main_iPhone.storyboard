@@ -652,6 +652,10 @@
                                             <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fNo-BY-b3N">
+                                            <rect key="frame" x="238" y="38" width="35" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
@@ -661,6 +665,7 @@
                                     <outlet property="ilb_alert_date" destination="dzS-z9-JHg" id="wHL-ra-kT0"/>
                                     <outlet property="ilb_ct_nos" destination="FxQ-Om-nuk" id="awX-3F-hj2"/>
                                     <outlet property="ilb_status_desc" destination="C4k-ID-4iG" id="ceM-iy-IAk"/>
+                                    <outlet property="ilb_warningBlue" destination="fNo-BY-b3N" id="9kz-MA-fxs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
