@@ -19,6 +19,7 @@
 #import "ExhblGeneralController.h"
 #import "MBProgressHUD.h"
 #import "NSDictionary.h"
+#import "DB_login.h"
 @interface AehblListController ()
 
 @end
@@ -142,10 +143,20 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     RequestContract *req_form = [[RequestContract alloc] init];
     
     req_form.Auth = [[AuthContract alloc] init];
+    DB_login *dbLogin=[[DB_login alloc]init];
     
-    req_form.Auth.user_code = @"SA";
-    req_form.Auth.password = @"SA1";
-    req_form.Auth.system = @"ITNEW";
+    if ([dbLogin isLoginSuccess]) {
+        NSMutableArray *userInfo=[dbLogin fn_get_all_msg];
+        req_form.Auth.user_code =[[userInfo objectAtIndex:0] valueForKey:@"user_code"];
+        req_form.Auth.password = [[userInfo objectAtIndex:0] valueForKey:@"password"];;
+        req_form.Auth.system = @"ITNEW";
+    }else{
+        req_form.Auth.user_code = @"SA";
+        req_form.Auth.password = @"SA1";
+        req_form.Auth.system = @"ITNEW";
+    }
+    
+
     
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = @"search_no";

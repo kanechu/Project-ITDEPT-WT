@@ -28,9 +28,13 @@
 @synthesize is_search_value;
 
 @synthesize ilist_exhbl;
-
+@synthesize dbLogin;
+-(void)createDBLoginObj{
+    self.dbLogin =[[DB_login alloc]init];
+}
 - (void)viewDidLoad
 {
+    [self createDBLoginObj];
     self.view.backgroundColor = [UIColor blackColor];
     [self fn_get_data:is_search_column :is_search_value];
     
@@ -45,7 +49,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if ([dbLogin isLoginSuccess]) {
+        return 7;
+    }else{
+         return 5;
+    }
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -159,9 +167,17 @@
         cell.ilb_value.text = ls_os_value;
 
     }
+    if ([dbLogin isLoginSuccess]) {
+        if (indexPath.row==5) {
+            cell.ilb_header.text = @"Shipper ";
+            cell.ilb_value.text =[ldict_dictionary valueForKey:@"shpr_name"];
+        }
+        if (indexPath.row==6) {
+            cell.ilb_header.text = @"Consignee";
+            cell.ilb_value.text =[ldict_dictionary valueForKey:@"cnee_name"];
+        }
+    }
 
-
-    
     return cell;
 }
 
@@ -171,10 +187,15 @@
     RequestContract *req_form = [[RequestContract alloc] init];
     
     req_form.Auth = [[AuthContract alloc] init];
-    
-    req_form.Auth.user_code = @"SA";
-    req_form.Auth.password = @"SA1";
-    req_form.Auth.system = @"ITNEW";
+    if ([dbLogin isLoginSuccess]) {
+        req_form.Auth.user_code =[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
+        req_form.Auth.password = [[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"password"];;
+        req_form.Auth.system = @"ITNEW";
+    }else{
+        req_form.Auth.user_code = @"SA";
+        req_form.Auth.password = @"SA1";
+        req_form.Auth.system = @"ITNEW";
+    }
     
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = as_search_column;
