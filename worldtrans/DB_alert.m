@@ -56,8 +56,16 @@
     }
     return 0;
 }
-
-
+- (BOOL)fn_update_isRead:(NSString*)as_indexRow{
+    if ([[idb fn_get_db] open]) {
+        BOOL ib_updated =[[idb fn_get_db] executeUpdate:@"update alert set is_read='1' where unique_id=?",as_indexRow];
+        if (! ib_updated)
+            return NO;
+        [[idb fn_get_db] close];
+    
+    }
+    return YES;
+}
 
 - (NSMutableArray *) fn_get_all_msg
 {

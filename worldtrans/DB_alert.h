@@ -18,6 +18,6 @@
 - (NSInteger) fn_get_unread_msg_count;
 
 - (NSMutableArray *) fn_get_all_msg;
-
+- (BOOL)fn_update_isRead:(NSString*)as_indexRow;
 @end
 
