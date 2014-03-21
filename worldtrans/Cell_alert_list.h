@@ -18,4 +18,6 @@
 
 @property (nonatomic) IBOutlet UILabel* ilb_alert_date;
 
+@property (nonatomic) IBOutlet UIImageView *ilb_warningBlue;
+
 @end
