@@ -17,7 +17,8 @@
 #import "Web_get_alert.h"
 #import "DB_alert.h"
 #import "NSString.h"
-
+#import "ExhblHomeController.h"
+#import "AehblHomeController.h"
 
 @interface AlertController ()
 
@@ -33,7 +34,7 @@
     [self fn_get_data];
     
 }
-
+#pragma mark UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [ilist_alert count];
@@ -60,7 +61,10 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   // NSString *ls_status_desc = @"",*ls_act_status_date = @"",*ls_ct_type = @"",*ls_ct_no = @"";
+   
+    DB_alert * ldb_alert = [[DB_alert alloc] init];
+    ilist_alert = [ldb_alert fn_get_all_msg];
+  
     
     static NSString *ls_TableIdentifier = @"cell_alert_list";
     Cell_alert_list *cell = (Cell_alert_list *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
@@ -70,9 +74,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-   // NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-  //  ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];    // Configure Cell
-    //RespAlert *ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
+   
     NSDictionary *ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
     
     NSString *ls_status_desc =[ldict_dictionary valueForKey:@"status_desc"];
@@ -88,14 +90,72 @@
     cell.ilb_act_status_date.text = ls_act_status_date;
     cell.ilb_alert_date.text = ls_msg_recv_date;
     cell.ilb_ct_nos.text = ls_show_no;
+    if ([[NSString stringWithFormat:@"%@", [ldict_dictionary valueForKey:@"is_read"]] isEqualToString:@"0"]  ) {
+        cell.ilb_warningBlue.image=[UIImage imageNamed:@"warning_blue"];
+    }else{
+        cell.ilb_warningBlue.image=nil;
+    }
+            
     return cell;
+}
+- (void)tableView: (UITableView *)tableView
+didSelectRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    
+    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+    ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
+    // Configure Cell
+    NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
+    if ([[ldict_dictionary valueForKey:@"ct_type"] isEqualToString:@"exhbl"]) {
+        [self performSegueWithIdentifier:@"segue_exhbl_home1" sender:self];
+    }else if([[ldict_dictionary valueForKey:@"ct_type"] isEqualToString:@"aehbl"]){
+        [self performSegueWithIdentifier:@"segue_aehbl_home1" sender:self];
+    }
+    DB_alert * ldb_alert = [[DB_alert alloc] init];
+    [ldb_alert fn_update_isRead:ls_unique_id];
+      [self.tableView reloadData];
+}
+
+#pragma mark segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSString *ls_hbl_uid = @"";
+    NSString *ls_so_uid = @"";
+    NSString *ls_os_column = @"";
+    NSString *ls_os_value = @"";
+    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+    
+    ldict_dictionary = [ilist_alert objectAtIndex:selectedRowIndex.row];    // Configure Cell
+    ls_hbl_uid = [ldict_dictionary valueForKey:@"hbl_uid"];
+    ls_so_uid = [ldict_dictionary valueForKey:@"so_uid"];
+    
+    if ([ls_hbl_uid length] > 0) {
+        ls_os_column = @"hbl_uid";
+        ls_os_value = ls_hbl_uid;
+    }
+    else {
+        
+        ls_os_column = @"so_uid";
+        ls_os_value = ls_so_uid;
+    }
+    
+    if ([[segue identifier] isEqualToString:@"segue_exhbl_home1"]) {
+        ExhblHomeController *exhblHomeController = [segue destinationViewController];
+        exhblHomeController.is_search_column = ls_os_column;
+        exhblHomeController.is_search_value = ls_os_value;
+    }else if ([[segue identifier] isEqualToString:@"segue_aehbl_home1"]){
+        ExhblHomeController *exhblHomeController = [segue destinationViewController];
+        exhblHomeController.is_search_column = ls_os_column;
+        exhblHomeController.is_search_value = ls_os_value;
+    }
 }
 
 - (void) fn_get_data
 {
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     ilist_alert = [ldb_alert fn_get_all_msg];
-    [self.tableView reloadData];
+   
 }
 
 @end
