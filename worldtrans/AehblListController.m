@@ -16,7 +16,7 @@
 #import "Cell_aehbl_list.h"
 #import "Res_color.h"
 #import "AehblHomeController.h"
-#import "ExhblGeneralController.h"
+#import "AehblGeneralController.h"
 #import "MBProgressHUD.h"
 #import "NSDictionary.h"
 #import "DB_login.h"
@@ -272,9 +272,9 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
     
     if ([[segue identifier] isEqualToString:@"segue_aehbl_home"]) {
-        AehblHomeController *exhblHomeController = [segue destinationViewController];
-        exhblHomeController.is_search_column = ls_os_column;
-        exhblHomeController.is_search_value = ls_os_value;
+        AehblHomeController *aehblHomeController = [segue destinationViewController];
+        aehblHomeController.is_search_column = ls_os_column;
+        aehblHomeController.is_search_value = ls_os_value;
     }
 }
 
