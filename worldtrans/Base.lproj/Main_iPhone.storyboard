@@ -203,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YpT-hE-ddb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1286" y="-937"/>
+            <point key="canvasLocation" x="1386" y="-1089"/>
         </scene>
         <!--Milestone Controller-->
         <scene sceneID="k8s-bx-lQc">
@@ -669,6 +669,10 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="8G2-B0-Eba"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <segue destination="7UD-qU-Ko9" kind="push" identifier="segue_exhbl_home1" id="Cr5-3k-Xhp"/>
+                        <segue destination="O1K-i7-1iG" kind="push" identifier="segue_aehbl_home1" id="3hz-sA-2Up"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR4-0f-osQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -739,7 +743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDf-r5-hAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="713"/>
+            <point key="canvasLocation" x="1459" y="-387"/>
         </scene>
         <!--Navigation Controller - Alert-->
         <scene sceneID="omv-eI-KlV">
@@ -845,7 +849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5U-K2-jlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2310" y="171"/>
+            <point key="canvasLocation" x="2378" y="583"/>
         </scene>
         <!--Aehbl General Controller-->
         <scene sceneID="AG0-z3-lQG">
@@ -963,4 +967,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Cr5-3k-Xhp"/>
+        <segue reference="3hz-sA-2Up"/>
+    </inferredMetricsTieBreakers>
 </document>
