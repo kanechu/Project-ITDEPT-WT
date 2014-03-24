@@ -97,6 +97,8 @@
     UIBarButtonItem *btnItem=[[UIBarButtonItem alloc]initWithTitle:userName style:UIBarButtonItemStyleBordered target:self action:@selector(LogOut)];
     self.navigationItem.rightBarButtonItem=btnItem;
     
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"isEnable" object:self];
 }
 //点击用户名称项，会调用这个方法，提示是否退出
 -(void)LogOut{
@@ -112,7 +114,7 @@
         [dbLogin fn_delete_record];
         UIBarButtonItem *btnItem=[[UIBarButtonItem alloc]initWithTitle:@"Login" style:UIBarButtonItemStyleBordered target:self action:@selector(UserLogin:)];
         self.navigationItem.rightBarButtonItem=btnItem;
-        
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"isEnable" object:self];       
     }
     
 }
