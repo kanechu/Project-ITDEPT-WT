@@ -28,8 +28,8 @@
     
     req_form.Auth = [[AuthContract alloc] init];
     
-    req_form.Auth.user_code = @"SA";
-    req_form.Auth.password = @"SA1";
+    req_form.Auth.user_code = as_user_code;
+    req_form.Auth.password = as_password;
     req_form.Auth.system = @"ITNEW";
     
     SearchFormContract *search1 = [[SearchFormContract alloc]init];
