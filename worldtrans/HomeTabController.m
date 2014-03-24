@@ -9,19 +9,19 @@
 #import "HomeTabController.h"
 #import "Web_get_alert.h"
 #import "DB_alert.h"
-
+#import "DB_login.h"
 @interface HomeTabController ()
 
 @end
 
 @implementation HomeTabController
-
+@synthesize tabBarItem;
 -(void)CustomizeTabBar{
     UITabBar *tabBar=self.tabBar;
-    UITabBarItem *tabBarItem=[tabBar.items objectAtIndex:1];
+    tabBarItem=[tabBar.items objectAtIndex:1];
     tabBarItem.title=@"Alert";
     [tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_message"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_message"] ];
-    
+    tabBarItem.enabled=NO;
     //Change the tab bar background
     
     //颜色创建image
@@ -64,20 +64,27 @@
     [super viewDidLoad];
     
     [self CustomizeTabBar];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(isMakeItemEnable) name:@"isEnable" object:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self gettingNotification];
         dispatch_async( dispatch_get_main_queue(), ^{
             
-          NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
-                                                   selector: @selector(gettingNotification) userInfo: nil repeats: YES];
+            [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
+                                           selector: @selector(gettingNotification) userInfo: nil repeats: YES];
             // Add code here to update the UI/send notifications based on the
             // results of the background processing
             
         });
     });
 }
-
+-(void)isMakeItemEnable{
+    DB_login *dbLogin=[[DB_login alloc]init];
+    if ([dbLogin isLoginSuccess]) {
+        tabBarItem.enabled=YES;
+    }else{
+        tabBarItem.enabled=NO;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -91,7 +98,15 @@
         Web_get_alert *web_get_alert = [[Web_get_alert alloc] init];
         web_get_alert.iobj_target = self;
         web_get_alert.isel_action = @selector(fn_save_alert_list:);
-        [web_get_alert fn_get_data:@"SA" withPwd:@"SA1"];
+        DB_login *dbLogin=[[DB_login alloc]init];
+        if ([dbLogin isLoginSuccess]) {
+            NSMutableArray *userInfo=[dbLogin fn_get_all_msg];
+            [web_get_alert fn_get_data:[[userInfo objectAtIndex:0] valueForKey:@"user_code"] withPwd:[[userInfo objectAtIndex:0] valueForKey:@"password"]];
+            
+        }else{
+             [web_get_alert fn_get_data:@"SA" withPwd:@"SA1"];
+        }
+        
         dispatch_async( dispatch_get_main_queue(), ^{
             // update UI here
             DB_alert * ldb_alert = [[DB_alert alloc] init];

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeTabController : UITabBarController
-
+@interface HomeTabController : UITabBarController{
+    UITabBarItem *tabBarItem;
+}
+@property(nonatomic,retain)UITabBarItem *tabBarItem;
 - (void) fn_save_alert_list: (NSMutableArray *) alist_alert;
 
 @end
