@@ -32,6 +32,8 @@
 {
     self.view.backgroundColor = [UIColor blackColor];
     [self fn_get_data];
+    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
+                                                    selector: @selector(reloadData) userInfo: nil repeats: YES];
     
 }
 #pragma mark UITableViewDelegate
@@ -157,5 +159,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     ilist_alert = [ldb_alert fn_get_all_msg];
    
 }
-
+-(void)reloadData{
+    DB_alert * ldb_alert = [[DB_alert alloc] init];
+    if ([ldb_alert fn_get_unread_msg_count]>[ilist_alert count]) {
+        ilist_alert=[ldb_alert fn_get_all_msg];
+        [self.tableView reloadData];
+    }
+}
 @end
