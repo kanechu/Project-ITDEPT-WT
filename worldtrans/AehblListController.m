@@ -20,6 +20,7 @@
 #import "MBProgressHUD.h"
 #import "NSDictionary.h"
 #import "DB_login.h"
+#import "Web_base.h"
 @interface AehblListController ()
 
 @end
@@ -139,7 +140,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 }
 
 - (void) fn_get_data: (NSString*)as_search_no
-{
+{    
+    
     RequestContract *req_form = [[RequestContract alloc] init];
     
     req_form.Auth = [[AuthContract alloc] init];
@@ -156,8 +158,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         req_form.Auth.system = @"ITNEW";
     }
     
-
-    
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = @"search_no";
     search.os_value = as_search_no;
@@ -165,66 +165,25 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     req_form.SearchForm = [NSSet setWithObjects:search, nil];
     
     
-    RKObjectMapping *searchMapping = [RKObjectMapping requestMapping];
-    [searchMapping addAttributeMappingsFromArray:@[@"os_column",@"os_value"]];
     
-    
-    RKObjectMapping *authMapping = [RKObjectMapping requestMapping];
-    [authMapping addAttributeMappingsFromDictionary:@{ @"user_code": @"user_code",
-                                                       @"password": @"password",
-                                                       @"system": @"system" }];
-    
-    RKObjectMapping *reqMapping = [RKObjectMapping requestMapping];
-    
-    RKRelationshipMapping *searchRelationship = [RKRelationshipMapping
-                                                 relationshipMappingFromKeyPath:@"SearchForm"
-                                                 toKeyPath:@"SearchForm"
-                                                 withMapping:searchMapping];
-    
-    
-    RKRelationshipMapping *authRelationship = [RKRelationshipMapping
-                                               relationshipMappingFromKeyPath:@"Auth"
-                                               toKeyPath:@"Auth"
-                                               withMapping:authMapping];
-    
-    [reqMapping addPropertyMapping:authRelationship];
-    [reqMapping addPropertyMapping:searchRelationship];
-    
-    NSString* path = STR_AIR_URL;
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
-                                                                                   objectClass:[RequestContract class]
-                                                                                   rootKeyPath:nil method:RKRequestMethodPOST];
-    
-    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespAehbl class]];
-    [respExhblMapping addAttributeMappingsFromArray:@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flight_date",@"eta"
-                                        , @"hbl_pkg", @"hbl_chrg_cbm", @"hbl_act_cbm", @"hbl_kgs", @"hbl_unit", @"cntrloff_list", @"delivery_name", @"status_desc", @"act_status_date"
-                                                       ]];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respExhblMapping
-                                                                                            method:RKRequestMethodPOST
-                                                                                       pathPattern:nil
-                                                                                           keyPath:nil
-                                                                                       statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:STR_BASE_URL]];
-    [manager addRequestDescriptor:requestDescriptor];
-    [manager addResponseDescriptor:responseDescriptor];
-    manager.requestSerializationMIMEType = RKMIMETypeJSON;
-    [manager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [manager postObject:req_form path:path parameters:nil
-                success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-                    // RKLogInfo(@"Load collection of Articles: %@", result.array);
-                    ilist_aehbl = [NSMutableArray arrayWithArray:result.array];
-                    [self.tableView reloadData];
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    
-                } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    RKLogError(@"Operation failed with error: %@", error);
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                }];
-    
+    Web_base *web_base = [[Web_base alloc] init];
+    web_base.il_url =STR_AIR_URL;
+    web_base.iresp_class =[RespAehbl class];
+    web_base.ilist_resp_mapping =@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
+                                    , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flight_date",@"eta"
+                                    , @"hbl_pkg", @"hbl_chrg_cbm", @"hbl_act_cbm", @"hbl_kgs", @"hbl_unit", @"cntrloff_list", @"delivery_name", @"status_desc", @"act_status_date"
+                                    ];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_alert_list:);
+    [web_base fn_get_data:req_form];
+
+}
+
+
+- (void) fn_save_alert_list: (NSMutableArray *) alist_result {
+    ilist_aehbl = alist_result;
+    [self.tableView reloadData];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 

@@ -24,6 +24,7 @@
 		B2307B2218BE0564000502BE /* HomeTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2118BE0564000502BE /* HomeTabController.m */; };
 		B2307B2618BEEA82000502BE /* Web_get_alert.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2518BEEA82000502BE /* Web_get_alert.m */; };
 		B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2918BEEE36000502BE /* AppConstants.m */; };
+		B23D80F218E18D4700316700 /* Web_base.m in Sources */ = {isa = PBXBuildFile; fileRef = B23D80F118E18D4700316700 /* Web_base.m */; };
 		B242208618B7470B00D4A75C /* Cell_exhbl_list.m in Sources */ = {isa = PBXBuildFile; fileRef = B242208518B7470B00D4A75C /* Cell_exhbl_list.m */; };
 		B242208C18B8467300D4A75C /* Res_color.m in Sources */ = {isa = PBXBuildFile; fileRef = B242208B18B8467300D4A75C /* Res_color.m */; };
 		B242209218BAED3000D4A75C /* ExhblHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209118BAED3000D4A75C /* ExhblHomeController.m */; };
@@ -158,6 +159,8 @@
 		B2307B2518BEEA82000502BE /* Web_get_alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Web_get_alert.m; sourceTree = "<group>"; };
 		B2307B2818BEEE36000502BE /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
 		B2307B2918BEEE36000502BE /* AppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstants.m; sourceTree = "<group>"; };
+		B23D80F018E18D4700316700 /* Web_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Web_base.h; sourceTree = "<group>"; };
+		B23D80F118E18D4700316700 /* Web_base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Web_base.m; sourceTree = "<group>"; };
 		B242208418B7470B00D4A75C /* Cell_exhbl_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_exhbl_list.h; sourceTree = "<group>"; };
 		B242208518B7470B00D4A75C /* Cell_exhbl_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_exhbl_list.m; sourceTree = "<group>"; };
 		B242208A18B8467300D4A75C /* Res_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Res_color.h; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 			children = (
 				B2307B2418BEEA82000502BE /* Web_get_alert.h */,
 				B2307B2518BEEA82000502BE /* Web_get_alert.m */,
+				B23D80F018E18D4700316700 /* Web_base.h */,
+				B23D80F118E18D4700316700 /* Web_base.m */,
 			);
 			name = WebRequest;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 			files = (
 				B2B020C418AB5F6500EECD92 /* CandyTableViewController.m in Sources */,
 				B2A9770718CF18290096BD4B /* FMDatabase.m in Sources */,
+				B23D80F218E18D4700316700 /* Web_base.m in Sources */,
 				B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */,
 				B2307B2618BEEA82000502BE /* Web_get_alert.m in Sources */,
 				B2B020B818AB52D100EECD92 /* ExhblListController.m in Sources */,
