@@ -94,8 +94,6 @@
     formSheet.shouldCenterVertically =YES;
     formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
     [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
-    DB_login *dbLogin=[[DB_login alloc]init];
-    [dbLogin fn_delete_record];
 
 }
 //登录成功后，导航的按钮项显示为用户的名称
