@@ -26,8 +26,8 @@
 {
     self.view.backgroundColor = [UIColor blackColor];
     [self fn_get_data];
-   /*[NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
-                                                    selector: @selector(reloadData) userInfo: nil repeats: YES];*/
+   [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
+                                                    selector: @selector(reloadData) userInfo: nil repeats: YES];
     
 }
 #pragma mark UITableViewDelegate
@@ -57,11 +57,6 @@
 }
 #pragma mark UITableViewDataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-    DB_alert * ldb_alert = [[DB_alert alloc] init];
-    ilist_alert = [ldb_alert fn_get_all_msg];
-  
-    
     static NSString *ls_TableIdentifier = @"cell_alert_list";
     Cell_alert_list *cell = (Cell_alert_list *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
     if (cell == nil)
@@ -110,17 +105,17 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_update_isRead:ls_unique_id];
-      [self.tableView reloadData];
+    
+    ilist_alert=[ldb_alert fn_get_all_msg];
+    [self.tableView reloadData];
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle==UITableViewCellEditingStyleDelete) {
         
         
         [ilist_alert removeObjectAtIndex:indexPath.row];
-        
-        [self.tableView beginUpdates];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-        [self.tableView endUpdates];
+    
         
         NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
         ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
@@ -128,8 +123,9 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
         DB_alert * ldb_alert = [[DB_alert alloc] init];
         [ldb_alert fn_delete:ls_unique_id];
+      
          
-        //[self.tableView reloadData];
+       
     }
    
 }
@@ -173,6 +169,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     ilist_alert = [ldb_alert fn_get_all_msg];
+    NSLog(@"%d",[ilist_alert count]);
    
 }
 -(void)reloadData{
