@@ -108,9 +108,10 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
     // Configure Cell
     NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
-    if ([[ldict_dictionary valueForKey:@"ct_type"] isEqualToString:@"exhbl"]) {
+    NSString *ls_ct_type =[[ldict_dictionary valueForKey:@"ct_type"] lowercaseString];
+    if ([ls_ct_type isEqualToString:@"exhbl"]) {
         [self performSegueWithIdentifier:@"segue_exhbl_home1" sender:self];
-    }else if([[ldict_dictionary valueForKey:@"ct_type"] isEqualToString:@"aehbl"]){
+    }else if([ls_ct_type isEqualToString:@"aehbl"]){
         [self performSegueWithIdentifier:@"segue_aehbl_home1" sender:self];
     }
     DB_alert * ldb_alert = [[DB_alert alloc] init];

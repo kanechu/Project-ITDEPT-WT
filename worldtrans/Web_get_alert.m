@@ -7,15 +7,14 @@
 //
 
 #import "Web_get_alert.h"
-#import <RestKit/RestKit.h>
-#import "AuthContract.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
 #import "RespAlert.h"
 #import "Cell_alert_list.h"
 #import "Res_color.h"
 #import "AppConstants.h"
-
+#import "NSArray.h"
+#import "Web_base.h"
 @implementation Web_get_alert
 
 @synthesize ilist_alert;
@@ -44,62 +43,21 @@
     
     req_form.SearchForm = [NSSet setWithObjects:search1,search2, nil];
     
-    RKObjectMapping *searchMapping = [RKObjectMapping requestMapping];
-    [searchMapping addAttributeMappingsFromArray:@[@"os_column",@"os_value"]];
     
+    Web_base *web_base = [[Web_base alloc] init];
+    web_base.il_url =STR_ALERT_URL;
+    web_base.iresp_class =[RespAlert class];
     
-    RKObjectMapping *authMapping = [RKObjectMapping requestMapping];
-    [authMapping addAttributeMappingsFromDictionary:@{ @"user_code": @"user_code",
-                                                       @"password": @"password",
-                                                       @"system": @"system" }];
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespAlert class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_alert_list:);
+    [web_base fn_get_data:req_form];
     
-    RKObjectMapping *reqMapping = [RKObjectMapping requestMapping];
+}
+- (void) fn_save_alert_list: (NSMutableArray *) alist_result {
+    ilist_alert = alist_result;
+    [iobj_target performSelector:isel_action withObject:ilist_alert];
     
-    RKRelationshipMapping *searchRelationship = [RKRelationshipMapping
-                                                 relationshipMappingFromKeyPath:@"SearchForm"
-                                                 toKeyPath:@"SearchForm"
-                                                 withMapping:searchMapping];
-    
-    
-    RKRelationshipMapping *authRelationship = [RKRelationshipMapping
-                                               relationshipMappingFromKeyPath:@"Auth"
-                                               toKeyPath:@"Auth"
-                                               withMapping:authMapping];
-    
-    [reqMapping addPropertyMapping:authRelationship];
-    [reqMapping addPropertyMapping:searchRelationship];
-    
-    NSString* path = @"itleo.web/api/cargotracking/alert";
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
-                                                                                   objectClass:[RequestContract class]
-                                                                                   rootKeyPath:nil method:RKRequestMethodPOST];
-    
-    RKObjectMapping* respMilestoneMapping = [RKObjectMapping mappingForClass:[RespAlert class]];
-    
-    [respMilestoneMapping addAttributeMappingsFromArray:@[ @"ct_type",@"so_uid",@"hbl_uid",@"so_no",@"hbl_no",@"status_desc",@"act_status_date"]];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respMilestoneMapping
-                                                                                            method:RKRequestMethodPOST
-                                                                                       pathPattern:nil
-                                                                                           keyPath:nil
-                                                                                       statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:STR_BASE_URL]];
-    [manager addRequestDescriptor:requestDescriptor];
-    [manager addResponseDescriptor:responseDescriptor];
-    manager.requestSerializationMIMEType = RKMIMETypeJSON;
-    [manager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-    
-    [manager postObject:req_form path:path parameters:nil
-                success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-                    // RKLogInfo(@"Load collection of Articles: %@", result.array);
-                    //[self performSelector:action:ilist_alert];
-                    ilist_alert = [NSMutableArray arrayWithArray:result.array];
-                    
-                    [iobj_target performSelector:isel_action withObject:ilist_alert];
-                    
-                } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    RKLogError(@"Operation failed with error: %@", error);
-                }];
     
 }
 @end
