@@ -12,6 +12,7 @@
 
 @property (strong,nonatomic) NSMutableArray *ilist_alert;
 
+- (IBAction)deleteRow:(id)sender;
 
 @end
 

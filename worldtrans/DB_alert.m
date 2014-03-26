@@ -66,7 +66,16 @@
     }
     return YES;
 }
-
+- (BOOL)fn_delete:(NSString*)as_indexRow{
+    if ([[idb fn_get_db] open]) {
+        BOOL ib_updated =[[idb fn_get_db] executeUpdate:@"delete alert where unique_id=?",as_indexRow];
+        if (! ib_updated)
+            return NO;
+        [[idb fn_get_db] close];
+        
+    }
+    return YES;
+}
 - (NSMutableArray *) fn_get_all_msg
 {
     NSMutableArray *llist_results = [NSMutableArray array];

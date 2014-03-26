@@ -7,14 +7,8 @@
 //
 
 #import "AlertController.h"
-#import <RestKit/RestKit.h>
-#import "AuthContract.h"
-#import "RequestContract.h"
-#import "SearchFormContract.h"
-#import "RespAlert.h"
 #import "Cell_alert_list.h"
 #import "Res_color.h"
-#import "Web_get_alert.h"
 #import "DB_alert.h"
 #import "NSString.h"
 #import "ExhblHomeController.h"
@@ -61,7 +55,7 @@
 {
     return 71;
 }
-
+#pragma mark UITableViewDataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     DB_alert * ldb_alert = [[DB_alert alloc] init];
@@ -118,6 +112,27 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     [ldb_alert fn_update_isRead:ls_unique_id];
       [self.tableView reloadData];
 }
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        
+        
+        [ilist_alert removeObjectAtIndex:indexPath.row];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        [self.tableView endUpdates];
+        /*
+        NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+        ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
+        // Configure Cell
+        NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
+        DB_alert * ldb_alert = [[DB_alert alloc] init];
+        [ldb_alert fn_delete:ls_unique_id];
+         */
+        //[self.tableView reloadData];
+    }
+   
+}
 
 #pragma mark segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -161,10 +176,14 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
    
 }
 -(void)reloadData{
+    /*
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     if ([ldb_alert fn_get_unread_msg_count]>[ilist_alert count]) {
         ilist_alert=[ldb_alert fn_get_all_msg];
         [self.tableView reloadData];
-    }
+    }*/
+}
+- (IBAction)deleteRow:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
 }
 @end
