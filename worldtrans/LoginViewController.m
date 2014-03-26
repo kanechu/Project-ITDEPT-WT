@@ -61,11 +61,11 @@
     web_base.iresp_class=[RespLogin class];
     web_base.ilist_resp_mapping =@[@"user_code",@"pass"];
     web_base.iobj_target = self;
-    web_base.isel_action = @selector(fn_save_alert_list:);
+    web_base.isel_action = @selector(fn_save_login_list:);
     [web_base fn_get_data:req_form];
     
 }
-- (void) fn_save_alert_list: (NSMutableArray *) alist_result {
+- (void) fn_save_login_list: (NSMutableArray *) alist_result {
     
     loginData=[NSDictionary dictionaryWithPropertiesOfObject:[alist_result objectAtIndex:0]];
     

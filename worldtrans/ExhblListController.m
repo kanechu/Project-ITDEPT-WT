@@ -148,11 +148,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
    
     web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespExhbl class]];
     web_base.iobj_target = self;
-    web_base.isel_action = @selector(fn_save_alert_list:);
+    web_base.isel_action = @selector(fn_save_exhbl_list:);
     [web_base fn_get_data:req_form];
     
 }
-- (void) fn_save_alert_list: (NSMutableArray *) alist_result {
+- (void) fn_save_exhbl_list: (NSMutableArray *) alist_result {
     ilist_exhbl = alist_result;
     [self.tableView reloadData];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
