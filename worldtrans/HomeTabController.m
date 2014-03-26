@@ -21,7 +21,13 @@
     tabBarItem=[tabBar.items objectAtIndex:1];
     tabBarItem.title=@"Alert";
     [tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_message"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_message"] ];
-    tabBarItem.enabled=NO;
+    DB_login *dbLogin=[[DB_login alloc]init];
+    if ([dbLogin isLoginSuccess]) {
+        tabBarItem.enabled=YES;
+    }else{
+        tabBarItem.enabled=NO;
+    }
+    
     //Change the tab bar background
     
     //颜色创建image
@@ -58,6 +64,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {

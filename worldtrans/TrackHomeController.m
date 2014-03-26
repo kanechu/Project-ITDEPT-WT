@@ -41,6 +41,13 @@
     [_sender.layer setBorderColor:colorRef];
 
 }
+-(void)viewWillAppear:(BOOL)animated{
+    DB_login *dbLogin=[[DB_login alloc]init];
+    if ([dbLogin isLoginSuccess]) {
+        self.navigationItem.rightBarButtonItem.title=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
+        self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
+    }
+}
 - (void)viewDidLoad
 {
     
@@ -89,14 +96,13 @@
     [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
     DB_login *dbLogin=[[DB_login alloc]init];
     [dbLogin fn_delete_record];
-    NSLog(@"%@",[dbLogin fn_get_all_msg]);
 
 }
 //登录成功后，导航的按钮项显示为用户的名称
 -(void)changeRightItem:(NSString*)userName{
-    UIBarButtonItem *btnItem=[[UIBarButtonItem alloc]initWithTitle:userName style:UIBarButtonItemStyleBordered target:self action:@selector(LogOut)];
-    self.navigationItem.rightBarButtonItem=btnItem;
-    
+   
+    self.navigationItem.rightBarButtonItem.title=userName;
+    self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"isEnable" object:self];
 }
@@ -112,8 +118,9 @@
     if (buttonIndex==0) {
         DB_login *dbLogin=[[DB_login alloc]init];
         [dbLogin fn_delete_record];
-        UIBarButtonItem *btnItem=[[UIBarButtonItem alloc]initWithTitle:@"Login" style:UIBarButtonItemStyleBordered target:self action:@selector(UserLogin:)];
-        self.navigationItem.rightBarButtonItem=btnItem;
+            self.navigationItem.rightBarButtonItem.title=@"Login";
+        self.navigationItem.rightBarButtonItem.action=@selector(UserLogin:);
+        
          [[NSNotificationCenter defaultCenter]postNotificationName:@"isEnable" object:self];       
     }
     

@@ -26,8 +26,8 @@
 {
     self.view.backgroundColor = [UIColor blackColor];
     [self fn_get_data];
-    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
-                                                    selector: @selector(reloadData) userInfo: nil repeats: YES];
+   /*[NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
+                                                    selector: @selector(reloadData) userInfo: nil repeats: YES];*/
     
 }
 #pragma mark UITableViewDelegate
@@ -121,14 +121,14 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         [self.tableView beginUpdates];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
         [self.tableView endUpdates];
-        /*
+        
         NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
         ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
         // Configure Cell
         NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
         DB_alert * ldb_alert = [[DB_alert alloc] init];
         [ldb_alert fn_delete:ls_unique_id];
-         */
+         
         //[self.tableView reloadData];
     }
    
@@ -176,12 +176,12 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
    
 }
 -(void)reloadData{
-    /*
+    
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     if ([ldb_alert fn_get_unread_msg_count]>[ilist_alert count]) {
         ilist_alert=[ldb_alert fn_get_all_msg];
         [self.tableView reloadData];
-    }*/
+    }
 }
 - (IBAction)deleteRow:(id)sender {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
