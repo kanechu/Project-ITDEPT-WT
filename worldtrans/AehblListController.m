@@ -7,20 +7,18 @@
 //
 
 #import "AehblListController.h"
-#import <RestKit/RestKit.h>
-#import "AuthContract.h"
 #import "AppConstants.h"
-#import "RequestContract.h"
 #import "SearchFormContract.h"
+#import "MBProgressHUD.h"
 #import "RespAehbl.h"
 #import "Cell_aehbl_list.h"
 #import "Res_color.h"
 #import "AehblHomeController.h"
 #import "AehblGeneralController.h"
-#import "MBProgressHUD.h"
 #import "NSDictionary.h"
 #import "DB_login.h"
 #import "Web_base.h"
+#import "NSArray.h"
 @interface AehblListController ()
 
 @end
@@ -141,38 +139,22 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 
 - (void) fn_get_data: (NSString*)as_search_no
 {    
+     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+      RequestContract *req_form = [[RequestContract alloc] init];
     
-    RequestContract *req_form = [[RequestContract alloc] init];
     
-    req_form.Auth = [[AuthContract alloc] init];
     DB_login *dbLogin=[[DB_login alloc]init];
-    
-    if ([dbLogin isLoginSuccess]) {
-        NSMutableArray *userInfo=[dbLogin fn_get_all_msg];
-        req_form.Auth.user_code =[[userInfo objectAtIndex:0] valueForKey:@"user_code"];
-        req_form.Auth.password = [[userInfo objectAtIndex:0] valueForKey:@"password"];;
-        req_form.Auth.system = @"ITNEW";
-    }else{
-        req_form.Auth.user_code = @"SA";
-        req_form.Auth.password = @"SA1";
-        req_form.Auth.system = @"ITNEW";
-    }
-    
+    req_form.Auth =[dbLogin WayOfAuthorization];
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = @"search_no";
     search.os_value = as_search_no;
     
     req_form.SearchForm = [NSSet setWithObjects:search, nil];
     
-    
-    
     Web_base *web_base = [[Web_base alloc] init];
     web_base.il_url =STR_AIR_URL;
     web_base.iresp_class =[RespAehbl class];
-    web_base.ilist_resp_mapping =@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                    , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"flight_no", @"prt_flight_date",@"eta"
-                                    , @"hbl_pkg", @"hbl_chrg_cbm", @"hbl_act_cbm", @"hbl_kgs", @"hbl_unit", @"cntrloff_list", @"delivery_name", @"status_desc", @"act_status_date"
-                                    ];
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespAehbl class]];
     web_base.iobj_target = self;
     web_base.isel_action = @selector(fn_save_alert_list:);
     [web_base fn_get_data:req_form];
@@ -184,6 +166,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     ilist_aehbl = alist_result;
     [self.tableView reloadData];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
 }
 
 

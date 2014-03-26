@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DBManager.h"
+#import "AuthContract.h"
 @interface DB_login : NSObject
 {
     DBManager *idb;
@@ -20,4 +21,5 @@
 
 -(BOOL)fn_delete_record;
 -(BOOL)isLoginSuccess;
+-(AuthContract*)WayOfAuthorization;
 @end

@@ -79,4 +79,18 @@
     }
     return NO;
 }
+-(AuthContract*)WayOfAuthorization{
+    AuthContract *auth=[[AuthContract alloc]init];
+    if ([self isLoginSuccess]) {
+        NSMutableArray *userInfo=[self fn_get_all_msg];
+        auth.user_code =[[userInfo objectAtIndex:0] valueForKey:@"user_code"];
+        auth.password = [[userInfo objectAtIndex:0] valueForKey:@"password"];;
+        auth.system = @"ITNEW";
+    }else{
+        auth.user_code = @"SA";
+        auth.password = @"SA1";
+        auth.system = @"ITNEW";
+    }
+    return auth;
+}
 @end

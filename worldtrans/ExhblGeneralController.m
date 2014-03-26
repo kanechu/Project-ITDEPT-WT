@@ -8,8 +8,6 @@
 //
 
 #import "ExhblGeneralController.h"
-#import <RestKit/RestKit.h>
-#import "AuthContract.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
 #import "RespExhbl.h"
@@ -17,7 +15,8 @@
 #import "Cell_exhbl_general_hdr.h"
 #import "Res_color.h"
 #import "AppConstants.h"
-
+#import "Web_base.h"
+#import "NSArray.h"
 @interface ExhblGeneralController ()
 
 @end
@@ -185,84 +184,28 @@
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value
 {
     RequestContract *req_form = [[RequestContract alloc] init];
-    
-    req_form.Auth = [[AuthContract alloc] init];
-    if ([dbLogin isLoginSuccess]) {
-        req_form.Auth.user_code =[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
-        req_form.Auth.password = [[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"password"];;
-        req_form.Auth.system = @"ITNEW";
-    }else{
-        req_form.Auth.user_code = @"SA";
-        req_form.Auth.password = @"SA1";
-        req_form.Auth.system = @"ITNEW";
-    }
-    
+
+    req_form.Auth =[dbLogin WayOfAuthorization];
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = as_search_column;
     search.os_value = as_search_value;
     
     req_form.SearchForm = [NSSet setWithObjects:search, nil];
     
-    
-    RKObjectMapping *searchMapping = [RKObjectMapping requestMapping];
-    [searchMapping addAttributeMappingsFromArray:@[@"os_column",@"os_value"]];
-    
-    
-    RKObjectMapping *authMapping = [RKObjectMapping requestMapping];
-    [authMapping addAttributeMappingsFromDictionary:@{ @"user_code": @"user_code",
-                                                       @"password": @"password",
-                                                       @"system": @"system" }];
-    
-    RKObjectMapping *reqMapping = [RKObjectMapping requestMapping];
-    
-    RKRelationshipMapping *searchRelationship = [RKRelationshipMapping
-                                                 relationshipMappingFromKeyPath:@"SearchForm"
-                                                 toKeyPath:@"SearchForm"
-                                                 withMapping:searchMapping];
-    
-    
-    RKRelationshipMapping *authRelationship = [RKRelationshipMapping
-                                               relationshipMappingFromKeyPath:@"Auth"
-                                               toKeyPath:@"Auth"
-                                               withMapping:authMapping];
-    
-    [reqMapping addPropertyMapping:authRelationship];
-    [reqMapping addPropertyMapping:searchRelationship];
-    
-    NSString* path = STR_SEA_URL;
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
-                                                                                   objectClass:[RequestContract class]
-                                                                                   rootKeyPath:nil method:RKRequestMethodPOST];
-    
-    RKObjectMapping* respExhblMapping = [RKObjectMapping mappingForClass:[RespExhbl class]];
-    [respExhblMapping addAttributeMappingsFromArray:@[ @"ct_type", @"so_uid", @"hbl_uid", @"so_no", @"hbl_no", @"cbl_no"
-                                                       , @"shpr_name", @"cnee_name", @"agent_name", @"load_port", @"dest_name", @"dish_port", @"vsl_voy", @"etd", @"eta", @"eta_dest"
-                                                       , @"prt_onboard_date", @"ship_pkg", @"ship_kgs", @"ship_cbm", @"ship_unit", @"prt_tran_inter_port", @"feeder_vsl_voy", @"feeder_etd", @"no_of_cntr_1"
-                                                       , @"no_of_cntr_2", @"no_of_cntr_3", @"no_of_cntr_4", @"place_of_receipt", @"delivery_name", @"status_desc", @"act_status_date"]];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respExhblMapping
-                                                                                            method:RKRequestMethodPOST
-                                                                                       pathPattern:nil
-                                                                                           keyPath:nil
-                                                                                       statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:STR_BASE_URL]];
-    [manager addRequestDescriptor:requestDescriptor];
-    [manager addResponseDescriptor:responseDescriptor];
-    manager.requestSerializationMIMEType = RKMIMETypeJSON;
-    [manager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-    
-    [manager postObject:req_form path:path parameters:nil
-                success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-                    // RKLogInfo(@"Load collection of Articles: %@", result.array);
-                    ilist_exhbl = [NSMutableArray arrayWithArray:result.array];
-                    [self.tableView reloadData];
-                    
-                } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    RKLogError(@"Operation failed with error: %@", error);
-                }];
+    Web_base *web_base = [[Web_base alloc] init];
+    web_base.il_url =STR_SEA_URL;
+    web_base.iresp_class =[RespExhbl class];
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespExhbl class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_alert_list:);
+    [web_base fn_get_data:req_form];
     
 }
-
+- (void) fn_save_alert_list: (NSMutableArray *) alist_result {
+    ilist_exhbl = alist_result;
+    [self.tableView reloadData];
+    
+}
 
 
 @end

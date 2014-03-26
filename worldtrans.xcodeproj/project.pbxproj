@@ -32,6 +32,7 @@
 		B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209A18BB303600D4A75C /* ExhblGeneralController.m */; };
 		B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24555CE18D166A500D47DC7 /* AehblListController.m */; };
 		B24E83AC18D2A50700C29034 /* AehblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24E83AB18D2A50700C29034 /* AehblGeneralController.m */; };
+		B25649FF18E29C1B00030E05 /* NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = B25649FE18E29C1B00030E05 /* NSArray.m */; };
 		B26CAC4818AA302A00C97C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4718AA302A00C97C83 /* Foundation.framework */; };
 		B26CAC4A18AA302A00C97C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4918AA302A00C97C83 /* CoreGraphics.framework */; };
 		B26CAC4C18AA302A00C97C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4B18AA302A00C97C83 /* UIKit.framework */; };
@@ -175,6 +176,8 @@
 		B24555CE18D166A500D47DC7 /* AehblListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblListController.m; sourceTree = "<group>"; };
 		B24E83AA18D2A50700C29034 /* AehblGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblGeneralController.h; sourceTree = "<group>"; };
 		B24E83AB18D2A50700C29034 /* AehblGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblGeneralController.m; sourceTree = "<group>"; };
+		B25649FD18E29C1B00030E05 /* NSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray.h; sourceTree = "<group>"; };
+		B25649FE18E29C1B00030E05 /* NSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray.m; sourceTree = "<group>"; };
 		B26CAC4418AA302A00C97C83 /* worldtrans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worldtrans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26CAC4718AA302A00C97C83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B26CAC4918AA302A00C97C83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -607,6 +610,8 @@
 				B2C216DD18C8AC7A00A46809 /* NSDictionary.m */,
 				B22446D318CF2C7500049F8C /* NSString.h */,
 				B22446D418CF2C7500049F8C /* NSString.m */,
+				B25649FD18E29C1B00030E05 /* NSArray.h */,
+				B25649FE18E29C1B00030E05 /* NSArray.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -793,6 +798,7 @@
 				B278A91F18D8218F0057DC37 /* MZFormSheetController.m in Sources */,
 				B2307B0618BC920F000502BE /* MilestoneController.m in Sources */,
 				B278A92418D8218F0057DC37 /* UIViewController+TargetViewController.m in Sources */,
+				B25649FF18E29C1B00030E05 /* NSArray.m in Sources */,
 				B242208C18B8467300D4A75C /* Res_color.m in Sources */,
 				B2C216D618C85E5900A46809 /* DB_alert.m in Sources */,
 				B2A9770B18CF18290096BD4B /* FMResultSet.m in Sources */,
