@@ -11,8 +11,9 @@
 @interface AlertController : UITableViewController
 
 @property (strong,nonatomic) NSMutableArray *ilist_alert;
-
+@property (strong,nonatomic) NSMutableDictionary *deleteDic;
 - (IBAction)deleteRow:(id)sender;
+@property ( nonatomic) UIButton *editButton;
 
 @end
 

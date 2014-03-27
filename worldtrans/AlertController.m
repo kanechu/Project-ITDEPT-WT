@@ -21,9 +21,13 @@
 @implementation AlertController
 
 @synthesize ilist_alert;
-
+@synthesize deleteDic;
+@synthesize editButton;
+-(void)initDic{
+    self.deleteDic=[NSMutableDictionary dictionaryWithCapacity:10];
+}
 - (void)viewDidLoad
-{
+{   [self initDic];
     self.view.backgroundColor = [UIColor blackColor];
     [self fn_get_data];
    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
@@ -57,6 +61,7 @@
 }
 #pragma mark UITableViewDataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   
     static NSString *ls_TableIdentifier = @"cell_alert_list";
     Cell_alert_list *cell = (Cell_alert_list *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
     if (cell == nil)
@@ -86,34 +91,47 @@
     }else{
         cell.ilb_warningBlue.image=nil;
     }
-            
+    //cell.selectionStyle=UITableViewCellSelectionStyleBlue;
+    cell.selectionStyle=UITableViewCellSelectionStyleBlue;
     return cell;
 }
 - (void)tableView: (UITableView *)tableView
 didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    
-    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-    ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
-    // Configure Cell
-    NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
-    NSString *ls_ct_type =[[ldict_dictionary valueForKey:@"ct_type"] lowercaseString];
-    if ([ls_ct_type isEqualToString:@"exhbl"]) {
-        [self performSegueWithIdentifier:@"segue_exhbl_home1" sender:self];
-    }else if([ls_ct_type isEqualToString:@"aehbl"]){
-        [self performSegueWithIdentifier:@"segue_aehbl_home1" sender:self];
+    if ([editButton.titleLabel.text isEqualToString:@"Ensure"]) {
+        [self.deleteDic setObject:indexPath forKey:[ilist_alert objectAtIndex:indexPath.row]];
+    }else{
+        NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+        ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
+        // Configure Cell
+        NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
+        NSString *ls_ct_type =[[ldict_dictionary valueForKey:@"ct_type"] lowercaseString];
+        if ([ls_ct_type isEqualToString:@"exhbl"]) {
+            [self performSegueWithIdentifier:@"segue_exhbl_home1" sender:self];
+        }else if([ls_ct_type isEqualToString:@"aehbl"]){
+            [self performSegueWithIdentifier:@"segue_aehbl_home1" sender:self];
+        }
+        DB_alert * ldb_alert = [[DB_alert alloc] init];
+        [ldb_alert fn_update_isRead:ls_unique_id];
+        
+        ilist_alert=[ldb_alert fn_get_all_msg];
+        [self.tableView reloadData];
     }
-    DB_alert * ldb_alert = [[DB_alert alloc] init];
-    [ldb_alert fn_update_isRead:ls_unique_id];
+}
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+}
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([editButton.titleLabel.text isEqualToString:@"Ensure"]) {
+        [self.deleteDic removeObjectForKey:[ilist_alert objectAtIndex:indexPath.row]];
+    }
     
-    ilist_alert=[ldb_alert fn_get_all_msg];
-    [self.tableView reloadData];
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle==UITableViewCellEditingStyleDelete) {
         
         
-        [ilist_alert removeObjectAtIndex:indexPath.row];
+       /* [ilist_alert removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     
         
@@ -122,12 +140,19 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         // Configure Cell
         NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
         DB_alert * ldb_alert = [[DB_alert alloc] init];
-        [ldb_alert fn_delete:ls_unique_id];
-      
-         
-       
+        [ldb_alert fn_delete:ls_unique_id];*/
+        
+        /*[ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];;
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.deleteDic removeAllObjects];
+        
+        
+        
+        */
+        
+        
     }
-   
+    
 }
 
 #pragma mark segue
@@ -181,6 +206,35 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
 }
 - (IBAction)deleteRow:(id)sender {
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    self.editButton=(UIButton*)sender;
+    //显示多选圆圈
+    [self.tableView setEditing:YES animated:YES];
+   // [self.tableView setEditing:!self.tableView.editing animated:YES];
+    [self.editButton setTitle:@"Ensure" forState:UIControlStateNormal];
+    [self.editButton addTarget:self action:@selector(deleteAlertInfo) forControlEvents:UIControlEventTouchUpInside];
 }
+-(void)deleteAlertInfo{
+    [ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
+    
+    //得到词典中所有Value值
+    NSEnumerator *enumeratorValue=[self.deleteDic objectEnumerator];
+    //快速枚举遍历所有的KEY值
+    for (NSObject *object in enumeratorValue) {
+      NSIndexPath* indexPath=(NSIndexPath *)object;
+        NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+        ldict_dictionary= [ilist_alert objectAtIndex:indexPath.row];
+        // Configure Cell
+        NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
+        DB_alert * ldb_alert = [[DB_alert alloc] init];
+        [ldb_alert fn_delete:ls_unique_id];
+        NSLog(@"%d",[ldb_alert fn_get_unread_msg_count]);
+    }
+    [self.deleteDic removeAllObjects];
+    //隐藏多选圆圈
+    [self.tableView setEditing:NO animated:YES];
+    [self.editButton setTitle:@"delete" forState:UIControlStateNormal];
+    [self.editButton addTarget:self action:@selector(deleteRow:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 @end
