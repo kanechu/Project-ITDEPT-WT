@@ -22,7 +22,7 @@
 
 @synthesize ilist_alert;
 @synthesize deleteDic;
-@synthesize editButton;
+@synthesize cancleButton;
 -(void)initDic{
     self.deleteDic=[NSMutableDictionary dictionaryWithCapacity:10];
 }
@@ -87,18 +87,23 @@
     cell.ilb_alert_date.text = ls_msg_recv_date;
     cell.ilb_ct_nos.text = ls_show_no;
     if ([[NSString stringWithFormat:@"%@", [ldict_dictionary valueForKey:@"is_read"]] isEqualToString:@"0"]  ) {
+        cell.ilb_warningBlue.hidden=NO;
         cell.ilb_warningBlue.image=[UIImage imageNamed:@"warning_blue"];
+        
+        
     }else{
         cell.ilb_warningBlue.image=nil;
+        cell.ilb_warningBlue.hidden=YES;
     }
-    //cell.selectionStyle=UITableViewCellSelectionStyleBlue;
+    cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor=[UIColor blackColor];
     cell.selectionStyle=UITableViewCellSelectionStyleBlue;
     return cell;
 }
 - (void)tableView: (UITableView *)tableView
 didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    if ([editButton.titleLabel.text isEqualToString:@"Ensure"]) {
+    if ([self.cancleButton.titleLabel.text isEqualToString:@"Cancle"]) {
         [self.deleteDic setObject:indexPath forKey:[ilist_alert objectAtIndex:indexPath.row]];
     }else{
         NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
@@ -122,8 +127,9 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([editButton.titleLabel.text isEqualToString:@"Ensure"]) {
-        [self.deleteDic removeObjectForKey:[ilist_alert objectAtIndex:indexPath.row]];
+    if ([self.cancleButton.titleLabel.text isEqualToString:@"Cancle"]) {
+       [self.deleteDic removeObjectForKey:[ilist_alert objectAtIndex:indexPath.row]];
+        
     }
     
 }
@@ -205,23 +211,41 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         [self.tableView reloadData];
     }
 }
-- (IBAction)deleteRow:(id)sender {
-    self.editButton=(UIButton*)sender;
+- (IBAction)EditRow:(id)sender{
+    self.cancleButton=(UIButton*)sender;
     //显示多选圆圈
     [self.tableView setEditing:YES animated:YES];
-   // [self.tableView setEditing:!self.tableView.editing animated:YES];
-    [self.editButton setTitle:@"Ensure" forState:UIControlStateNormal];
-    [self.editButton addTarget:self action:@selector(deleteAlertInfo) forControlEvents:UIControlEventTouchUpInside];
+    // [self.tableView setEditing:!self.tableView.editing animated:YES];
+    [self.cancleButton setTitle:@"Cancle" forState:UIControlStateNormal];
+    [self.cancleButton addTarget:self action:@selector(CancleAllSelections) forControlEvents:UIControlEventTouchUpInside];
+
 }
--(void)deleteAlertInfo{
-    [ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
+
+-(void)CancleAllSelections{
     
     //得到词典中所有Value值
     NSEnumerator *enumeratorValue=[self.deleteDic objectEnumerator];
-    //快速枚举遍历所有的KEY值
+    //快速枚举遍历所有的Value值
     for (NSObject *object in enumeratorValue) {
-      NSIndexPath* indexPath=(NSIndexPath *)object;
+        NSIndexPath* indexPath=(NSIndexPath *)object;
+        if (indexPath) {
+            //取消已经选择的行
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
+    }
+    
+    [deleteDic removeAllObjects];
+   
+}
+
+- (IBAction)DeleteAllSelections:(id)sender {
+    [ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
+    //得到词典中所有Value值
+    NSEnumerator *enumeratorValue=[self.deleteDic objectEnumerator];
+    //快速枚举遍历所有的Value值
+    for (NSObject *object in enumeratorValue) {
+        NSIndexPath* indexPath=(NSIndexPath *)object;
         NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
         ldict_dictionary= [ilist_alert objectAtIndex:indexPath.row];
         // Configure Cell
@@ -233,8 +257,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     [self.deleteDic removeAllObjects];
     //隐藏多选圆圈
     [self.tableView setEditing:NO animated:YES];
-    [self.editButton setTitle:@"delete" forState:UIControlStateNormal];
-    [self.editButton addTarget:self action:@selector(deleteRow:) forControlEvents:UIControlEventTouchUpInside];
+  
+    [self.cancleButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [self.cancleButton addTarget:self action:@selector(EditRow:) forControlEvents:UIControlEventTouchUpInside];
 }
-
 @end

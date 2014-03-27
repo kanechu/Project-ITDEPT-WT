@@ -12,8 +12,9 @@
 
 @property (strong,nonatomic) NSMutableArray *ilist_alert;
 @property (strong,nonatomic) NSMutableDictionary *deleteDic;
-- (IBAction)deleteRow:(id)sender;
-@property ( nonatomic) UIButton *editButton;
+@property ( nonatomic) UIButton *cancleButton;
+- (IBAction)EditRow:(id)sender;
+- (IBAction)DeleteAllSelections:(id)sender;
 
 @end
 
