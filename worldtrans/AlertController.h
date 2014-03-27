@@ -14,7 +14,6 @@
 @property (strong,nonatomic) NSMutableDictionary *deleteDic;
 @property ( nonatomic) UIButton *cancleButton;
 - (IBAction)EditRow:(id)sender;
-- (IBAction)DeleteAllSelections:(id)sender;
 
 @end
 

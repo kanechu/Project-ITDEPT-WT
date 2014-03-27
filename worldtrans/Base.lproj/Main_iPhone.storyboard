@@ -624,16 +624,6 @@
                                                 <action selector="EditRow:" destination="3pE-kg-DfJ" eventType="touchUpInside" id="pZJ-e5-sU3"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MLw-1m-elQ">
-                                            <rect key="frame" x="182" y="7" width="43" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="delete">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="DeleteAllSelections:" destination="3pE-kg-DfJ" eventType="touchUpInside" id="ydd-AP-YRT"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
