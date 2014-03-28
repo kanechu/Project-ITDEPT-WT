@@ -13,11 +13,17 @@
 #import "Web_get_alert.h"
 #import "DB_alert.h"
 #import "CustomBadge.h"
+#import "Menu_home.h"
+#import "Cell_menu_item.h"
+
 @interface MainHomeViewController ()
 
 @end
 
 @implementation MainHomeViewController
+@synthesize ilist_menu;
+@synthesize iui_collectionview;
+CustomBadge *iobj_customBadge;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +33,20 @@
     }
     return self;
 }
-
+- (void) fn_init_menu;
+{
+    ilist_menu = [[NSMutableArray alloc] init];
+    ilist_menu = [NSMutableArray arrayWithObjects:
+                  [Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"],
+                  [Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"], Nil
+                  ];
+    self.iui_collectionview.delegate = self;
+    
+    self.iui_collectionview.dataSource = self;
+    
+    [self.iui_collectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell_menu"];
+    [self.iui_collectionview reloadData];
+}
 
 - (void)viewDidLoad
 {
@@ -44,6 +63,7 @@
         });
     });
     
+    [self fn_init_menu];
 	// Do any additional setup after loading the view.
 }
 //这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致滚动视图不能滑动
@@ -78,9 +98,12 @@
             
             DB_alert * ldb_alert = [[DB_alert alloc] init];
             NSInteger li_alert_count = [ldb_alert fn_get_unread_msg_count];
-            CustomBadge *customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",li_alert_count] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-            [customBadge setFrame:CGRectMake(self.view.frame.size.width/2-customBadge.frame.size.width/2+_alertButton.frame.size.width/2-20,_alertButton.frame.origin.y, customBadge.frame.size.width, customBadge.frame.size.height)];
-            [_theScrollerView addSubview:customBadge];
+            [iobj_customBadge removeFromSuperview];
+            iobj_customBadge = nil;
+            iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",li_alert_count] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
+            [iobj_customBadge setFrame:CGRectMake(self.view.frame.size.width/2-iobj_customBadge.frame.size.width/2+_alertButton.frame.size.width/2-20,_alertButton.frame.origin.y, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+            
+            [_theScrollerView addSubview:iobj_customBadge];
             
             
         });
@@ -146,6 +169,41 @@
         _imageView.image=nil;
     }
     
+}
+
+#pragma mark - UICollectionView Datasource
+// 1
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+   // NSString *searchTerm = self.searches[section];
+    return [self.ilist_menu count];
+}
+// 2
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+    return 1;
+}
+// 3
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
+
+    Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
+    
+    cell.ilb_label.text = menu_item.is_label;
+    
+    [cell.ibtn_click setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
+    [cell.ibtn_click setContentMode:UIViewContentModeScaleAspectFit];
+    
+    
+    
+    return cell;
+}
+#pragma mark – UICollectionViewDelegateFlowLayout
+
+
+// 3
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+        
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 
