@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self gettingNotification];
         dispatch_async( dispatch_get_main_queue(), ^{
             
@@ -54,11 +54,10 @@
         self.navigationItem.rightBarButtonItem.title=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
         _alertButton.enabled=YES;
-        
+         _imageView.image=[UIImage imageNamed:@"abco"];
     }
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -72,7 +71,6 @@
         Web_get_alert *web_get_alert = [[Web_get_alert alloc] init];
         web_get_alert.iobj_target = self;
         web_get_alert.isel_action = @selector(fn_save_alert_list:);
-        DB_login *dbLogin=[[DB_login alloc]init];
         [web_get_alert fn_get_data];
         
         dispatch_async( dispatch_get_main_queue(), ^{
@@ -95,8 +93,6 @@
 }
 
 
-
-#pragma mark Login
 - (IBAction)UserLogin:(id)sender {
     LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
@@ -121,6 +117,15 @@
     self.navigationItem.rightBarButtonItem.title=userName;
     self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
     _alertButton.enabled=YES;
+    if ([userName isEqualToString:@"sa"]) {
+        _imageView.image=[UIImage imageNamed:@"abco"];
+    }else if([userName isEqualToString:@"cole"]){
+        _imageView.image=[UIImage imageNamed:@"cole"];
+    }else if ([userName isEqualToString:@"wwil"]){
+        _imageView.image=[UIImage imageNamed:@"wwil"];
+    }else{
+        _imageView.image=nil;
+    }
 }
 //点击用户名称项，会调用这个方法，提示是否退出
 -(void)LogOut{
@@ -138,6 +143,7 @@
         self.navigationItem.rightBarButtonItem.action=@selector(UserLogin:);
         
         _alertButton.enabled=NO;
+        _imageView.image=nil;
     }
     
 }

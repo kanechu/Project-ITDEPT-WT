@@ -10,6 +10,10 @@
 
 @interface MainHomeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *theScrollerView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *hdrImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @property (weak, nonatomic) IBOutlet UIButton *alertButton;
 
 - (IBAction)UserLogin:(id)sender;
