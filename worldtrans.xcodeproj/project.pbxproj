@@ -21,7 +21,6 @@
 		B2307B1918BDC748000502BE /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B1818BDC748000502BE /* AlertController.m */; };
 		B2307B1C18BDD532000502BE /* RespAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B1B18BDD532000502BE /* RespAlert.m */; };
 		B2307B1F18BDE888000502BE /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B1E18BDE888000502BE /* DBManager.m */; };
-		B2307B2218BE0564000502BE /* HomeTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2118BE0564000502BE /* HomeTabController.m */; };
 		B2307B2618BEEA82000502BE /* Web_get_alert.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2518BEEA82000502BE /* Web_get_alert.m */; };
 		B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B2307B2918BEEE36000502BE /* AppConstants.m */; };
 		B23D80F218E18D4700316700 /* Web_base.m in Sources */ = {isa = PBXBuildFile; fileRef = B23D80F118E18D4700316700 /* Web_base.m */; };
@@ -59,6 +58,7 @@
 		B278A92318D8218F0057DC37 /* UIImage+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A91918D8218F0057DC37 /* UIImage+Additional.m */; };
 		B278A92418D8218F0057DC37 /* UIViewController+TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A91B18D8218F0057DC37 /* UIViewController+TargetViewController.m */; };
 		B278A92A18D832AA0057DC37 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A92918D832AA0057DC37 /* LoginViewController.m */; };
+		B28209D318E518C90027227A /* MainHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B28209D218E518C90027227A /* MainHomeViewController.m */; };
 		B288CFE018DA945E0089F877 /* DB_login.m in Sources */ = {isa = PBXBuildFile; fileRef = B288CFDF18DA945E0089F877 /* DB_login.m */; };
 		B2A9770718CF18290096BD4B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A976FE18CF18290096BD4B /* FMDatabase.m */; };
 		B2A9770818CF18290096BD4B /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A9770018CF18290096BD4B /* FMDatabaseAdditions.m */; };
@@ -154,8 +154,6 @@
 		B2307B1B18BDD532000502BE /* RespAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RespAlert.m; sourceTree = "<group>"; };
 		B2307B1D18BDE888000502BE /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		B2307B1E18BDE888000502BE /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
-		B2307B2018BE0564000502BE /* HomeTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTabController.h; sourceTree = "<group>"; };
-		B2307B2118BE0564000502BE /* HomeTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTabController.m; sourceTree = "<group>"; };
 		B2307B2418BEEA82000502BE /* Web_get_alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Web_get_alert.h; sourceTree = "<group>"; };
 		B2307B2518BEEA82000502BE /* Web_get_alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Web_get_alert.m; sourceTree = "<group>"; };
 		B2307B2818BEEE36000502BE /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
@@ -220,6 +218,8 @@
 		B278A91B18D8218F0057DC37 /* UIViewController+TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TargetViewController.m"; sourceTree = "<group>"; };
 		B278A92818D832AA0057DC37 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B278A92918D832AA0057DC37 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B28209D118E518C90027227A /* MainHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeViewController.h; sourceTree = "<group>"; };
+		B28209D218E518C90027227A /* MainHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeViewController.m; sourceTree = "<group>"; };
 		B288CFDE18DA945E0089F877 /* DB_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_login.h; sourceTree = "<group>"; };
 		B288CFDF18DA945E0089F877 /* DB_login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_login.m; sourceTree = "<group>"; };
 		B2A976FD18CF18290096BD4B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -352,8 +352,6 @@
 				B2307B0518BC920F000502BE /* MilestoneController.m */,
 				B2307B1718BDC748000502BE /* AlertController.h */,
 				B2307B1818BDC748000502BE /* AlertController.m */,
-				B2307B2018BE0564000502BE /* HomeTabController.h */,
-				B2307B2118BE0564000502BE /* HomeTabController.m */,
 				B24555CD18D166A500D47DC7 /* AehblListController.h */,
 				B24555CE18D166A500D47DC7 /* AehblListController.m */,
 				B22D6C1A18D1A7CB00DE4DB5 /* AehblHomeController.h */,
@@ -362,6 +360,8 @@
 				B24E83AB18D2A50700C29034 /* AehblGeneralController.m */,
 				B278A92818D832AA0057DC37 /* LoginViewController.h */,
 				B278A92918D832AA0057DC37 /* LoginViewController.m */,
+				B28209D118E518C90027227A /* MainHomeViewController.h */,
+				B28209D218E518C90027227A /* MainHomeViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -808,7 +808,6 @@
 				B2307B1918BDC748000502BE /* AlertController.m in Sources */,
 				B2155E5618D930B900180EF9 /* RespLogin.m in Sources */,
 				B278A91D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m in Sources */,
-				B2307B2218BE0564000502BE /* HomeTabController.m in Sources */,
 				B2B020C818ACB69F00EECD92 /* DBTest.m in Sources */,
 				B242209218BAED3000D4A75C /* ExhblHomeController.m in Sources */,
 				B2A9770A18CF18290096BD4B /* FMDatabaseQueue.m in Sources */,
@@ -818,6 +817,7 @@
 				B242208618B7470B00D4A75C /* Cell_exhbl_list.m in Sources */,
 				B2307B1018BD84AF000502BE /* MBProgressHUD.m in Sources */,
 				B278A92118D8218F0057DC37 /* MZTransition.m in Sources */,
+				B28209D318E518C90027227A /* MainHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
