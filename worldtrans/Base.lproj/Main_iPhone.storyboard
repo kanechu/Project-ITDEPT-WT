@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dMq-gW-rBh">
     <dependencies>
         <deployment version="1552" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -575,11 +575,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sea Export" id="9fF-43-3kL">
                         <barButtonItem key="backBarButtonItem" title="Preivous" id="c0K-UR-DhD"/>
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="zRn-oU-wgW">
-                            <connections>
-                                <action selector="UserLogin:" destination="CZ4-MO-1fc" id="3AR-co-tba"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
@@ -590,7 +585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="-126"/>
+            <point key="canvasLocation" x="233" y="-210"/>
         </scene>
         <!--Alert Controller - Message-->
         <scene sceneID="I1H-YH-5Qd">
@@ -622,16 +617,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="EditRow:" destination="3pE-kg-DfJ" eventType="touchUpInside" id="pZJ-e5-sU3"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MLw-1m-elQ">
-                                            <rect key="frame" x="182" y="7" width="43" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="delete">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="DeleteAllSelections:" destination="3pE-kg-DfJ" eventType="touchUpInside" id="ydd-AP-YRT"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -703,7 +688,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR4-0f-osQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073" y="595"/>
+            <point key="canvasLocation" x="233" y="415"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RbV-sX-jtC">
@@ -770,71 +755,113 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDf-r5-hAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1459" y="-387"/>
+            <point key="canvasLocation" x="-281" y="-435"/>
         </scene>
-        <!--Navigation Controller - Alert-->
-        <scene sceneID="omv-eI-KlV">
+        <!--Navigation Controller-->
+        <scene sceneID="CHW-AE-JCh">
             <objects>
-                <navigationController definesPresentationContext="YES" id="jwF-Cm-5AG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alert" image="tab_message" id="0Y1-yL-A4v"/>
-                    <navigationItem key="navigationItem" id="diQ-Ob-fK9"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EGC-oO-yE1">
+                <navigationController definesPresentationContext="YES" id="dMq-gW-rBh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="KFf-Ut-uhP">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="3pE-kg-DfJ" kind="relationship" relationship="rootViewController" id="Y5d-El-KuW"/>
+                        <segue destination="chk-jX-EJh" kind="relationship" relationship="rootViewController" id="voG-eQ-Kbp"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XdU-HY-Ccj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="myk-gZ-zB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="551" y="595"/>
+            <point key="canvasLocation" x="-925" y="227"/>
         </scene>
-        <!--Home Tab Controller - IT Department Limited-->
-        <scene sceneID="Vex-rW-GRa">
+        <!--Main Home Controller-->
+        <scene sceneID="H8f-Kw-UnZ">
             <objects>
-                <tabBarController title="IT Department Limited" id="8YX-ce-x5E" customClass="HomeTabController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="5kr-iR-tw5"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="JQR-rB-NYL">
-                        <rect key="frame" x="0.0" y="431" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
+                <viewController id="chk-jX-EJh" userLabel="Main Home Controller" customClass="MainHomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qrc-Il-A04">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wtrans_hdr_2" id="C5U-qv-9Nm">
+                                <rect key="frame" x="0.0" y="104" width="320" height="110"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wtranlog_logo" id="IRA-Oy-xWS">
+                                <rect key="frame" x="0.0" y="63" width="320" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="Sm2-Wv-AjF">
+                                <rect key="frame" x="0.0" y="259" width="320" height="212"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KIb-p0-6US">
+                                        <rect key="frame" x="27" y="5" width="90" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gZv-px-PCs">
+                                        <rect key="frame" x="151" y="5" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pKT-w8-4Mh" userLabel="Button-Tracking">
+                                        <rect key="frame" x="11" y="27" width="85" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="ic_ct">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="CZ4-MO-1fc" kind="push" identifier="segue_trackHome" id="ZwN-bq-B3G"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nKW-Zi-b79" userLabel="Button - Alert">
+                                        <rect key="frame" x="118" y="27" width="85" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Button" image="alert">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="3pE-kg-DfJ" kind="push" identifier="segue_alert" id="bLN-Ad-97x"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.12509964923469385" green="0.12509964923469385" blue="0.12509964923469385" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16354432397959184" green="0.16354432397959184" blue="0.16354432397959184" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GZJ-4W-PIT">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="BMY-aC-XQe">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qgd-tt-2d1">
+                                <rect key="frame" x="16" y="12" width="120" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="wtranlog_logo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="LOGIN" id="CPW-VU-Hgy">
+                            <connections>
+                                <action selector="UserLogin:" destination="chk-jX-EJh" id="mw7-Hl-xAO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="hns-vI-r07" kind="relationship" relationship="viewControllers" id="SUk-Ux-ee1"/>
-                        <segue destination="jwF-Cm-5AG" kind="relationship" relationship="viewControllers" id="7R8-8L-Q9Y"/>
+                        <outlet property="alertButton" destination="nKW-Zi-b79" id="did-o1-OJH"/>
+                        <outlet property="theScrollerView" destination="Sm2-Wv-AjF" id="fiB-Ws-eD1"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZcY-K3-nMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28" y="216"/>
-        </scene>
-        <!--Navigation Controller - Cargo Tracking-->
-        <scene sceneID="cUd-px-F8z">
-            <objects>
-                <navigationController title="Cargo Tracking" automaticallyAdjustsScrollViewInsets="NO" id="hns-vI-r07" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cargo Tracking" image="tab_cargo_tracking" id="u1e-5L-l1D"/>
-                    <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="OzM-HL-QcM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="X3S-lq-eCK">
-                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="CZ4-MO-1fc" kind="relationship" relationship="rootViewController" id="N9B-YV-Ioh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AHV-3H-Qna" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="577" y="-138"/>
+            <point key="canvasLocation" x="-386" y="241"/>
         </scene>
         <!--Aehbl Home Controller-->
         <scene sceneID="o0p-OJ-xxs">
@@ -986,8 +1013,8 @@
         <image name="ic_ct" width="330" height="261"/>
         <image name="ic_ship" width="256" height="256"/>
         <image name="readed_start" width="26" height="160"/>
-        <image name="tab_cargo_tracking" width="30" height="30"/>
-        <image name="tab_message" width="30" height="30"/>
+        <image name="wtranlog_logo" width="240" height="30"/>
+        <image name="wtrans_hdr_2" width="792" height="210"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

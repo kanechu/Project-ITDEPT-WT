@@ -32,6 +32,10 @@
     [self fn_get_data];
    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
                                                     selector: @selector(reloadData) userInfo: nil repeats: YES];
+    UIBarButtonItem *deleteItem=[[UIBarButtonItem alloc]initWithTitle:@"delete" style:UIBarButtonItemStyleBordered target:self action:@selector(DeleteAllSelections:)];
+    NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
+    
+    [self setToolbarItems:arr animated:YES];
     
 }
 #pragma mark UITableViewDelegate
@@ -218,7 +222,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     // [self.tableView setEditing:!self.tableView.editing animated:YES];
     [self.cancleButton setTitle:@"Cancle" forState:UIControlStateNormal];
     [self.cancleButton addTarget:self action:@selector(CancleAllSelections) forControlEvents:UIControlEventTouchUpInside];
-
+    [[self navigationController] setToolbarHidden:NO animated:YES];
 }
 
 -(void)CancleAllSelections{
@@ -238,7 +242,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
    
 }
 
-- (IBAction)DeleteAllSelections:(id)sender {
+- (void)DeleteAllSelections:(id)sender {
     [ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
     //得到词典中所有Value值
@@ -260,5 +264,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
   
     [self.cancleButton setTitle:@"Edit" forState:UIControlStateNormal];
     [self.cancleButton addTarget:self action:@selector(EditRow:) forControlEvents:UIControlEventTouchUpInside];
+     [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 @end
