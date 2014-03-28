@@ -107,7 +107,7 @@
 - (void)tableView: (UITableView *)tableView
 didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
-    if ([self.cancleButton.titleLabel.text isEqualToString:@"Cancle"]) {
+    if ([self.cancleButton.titleLabel.text isEqualToString:@"Cancel"]) {
         [self.deleteDic setObject:indexPath forKey:[ilist_alert objectAtIndex:indexPath.row]];
     }else{
         NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
@@ -131,7 +131,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([self.cancleButton.titleLabel.text isEqualToString:@"Cancle"]) {
+    if ([self.cancleButton.titleLabel.text isEqualToString:@"Cancel"]) {
        [self.deleteDic removeObjectForKey:[ilist_alert objectAtIndex:indexPath.row]];
         
     }
@@ -140,25 +140,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle==UITableViewCellEditingStyleDelete) {
         
-        
-       /* [ilist_alert removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-    
-        
-        NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-        ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
-        // Configure Cell
-        NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
-        DB_alert * ldb_alert = [[DB_alert alloc] init];
-        [ldb_alert fn_delete:ls_unique_id];*/
-        
-        /*[ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];;
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.deleteDic removeAllObjects];
-        
-        
-        
-        */
         
         
     }
@@ -220,7 +201,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     //显示多选圆圈
     [self.tableView setEditing:YES animated:YES];
     // [self.tableView setEditing:!self.tableView.editing animated:YES];
-    [self.cancleButton setTitle:@"Cancle" forState:UIControlStateNormal];
+    [self.cancleButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [self.cancleButton addTarget:self action:@selector(CancleAllSelections) forControlEvents:UIControlEventTouchUpInside];
     [[self navigationController] setToolbarHidden:NO animated:YES];
 }
