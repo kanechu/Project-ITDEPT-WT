@@ -786,7 +786,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wtranlog_logo" id="IRA-Oy-xWS">
-                                <rect key="frame" x="0.0" y="64" width="320" height="42"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="Sm2-Wv-AjF">
@@ -838,6 +838,16 @@
                         <color key="backgroundColor" red="0.16354432397959184" green="0.16354432397959184" blue="0.16354432397959184" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="GZJ-4W-PIT">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="BMY-aC-XQe">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qgd-tt-2d1">
+                                <rect key="frame" x="16" y="12" width="120" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="wtranlog_logo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="LOGIN" id="CPW-VU-Hgy">
                             <connections>
                                 <action selector="UserLogin:" destination="chk-jX-EJh" id="mw7-Hl-xAO"/>

@@ -12,6 +12,7 @@
 #import "DB_login.h"
 #import "Web_get_alert.h"
 #import "DB_alert.h"
+#import "CustomBadge.h"
 @interface MainHomeViewController ()
 
 @end
@@ -85,7 +86,9 @@
             
             DB_alert * ldb_alert = [[DB_alert alloc] init];
             NSInteger li_alert_count = [ldb_alert fn_get_unread_msg_count];
-            
+            CustomBadge *customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",li_alert_count] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
+            [customBadge setFrame:CGRectMake(self.view.frame.size.width/2-customBadge.frame.size.width/2+_alertButton.frame.size.width/2-20,290, customBadge.frame.size.width, customBadge.frame.size.height)];
+            [self.view addSubview:customBadge];
             
             
         });
