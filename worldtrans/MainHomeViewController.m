@@ -73,13 +73,7 @@
         web_get_alert.iobj_target = self;
         web_get_alert.isel_action = @selector(fn_save_alert_list:);
         DB_login *dbLogin=[[DB_login alloc]init];
-        if ([dbLogin isLoginSuccess]) {
-            NSMutableArray *userInfo=[dbLogin fn_get_all_msg];
-            [web_get_alert fn_get_data:[[userInfo objectAtIndex:0] valueForKey:@"user_code"] withPwd:[[userInfo objectAtIndex:0] valueForKey:@"password"]];
-            
-        }else{
-            [web_get_alert fn_get_data:@"SA" withPwd:@"SA1"];
-        }
+        [web_get_alert fn_get_data];
         
         dispatch_async( dispatch_get_main_queue(), ^{
             // update UI here
