@@ -15,6 +15,6 @@
 
 @property (nonatomic, assign) SEL isel_action;
 
-- (void) fn_get_data:(NSString*)as_user_code withPwd: (NSString *)as_password;
+- (void) fn_get_data;
 
 @end

@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <RestKit/RestKit.h>
+#import "Web_get_alert.h"
+#import "DB_login.h"
+#import "DB_alert.h"
 
 @implementation AppDelegate
 
@@ -64,6 +67,29 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive)
+    {
+        
+        //background task here
+        Web_get_alert *web_get_alert = [[Web_get_alert alloc] init];
+        web_get_alert.iobj_target = self;
+        web_get_alert.isel_action = @selector(fn_save_alert_list:);
+        [web_get_alert fn_get_data];
+    }
+    else {
+        // Push Notification received in the background
+    }
+}
+
+- (void) fn_save_alert_list: (NSMutableArray *) alist_alert {
+    DB_alert * ldb_alert = [[DB_alert alloc] init];
+    [ldb_alert fn_save_data:alist_alert];
 }
 
 @end

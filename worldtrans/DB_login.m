@@ -10,6 +10,7 @@
 #import "DBManager.h"
 #import "NSDictionary.h"
 #import "FMDatabaseAdditions.h"
+#import "AppDelegate.h"
 @implementation DB_login
 
 @synthesize idb;
@@ -81,16 +82,19 @@
 }
 -(AuthContract*)WayOfAuthorization{
     AuthContract *auth=[[AuthContract alloc]init];
+    NSString * ls_device_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] is_device_token];
+    
     if ([self isLoginSuccess]) {
         NSMutableArray *userInfo=[self fn_get_all_msg];
         auth.user_code =[[userInfo objectAtIndex:0] valueForKey:@"user_code"];
         auth.password = [[userInfo objectAtIndex:0] valueForKey:@"password"];;
-        auth.system = @"ITNEW";
     }else{
         auth.user_code = @"SA";
         auth.password = @"SA1";
-        auth.system = @"ITNEW";
     }
+    auth.system = @"ITNEW";
+    auth.device_id = ls_device_token;
+
     return auth;
 }
 @end

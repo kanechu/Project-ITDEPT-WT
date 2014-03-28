@@ -15,21 +15,21 @@
 #import "AppConstants.h"
 #import "NSArray.h"
 #import "Web_base.h"
+#import "DB_login.h"
 @implementation Web_get_alert
 
 @synthesize ilist_alert;
 @synthesize isel_action;
 @synthesize iobj_target;
 
-- (void) fn_get_data:(NSString*)as_user_code withPwd: (NSString *)as_password;
+- (void) fn_get_data
 {
+    
+    DB_login *dbLogin = [[DB_login alloc] init];
+    
     RequestContract *req_form = [[RequestContract alloc] init];
     
-    req_form.Auth = [[AuthContract alloc] init];
-    
-    req_form.Auth.user_code = as_user_code;
-    req_form.Auth.password = as_password;
-    req_form.Auth.system = @"ITNEW";
+    req_form.Auth =[dbLogin WayOfAuthorization];
     
     SearchFormContract *search1 = [[SearchFormContract alloc]init];
     search1.os_column = @"device_id";

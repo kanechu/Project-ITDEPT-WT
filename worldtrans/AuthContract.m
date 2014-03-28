@@ -16,5 +16,7 @@
 
 @synthesize system;
 
+@synthesize device_id;
+
 
 @end
