@@ -794,21 +794,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KIb-p0-6US">
-                                        <rect key="frame" x="27" y="5" width="90" height="21"/>
+                                        <rect key="frame" x="20" y="5" width="90" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gZv-px-PCs">
-                                        <rect key="frame" x="151" y="5" width="42" height="21"/>
+                                        <rect key="frame" x="130" y="5" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pKT-w8-4Mh" userLabel="Button-Tracking">
-                                        <rect key="frame" x="11" y="27" width="85" height="70"/>
+                                        <rect key="frame" x="11" y="27" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -820,7 +820,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nKW-Zi-b79" userLabel="Button - Alert">
-                                        <rect key="frame" x="118" y="27" width="85" height="70"/>
+                                        <rect key="frame" x="111" y="27" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -849,6 +849,7 @@
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="LOGIN" id="CPW-VU-Hgy">
+                            <color key="tintColor" red="0.98840082910000004" green="0.98840082910000004" blue="0.98840082910000004" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="UserLogin:" destination="chk-jX-EJh" id="mw7-Hl-xAO"/>
                             </connections>
