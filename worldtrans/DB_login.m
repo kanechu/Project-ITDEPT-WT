@@ -11,6 +11,7 @@
 #import "NSDictionary.h"
 #import "FMDatabaseAdditions.h"
 #import "AppDelegate.h"
+#import "DB_device.h"
 @implementation DB_login
 
 @synthesize idb;
@@ -83,7 +84,15 @@
 -(AuthContract*)WayOfAuthorization{
     AuthContract *auth=[[AuthContract alloc]init];
     NSString * ls_device_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] is_device_token];
-    
+    NSLog(@"%@",ls_device_token);
+     DB_device *device=[[DB_device alloc]init];
+    if (ls_device_token==nil) {
+        [device fn_save_data:@"dev-simulator"];
+    }else{
+         [device fn_save_data:ls_device_token];
+    }
+   
+   
     if ([self isLoginSuccess]) {
         NSMutableArray *userInfo=[self fn_get_all_msg];
         auth.user_code =[[userInfo objectAtIndex:0] valueForKey:@"user_code"];

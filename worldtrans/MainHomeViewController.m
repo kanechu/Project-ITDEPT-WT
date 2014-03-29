@@ -73,6 +73,7 @@ CustomBadge *iobj_customBadge;
     if ([dbLogin isLoginSuccess]) {
         self.navigationItem.rightBarButtonItem.title=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
+        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"userImage"]];
         _alertButton.enabled=YES;
          _imageView.image=[UIImage imageNamed:@"abco"];
     }
@@ -141,7 +142,8 @@ CustomBadge *iobj_customBadge;
 //登录成功后，导航的按钮项显示为用户的名称
 -(void)changeRightItem:(NSString*)userName{
     
-    self.navigationItem.rightBarButtonItem.title=userName;
+    [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"userImage"]];
+    [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleBordered];
     self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
     _alertButton.enabled=YES;
     if ([userName isEqualToString:@"sa"]) {
@@ -171,7 +173,7 @@ CustomBadge *iobj_customBadge;
     [dbLogin fn_delete_record];
  self.navigationItem.rightBarButtonItem.title=@"Login";
     self.navigationItem.rightBarButtonItem.action=@selector(UserLogin:);
-    
+    [self.navigationItem.rightBarButtonItem setImage:nil];
     _alertButton.enabled=NO;
     _imageView.image=nil;
   
