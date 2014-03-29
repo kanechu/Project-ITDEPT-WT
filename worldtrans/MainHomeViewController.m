@@ -15,7 +15,7 @@
 #import "CustomBadge.h"
 #import "Menu_home.h"
 #import "Cell_menu_item.h"
-
+#import "LogoutViewController.h"
 @interface MainHomeViewController ()
 
 @end
@@ -114,13 +114,9 @@ CustomBadge *iobj_customBadge;
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
 }
-
-
-- (IBAction)UserLogin:(id)sender {
-    LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
+-(void)PopupView:(UIViewController*)VC{
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
-    VC.iobj_target =self;
-    VC.isel_action = @selector(changeRightItem:);
+   
     //弹出视图的大小
     formSheet.presentedFormSheetSize=CGSizeMake(284, 250);
     formSheet.shadowRadius = 2.0;
@@ -132,6 +128,14 @@ CustomBadge *iobj_customBadge;
     formSheet.shouldCenterVertically =YES;
     formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
     [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
+    
+}
+
+- (IBAction)UserLogin:(id)sender {
+    LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+    VC.iobj_target =self;
+    VC.isel_action = @selector(changeRightItem:);
+    [self PopupView:VC];
     
 }
 //登录成功后，导航的按钮项显示为用户的名称
@@ -152,23 +156,25 @@ CustomBadge *iobj_customBadge;
 }
 //点击用户名称项，会调用这个方法，提示是否退出
 -(void)LogOut{
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否退出登录" delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
-    [alert show];
+    
+    LogoutViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Logout"];
+   
+    VC.iobj_target =self;
+    VC.isel_action = @selector(UserLogOut);
+    [self PopupView:VC];
     
 }
 #pragma mark -UIAlertviewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    //确定退出登录后，删除登录记录
-    if (buttonIndex==0) {
-        DB_login *dbLogin=[[DB_login alloc]init];
-        [dbLogin fn_delete_record];
-        self.navigationItem.rightBarButtonItem.title=@"Login";
-        self.navigationItem.rightBarButtonItem.action=@selector(UserLogin:);
-        
-        _alertButton.enabled=NO;
-        _imageView.image=nil;
-    }
+- (void)UserLogOut{
     
+    DB_login *dbLogin=[[DB_login alloc]init];
+    [dbLogin fn_delete_record];
+ self.navigationItem.rightBarButtonItem.title=@"Login";
+    self.navigationItem.rightBarButtonItem.action=@selector(UserLogin:);
+    
+    _alertButton.enabled=NO;
+    _imageView.image=nil;
+  
 }
 
 #pragma mark - UICollectionView Datasource
