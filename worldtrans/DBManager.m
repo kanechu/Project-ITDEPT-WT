@@ -63,7 +63,7 @@ static int DB_VERSION = 1;
     } else {
         NSString *ls_sql_stmt =
         @"CREATE TABLE IF NOT EXISTS alert ( unique_id INTEGER PRIMARY KEY, ct_type TEXT NOT NULL DEFAULT '', so_uid TEXT NOT NULL DEFAULT '', so_no TEXT NOT NULL DEFAULT '', hbl_uid TEXT NOT NULL DEFAULT '', hbl_no TEXT NOT NULL DEFAULT '', status_desc TEXT NOT NULL DEFAULT '', act_status_date TEXT NOT NULL DEFAULT '', act_status_time TEXT NOT NULL DEFAULT '', msg_recv_date TEXT NOT NULL DEFAULT '', is_read INT DEFAULT 0);";
-        NSString *ls_sql_login = @"CREATE TABLE IF NOT EXISTS loginInfo ( unique_id INTEGER PRIMARY KEY, user_code TEXT NOT NULL DEFAULT '', password TEXT NOT NULL DEFAULT '')";
+        NSString *ls_sql_login = @"CREATE TABLE IF NOT EXISTS loginInfo( unique_id INTEGER PRIMARY KEY,user_code TEXT NOT NULL DEFAULT '',user_pass TEXT NOT NULL DEFAULT '',login_time TEXT NOT NULL DEFAULT '')";
         NSString *ls_sql_device=@"CREATE TABLE IF NOT EXISTS device( unique_id INTEGER PRIMARY KEY,device_id TEXT NOT NULL DEFAULT '')";
         [database executeUpdate:ls_sql_stmt];
         [database executeUpdate:ls_sql_login];
