@@ -29,7 +29,9 @@
     
     DB_login *dbLogin=[[DB_login alloc]init];
     NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
+    NSString *str1=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"login_time"];
     _userCode.text=str;
+    _userLoginTime.text=str1;
     if ([str isEqualToString:@"sa"]) {
         _userImage.image=[UIImage imageNamed:@"abco"];
     }else if([str isEqualToString:@"cole"]){
