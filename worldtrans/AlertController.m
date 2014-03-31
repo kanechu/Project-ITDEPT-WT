@@ -185,7 +185,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     ilist_alert = [ldb_alert fn_get_all_msg];
-    NSLog(@"%d",[ilist_alert count]);
    
 }
 -(void)reloadData{
@@ -200,7 +199,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     self.cancleButton=(UIButton*)sender;
     //显示多选圆圈
     [self.tableView setEditing:YES animated:YES];
-    // [self.tableView setEditing:!self.tableView.editing animated:YES];
+   
     [self.cancleButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [self.cancleButton addTarget:self action:@selector(CancleAllSelections) forControlEvents:UIControlEventTouchUpInside];
     [[self navigationController] setToolbarHidden:NO animated:YES];
@@ -225,7 +224,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 
 - (void)DeleteAllSelections:(id)sender {
     [ilist_alert removeObjectsInArray:[self.deleteDic allKeys]];
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:[self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithArray:
+                                            [self.deleteDic allValues]] withRowAnimation:UITableViewRowAnimationFade];
     //得到词典中所有Value值
     NSEnumerator *enumeratorValue=[self.deleteDic objectEnumerator];
     //快速枚举遍历所有的Value值
@@ -237,7 +237,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         NSString *ls_unique_id = [ldict_dictionary valueForKey:@"unique_id"];
         DB_alert * ldb_alert = [[DB_alert alloc] init];
         [ldb_alert fn_delete:ls_unique_id];
-        NSLog(@"%d",[ldb_alert fn_get_unread_msg_count]);
+      
     }
     [self.deleteDic removeAllObjects];
     //隐藏多选圆圈
