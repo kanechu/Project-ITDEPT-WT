@@ -28,6 +28,6 @@
 }
 */
 @synthesize ilb_label;
-@synthesize ibtn_click;
 
+@synthesize itemImage;
 @end

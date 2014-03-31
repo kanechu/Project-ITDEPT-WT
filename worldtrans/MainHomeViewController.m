@@ -215,17 +215,15 @@ CustomBadge *iobj_customBadge;
     Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
     alertFram=cell.frame;
     cell.ilb_label.text = menu_item.is_label;
+    cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
+  
+    [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
     
-    [cell.ibtn_click setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
-    [cell.ibtn_click setContentMode:UIViewContentModeScaleAspectFit];
-    
-    
-    
+
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
      Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
-    NSLog(@"%@",ilist_menu);
     if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
         [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
     }else if ([menu_item.is_segue isEqualToString:@"segue_alert"]){
