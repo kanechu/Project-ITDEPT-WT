@@ -16,6 +16,8 @@
 #import "Menu_home.h"
 #import "Cell_menu_item.h"
 #import "LogoutViewController.h"
+#import "TrackHomeController.h"
+#import "AlertController.h"
 @interface MainHomeViewController ()
 
 @end
@@ -23,7 +25,7 @@
 @implementation MainHomeViewController
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
-
+@synthesize alertFram;
 CustomBadge *iobj_customBadge;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,9 +107,9 @@ CustomBadge *iobj_customBadge;
             [iobj_customBadge removeFromSuperview];
             iobj_customBadge = nil;
             iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",li_alert_count] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-            [iobj_customBadge setFrame:CGRectMake(self.view.frame.size.width/2-iobj_customBadge.frame.size.width/2+_alertButton.frame.size.width/2-20,_alertButton.frame.origin.y, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+            [iobj_customBadge setFrame:CGRectMake(self.view.frame.size.width/2-iobj_customBadge.frame.size.width/2+alertFram.size.width/2-20,alertFram.origin.y+30, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
             
-            [_theScrollerView addSubview:iobj_customBadge];
+            [iui_collectionview addSubview:iobj_customBadge];
             
             
         });
@@ -211,7 +213,7 @@ CustomBadge *iobj_customBadge;
     Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
 
     Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
-    
+    alertFram=cell.frame;
     cell.ilb_label.text = menu_item.is_label;
     
     [cell.ibtn_click setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
@@ -220,6 +222,16 @@ CustomBadge *iobj_customBadge;
     
     
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+     Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
+    NSLog(@"%@",ilist_menu);
+    if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
+        [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
+    }else if ([menu_item.is_segue isEqualToString:@"segue_alert"]){
+        [self performSegueWithIdentifier:@"segue_alert" sender:self];
+    }
+    
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
 

@@ -688,7 +688,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR4-0f-osQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="217" y="535"/>
+            <point key="canvasLocation" x="149" y="525"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RbV-sX-jtC">
@@ -863,58 +863,14 @@
                                 <rect key="frame" x="0.0" y="62" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="Sm2-Wv-AjF">
-                                <rect key="frame" x="0.0" y="341" width="320" height="139"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KIb-p0-6US">
-                                        <rect key="frame" x="26" y="6" width="90" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gZv-px-PCs">
-                                        <rect key="frame" x="139" y="6" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pKT-w8-4Mh" userLabel="Button-Tracking">
-                                        <rect key="frame" x="11" y="28" width="90" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" image="ic_ct">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="CZ4-MO-1fc" kind="push" identifier="segue_trackHome" id="ZwN-bq-B3G"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nKW-Zi-b79" userLabel="Button - Alert">
-                                        <rect key="frame" x="111" y="28" width="90" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Button" image="alert">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="3pE-kg-DfJ" kind="push" identifier="segue_alert" id="bLN-Ad-97x"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.12509964923469385" green="0.12509964923469385" blue="0.12509964923469385" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Rsu-6O-VtJ">
                                 <rect key="frame" x="0.0" y="201" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <collectionView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="qLa-ld-CZm">
-                                <rect key="frame" x="178" y="146" width="142" height="137"/>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="qLa-ld-CZm">
+                                <rect key="frame" x="0.0" y="261" width="320" height="219"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pRe-KB-VlA">
                                     <size key="itemSize" width="105" height="115"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -923,14 +879,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell_menu" reuseIdentifier="cell_menu_item" id="Xcp-Jy-5yK" customClass="Cell_menu_item">
-                                        <rect key="frame" x="0.0" y="11" width="105" height="115"/>
+                                        <rect key="frame" x="0.0" y="52" width="105" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="115"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SD2-qk-Wob">
-                                                    <rect key="frame" x="7" y="0.0" width="90" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -982,13 +938,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="alertButton" destination="nKW-Zi-b79" id="did-o1-OJH"/>
                         <outlet property="hdrImageView" destination="C5U-qv-9Nm" id="ZJj-Lp-iPU"/>
                         <outlet property="imageView" destination="Rsu-6O-VtJ" id="BcN-9l-IdF"/>
                         <outlet property="iui_collectionview" destination="qLa-ld-CZm" id="sMV-1h-Hqa"/>
                         <outlet property="loginBtn" destination="Tva-Dd-2uP" id="zvG-jO-B1p"/>
                         <outlet property="logoImageView" destination="IRA-Oy-xWS" id="lvk-76-fS8"/>
-                        <outlet property="theScrollerView" destination="Sm2-Wv-AjF" id="fiB-Ws-eD1"/>
+                        <segue destination="CZ4-MO-1fc" kind="push" identifier="segue_trackHome" id="0xG-Ym-wnJ"/>
+                        <segue destination="3pE-kg-DfJ" kind="push" identifier="segue_alert" id="Cen-WN-xNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcY-K3-nMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1154,7 +1110,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IT6-cK-qMM"/>
-        <segue reference="ceN-QP-fyr"/>
+        <segue reference="Cr5-3k-Xhp"/>
+        <segue reference="3hz-sA-2Up"/>
     </inferredMetricsTieBreakers>
 </document>

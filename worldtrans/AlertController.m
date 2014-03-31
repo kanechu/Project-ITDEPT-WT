@@ -36,7 +36,7 @@
     NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
     
     [self setToolbarItems:arr animated:YES];
-    
+    [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 #pragma mark UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
