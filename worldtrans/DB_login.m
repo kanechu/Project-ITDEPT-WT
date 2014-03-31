@@ -31,7 +31,7 @@
     NSString *ls_currentTime = [dateFormatter stringFromDate:today];
     
     if ([[idb fn_get_db] open]) {
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into loginInfo (user_code,user_pass,login_time) values (\"%@\",\"%@\",\"%@\")", user_ID,user_pass,ls_currentTime];
+        NSString *insertSQL = [NSString stringWithFormat:@"insert into loginInfo (user_code,password,login_time) values (\"%@\",\"%@\",\"%@\")", user_ID,user_pass,ls_currentTime];
         BOOL ib_updated =[[idb fn_get_db] executeUpdate:insertSQL];
         if (! ib_updated)
             return NO;
