@@ -969,11 +969,15 @@
                                 </state>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="LOGIN" id="CPW-VU-Hgy">
-                            <color key="tintColor" red="0.98840082910000004" green="0.98840082910000004" blue="0.98840082910000004" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="UserLogin:" destination="chk-jX-EJh" id="mw7-Hl-xAO"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="lFa-4w-4B4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tva-Dd-2uP">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -981,6 +985,7 @@
                         <outlet property="hdrImageView" destination="C5U-qv-9Nm" id="ZJj-Lp-iPU"/>
                         <outlet property="imageView" destination="Rsu-6O-VtJ" id="BcN-9l-IdF"/>
                         <outlet property="iui_collectionview" destination="qLa-ld-CZm" id="sMV-1h-Hqa"/>
+                        <outlet property="loginBtn" destination="Tva-Dd-2uP" id="zvG-jO-B1p"/>
                         <outlet property="logoImageView" destination="IRA-Oy-xWS" id="lvk-76-fS8"/>
                         <outlet property="theScrollerView" destination="Sm2-Wv-AjF" id="fiB-Ws-eD1"/>
                     </connections>

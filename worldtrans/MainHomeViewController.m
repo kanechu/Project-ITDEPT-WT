@@ -23,13 +23,14 @@
 @implementation MainHomeViewController
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
-CustomBadge *iobj_customBadge;
 
+CustomBadge *iobj_customBadge;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+  
     }
     return self;
 }
@@ -51,7 +52,9 @@ CustomBadge *iobj_customBadge;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [_loginBtn addTarget:self action:@selector(UserLoginOrLogout:) forControlEvents:UIControlEventTouchUpInside];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self gettingNotification];
         dispatch_async( dispatch_get_main_queue(), ^{
             
@@ -71,9 +74,9 @@ CustomBadge *iobj_customBadge;
     _theScrollerView.contentSize=CGSizeMake(self.view.bounds.size.width*2, 205);
     DB_login *dbLogin=[[DB_login alloc]init];
     if ([dbLogin isLoginSuccess]) {
-        self.navigationItem.rightBarButtonItem.title=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
-        self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
-        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"userImage"]];
+        [self BtnGraphicMixed];
+        NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
+        [_loginBtn setTitle:str forState:UIControlStateNormal];
         _alertButton.enabled=YES;
          _imageView.image=[UIImage imageNamed:@"abco"];
     }
@@ -117,7 +120,6 @@ CustomBadge *iobj_customBadge;
 }
 -(void)PopupView:(UIViewController*)VC{
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
-   
     //弹出视图的大小
     formSheet.presentedFormSheetSize=CGSizeMake(284, 250);
     formSheet.shadowRadius = 2.0;
@@ -131,20 +133,44 @@ CustomBadge *iobj_customBadge;
     [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
     
 }
-
-- (IBAction)UserLogin:(id)sender {
-    LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
-    VC.iobj_target =self;
-    VC.isel_action = @selector(changeRightItem:);
-    [self PopupView:VC];
+//实现按钮的图文混排
+-(void)BtnGraphicMixed{
+    DB_login *dbLogin=[[DB_login alloc]init];
+    if ([dbLogin isLoginSuccess]==NO) {
+        [_loginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [_loginBtn setImage:nil forState:UIControlStateNormal];
+        [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        
+    }else{
+        [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_loginBtn setImage:[UIImage imageNamed:@"userImage"] forState:UIControlStateNormal];
+        [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -45, 0, 0)];
+        [_loginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _loginBtn.frame.size.width-30, 0, 0)];
+    }
+}
+- (void)UserLoginOrLogout:(id)sender {
+    
+    DB_login *dbLogin=[[DB_login alloc]init];
+    if ([dbLogin isLoginSuccess]==NO) {
+        LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+        VC.iobj_target =self;
+        VC.isel_action = @selector(changeRightItem:);
+        [self PopupView:VC];
+    }else{
+        //点击用户名称项，执行下面的语句
+        LogoutViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Logout"];
+        VC.iobj_target =self;
+        VC.isel_action = @selector(UserLogOut);
+        [self PopupView:VC];
+    }
+   
     
 }
 //登录成功后，导航的按钮项显示为用户的名称
 -(void)changeRightItem:(NSString*)userName{
-    
-    [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"userImage"]];
-    [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleBordered];
-    self.navigationItem.rightBarButtonItem.action=@selector(LogOut);
+   
+    [self BtnGraphicMixed];
+    [_loginBtn setTitle:userName forState:UIControlStateNormal];
     _alertButton.enabled=YES;
     if ([userName isEqualToString:@"sa"]) {
         _imageView.image=[UIImage imageNamed:@"abco"];
@@ -156,27 +182,17 @@ CustomBadge *iobj_customBadge;
         _imageView.image=nil;
     }
 }
-//点击用户名称项，会调用这个方法，提示是否退出
--(void)LogOut{
-    
-    LogoutViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Logout"];
-   
-    VC.iobj_target =self;
-    VC.isel_action = @selector(UserLogOut);
-    [self PopupView:VC];
-    
-}
-#pragma mark -UIAlertviewDelegate
+
+
+#pragma mark -UserLogOut menthod
 - (void)UserLogOut{
-    
-    DB_login *dbLogin=[[DB_login alloc]init];
+     DB_login *dbLogin=[[DB_login alloc]init];
     [dbLogin fn_delete_record];
- self.navigationItem.rightBarButtonItem.title=@"Login";
-    self.navigationItem.rightBarButtonItem.action=@selector(UserLogin:);
-    [self.navigationItem.rightBarButtonItem setImage:nil];
     _alertButton.enabled=NO;
     _imageView.image=nil;
-  
+    [self BtnGraphicMixed];
+    [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
+   
 }
 
 #pragma mark - UICollectionView Datasource

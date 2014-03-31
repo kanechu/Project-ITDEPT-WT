@@ -13,14 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *hdrImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UIButton *alertButton;
-
 @property (strong,nonatomic) NSMutableArray *ilist_menu;
-
 @property (nonatomic, retain) IBOutlet UICollectionView *iui_collectionview;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
-
-- (IBAction)UserLogin:(id)sender;
 - (void) fn_save_alert_list: (NSMutableArray *) alist_alert;
 @end
