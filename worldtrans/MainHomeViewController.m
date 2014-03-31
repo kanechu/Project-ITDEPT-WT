@@ -137,7 +137,8 @@ CustomBadge *iobj_customBadge;
 -(void)BtnGraphicMixed{
     DB_login *dbLogin=[[DB_login alloc]init];
     if ([dbLogin isLoginSuccess]==NO) {
-        [_loginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        
+        [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setImage:nil forState:UIControlStateNormal];
         [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         
