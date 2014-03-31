@@ -73,13 +73,12 @@ CustomBadge *iobj_customBadge;
 }
 //这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致滚动视图不能滑动
 -(void)viewDidAppear:(BOOL)animated{
-    _theScrollerView.contentSize=CGSizeMake(self.view.bounds.size.width*2, 205);
+    
     DB_login *dbLogin=[[DB_login alloc]init];
     if ([dbLogin isLoginSuccess]) {
         [self BtnGraphicMixed];
         NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         [_loginBtn setTitle:str forState:UIControlStateNormal];
-        _alertButton.enabled=YES;
          _imageView.image=[UIImage imageNamed:@"abco"];
     }
     
@@ -174,7 +173,6 @@ CustomBadge *iobj_customBadge;
    
     [self BtnGraphicMixed];
     [_loginBtn setTitle:userName forState:UIControlStateNormal];
-    _alertButton.enabled=YES;
     if ([userName isEqualToString:@"sa"]) {
         _imageView.image=[UIImage imageNamed:@"abco"];
     }else if([userName isEqualToString:@"cole"]){
@@ -191,7 +189,6 @@ CustomBadge *iobj_customBadge;
 - (void)UserLogOut{
      DB_login *dbLogin=[[DB_login alloc]init];
     [dbLogin fn_delete_record];
-    _alertButton.enabled=NO;
     _imageView.image=nil;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
@@ -218,18 +215,28 @@ CustomBadge *iobj_customBadge;
     cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
   
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
-    
+
 
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
      Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
+    
     if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
         [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
     }else if ([menu_item.is_segue isEqualToString:@"segue_alert"]){
         [self performSegueWithIdentifier:@"segue_alert" sender:self];
     }
+        
+}
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+-(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
     
+}
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
 }
 #pragma mark – UICollectionViewDelegateFlowLayout
 

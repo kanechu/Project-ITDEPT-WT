@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MainHomeViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (weak, nonatomic) IBOutlet UIScrollView *theScrollerView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *hdrImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIButton *alertButton;
 @property (strong,nonatomic) NSMutableArray *ilist_menu;
 @property (nonatomic, retain) IBOutlet UICollectionView *iui_collectionview;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
