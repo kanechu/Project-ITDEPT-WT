@@ -151,8 +151,8 @@
     RequestContract *req_form = [[RequestContract alloc] init];
     req_form.Auth =[dbLogin WayOfAuthorization];
     SearchFormContract *search = [[SearchFormContract alloc]init];
-    search.os_column =as_search_value;
-    search.os_value = as_search_column;
+    search.os_column =as_search_column;
+    search.os_value =as_search_value ;
     
     req_form.SearchForm = [NSSet setWithObjects:search, nil];
     
