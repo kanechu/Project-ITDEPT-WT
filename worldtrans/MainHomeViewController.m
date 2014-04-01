@@ -25,7 +25,7 @@
 @implementation MainHomeViewController
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
-@synthesize alertFram;
+@synthesize badge_Num;
 CustomBadge *iobj_customBadge;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,12 +105,8 @@ CustomBadge *iobj_customBadge;
             NSInteger li_alert_count = [ldb_alert fn_get_unread_msg_count];
             [iobj_customBadge removeFromSuperview];
             iobj_customBadge = nil;
-            iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",li_alert_count] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-            [iobj_customBadge setFrame:CGRectMake(self.view.frame.size.width/2-iobj_customBadge.frame.size.width/2+alertFram.size.width/2-20,alertFram.origin.y+30, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
-            
-            [iui_collectionview addSubview:iobj_customBadge];
-            
-            
+            badge_Num=li_alert_count;
+            [iui_collectionview reloadData];
         });
     });
 }
@@ -208,12 +204,18 @@ CustomBadge *iobj_customBadge;
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
-
     Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
-    alertFram=cell.frame;
     cell.ilb_label.text = menu_item.is_label;
     cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
-  
+    
+    iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
+    [iobj_customBadge setFrame:CGRectMake(cell.itemImage.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemImage.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+   
+    if ([indexPath item]==1) {
+        
+        [cell.itemImage addSubview:iobj_customBadge];
+    }
+    
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor=[UIColor blueColor];

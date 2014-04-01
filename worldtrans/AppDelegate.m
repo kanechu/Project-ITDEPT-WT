@@ -91,5 +91,9 @@
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
 }
+//禁止横屏
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 @end

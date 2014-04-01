@@ -16,7 +16,7 @@
 @property (strong,nonatomic) NSMutableArray *ilist_menu;
 @property (nonatomic, retain) IBOutlet UICollectionView *iui_collectionview;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property(assign,nonatomic)CGRect alertFram;
+@property (assign,nonatomic)NSInteger badge_Num;
 
 - (void) fn_save_alert_list: (NSMutableArray *) alist_alert;
 @end
