@@ -15,4 +15,5 @@ extern NSString* const STR_SEA_URL;
 extern NSString* const STR_AIR_URL;
 extern NSString* const STR_LOGIN_URL;
 extern NSString* const STR_ALERT_URL;
+extern NSString* const STR_MILESTONE_URL;
 @end

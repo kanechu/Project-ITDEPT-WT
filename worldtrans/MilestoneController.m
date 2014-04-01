@@ -7,15 +7,15 @@
 //
 
 #import "MilestoneController.h"
-#import <RestKit/RestKit.h>
-#import "AuthContract.h"
+#import "AppConstants.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
 #import "RespMilestone.h"
 #import "Cell_milestone.h"
 #import "Res_color.h"
-
-
+#import "Web_base.h"
+#import "DB_login.h"
+#import "NSArray.h"
 @interface MilestoneController ()
 
 @end
@@ -142,12 +142,8 @@
 - (void) fn_get_data: (NSString*)as_docu_type :(NSString*)as_docu_uid
 {
     RequestContract *req_form = [[RequestContract alloc] init];
-    
-    req_form.Auth = [[AuthContract alloc] init];
-    
-    req_form.Auth.user_code = @"SA";
-    req_form.Auth.password = @"SA1";
-    req_form.Auth.system = @"ITNEW";
+    DB_login *dbLogin=[[DB_login alloc]init];
+    req_form.Auth =[dbLogin WayOfAuthorization];
     
     SearchFormContract *search1 = [[SearchFormContract alloc]init];
     search1.os_column = @"docu_type";
@@ -160,61 +156,23 @@
     
     req_form.SearchForm = [NSSet setWithObjects:search1,search2, nil];
     
-    RKObjectMapping *searchMapping = [RKObjectMapping requestMapping];
-    [searchMapping addAttributeMappingsFromArray:@[@"os_column",@"os_value"]];
+    Web_base *web_base = [[Web_base alloc] init];
+    web_base.il_url =STR_MILESTONE_URL;
+    web_base.iresp_class =[RespMilestone class];
     
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespMilestone class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_milestone_list:);
+    [web_base fn_get_data:req_form];
     
-    RKObjectMapping *authMapping = [RKObjectMapping requestMapping];
-    [authMapping addAttributeMappingsFromDictionary:@{ @"user_code": @"user_code",
-                                                       @"password": @"password",
-                                                       @"system": @"system" }];
-    
-    RKObjectMapping *reqMapping = [RKObjectMapping requestMapping];
-    
-    RKRelationshipMapping *searchRelationship = [RKRelationshipMapping
-                                                 relationshipMappingFromKeyPath:@"SearchForm"
-                                                 toKeyPath:@"SearchForm"
-                                                 withMapping:searchMapping];
-    
-    
-    RKRelationshipMapping *authRelationship = [RKRelationshipMapping
-                                               relationshipMappingFromKeyPath:@"Auth"
-                                               toKeyPath:@"Auth"
-                                               withMapping:authMapping];
-    
-    [reqMapping addPropertyMapping:authRelationship];
-    [reqMapping addPropertyMapping:searchRelationship];
-    
-    NSString* path = @"itleo.web/api/cargotracking/milestone";
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:reqMapping
-                                                                                   objectClass:[RequestContract class]
-                                                                                   rootKeyPath:nil method:RKRequestMethodPOST];
-    
-    RKObjectMapping* respMilestoneMapping = [RKObjectMapping mappingForClass:[RespMilestone class]];
-    [respMilestoneMapping addAttributeMappingsFromArray:@[ @"print_seq",@"status_code",@"status_desc",@"act_status_date",@"remark"]];
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:respMilestoneMapping
-                                                                                            method:RKRequestMethodPOST
-                                                                                       pathPattern:nil
-                                                                                           keyPath:nil
-                                                                                       statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://demo.itdept.com.hk"]];
-    [manager addRequestDescriptor:requestDescriptor];
-    [manager addResponseDescriptor:responseDescriptor];
-    manager.requestSerializationMIMEType = RKMIMETypeJSON;
-    [manager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-    
-    [manager postObject:req_form path:path parameters:nil
-                success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-                    // RKLogInfo(@"Load collection of Articles: %@", result.array);
-                    ilist_milestone = [NSMutableArray arrayWithArray:result.array];
-                    [self fn_get_milestone_info];
-                    [self.tableView reloadData];
-                    
-                } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                    RKLogError(@"Operation failed with error: %@", error);
-                }];
-    
+   
 }
+-(void)fn_save_milestone_list:(NSMutableArray*)alist_result{
+    ilist_milestone = alist_result;
+    [self fn_get_milestone_info];
+    [self.tableView reloadData];
+   
+}
+
 
 @end
