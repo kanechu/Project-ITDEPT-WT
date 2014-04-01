@@ -215,8 +215,8 @@ CustomBadge *iobj_customBadge;
     cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
   
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
-
-
+    cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor=[UIColor blueColor];
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -232,12 +232,10 @@ CustomBadge *iobj_customBadge;
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
--(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
+
 #pragma mark – UICollectionViewDelegateFlowLayout
 
 
