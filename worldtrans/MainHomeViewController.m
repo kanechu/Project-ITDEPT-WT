@@ -178,6 +178,9 @@ CustomBadge *iobj_customBadge;
     }else{
         _imageView.image=nil;
     }
+    //登陆成功后，UICollectionview重新加载数据，显示badge
+    [iui_collectionview reloadData];
+    
 }
 
 
@@ -188,7 +191,8 @@ CustomBadge *iobj_customBadge;
     _imageView.image=nil;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
-   
+    //退出登陆后，从父视图中移除badge
+    [iobj_customBadge removeFromSuperview];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -212,8 +216,12 @@ CustomBadge *iobj_customBadge;
     [iobj_customBadge setFrame:CGRectMake(cell.itemImage.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemImage.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
    
     if ([indexPath item]==1) {
-        
-        [cell.itemImage addSubview:iobj_customBadge];
+        DB_login *dbLogin=[[DB_login alloc]init];
+        //登陆后和有新通知的时候，才显示badge
+        if ([dbLogin isLoginSuccess] && badge_Num>0 ) {
+            [cell.itemImage addSubview:iobj_customBadge];
+            
+        }
     }
     
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
@@ -223,10 +231,11 @@ CustomBadge *iobj_customBadge;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
      Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
+    DB_login *dbLogin=[[DB_login alloc]init];
     
     if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
         [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
-    }else if ([menu_item.is_segue isEqualToString:@"segue_alert"]){
+    }else if ([menu_item.is_segue isEqualToString:@"segue_alert"] && [dbLogin isLoginSuccess]){
         [self performSegueWithIdentifier:@"segue_alert" sender:self];
     }
         
