@@ -22,7 +22,6 @@
    
 
     [_sender.layer setMasksToBounds:YES];
-    
     [_sender.layer setContentsScale:22];
     [_sender.layer setCornerRadius:2.0];
     [_sender.layer setBorderWidth:1.0];
@@ -40,6 +39,7 @@
 {
     
     [super viewDidLoad];
+    _ltf_search_no.delegate=self;
     [self addBound:_lbtn_exhbl_search];
     [self addBound:_lbtn_exhbl_AirSearch];
     [self initBackgroundColor];
@@ -53,15 +53,21 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"showDetailSegue"]){
-        ExhblListController *controller = (ExhblListController *)segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"segue_aehbl"]){
+        AehblListController *controller = (AehblListController *)segue.destinationViewController;
+         controller.is_search_no =_ltf_search_no.text;
     }
     
     if([segue.identifier isEqualToString:@"segue_exhbl"]){
         ExhblListController *controller = (ExhblListController *)segue.destinationViewController;
-        controller.is_search_no = @"999";
+        controller.is_search_no =_ltf_search_no.text;
     }
    
+}
+#pragma mark UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [_ltf_search_no resignFirstResponder];
+    return YES;
 }
 
 

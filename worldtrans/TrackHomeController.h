@@ -8,7 +8,7 @@
 #import "ExhblListController.h"
 #import "AehblListController.h"
 #import <UIKit/UIKit.h>
-@interface TrackHomeController : UIViewController<UIAlertViewDelegate>
+@interface TrackHomeController : UIViewController<UIAlertViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *lbtn_exhbl_search;
 @property (weak, nonatomic) IBOutlet UIButton *lbtn_exhbl_AirSearch;
