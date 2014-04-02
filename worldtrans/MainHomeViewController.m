@@ -140,10 +140,18 @@ CustomBadge *iobj_customBadge;
         [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         
     }else{
+        //[_loginBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setImage:[UIImage imageNamed:@"userImage"] forState:UIControlStateNormal];
-        [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -45, 0, 0)];
-        [_loginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _loginBtn.frame.size.width-30, 0, 0)];
+        NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
+        if ([str length]<=2) {
+            [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];        }
+        else if([str length]<16){
+            [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -(45+(str.length-2)/2*10), 0, 0)];
+        }else{
+             [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
+        }
+        [_loginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _loginBtn.frame.size.width-35, 0, 0)];
     }
 }
 - (void)UserLoginOrLogout:(id)sender {
@@ -226,7 +234,7 @@ CustomBadge *iobj_customBadge;
     
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor=[UIColor blueColor];
+    cell.selectedBackgroundView.backgroundColor=[UIColor darkGrayColor];
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -241,9 +249,6 @@ CustomBadge *iobj_customBadge;
         
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
--(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
 
