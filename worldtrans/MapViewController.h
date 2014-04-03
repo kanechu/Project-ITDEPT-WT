@@ -10,5 +10,6 @@
 #import <MapKit/MapKit.h>
 @interface MapViewController : UIViewController<MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic,copy)NSString *adress_name;
 
 @end

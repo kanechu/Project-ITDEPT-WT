@@ -16,6 +16,7 @@
 #import "Res_color.h"
 #import "Web_base.h"
 #import "NSArray.h"
+#import "MapViewController.h"
 @interface AehblGeneralController ()
 
 @end
@@ -144,7 +145,16 @@
     
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
+    ldict_dictionary = [ilist_aehbl objectAtIndex:0];
+    if ([indexPath row]==1) {
+        [self performSegueWithIdentifier:@"segue_aehbl_map" sender:self];
+        MapViewController *mapVC=[[MapViewController alloc]init];
+        mapVC.adress_name=[ldict_dictionary valueForKey:@"load_port"];
+        NSLog(@"%@",mapVC.adress_name);
+    }
+}
 
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value
 {

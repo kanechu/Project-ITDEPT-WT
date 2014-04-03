@@ -527,7 +527,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="0dl-FX-Blc"/>
                     <connections>
-                        <segue destination="PJZ-EY-7NC" kind="push" identifier="segue_map" id="wFa-ZF-dhE"/>
+                        <segue destination="PJZ-EY-7NC" kind="push" identifier="segue_exhbl_map" id="wFa-ZF-dhE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adU-0O-V4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -537,7 +537,7 @@
         <!--Map View Controller-->
         <scene sceneID="zms-s8-1UE">
             <objects>
-                <viewController id="PJZ-EY-7NC" userLabel="Map View Controller" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="PJZ-EY-7NC" userLabel="Map View Controller" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Imo-Vb-I1k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1111,6 +1111,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="J2e-qB-rJC"/>
+                    <connections>
+                        <segue destination="PJZ-EY-7NC" kind="push" identifier="segue_aehbl_map" id="a6i-DQ-pU2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLu-La-Jrn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1133,7 +1136,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IT6-cK-qMM"/>
         <segue reference="ceN-QP-fyr"/>
+        <segue reference="IT6-cK-qMM"/>
+        <segue reference="wFa-ZF-dhE"/>
     </inferredMetricsTieBreakers>
 </document>
