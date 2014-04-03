@@ -17,6 +17,7 @@
 #import "AppConstants.h"
 #import "Web_base.h"
 #import "NSArray.h"
+#import "MapViewController.h"
 @interface ExhblGeneralController ()
 
 @end
@@ -179,8 +180,14 @@
 
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([indexPath row]==1) {
+        [self performSegueWithIdentifier:@"segue_map" sender:self];
+      
+    }
+}
 
-
+#pragma mark get data
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value
 {
     RequestContract *req_form = [[RequestContract alloc] init];

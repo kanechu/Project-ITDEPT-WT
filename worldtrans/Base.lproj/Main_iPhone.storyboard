@@ -526,10 +526,37 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="0dl-FX-Blc"/>
+                    <connections>
+                        <segue destination="PJZ-EY-7NC" kind="push" identifier="segue_map" id="wFa-ZF-dhE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adU-0O-V4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1599" y="-1308"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="zms-s8-1UE">
+            <objects>
+                <viewController id="PJZ-EY-7NC" userLabel="Map View Controller" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Imo-Vb-I1k">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="J3n-U2-liC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="X3U-9k-WXc"/>
+                    <connections>
+                        <outlet property="mapView" destination="J3n-U2-liC" id="OJu-AQ-vGe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rhb-ma-fnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134" y="-1241"/>
         </scene>
         <!--Track Home Controller - First-->
         <scene sceneID="W3I-pn-N6e">
