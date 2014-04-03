@@ -34,6 +34,9 @@
 		B24E83AC18D2A50700C29034 /* AehblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24E83AB18D2A50700C29034 /* AehblGeneralController.m */; };
 		B25649FF18E29C1B00030E05 /* NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = B25649FE18E29C1B00030E05 /* NSArray.m */; };
 		B2571CE218E5441F00C7DFA3 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2571CE018E5441F00C7DFA3 /* CustomBadge.m */; };
+		B25740B518EBE3BF0060190B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740B418EBE3BF0060190B /* MapKit.framework */; };
+		B25740FA18EBF17F0060190B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740F918EBF17F0060190B /* CoreLocation.framework */; };
+		B25BE7BC18ECEF0000F41409 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25BE7BB18ECEF0000F41409 /* MapViewController.m */; };
 		B261DCCF18EA67C600E6AB19 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B261DCCD18EA67C600E6AB19 /* Main_iPad.storyboard */; };
 		B26B684818E6969200E2E67B /* DB_device.m in Sources */ = {isa = PBXBuildFile; fileRef = B26B684718E6969200E2E67B /* DB_device.m */; };
 		B26CAC4818AA302A00C97C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4718AA302A00C97C83 /* Foundation.framework */; };
@@ -185,6 +188,10 @@
 		B25649FE18E29C1B00030E05 /* NSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray.m; sourceTree = "<group>"; };
 		B2571CE018E5441F00C7DFA3 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
 		B2571CE118E5441F00C7DFA3 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
+		B25740B418EBE3BF0060190B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B25740F918EBF17F0060190B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B25BE7BA18ECEF0000F41409 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		B25BE7BB18ECEF0000F41409 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		B261DCCE18EA67C600E6AB19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		B26B684618E6969200E2E67B /* DB_device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_device.h; sourceTree = "<group>"; };
 		B26B684718E6969200E2E67B /* DB_device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_device.m; sourceTree = "<group>"; };
@@ -284,6 +291,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B25740FA18EBF17F0060190B /* CoreLocation.framework in Frameworks */,
+				B25740B518EBE3BF0060190B /* MapKit.framework in Frameworks */,
 				B2F9C2AC18CAC579006B7299 /* libRestKit.a in Frameworks */,
 				B2C237FC18B364F5001E13C9 /* SystemConfiguration.framework in Frameworks */,
 				B2C237FA18B364EA001E13C9 /* Security.framework in Frameworks */,
@@ -380,6 +389,8 @@
 				B239B00218E66AA700C26552 /* LogoutViewController.m */,
 				B28209D118E518C90027227A /* MainHomeViewController.h */,
 				B28209D218E518C90027227A /* MainHomeViewController.m */,
+				B25BE7BA18ECEF0000F41409 /* MapViewController.h */,
+				B25BE7BB18ECEF0000F41409 /* MapViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -446,6 +457,8 @@
 		B26CAC4618AA302A00C97C83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B25740F918EBF17F0060190B /* CoreLocation.framework */,
+				B25740B418EBE3BF0060190B /* MapKit.framework */,
 				B2C237FB18B364F5001E13C9 /* SystemConfiguration.framework */,
 				B2C237F918B364EA001E13C9 /* Security.framework */,
 				B2C237F718B364DF001E13C9 /* QuartzCore.framework */,
@@ -840,6 +853,7 @@
 				B2C6ED8618E59FA80001837B /* Cell_menu_item.m in Sources */,
 				B2A9770B18CF18290096BD4B /* FMResultSet.m in Sources */,
 				B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */,
+				B25BE7BC18ECEF0000F41409 /* MapViewController.m in Sources */,
 				B26CAC5418AA302A00C97C83 /* main.m in Sources */,
 				B22446D518CF2C7500049F8C /* NSString.m in Sources */,
 				B2307B1918BDC748000502BE /* AlertController.m in Sources */,
