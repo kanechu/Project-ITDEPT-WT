@@ -14,11 +14,7 @@
 @end
 
 @implementation MapViewController
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void)GeocodeAddress{
     _mapView.delegate=self;
     _mapView.mapType=MKMapTypeStandard;
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -43,11 +39,15 @@
             annotation.state = placemark.administrativeArea;
             annotation.zip = placemark.postalCode;
             annotation.coordinate = placemark.location.coordinate;
-            
             [_mapView addAnnotation:annotation];
         }
     }];
-    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self GeocodeAddress];
 	// Do any additional setup after loading the view.
 }
 

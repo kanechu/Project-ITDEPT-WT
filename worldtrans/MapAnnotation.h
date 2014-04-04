@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-@interface MapAnnotation : NSObject
+@interface MapAnnotation : NSObject<MKAnnotation>
 //街道信息属性
 @property (nonatomic, copy) NSString *streetAddress;
 //城市信息属性
