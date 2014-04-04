@@ -40,7 +40,8 @@
     RKObjectMapping *lo_authMapping = [RKObjectMapping requestMapping];
     [lo_authMapping addAttributeMappingsFromDictionary:@{ @"user_code": @"user_code",
                                                        @"password": @"password",
-                                                       @"system": @"system" }];
+                                                          @"system": @"system" ,
+                                                          @"device_id": @"device_id"}];
     
     RKObjectMapping *lo_reqMapping = [RKObjectMapping requestMapping];
     
