@@ -183,12 +183,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_exhbl objectAtIndex:0];
-    MapViewController *mapVC;
+    MapViewController *mapVC=nil;
     if ([indexPath row]==1) {
-        [self performSegueWithIdentifier:@"segue_exhbl_map" sender:self];
         mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
         mapVC.adress_name=[ldict_dictionary valueForKey:@"load_port"];
-        NSLog(@"%@",mapVC.adress_name);
+        [self.navigationController pushViewController:mapVC animated:YES];
+       
     }
 }
 

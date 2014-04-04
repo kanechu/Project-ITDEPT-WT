@@ -18,8 +18,7 @@
     _mapView.delegate=self;
     _mapView.mapType=MKMapTypeStandard;
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    NSLog(@"%@",_adress_name);
-    [geocoder geocodeAddressString:@"HongKong" completionHandler:^(NSArray *placemarks, NSError *error) {
+    [geocoder geocodeAddressString:_adress_name completionHandler:^(NSArray *placemarks, NSError *error) {
         
         if ([placemarks count] > 0) {
             [_mapView removeAnnotations:_mapView.annotations];
