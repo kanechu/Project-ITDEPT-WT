@@ -36,7 +36,7 @@
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
     NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    NSLog(@"Error %@",err);
+    NSLog(@"Error %@",str);
     is_device_token = @"dev-ser";
     
 }
