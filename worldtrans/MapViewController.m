@@ -19,7 +19,7 @@
     _mapView.mapType=MKMapTypeStandard;
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     NSLog(@"%@",_adress_name);
-    [geocoder geocodeAddressString:@"xianggang" completionHandler:^(NSArray *placemarks, NSError *error) {
+    [geocoder geocodeAddressString:@"HongKong" completionHandler:^(NSArray *placemarks, NSError *error) {
         
         if ([placemarks count] > 0) {
             [_mapView removeAnnotations:_mapView.annotations];
@@ -75,7 +75,7 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-   // _mapView.centerCoordinate = userLocation.location.coordinate;
+    _mapView.centerCoordinate = userLocation.location.coordinate;
 }
 
 - (void)mapViewDidFailLoadingMap:(MKMapView *)theMapView withError:(NSError *)error {
