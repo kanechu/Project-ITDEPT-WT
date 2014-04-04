@@ -50,9 +50,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([dbLogin isLoginSuccess]) {
-        return 7;
+        return 8;
     }else{
-         return 5;
+         return 6;
     }
 }
 
@@ -109,10 +109,15 @@
     }
     if ( indexPath.row == 1)
     {
-        cell.ilb_header.text = @"Load Port / Destination";
-        cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"load_port"], [ldict_dictionary valueForKey:@"dest_name"]];
+        cell.ilb_header.text = @"Load Port";
+        cell.ilb_value.text = [ldict_dictionary valueForKey:@"load_port"];
     }
     if ( indexPath.row == 2)
+    {
+        cell.ilb_header.text = @"Destination";
+        cell.ilb_value.text = [ldict_dictionary valueForKey:@"dest_name"];
+    }
+    if ( indexPath.row == 3)
     {
         NSString *ls_no_of_cntr_1 = [ldict_dictionary valueForKey:@"no_of_cntr_1"];
         NSInteger li_no_of_cntr_1 = [ls_no_of_cntr_1 integerValue];
@@ -152,12 +157,12 @@
         cell.ilb_header.text = ls_os_column;
         cell.ilb_value.text = ls_os_value;
     }
-    if ( indexPath.row == 3)
+    if ( indexPath.row == 4)
     {
         cell.ilb_header.text = @"Vessel / Voyage";
         cell.ilb_value.text = [ldict_dictionary valueForKey:@"vsl_voy"];
     }
-    if ( indexPath.row == 4)
+    if ( indexPath.row == 5)
     {
         ls_os_value = [ldict_dictionary valueForKey:@"status_desc"];
         if ([ls_os_value length] > 0 ){
@@ -168,11 +173,11 @@
 
     }
     if ([dbLogin isLoginSuccess]) {
-        if (indexPath.row==5) {
+        if (indexPath.row==6) {
             cell.ilb_header.text = @"Shipper ";
             cell.ilb_value.text =[ldict_dictionary valueForKey:@"shpr_name"];
         }
-        if (indexPath.row==6) {
+        if (indexPath.row==7) {
             cell.ilb_header.text = @"Consignee";
             cell.ilb_value.text =[ldict_dictionary valueForKey:@"cnee_name"];
         }
@@ -184,11 +189,13 @@
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_exhbl objectAtIndex:0];
     MapViewController *mapVC=nil;
+     mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     if ([indexPath row]==1) {
-        mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
         mapVC.adress_name=[ldict_dictionary valueForKey:@"load_port"];
         [self.navigationController pushViewController:mapVC animated:YES];
-       
+    }else if([indexPath row]==2){
+        mapVC.adress_name=[ldict_dictionary valueForKey:@"dest_name"];
+        [self.navigationController pushViewController:mapVC animated:YES];
     }
 }
 

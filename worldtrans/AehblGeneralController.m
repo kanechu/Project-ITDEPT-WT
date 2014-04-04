@@ -48,9 +48,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([dbLogin isLoginSuccess]) {
-        return 7;
+        return 8;
     }else{
-        return 5;
+        return 6;
     }
 }
 
@@ -83,9 +83,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *ls_TableIdentifier = @"cell_aehbl_general_detail";
-    NSString *ls_os_value = @"", *ls_os_column = @"";
-    
+   
     Cell_exhbl_general_detail *cell = (Cell_exhbl_general_detail *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
+    NSString *ls_os_value = @"", *ls_os_column = @"";
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"Cell_aehbl_general_detail" owner:self options:nil];
@@ -107,22 +107,27 @@
     }
     if ( indexPath.row == 1)
     {
-        cell.ilb_header.text = @"Load Port / Destination";
-        cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"load_port"], [ldict_dictionary valueForKey:@"dest_name"]];
+        cell.ilb_header.text = @"Load Port";
+        cell.ilb_value.text = [ldict_dictionary valueForKey:@"load_port"];
     }
     if ( indexPath.row == 2)
+    {
+        cell.ilb_header.text = @"Destination";
+        cell.ilb_value.text =[ldict_dictionary valueForKey:@"dest_name"];
+    }
+    if ( indexPath.row == 3)
     {
                                   
         cell.ilb_header.text = @"PKG/ACT_KGS/CHRG_KGS";
         cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@/ %@", [ldict_dictionary valueForKey:@"hbl_pkg"], [ldict_dictionary valueForKey:@"hbl_act_cbm"], [ldict_dictionary valueForKey:@"hbl_chrg_cbm"]];
     }
     
-    if ( indexPath.row == 3)
+    if ( indexPath.row == 4)
     {
         cell.ilb_header.text = @"Flight#/ Flight Date";
         cell.ilb_value.text =[NSString stringWithFormat:@"%@/%@",[ldict_dictionary valueForKey:@"flight_no"],[ldict_dictionary valueForKey:@"prt_flight_date"]];
     }
-    if ( indexPath.row == 4)
+    if ( indexPath.row == 5)
     {
         ls_os_value = [ldict_dictionary valueForKey:@"status_desc"];
         if ([ls_os_value length] > 0 ){
@@ -133,11 +138,11 @@
         
     }
     if ([dbLogin isLoginSuccess]) {
-        if (indexPath.row==5) {
+        if (indexPath.row==6) {
             cell.ilb_header.text = @"Shipper ";
             cell.ilb_value.text =[ldict_dictionary valueForKey:@"shpr_name"];
         }
-        if (indexPath.row==6) {
+        if (indexPath.row==7) {
             cell.ilb_header.text = @"Consignee";
             cell.ilb_value.text =[ldict_dictionary valueForKey:@"cnee_name"];
         }
@@ -149,9 +154,12 @@
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_aehbl objectAtIndex:0];
     MapViewController *mapVC=nil;
+    mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     if ([indexPath row]==1) {
-        mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
         mapVC.adress_name=[ldict_dictionary valueForKey:@"load_port"];
+        [self.navigationController pushViewController:mapVC animated:YES];
+    }else if ([indexPath row]==2){
+        mapVC.adress_name=[ldict_dictionary valueForKey:@"dest_name"];
         [self.navigationController pushViewController:mapVC animated:YES];
     }
 }
