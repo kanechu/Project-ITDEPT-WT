@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
 @interface AppConstants : NSObject
 
 extern NSString* const STR_BASE_URL;

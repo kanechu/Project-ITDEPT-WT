@@ -9,6 +9,7 @@
 #import "LogoutViewController.h"
 #import "MZFormSheetController.h"
 #import "DB_login.h"
+#import "AppConstants.h"
 @interface LogoutViewController ()
 
 @end
@@ -61,7 +62,7 @@
 
 - (IBAction)clickLogout:(id)sender {
      [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
-     [iobj_target performSelector:isel_action withObject:nil];
+    SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:nil];);
 }
 
 - (IBAction)closeLogoutUI:(id)sender {

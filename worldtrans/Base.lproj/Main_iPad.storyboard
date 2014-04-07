@@ -286,6 +286,27 @@
             </objects>
             <point key="canvasLocation" x="2151" y="-673"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="Hr2-B8-X3w">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="naV-2D-8O6" userLabel="Map View Controller" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1y7-zr-0lL">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="jAc-rD-cXF">
+                                <rect key="frame" x="0.0" y="0.0" width="818" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fs1-5O-qHk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9I-sa-7Ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3298" y="-1067"/>
+        </scene>
         <!--AehblList Controller-Air Export-->
         <scene sceneID="otX-T3-GQ7">
             <objects>
@@ -526,6 +547,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="0dl-FX-Blc"/>
+                    <connections>
+                        <segue destination="naV-2D-8O6" kind="push" identifier="segue_exhbl_map" id="Ljp-F8-rpy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adU-0O-V4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1087,6 +1111,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="J2e-qB-rJC"/>
+                    <connections>
+                        <segue destination="naV-2D-8O6" kind="push" identifier="segue_aehbl_map" id="s87-VG-D3O"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLu-La-Jrn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1111,5 +1138,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Cr5-3k-Xhp"/>
         <segue reference="ceN-QP-fyr"/>
+        <segue reference="s87-VG-D3O"/>
     </inferredMetricsTieBreakers>
 </document>

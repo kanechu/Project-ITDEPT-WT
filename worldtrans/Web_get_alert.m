@@ -56,8 +56,7 @@
 }
 - (void) fn_save_alert_list: (NSMutableArray *) alist_result {
     ilist_alert = alist_result;
-    [iobj_target performSelector:isel_action withObject:ilist_alert];
-    
+    SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:ilist_alert];);
     
 }
 @end

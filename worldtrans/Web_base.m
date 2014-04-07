@@ -85,8 +85,10 @@
                     
                     ilist_resp_result = [NSMutableArray arrayWithArray:result.array];
                     
-                    [iobj_target performSelector:isel_action withObject:ilist_resp_result];
-                    
+                   
+                    SuppressPerformSelectorLeakWarning(  [iobj_target performSelector:isel_action withObject:ilist_resp_result];);
+                  
+            
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                     RKLogError(@"Operation failed with error: %@", error);
                 }];
