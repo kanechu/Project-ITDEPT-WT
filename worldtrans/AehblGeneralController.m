@@ -17,6 +17,11 @@
 #import "Web_base.h"
 #import "NSArray.h"
 #import "MapViewController.h"
+
+enum ROW_NUMOFSECTION {
+    ROW_NUM1 = 8,
+    RoW_NUM2 = 6
+};
 @interface AehblGeneralController ()
 
 @end
@@ -48,9 +53,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([dbLogin isLoginSuccess]) {
-        return 8;
+        return ROW_NUM1;
     }else{
-        return 6;
+        return RoW_NUM2;
     }
 }
 
