@@ -52,10 +52,12 @@ enum ROW_NUMOFSECTION {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([dbLogin isLoginSuccess]) {
+    if ([dbLogin isLoginSuccess] && ilist_aehbl!=nil) {
         return ROW_NUM1;
-    }else{
+    }else if(ilist_aehbl!=nil){
         return RoW_NUM2;
+    }else{
+        return 0;
     }
 }
 
@@ -75,9 +77,14 @@ enum ROW_NUMOFSECTION {
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == 1 )
-        return 0.000001f;
-    else return 102; // put 22 in case of plain one..
+    if (ilist_aehbl==nil) {
+        return 0;
+    }else{
+        if(section == 1 )
+            return 0.000001f;
+        else return 102; // put 22 in case of plain one..
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
