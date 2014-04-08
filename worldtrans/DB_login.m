@@ -12,6 +12,7 @@
 #import "FMDatabaseAdditions.h"
 #import "AppDelegate.h"
 #import "DB_device.h"
+#import "AppConstants.h"
 @implementation DB_login
 
 @synthesize idb;
@@ -97,10 +98,10 @@
         auth.user_code =[[userInfo objectAtIndex:0] valueForKey:@"user_code"];
         auth.password = [[userInfo objectAtIndex:0] valueForKey:@"password"];;
     }else{
-        auth.user_code = @"SA";
-        auth.password = @"SA1";
+        auth.user_code =DEFAULT_USERCODE;
+        auth.password =DEFAULT_PASS;
     }
-    auth.system = @"ITNEW";
+    auth.system = DEFAULT_SYSTEM;
     auth.device_id = ls_device_token;
 
     return auth;
