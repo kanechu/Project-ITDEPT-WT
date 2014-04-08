@@ -51,7 +51,10 @@
 - (void) fn_get_data: (NSString*)user_code :(NSString*)user_pass
 {
     RequestContract *req_form = [[RequestContract alloc] init];
-    req_form.Auth = [[[DB_login alloc] init] WayOfAuthorization];
+    AuthContract *auth=[[AuthContract alloc]init];
+    auth.user_code=user_code;
+    auth.password=user_pass;
+    req_form.Auth =auth;
     Web_base *web_base=[[Web_base alloc]init];
     web_base.il_url=STR_LOGIN_URL;
     web_base.iresp_class=[RespLogin class];
