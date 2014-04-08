@@ -103,7 +103,8 @@ enum ROW_NUMOFSECTION {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"Cell_aehbl_general_detail" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+    cell.ilb_value.lineBreakMode=NSLineBreakByWordWrapping;
+    cell.ilb_value.numberOfLines=0;
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_aehbl objectAtIndex:0];    // Configure Cell
     

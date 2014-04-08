@@ -113,6 +113,8 @@ enum ROW_NUMOFSECTION {
     else
         [cell setBackgroundColor:COLOR_EERIE_BLACK];
     
+    cell.ilb_value.lineBreakMode=NSLineBreakByWordWrapping;
+    cell.ilb_value.numberOfLines=0;
     if ( indexPath.row == 0)
     {
         cell.ilb_header.text = @"ETD / ETA";
@@ -180,7 +182,7 @@ enum ROW_NUMOFSECTION {
             ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@" / %@, ",[ldict_dictionary valueForKey:@"act_status_date"]]];
         }
         cell.ilb_header.text = @"Latest Status";
-        cell.ilb_value.text = ls_os_value;
+        cell.ilb_value.text =ls_os_value;
 
     }
     if ([dbLogin isLoginSuccess]) {
