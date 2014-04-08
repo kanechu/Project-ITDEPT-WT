@@ -54,6 +54,7 @@
     AuthContract *auth=[[AuthContract alloc]init];
     auth.user_code=user_code;
     auth.password=user_pass;
+    auth.system = DEFAULT_SYSTEM;
     req_form.Auth =auth;
     Web_base *web_base=[[Web_base alloc]init];
     web_base.il_url=STR_LOGIN_URL;

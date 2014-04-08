@@ -80,6 +80,8 @@ CustomBadge *iobj_customBadge;
         NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         [_loginBtn setTitle:str forState:UIControlStateNormal];
          _imageView.image=[UIImage imageNamed:@"abco"];
+    }else{
+        [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
     
 }
@@ -147,7 +149,9 @@ CustomBadge *iobj_customBadge;
         if ([str length]<=2) {
             [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];        }
         else if([str length]<16){
-            [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -(45+(str.length-2)/2*10), 0, 0)];
+            NSLog(@"%d",(45+(str.length-2)/2*10));
+            NSInteger left=-(45+(str.length-2)/2*10+30);
+            [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,left , 0, 0)];
         }else{
              [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
         }
