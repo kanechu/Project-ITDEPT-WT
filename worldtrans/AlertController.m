@@ -225,7 +225,12 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
     
     [deleteDic removeAllObjects];
-   
+    //隐藏多选圆圈
+    [self.tableView setEditing:NO animated:YES];
+    
+    [self.cancleButton setTitle:@"Edit" forState:UIControlStateNormal];
+    [self.cancleButton addTarget:self action:@selector(EditRow:) forControlEvents:UIControlEventTouchUpInside];
+    [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 
 - (void)DeleteAllSelections:(id)sender {
