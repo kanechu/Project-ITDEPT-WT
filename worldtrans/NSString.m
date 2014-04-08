@@ -17,4 +17,15 @@
     return found;
 }
 
++ (NSString*)nullConvertEmpty:(id)object{
+    //转换为空串，不显示NULL
+    if ([object isEqual:[NSNull null]]) {
+        return @"";
+    }else if ([object isKindOfClass:[NSNull class]])
+    {
+        return @"";
+    }
+    return object;
+}
+
 @end

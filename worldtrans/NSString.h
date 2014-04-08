@@ -10,4 +10,5 @@
 
 @interface NSString ( containsCategory )
 - (BOOL) containsString: (NSString*) substring;
++ (NSString*)nullConvertEmpty:(id)object;
 @end

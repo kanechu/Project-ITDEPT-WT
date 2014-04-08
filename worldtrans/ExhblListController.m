@@ -19,6 +19,7 @@
 #import "DB_login.h"
 #import "Web_base.h"
 #import "NSArray.h"
+#import "NSString.h"
 @interface ExhblListController ()
 
 @end
@@ -103,12 +104,14 @@
         [cell setBackgroundColor:COLOR_EERIE_BLACK];
     
     
-    cell.ilb_hbl_no.text = [ldict_dictionary valueForKey:@"hbl_no"];
-    cell.ilb_so_no.text = [ldict_dictionary valueForKey:@"so_no"];
-    cell.ilb_load_port.text = [ldict_dictionary valueForKey:@"load_port"];
-    cell.ilb_dest_port.text = [ldict_dictionary valueForKey:@"dest_name"];
-    cell.ilb_status_desc.text = [ldict_dictionary valueForKey:@"status_desc"];
-    cell.ilb_date.text = [NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+    cell.ilb_hbl_no.text = [NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"hbl_no"]];
+
+    cell.ilb_so_no.text = [NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"so_no"]];
+    cell.ilb_load_port.text = [NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"load_port"]];
+    cell.ilb_dest_port.text = [NSString nullConvertEmpty: [ldict_dictionary valueForKey:@"dest_name"]];
+    cell.ilb_status_desc.text = [NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"status_desc"]];
+    NSString *str=[NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+    cell.ilb_date.text =[NSString nullConvertEmpty:str];
     
     return cell;
 }

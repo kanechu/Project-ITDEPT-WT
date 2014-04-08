@@ -19,6 +19,7 @@
 #import "DB_login.h"
 #import "Web_base.h"
 #import "NSArray.h"
+#import "NSString.h"
 @interface AehblListController ()
 
 @end
@@ -109,15 +110,16 @@
     //cell.ilb_hbl_no.text = [ldict_dictionary valueForKey:@"hbl_no"];
     //cell.ilb_so_no.text = [ldict_dictionary valueForKey:@"so_no"];
     
-    cell.ilb_hbl_no.text = lespAehbl.hbl_no;
-    cell.ilb_so_no.text = lespAehbl.so_no;
+    cell.ilb_hbl_no.text =[NSString nullConvertEmpty:lespAehbl.hbl_no];
+    cell.ilb_so_no.text =[NSString nullConvertEmpty:lespAehbl.so_no];
     
-    cell.ilb_load_port.text =[ldict_dictionary valueForKey:@"load_port"];
-    cell.ilb_dest_port.text=[ldict_dictionary valueForKey:@"dest_name"];
+    cell.ilb_load_port.text =[NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"load_port"]];
+    cell.ilb_dest_port.text=[NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"dest_name"]];
     //cell.ilb_flight_noAnddate.text=[NSString stringWithFormat:@"%@/%@", [ldict_dictionary valueForKey:@"flight_no"],[ldict_dictionary valueForKey:@"prt_flight_date"]];
-    cell.ilb_flight_noAnddate.text=[NSString stringWithFormat:@"%@/%@", lespAehbl.flight_no,lespAehbl.prt_flight_date];
+    NSString *str=[NSString stringWithFormat:@"%@/%@", lespAehbl.flight_no,lespAehbl.prt_flight_date];
+    cell.ilb_flight_noAnddate.text=[NSString nullConvertEmpty:str];
     
-    cell.ilb_status_latest.text=[ldict_dictionary valueForKey:@"status_desc"];
+    cell.ilb_status_latest.text=[NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"status_desc"]];
     
     return cell;
 }

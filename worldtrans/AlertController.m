@@ -86,6 +86,12 @@
         ls_show_no = [@"BOOKING#: " stringByAppendingString:[ldict_dictionary valueForKey:@"so_no"]];
     else
         ls_show_no = [@"HBL#: " stringByAppendingString:[ldict_dictionary valueForKey:@"hbl_no"]];
+    
+    ls_status_desc=[NSString nullConvertEmpty:ls_status_desc];
+    ls_act_status_date=[NSString nullConvertEmpty:ls_act_status_date];
+    ls_msg_recv_date=[NSString nullConvertEmpty:ls_msg_recv_date];
+    ls_show_no=[NSString nullConvertEmpty:ls_show_no];
+    
     cell.ilb_status_desc.text = ls_status_desc;
     cell.ilb_act_status_date.text = ls_act_status_date;
     cell.ilb_alert_date.text = ls_msg_recv_date;
