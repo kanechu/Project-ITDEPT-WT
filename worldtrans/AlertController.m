@@ -192,40 +192,23 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
 }
 
-//遍历数组，把今天的信件跟以前的信件分开来放
--(void) ergodicArr:(NSMutableArray*)_arr{
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    NSString *ls_currentTime = [dateFormatter stringFromDate:today];
-    for (NSObject *object in _arr) {
-        NSDictionary* alert_value=(NSDictionary *)object;
-        NSLog(@"%@",alert_value);
-        if ([[alert_value valueForKey:@"msg_recv_date"] isEqualToString:ls_currentTime]) {
-            [today_alert addObject:alert_value];
-        }else{
-            [previous_alert addObject:alert_value];
-        }
-        
-    }
-    ilist_alert=today_alert;
-}
 - (void) fn_get_data
 {
     NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     all_alerts = [ldb_alert fn_get_all_msg];
-    [self ergodicArr:all_alerts];
+    today_alert=[ldb_alert fn_get_today_msg];
+    previous_alert=[ldb_alert fn_get_previous_msg];
+    ilist_alert=today_alert;
+   // [self ergodicArr:all_alerts];
     
 }
 -(void)reloadData{
     
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     if ([ldb_alert fn_get_unread_msg_count]>[ilist_alert count]) {
-        NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
-        DB_alert * ldb_alert = [[DB_alert alloc] init];
-        all_alerts = [ldb_alert fn_get_all_msg];
-        [self ergodicArr:all_alerts];
+        today_alert=[ldb_alert fn_get_today_msg];
+        previous_alert=[ldb_alert fn_get_previous_msg];
         [self.tableView reloadData];
     }
 }

@@ -89,6 +89,41 @@
     
     return llist_results;
 }
+-(NSString*)getToday_Date{
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *ls_currentTime = [dateFormatter stringFromDate:today];
+    return ls_currentTime;
+}
+- (NSMutableArray *) fn_get_today_msg{
+   
+    NSMutableArray *llist_results = [NSMutableArray array];
+    NSString *ls_today=[self getToday_Date];
+    if ([[idb fn_get_db] open]) {
+        
+        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:[NSString stringWithFormat:@"SELECT * FROM alert where msg_recv_date>\"%@\" order by msg_recv_date desc",ls_today]];
+        while ([lfmdb_result next]) {
+            [llist_results addObject:[lfmdb_result resultDictionary]];
+        }    }
+    [[idb fn_get_db] close];
+    
+    return llist_results;
+}
+
+- (NSMutableArray *) fn_get_previous_msg{
+    NSMutableArray *llist_results = [NSMutableArray array];
+    NSString *ls_today=[self getToday_Date];
+    if ([[idb fn_get_db] open]) {
+        
+        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:[NSString stringWithFormat:@"SELECT * FROM alert where msg_recv_date<\"%@\" order by msg_recv_date desc",ls_today]];
+        while ([lfmdb_result next]) {
+            [llist_results addObject:[lfmdb_result resultDictionary]];
+        }    }
+    [[idb fn_get_db] close];
+    
+    return llist_results;
+}
 @end
 
 
