@@ -623,19 +623,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="Search by Booking/HBL #" showsCancelButton="YES" showsScopeBar="YES" id="JNG-b9-J6F">
-                            <rect key="frame" x="0.0" y="64" width="320" height="88"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                            <scopeButtonTitles>
-                                <string>Today</string>
-                                <string>Previous</string>
-                            </scopeButtonTitles>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_alert_list_hdr" id="D4C-p1-awL">
-                                <rect key="frame" x="0.0" y="174" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D4C-p1-awL" id="FwB-f1-PMG">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -661,7 +651,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell_alert_list" rowHeight="71" id="RSX-VE-3Op" customClass="Cell_alert_list">
-                                <rect key="frame" x="0.0" y="218" width="320" height="71"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RSX-VE-3Op" id="1kw-Es-Wle">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="70"/>
@@ -716,10 +706,22 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Message" id="o63-6Q-ooV">
                         <barButtonItem key="backBarButtonItem" title="Back" id="8G2-B0-Eba"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2WS-J4-jNw">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="0lE-aI-SDf">
+                                <rect key="frame" x="194" y="8" width="110" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Today"/>
+                                    <segment title="Previous"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChange:" destination="3pE-kg-DfJ" eventType="valueChanged" id="o4d-xx-LKm"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
-                        <outlet property="searchBarWithScopeBar" destination="JNG-b9-J6F" id="q4m-U4-5lz"/>
                         <segue destination="7UD-qU-Ko9" kind="push" identifier="segue_exhbl_home1" id="Cr5-3k-Xhp"/>
                         <segue destination="O1K-i7-1iG" kind="push" identifier="segue_aehbl_home1" id="3hz-sA-2Up"/>
                     </connections>

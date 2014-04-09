@@ -41,7 +41,7 @@
     
     [self setToolbarItems:arr animated:YES];
     [[self navigationController] setToolbarHidden:YES animated:YES];
-    _searchBarWithScopeBar.delegate=self;
+   
 }
 #pragma mark UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -192,16 +192,13 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
 }
 
-- (void) fn_get_data
-{
-    NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
-    DB_alert * ldb_alert = [[DB_alert alloc] init];
-    all_alerts = [ldb_alert fn_get_all_msg];
+//遍历数组，把今天的信件跟以前的信件分开来放
+-(void) ergodicArr:(NSMutableArray*)_arr{
     NSDate *today = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *ls_currentTime = [dateFormatter stringFromDate:today];
-    for (NSObject *object in all_alerts) {
+    for (NSObject *object in _arr) {
         NSDictionary* alert_value=(NSDictionary *)object;
         NSLog(@"%@",alert_value);
         if ([[alert_value valueForKey:@"msg_recv_date"] isEqualToString:ls_currentTime]) {
@@ -209,16 +206,26 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         }else{
             [previous_alert addObject:alert_value];
         }
-       
+        
     }
     ilist_alert=today_alert;
-   
+}
+- (void) fn_get_data
+{
+    NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
+    DB_alert * ldb_alert = [[DB_alert alloc] init];
+    all_alerts = [ldb_alert fn_get_all_msg];
+    [self ergodicArr:all_alerts];
+    
 }
 -(void)reloadData{
     
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     if ([ldb_alert fn_get_unread_msg_count]>[ilist_alert count]) {
-        ilist_alert=[ldb_alert fn_get_all_msg];
+        NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
+        DB_alert * ldb_alert = [[DB_alert alloc] init];
+        all_alerts = [ldb_alert fn_get_all_msg];
+        [self ergodicArr:all_alerts];
         [self.tableView reloadData];
     }
 }
@@ -280,16 +287,16 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
      [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 
-#pragma mark UISearchBarDelegate
--(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
-    if (self.searchBarWithScopeBar.selectedScopeButtonIndex==0) {
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+}
+- (IBAction)segmentChange:(id)sender {
+    UISegmentedControl *segmentCon=(UISegmentedControl*)sender;
+    if (segmentCon.selectedSegmentIndex==0) {
         ilist_alert=today_alert;
-    }else if(self.searchBarWithScopeBar.selectedScopeButtonIndex==1){
+    }else if (segmentCon.selectedSegmentIndex==1){
         ilist_alert=previous_alert;
     }
     [self.tableView reloadData];
-}
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];
 }
 @end

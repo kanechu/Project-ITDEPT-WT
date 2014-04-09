@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlertController : UITableViewController<UISearchBarDelegate>
-
+@interface AlertController : UITableViewController
 @property (strong,nonatomic) NSMutableArray *ilist_alert;
 @property (strong,nonatomic) NSMutableArray *today_alert;
 @property (strong,nonatomic) NSMutableArray *previous_alert;
 @property (strong,nonatomic) NSMutableDictionary *deleteDic;
 @property ( nonatomic) UIButton *cancleButton;
 - (IBAction)EditRow:(id)sender;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBarWithScopeBar;
+
+- (IBAction)segmentChange:(id)sender;
 
 @end
 
