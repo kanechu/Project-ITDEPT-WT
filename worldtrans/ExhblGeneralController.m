@@ -18,6 +18,7 @@
 #import "Web_base.h"
 #import "NSArray.h"
 #import "MapViewController.h"
+#import "MBProgressHUD.h"
 enum ROW_NUMOFSECTION {
     ROW_NUM1 = 8,
     RoW_NUM2 = 6
@@ -215,6 +216,7 @@ enum ROW_NUMOFSECTION {
 #pragma mark get data
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     RequestContract *req_form = [[RequestContract alloc] init];
 
     req_form.Auth =[dbLogin WayOfAuthorization];
@@ -236,6 +238,7 @@ enum ROW_NUMOFSECTION {
 - (void) fn_save_exhbl_list: (NSMutableArray *) alist_result {
     ilist_exhbl = alist_result;
     [self.tableView reloadData];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
 }
 
