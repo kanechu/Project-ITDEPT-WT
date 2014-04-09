@@ -142,7 +142,7 @@ CustomBadge *iobj_customBadge;
         [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         
     }else{
-        //[_loginBtn.titleLabel setTextAlignment:NSTextAlignmentRight];
+        
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setImage:[UIImage imageNamed:@"userImage"] forState:UIControlStateNormal];
         NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
@@ -249,6 +249,12 @@ CustomBadge *iobj_customBadge;
         [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
     }else if ([menu_item.is_segue isEqualToString:@"segue_alert"] && [dbLogin isLoginSuccess]){
         [self performSegueWithIdentifier:@"segue_alert" sender:self];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Please Login First!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        alert.backgroundColor=[UIColor lightGrayColor];
+        alert.alpha=0.2;
+        [alert show];
+        
     }
         
 }
