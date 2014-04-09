@@ -23,8 +23,12 @@
 @synthesize ilist_alert;
 @synthesize deleteDic;
 @synthesize cancleButton;
+@synthesize today_alert;
+@synthesize previous_alert;
 -(void)initDic{
     self.deleteDic=[NSMutableDictionary dictionaryWithCapacity:10];
+    self.today_alert=[NSMutableArray arrayWithCapacity:10];
+    self.previous_alert=[NSMutableArray arrayWithCapacity:10];
 }
 - (void)viewDidLoad
 {   [self initDic];
@@ -37,6 +41,7 @@
     
     [self setToolbarItems:arr animated:YES];
     [[self navigationController] setToolbarHidden:YES animated:YES];
+    _searchBarWithScopeBar.delegate=self;
 }
 #pragma mark UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -189,8 +194,24 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 
 - (void) fn_get_data
 {
+    NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
     DB_alert * ldb_alert = [[DB_alert alloc] init];
-    ilist_alert = [ldb_alert fn_get_all_msg];
+    all_alerts = [ldb_alert fn_get_all_msg];
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *ls_currentTime = [dateFormatter stringFromDate:today];
+    for (NSObject *object in all_alerts) {
+        NSDictionary* alert_value=(NSDictionary *)object;
+        NSLog(@"%@",alert_value);
+        if ([[alert_value valueForKey:@"msg_recv_date"] isEqualToString:ls_currentTime]) {
+            [today_alert addObject:alert_value];
+        }else{
+            [previous_alert addObject:alert_value];
+        }
+       
+    }
+    ilist_alert=today_alert;
    
 }
 -(void)reloadData{
@@ -257,5 +278,18 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     [self.cancleButton setTitle:@"Edit" forState:UIControlStateNormal];
     [self.cancleButton addTarget:self action:@selector(EditRow:) forControlEvents:UIControlEventTouchUpInside];
      [[self navigationController] setToolbarHidden:YES animated:YES];
+}
+
+#pragma mark UISearchBarDelegate
+-(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
+    if (self.searchBarWithScopeBar.selectedScopeButtonIndex==0) {
+        ilist_alert=today_alert;
+    }else if(self.searchBarWithScopeBar.selectedScopeButtonIndex==1){
+        ilist_alert=previous_alert;
+    }
+    [self.tableView reloadData];
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
 }
 @end
