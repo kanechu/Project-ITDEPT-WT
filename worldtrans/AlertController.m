@@ -31,14 +31,19 @@
     self.previous_alert=[NSMutableArray arrayWithCapacity:10];
 }
 - (void)viewDidLoad
-{   [self initDic];
+{
+   
+    [self initDic];
     self.view.backgroundColor = [UIColor blackColor];
+    //初始nil文件，获取alert
     [self fn_get_data];
-   [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
-                                                    selector: @selector(reloadData) userInfo: nil repeats: YES];
+    //十分钟检查一次是否有新通知
+    [NSTimer scheduledTimerWithTimeInterval: 600.0 target: self
+                                   selector: @selector(reloadNeWData) userInfo: nil repeats: YES];
+    
+    //当点击编辑的时候，显示toolbar
     UIBarButtonItem *deleteItem=[[UIBarButtonItem alloc]initWithTitle:@"delete" style:UIBarButtonItemStyleBordered target:self action:@selector(DeleteAllSelections:)];
     NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
-    
     [self setToolbarItems:arr animated:YES];
     [[self navigationController] setToolbarHidden:YES animated:YES];
    
@@ -79,7 +84,6 @@
         cell = [nib objectAtIndex:0];
     }
     
-   
     NSDictionary *ldict_dictionary = [ilist_alert objectAtIndex:indexPath.row];
     
     NSString *ls_status_desc =[ldict_dictionary valueForKey:@"status_desc"];
@@ -91,7 +95,7 @@
         ls_show_no = [@"BOOKING#: " stringByAppendingString:[ldict_dictionary valueForKey:@"so_no"]];
     else
         ls_show_no = [@"HBL#: " stringByAppendingString:[ldict_dictionary valueForKey:@"hbl_no"]];
-    
+    //检查是否为NUll，如果为NUll转换为空串，不显示出NULl
     ls_status_desc=[NSString nullConvertEmpty:ls_status_desc];
     ls_act_status_date=[NSString nullConvertEmpty:ls_act_status_date];
     ls_msg_recv_date=[NSString nullConvertEmpty:ls_msg_recv_date];
@@ -186,27 +190,24 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         exhblHomeController.is_search_column = ls_os_column;
         exhblHomeController.is_search_value = ls_os_value;
     }else if ([[segue identifier] isEqualToString:@"segue_aehbl_home1"]){
-        ExhblHomeController *exhblHomeController = [segue destinationViewController];
-        exhblHomeController.is_search_column = ls_os_column;
-        exhblHomeController.is_search_value = ls_os_value;
+        AehblHomeController *aehblHomeController = [segue destinationViewController];
+        aehblHomeController.is_search_column = ls_os_column;
+        aehblHomeController.is_search_value = ls_os_value;
     }
 }
 
 - (void) fn_get_data
 {
-    NSMutableArray *all_alerts=[[NSMutableArray alloc]init];
     DB_alert * ldb_alert = [[DB_alert alloc] init];
-    all_alerts = [ldb_alert fn_get_all_msg];
     today_alert=[ldb_alert fn_get_today_msg];
     previous_alert=[ldb_alert fn_get_previous_msg];
     ilist_alert=today_alert;
-   // [self ergodicArr:all_alerts];
     
 }
--(void)reloadData{
+-(void)reloadNeWData{
     
     DB_alert * ldb_alert = [[DB_alert alloc] init];
-    if ([ldb_alert fn_get_unread_msg_count]>[ilist_alert count]) {
+    if ([ldb_alert fn_get_unread_msg_count]>([previous_alert count]+[today_alert count])) {
         today_alert=[ldb_alert fn_get_today_msg];
         previous_alert=[ldb_alert fn_get_previous_msg];
         [self.tableView reloadData];
@@ -220,6 +221,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     [self.cancleButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [self.cancleButton addTarget:self action:@selector(CancleAllSelections) forControlEvents:UIControlEventTouchUpInside];
     [[self navigationController] setToolbarHidden:NO animated:YES];
+   
 }
 
 -(void)CancleAllSelections{
@@ -270,9 +272,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
      [[self navigationController] setToolbarHidden:YES animated:YES];
 }
 
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];
-}
 - (IBAction)segmentChange:(id)sender {
     UISegmentedControl *segmentCon=(UISegmentedControl*)sender;
     if (segmentCon.selectedSegmentIndex==0) {
