@@ -16,6 +16,7 @@
 #import "Web_base.h"
 #import "DB_login.h"
 #import "NSArray.h"
+#import "MBProgressHUD.h"
 @interface MilestoneController ()
 
 @end
@@ -141,6 +142,8 @@
 
 - (void) fn_get_data: (NSString*)as_docu_type :(NSString*)as_docu_uid
 {
+    //显示loading
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     RequestContract *req_form = [[RequestContract alloc] init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth =[dbLogin WayOfAuthorization];
@@ -171,6 +174,8 @@
     ilist_milestone = alist_result;
     [self fn_get_milestone_info];
     [self.tableView reloadData];
+    //隐藏loading
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
    
 }
 

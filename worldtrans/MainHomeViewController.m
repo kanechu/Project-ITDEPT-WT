@@ -87,7 +87,7 @@ CustomBadge *iobj_customBadge;
         NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         [_loginBtn setTitle:str forState:UIControlStateNormal];
         [self showLogoImage];
-    
+        
     }else{
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
@@ -161,7 +161,7 @@ CustomBadge *iobj_customBadge;
             NSInteger left=-(45+(str.length-2)/2*10+30);
             [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,left , 0, 0)];
         }else{
-             [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
+            [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -150, 0, 0)];
         }
         [_loginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _loginBtn.frame.size.width-35, 0, 0)];
     }
@@ -181,15 +181,15 @@ CustomBadge *iobj_customBadge;
         VC.isel_action = @selector(UserLogOut);
         [self PopupView:VC];
     }
-   
+    
     
 }
 //登录成功后，导航的按钮项显示为用户的名称
 -(void)changeRightItem:(NSString*)userName{
-   
+    
     [self BtnGraphicMixed];
     [_loginBtn setTitle:userName forState:UIControlStateNormal];
-   
+    
     //登陆后显示logo图片
     [self showLogoImage];
     //登陆成功后，UICollectionview重新加载数据，显示badge
@@ -200,19 +200,19 @@ CustomBadge *iobj_customBadge;
 
 #pragma mark -UserLogOut menthod
 - (void)UserLogOut{
-     DB_login *dbLogin=[[DB_login alloc]init];
+    DB_login *dbLogin=[[DB_login alloc]init];
     [dbLogin fn_delete_record];
     _imageView.image=nil;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
-    //退出登陆后，从父视图中移除badge
-    [iobj_customBadge removeFromSuperview];
+    //退出登陆后，刷新collection
+    [iui_collectionview reloadData];
 }
 
 #pragma mark - UICollectionView Datasource
 // 1
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-   // NSString *searchTerm = self.searches[section];
+    // NSString *searchTerm = self.searches[section];
     return [self.ilist_menu count];
 }
 // 2
@@ -222,43 +222,54 @@ CustomBadge *iobj_customBadge;
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
-    Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
-    cell.ilb_label.text = menu_item.is_label;
-    cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
-    
-    iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-    [iobj_customBadge setFrame:CGRectMake(cell.itemImage.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemImage.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
-   
-    if ([indexPath item]==1) {
-        DB_login *dbLogin=[[DB_login alloc]init];
-        //登陆后和有新通知的时候，才显示badge
-        if ([dbLogin isLoginSuccess] && badge_Num>0 ) {
-            [cell.itemImage addSubview:iobj_customBadge];
-            
-        }
-    }
-    
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
     cell.selectedBackgroundView.backgroundColor=[UIColor darkGrayColor];
+    switch ([indexPath item]) {
+        case 0:
+        {
+            Menu_home * menu_item =  [ilist_menu objectAtIndex:0];
+            cell.ilb_label.text = menu_item.is_label;
+            cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
+        }
+            break;
+        case 1:{
+            
+            iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
+            [iobj_customBadge setFrame:CGRectMake(cell.itemImage.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemImage.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+            DB_login *dbLogin=[[DB_login alloc]init];
+            //登陆后和有新通知的时候，才显示badge
+            if ([dbLogin isLoginSuccess] && badge_Num>0 ) {
+                [cell.itemImage addSubview:iobj_customBadge];
+                Menu_home * menu_item =  [ilist_menu objectAtIndex:1];
+                cell.ilb_label.text = menu_item.is_label;
+                cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
+            }else{
+                cell.ilb_label.text = nil;
+                cell.itemImage.image=nil;
+                cell.itemImage.backgroundColor=[UIColor clearColor];
+                [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
+                cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
+                cell.selectedBackgroundView.backgroundColor=[UIColor clearColor];
+            }
+        }
+            
+        default:
+            break;
+    }
+    
+    
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-     Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
+    Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
     DB_login *dbLogin=[[DB_login alloc]init];
     
     if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
         [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
     }else if ([menu_item.is_segue isEqualToString:@"segue_alert"] && [dbLogin isLoginSuccess]){
         [self performSegueWithIdentifier:@"segue_alert" sender:self];
-    }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Please Login First!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        alert.backgroundColor=[UIColor lightGrayColor];
-        alert.alpha=0.2;
-        [alert show];
-        
     }
-        
 }
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
