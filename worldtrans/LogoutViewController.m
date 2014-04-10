@@ -31,18 +31,11 @@
     DB_login *dbLogin=[[DB_login alloc]init];
     NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
     NSString *str1=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"login_time"];
+    NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
+    NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
+    _userImage.image=[UIImage imageWithData:data];
     _userCode.text=str;
     _userLoginTime.text=str1;
-    if ([str isEqualToString:@"sa"]) {
-        _userImage.image=[UIImage imageNamed:@"abco"];
-    }else if([str isEqualToString:@"cole"]){
-        _userImage.image=[UIImage imageNamed:@"cole"];
-    }else if ([str isEqualToString:@"wwil"]){
-        _userImage.image=[UIImage imageNamed:@"wwil"];
-    }else{
-        _userImage.image=nil;
-    }
-    
     
 }
 - (void)viewDidLoad

@@ -77,7 +77,7 @@
         SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:_user_ID.text];);
         
     }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"您输入的用户名或密码不匹配" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"cancle", nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"您输入的用户名或密码不匹配" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     

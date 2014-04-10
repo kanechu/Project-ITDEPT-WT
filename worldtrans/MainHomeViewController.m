@@ -71,6 +71,13 @@ CustomBadge *iobj_customBadge;
     [self fn_init_menu];
 	// Do any additional setup after loading the view.
 }
+//登陆后显示logo图片
+-(void)showLogoImage{
+    DB_login *dbLogin=[[DB_login alloc]init];
+    NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
+    NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
+    _imageView.image=[UIImage imageWithData:data];
+}
 //这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致滚动视图不能滑动
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -79,7 +86,8 @@ CustomBadge *iobj_customBadge;
         [self BtnGraphicMixed];
         NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         [_loginBtn setTitle:str forState:UIControlStateNormal];
-         _imageView.image=[UIImage imageNamed:@"abco"];
+        [self showLogoImage];
+    
     }else{
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
@@ -182,15 +190,8 @@ CustomBadge *iobj_customBadge;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:userName forState:UIControlStateNormal];
    
-    if ([userName isEqualToString:@"sa"]) {
-        _imageView.image=[UIImage imageNamed:@"abco"];
-    }else if([userName isEqualToString:@"cole"]){
-        _imageView.image=[UIImage imageNamed:@"cole"];
-    }else if ([userName isEqualToString:@"wwil"]){
-        _imageView.image=[UIImage imageNamed:@"wwil"];
-    }else{
-        _imageView.image=nil;
-    }
+    //登陆后显示logo图片
+    [self showLogoImage];
     //登陆成功后，UICollectionview重新加载数据，显示badge
     [iui_collectionview reloadData];
     
