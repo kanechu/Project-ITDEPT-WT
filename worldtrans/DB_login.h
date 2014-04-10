@@ -15,7 +15,7 @@
 }
 @property(nonatomic,strong) DBManager *idb;
 
-- (BOOL) fn_save_data:(NSString*)user_ID password:(NSString*)user_pass;
+- (BOOL) fn_save_data:(NSString*)user_ID password:(NSString*)user_pass logo:(NSString*)user_logo;
 
 - (NSMutableArray *) fn_get_all_msg;
 

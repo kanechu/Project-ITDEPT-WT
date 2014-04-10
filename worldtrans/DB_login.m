@@ -22,7 +22,7 @@
     return self;
 }
 
-- (BOOL) fn_save_data:(NSString*)user_ID password:(NSString*)user_pass
+- (BOOL) fn_save_data:(NSString*)user_ID password:(NSString*)user_pass logo:(NSString*)user_logo
 {
     // get current date/time
     NSDate *today = [NSDate date];
@@ -32,7 +32,7 @@
     NSString *ls_currentTime = [dateFormatter stringFromDate:today];
     
     if ([[idb fn_get_db] open]) {
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into loginInfo (user_code,password,login_time) values (\"%@\",\"%@\",\"%@\")", user_ID,user_pass,ls_currentTime];
+        NSString *insertSQL = [NSString stringWithFormat:@"insert into loginInfo (user_code,password,login_time,user_logo) values (\"%@\",\"%@\",\"%@\",\"%@\")", user_ID,user_pass,ls_currentTime,user_logo];
         BOOL ib_updated =[[idb fn_get_db] executeUpdate:insertSQL];
         if (! ib_updated)
             return NO;
@@ -63,7 +63,6 @@
             [llist_results addObject:[lfmdb_result resultDictionary]];
         }
     }
-    NSLog(@"%@",llist_results);
     [[idb fn_get_db] close];
     
     return llist_results;

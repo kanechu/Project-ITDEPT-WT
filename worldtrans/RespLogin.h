@@ -11,4 +11,5 @@
 @interface RespLogin : NSObject
 @property(nonatomic,copy) NSString *user_code;
 @property(nonatomic,copy) NSString *pass;
+@property(nonatomic,copy) NSString *user_logo;
 @end

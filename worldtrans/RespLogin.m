@@ -11,4 +11,5 @@
 @implementation RespLogin
 @synthesize user_code;
 @synthesize pass;
+@synthesize user_logo;
 @end
