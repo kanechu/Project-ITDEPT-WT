@@ -59,7 +59,7 @@
     Web_base *web_base=[[Web_base alloc]init];
     web_base.il_url=STR_LOGIN_URL;
     web_base.iresp_class=[RespLogin class];
-    web_base.ilist_resp_mapping =@[@"user_code",@"pass"];
+    web_base.ilist_resp_mapping =@[@"user_code",@"pass",@"user_logo"];
     web_base.iobj_target = self;
     web_base.isel_action = @selector(fn_save_login_list:);
     [web_base fn_get_data:req_form];
@@ -68,12 +68,11 @@
 - (void) fn_save_login_list: (NSMutableArray *) alist_result {
     
     loginData=[NSDictionary dictionaryWithPropertiesOfObject:[alist_result objectAtIndex:0]];
-    
     if ([[loginData valueForKey:@"pass"] isEqualToString:@"true"]) {
         DB_login *dbLogin=[[DB_login alloc]init];
-        [dbLogin fn_save_data:_user_ID.text password:_user_Password.text];
-        
-        
+        NSString *userlogo=[loginData valueForKey:@"user_logo"];
+        NSString *usercode=[loginData valueForKey:@"user_code"];
+        [dbLogin fn_save_data:usercode password:_user_Password.text logo:userlogo];
         [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
         SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:_user_ID.text];);
         

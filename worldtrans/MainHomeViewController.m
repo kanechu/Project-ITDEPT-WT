@@ -181,6 +181,7 @@ CustomBadge *iobj_customBadge;
    
     [self BtnGraphicMixed];
     [_loginBtn setTitle:userName forState:UIControlStateNormal];
+   
     if ([userName isEqualToString:@"sa"]) {
         _imageView.image=[UIImage imageNamed:@"abco"];
     }else if([userName isEqualToString:@"cole"]){
