@@ -224,7 +224,11 @@ CustomBadge *iobj_customBadge;
     Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
     [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
     cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
+    cell.selectedBackgroundView.layer.cornerRadius=7;
     cell.selectedBackgroundView.backgroundColor=[UIColor darkGrayColor];
+    //生成圆角图片，值越大，越圆
+    cell.itemImage.layer.cornerRadius=7;
+    
     switch ([indexPath item]) {
         case 0:
         {
