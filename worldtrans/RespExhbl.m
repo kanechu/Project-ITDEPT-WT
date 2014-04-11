@@ -42,5 +42,6 @@
 @synthesize	delivery_name	;
 @synthesize	status_desc	;
 @synthesize	act_status_date	;
-
+@synthesize po_no_list;
+@synthesize cntr_no_list;
 @end

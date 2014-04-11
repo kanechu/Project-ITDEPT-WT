@@ -20,7 +20,7 @@
 #import "MapViewController.h"
 #import "MBProgressHUD.h"
 enum ROW_NUMOFSECTION {
-    ROW_NUM1 = 8,
+    ROW_NUM1 = 10,
     RoW_NUM2 = 6
 };
 @interface ExhblGeneralController ()
@@ -90,7 +90,8 @@ enum ROW_NUMOFSECTION {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-{    
+{
+    
     return 56;
 }
 
@@ -178,6 +179,12 @@ enum ROW_NUMOFSECTION {
     }
     if ( indexPath.row == 5)
     {
+        CGSize size=[[[self.ilist_exhbl objectAtIndex:0] valueForKey:@"Latest Status"] sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(290, 2000)];
+        CGFloat height=size.height;
+        CGRect cellFrame=[cell frame];
+        
+        cellFrame.size.height=cell.frame.size.height+height;
+        
         ls_os_value = [ldict_dictionary valueForKey:@"status_desc"];
         if ([ls_os_value length] > 0 ){
             ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@" / %@, ",[ldict_dictionary valueForKey:@"act_status_date"]]];
@@ -194,6 +201,14 @@ enum ROW_NUMOFSECTION {
         if (indexPath.row==7) {
             cell.ilb_header.text = @"Consignee";
             cell.ilb_value.text =[ldict_dictionary valueForKey:@"cnee_name"];
+        }
+        if (indexPath.row==8) {
+            cell.ilb_header.text=@"PO.N";
+            cell.ilb_value.text=[ldict_dictionary valueForKey:@"po_no_list"];
+        }
+        if (indexPath.row==9) {
+            cell.ilb_header.text=@"Container NO";
+            cell.ilb_value.text=[ldict_dictionary valueForKey:@"cntr_no_list"];
         }
     }
 
@@ -237,6 +252,7 @@ enum ROW_NUMOFSECTION {
 }
 - (void) fn_save_exhbl_list: (NSMutableArray *) alist_result {
     ilist_exhbl = alist_result;
+    
     [self.tableView reloadData];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     

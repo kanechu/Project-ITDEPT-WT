@@ -46,6 +46,7 @@
 @property(nonatomic, copy) NSString *delivery_name;
 @property(nonatomic, copy) NSString *status_desc;
 @property(nonatomic, copy) NSString *act_status_date;
-
+@property(nonatomic, copy) NSString *po_no_list;
+@property(nonatomic, copy) NSString *cntr_no_list;
 
 @end
