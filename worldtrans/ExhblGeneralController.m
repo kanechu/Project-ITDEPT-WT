@@ -179,15 +179,10 @@ enum ROW_NUMOFSECTION {
     }
     if ( indexPath.row == 5)
     {
-        CGSize size=[[[self.ilist_exhbl objectAtIndex:0] valueForKey:@"Latest Status"] sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(290, 2000)];
-        CGFloat height=size.height;
-        CGRect cellFrame=[cell frame];
-        
-        cellFrame.size.height=cell.frame.size.height+height;
-        
+       
         ls_os_value = [ldict_dictionary valueForKey:@"status_desc"];
         if ([ls_os_value length] > 0 ){
-            ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@" / %@, ",[ldict_dictionary valueForKey:@"act_status_date"]]];
+            ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@" / %@ ",[ldict_dictionary valueForKey:@"act_status_date"]]];
         }
         cell.ilb_header.text = @"Latest Status";
         cell.ilb_value.text =ls_os_value;
