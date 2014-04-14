@@ -29,5 +29,5 @@
 */
 @synthesize ilb_label;
 
-@synthesize itemImage;
+@synthesize itemButton;
 @end

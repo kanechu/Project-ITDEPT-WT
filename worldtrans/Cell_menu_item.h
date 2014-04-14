@@ -12,6 +12,6 @@
 
 @property (nonatomic) IBOutlet UILabel* ilb_label;
 
-@property (weak, nonatomic) IBOutlet UIImageView *itemImage;
+@property (weak, nonatomic) IBOutlet UIButton *itemButton;
 
 @end
