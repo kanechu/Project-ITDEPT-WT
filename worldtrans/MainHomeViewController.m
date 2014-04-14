@@ -77,8 +77,14 @@ CustomBadge *iobj_customBadge;
 -(void)showLogoImage{
     DB_login *dbLogin=[[DB_login alloc]init];
     NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
-    NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
-    _imageView.image=[UIImage imageWithData:data];
+    //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
+    if ([logo length]==0) {
+        _imageView.image=nil;
+    }else{
+        NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
+        _imageView.image=[UIImage imageWithData:data];
+    }
+   
 }
 //这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致滚动视图不能滑动
 -(void)viewDidAppear:(BOOL)animated{
