@@ -271,12 +271,14 @@ CustomBadge *iobj_customBadge;
             [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemButton.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
             DB_login *dbLogin=[[DB_login alloc]init];
             //登陆后和有新通知的时候，才显示badge
-            if ([dbLogin isLoginSuccess] && badge_Num>0 ) {
-                [cell.itemButton addSubview:iobj_customBadge];
+            if ([dbLogin isLoginSuccess]) {
                 menu_item =  [ilist_menu objectAtIndex:1];
                 cell.ilb_label.text = menu_item.is_label;
                 [cell.itemButton setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
                 cell.itemButton.tag=indexPath.item;
+                 if (badge_Num>0) {
+                    [cell.itemButton addSubview:iobj_customBadge];
+                }
                
             }else{
                 cell.ilb_label.text = nil;
