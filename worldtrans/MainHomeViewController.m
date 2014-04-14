@@ -21,7 +21,9 @@
 @interface MainHomeViewController ()
 
 @end
-
+#define LOGINSHEETSIZE CGSizeMake(280, 220)
+#define SHEETSIZE1 CGSizeMake(280, 250)
+#define SHEETSIZE2 CGSizeMake(280, 180)
 @implementation MainHomeViewController
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
@@ -78,7 +80,7 @@ CustomBadge *iobj_customBadge;
     DB_login *dbLogin=[[DB_login alloc]init];
     NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
     //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
-    if (logo==NULL || logo==nil) {
+    if (logo==NULL || logo==nil || logo.length==0) {
         _imageView.image=nil;
     }else{
         NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
@@ -146,10 +148,10 @@ CustomBadge *iobj_customBadge;
     }
 }
 
--(void)PopupView:(UIViewController*)VC{
+-(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
     //弹出视图的大小
-    formSheet.presentedFormSheetSize=CGSizeMake(284, 250);
+    formSheet.presentedFormSheetSize=sheetSize;
     formSheet.shadowRadius = 2.0;
     //阴影的不透明度
     formSheet.shadowOpacity = 0.3;
@@ -194,13 +196,20 @@ CustomBadge *iobj_customBadge;
         LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
         VC.iobj_target =self;
         VC.isel_action = @selector(changeRightItem:);
-        [self PopupView:VC];
+        [self PopupView:VC Size:LOGINSHEETSIZE];
     }else{
         //点击用户名称项，执行下面的语句
         LogoutViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Logout"];
         VC.iobj_target =self;
         VC.isel_action = @selector(UserLogOut);
-        [self PopupView:VC];
+        NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
+        //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
+        if (logo==NULL || logo==nil || logo.length==0) {
+            [self PopupView:VC Size:SHEETSIZE2];
+        }else{
+            [self PopupView:VC Size:SHEETSIZE1];
+        }
+
     }
     
     
