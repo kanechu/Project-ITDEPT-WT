@@ -32,8 +32,13 @@
     NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
     NSString *str1=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"login_time"];
     NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
-    NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
-    _userImage.image=[UIImage imageWithData:data];
+    //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
+    if (logo==NULL || logo==nil) {
+        _userImage.image=nil;
+    }else{
+        NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
+        _userImage.image=[UIImage imageWithData:data];
+    }
     _userCode.text=str;
     _userLoginTime.text=str1;
     
