@@ -26,6 +26,7 @@
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
 @synthesize badge_Num;
+@synthesize menu_item;
 CustomBadge *iobj_customBadge;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +37,7 @@ CustomBadge *iobj_customBadge;
     }
     return self;
 }
+//初始化Item
 - (void) fn_init_menu;
 {
     ilist_menu = [[NSMutableArray alloc] init];
@@ -125,6 +127,19 @@ CustomBadge *iobj_customBadge;
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
 }
+
+- (IBAction)ClickButonItem:(id)sender {
+    UIButton *button=(UIButton*)sender;
+    //button.tag用来区分点击那个Item
+    menu_item=[ilist_menu objectAtIndex:button.tag];
+    DB_login *dbLogin=[[DB_login alloc]init];
+    if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
+        [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
+    }else if ([menu_item.is_segue isEqualToString:@"segue_alert"] && [dbLogin isLoginSuccess]){
+        [self performSegueWithIdentifier:@"segue_alert" sender:self];
+    }
+}
+
 -(void)PopupView:(UIViewController*)VC{
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
     //弹出视图的大小
@@ -215,66 +230,54 @@ CustomBadge *iobj_customBadge;
     // NSString *searchTerm = self.searches[section];
     return [self.ilist_menu count];
 }
-// 2
+// 一个collectionView中的分区数
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
-    [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
-    cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
-    cell.selectedBackgroundView.layer.cornerRadius=7;
-    cell.selectedBackgroundView.backgroundColor=[UIColor darkGrayColor];
     //生成圆角图片，值越大，越圆
-    cell.itemImage.layer.cornerRadius=7;
+    cell.itemButton.layer.cornerRadius=7;
     
     switch ([indexPath item]) {
         case 0:
         {
-            Menu_home * menu_item =  [ilist_menu objectAtIndex:0];
+            menu_item =  [ilist_menu objectAtIndex:0];
             cell.ilb_label.text = menu_item.is_label;
-            cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
+            [cell.itemButton setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
+            cell.itemButton.tag=indexPath.item;
+           
         }
             break;
         case 1:{
             
             iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-            [iobj_customBadge setFrame:CGRectMake(cell.itemImage.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemImage.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+            [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemButton.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
             DB_login *dbLogin=[[DB_login alloc]init];
             //登陆后和有新通知的时候，才显示badge
             if ([dbLogin isLoginSuccess] && badge_Num>0 ) {
-                [cell.itemImage addSubview:iobj_customBadge];
-                Menu_home * menu_item =  [ilist_menu objectAtIndex:1];
+                [cell.itemButton addSubview:iobj_customBadge];
+                menu_item =  [ilist_menu objectAtIndex:1];
                 cell.ilb_label.text = menu_item.is_label;
-                cell.itemImage.image=[UIImage imageNamed:menu_item.is_image];
+                [cell.itemButton setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
+                cell.itemButton.tag=indexPath.item;
+               
             }else{
                 cell.ilb_label.text = nil;
-                cell.itemImage.image=nil;
-                cell.itemImage.backgroundColor=[UIColor clearColor];
-                [cell.itemImage setContentMode:UIViewContentModeScaleAspectFit];
-                cell.selectedBackgroundView=[[UIView alloc]initWithFrame:cell.frame];
-                cell.selectedBackgroundView.backgroundColor=[UIColor clearColor];
+                [cell.itemButton setImage:nil forState:UIControlStateNormal];
+                cell.itemButton.backgroundColor=[UIColor clearColor];
+                cell.itemButton.enabled=NO;
             }
         }
             
         default:
             break;
     }
-    
-    
+   
     return cell;
 }
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    Menu_home * menu_item =  [ilist_menu objectAtIndex:indexPath.row];
-    DB_login *dbLogin=[[DB_login alloc]init];
-    
-    if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
-        [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
-    }else if ([menu_item.is_segue isEqualToString:@"segue_alert"] && [dbLogin isLoginSuccess]){
-        [self performSegueWithIdentifier:@"segue_alert" sender:self];
-    }
-}
+
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
