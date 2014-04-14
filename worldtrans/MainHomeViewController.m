@@ -78,7 +78,7 @@ CustomBadge *iobj_customBadge;
     DB_login *dbLogin=[[DB_login alloc]init];
     NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
     //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
-    if ([logo length]==0) {
+    if (logo==NULL || logo==nil) {
         _imageView.image=nil;
     }else{
         NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
