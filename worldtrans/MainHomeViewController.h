@@ -21,6 +21,6 @@
 
 - (void) fn_save_alert_list: (NSMutableArray *) alist_alert;
 //点击ButtonItem触发事件的方法
-- (IBAction)ClickButonItem:(id)sender;
+- (IBAction)fn_menu_btn_clicked:(id)sender;
 
 @end

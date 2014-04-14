@@ -62,8 +62,8 @@
         while ([lfmdb_result next]) {
             [llist_results addObject:[lfmdb_result resultDictionary]];
         }
+        [[idb fn_get_db] close];
     }
-    [[idb fn_get_db] close];
     
     return llist_results;
 }

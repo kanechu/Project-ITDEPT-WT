@@ -37,6 +37,10 @@
             NSMutableDictionary *ldict_row = [[NSDictionary dictionaryWithPropertiesOfObject:lmap_alert] mutableCopy];
             [ldict_row setObject:ls_currentTime forKey:@"msg_recv_date"];
             
+            BOOL ib_delete =[[idb fn_get_db] executeUpdate:@"delete from alert where ct_type = :ct_type and hbl_no = :hbl_no and so_no = :so_no and hbl_uid =:hbl_uid and so_uid = :so_uid" withParameterDictionary:ldict_row];
+            if (! ib_delete)
+                return NO;
+            
             BOOL ib_updated =[[idb fn_get_db] executeUpdate:@"insert into alert (ct_type, hbl_no, so_no, hbl_uid, status_desc, act_status_date, so_uid, msg_recv_date) values (:ct_type, :hbl_no, :so_no, :hbl_uid, :status_desc, :act_status_date, :so_uid, :msg_recv_date)" withParameterDictionary:ldict_row];
             if (! ib_updated)
                 return NO;
