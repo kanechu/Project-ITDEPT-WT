@@ -38,7 +38,6 @@
 		B25740B518EBE3BF0060190B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740B418EBE3BF0060190B /* MapKit.framework */; };
 		B25740FA18EBF17F0060190B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740F918EBF17F0060190B /* CoreLocation.framework */; };
 		B25BE7BC18ECEF0000F41409 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25BE7BB18ECEF0000F41409 /* MapViewController.m */; };
-		B261DCCF18EA67C600E6AB19 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B261DCCD18EA67C600E6AB19 /* Main_iPad.storyboard */; };
 		B26B684818E6969200E2E67B /* DB_device.m in Sources */ = {isa = PBXBuildFile; fileRef = B26B684718E6969200E2E67B /* DB_device.m */; };
 		B26CAC4818AA302A00C97C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4718AA302A00C97C83 /* Foundation.framework */; };
 		B26CAC4A18AA302A00C97C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4918AA302A00C97C83 /* CoreGraphics.framework */; };
@@ -195,7 +194,6 @@
 		B25740F918EBF17F0060190B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B25BE7BA18ECEF0000F41409 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		B25BE7BB18ECEF0000F41409 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		B261DCCE18EA67C600E6AB19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		B26B684618E6969200E2E67B /* DB_device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_device.h; sourceTree = "<group>"; };
 		B26B684718E6969200E2E67B /* DB_device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_device.m; sourceTree = "<group>"; };
 		B26CAC4418AA302A00C97C83 /* worldtrans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worldtrans.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -484,6 +482,7 @@
 		B26CAC4D18AA302A00C97C83 /* worldtrans */ = {
 			isa = PBXGroup;
 			children = (
+				B2DB648518FC0CA400FFA6A0 /* iPad */,
 				B2C216DB18C8AC3500A46809 /* Helper */,
 				B2307B2718BEEDE5000502BE /* GlobalConst */,
 				B242208918B8464200D4A75C /* Resource */,
@@ -496,7 +495,6 @@
 				B26CAC5718AA302A00C97C83 /* AppDelegate.m */,
 				B242208718B7479900D4A75C /* Controller */,
 				B26CAC5918AA302A00C97C83 /* Main_iPhone.storyboard */,
-				B261DCCD18EA67C600E6AB19 /* Main_iPad.storyboard */,
 				B26CAC6218AA302A00C97C83 /* SecondViewController.h */,
 				B26CAC6318AA302A00C97C83 /* SecondViewController.m */,
 				B26CAC6518AA302A00C97C83 /* Images.xcassets */,
@@ -678,6 +676,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B2DB648518FC0CA400FFA6A0 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -795,7 +800,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B26CAC6618AA302A00C97C83 /* Images.xcassets in Resources */,
-				B261DCCF18EA67C600E6AB19 /* Main_iPad.storyboard in Resources */,
 				B26CAC5B18AA302A00C97C83 /* Main_iPhone.storyboard in Resources */,
 				B26CAC5218AA302A00C97C83 /* InfoPlist.strings in Resources */,
 			);
@@ -901,14 +905,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B261DCCD18EA67C600E6AB19 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B261DCCE18EA67C600E6AB19 /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		B26CAC5018AA302A00C97C83 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1021,9 +1017,11 @@
 				GCC_PREFIX_HEADER = "worldtrans/worldtrans-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "worldtrans/worldtrans-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1038,7 +1036,9 @@
 				GCC_PREFIX_HEADER = "worldtrans/worldtrans-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				INFOPLIST_FILE = "worldtrans/worldtrans-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
