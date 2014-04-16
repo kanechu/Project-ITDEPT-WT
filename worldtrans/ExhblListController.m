@@ -64,7 +64,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [ilist_exhbl count];
+    if (ilist_exhbl==nil || ilist_exhbl==NULL) {
+        return 0;
+    }else{
+        return [ilist_exhbl count];
+    }
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

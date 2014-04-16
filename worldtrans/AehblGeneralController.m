@@ -52,9 +52,9 @@ enum ROW_NUMOFSECTION {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([dbLogin isLoginSuccess] && ilist_aehbl!=nil) {
+    if ([dbLogin isLoginSuccess] && ilist_aehbl!=nil && ilist_aehbl!=NULL) {
         return ROW_NUM1;
-    }else if(ilist_aehbl!=nil){
+    }else if(ilist_aehbl!=nil && ilist_aehbl!=NULL){
         return RoW_NUM2;
     }else{
         return 0;

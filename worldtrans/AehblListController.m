@@ -61,7 +61,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [ilist_aehbl count];
+    if (ilist_aehbl==nil || ilist_aehbl==NULL) {
+        return 0;
+    }else{
+         return [ilist_aehbl count];
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;

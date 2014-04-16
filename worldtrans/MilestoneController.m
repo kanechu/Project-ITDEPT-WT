@@ -46,7 +46,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [ilist_milestone count];
+    if (ilist_milestone==nil || ilist_milestone==NULL) {
+        return 0;
+    }else{
+        return [ilist_milestone count];
+    }
+   
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
