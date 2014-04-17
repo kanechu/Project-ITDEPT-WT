@@ -18,6 +18,7 @@
 #import "NSDictionary.h"
 #import "DB_login.h"
 #import "Web_base.h"
+#import "MBProgressHUD.h"
 @interface LoginViewController ()
 
 @end
@@ -64,9 +65,17 @@
     _user_ID.layer.borderColor=[UIColor lightGrayColor].CGColor;
     _user_Password.layer.borderColor=[UIColor lightGrayColor].CGColor;
 }
+-(void)fn_hide_HUDView{
+   
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
 #pragma mark getData method
 - (void) fn_get_data: (NSString*)user_code :(NSString*)user_pass
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
+                                   selector: @selector(fn_hide_HUDView) userInfo: nil repeats: NO];
+    
     RequestContract *req_form = [[RequestContract alloc] init];
     AuthContract *auth=[[AuthContract alloc]init];
     auth.user_code=user_code;
@@ -105,6 +114,7 @@
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
 }
 
@@ -113,8 +123,7 @@
 - (IBAction)UserLogin:(id)sender {
     
     [self fn_get_data:_user_ID.text :_user_Password.text];
-
-
+   
    
 }
 
