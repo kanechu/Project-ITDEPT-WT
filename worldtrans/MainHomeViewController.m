@@ -51,7 +51,6 @@ CustomBadge *iobj_customBadge;
     [iobj_customBadge removeFromSuperview];
     iobj_customBadge = nil;
 
-    
     [self.iui_collectionview reloadData];
 }
 
@@ -142,13 +141,6 @@ CustomBadge *iobj_customBadge;
     menu_item=[ilist_menu objectAtIndex:button.tag];
     [self performSegueWithIdentifier:menu_item.is_segue sender:self];
     
-    // comment by kane
-    //DB_login *dbLogin=[[DB_login alloc]init];
-    //if ([menu_item.is_segue isEqualToString:@"segue_trackHome"]) {
-    //   [self performSegueWithIdentifier:@"segue_trackHome" sender:self];
-    //}else if ([menu_item.is_segue isEqualToString:@"segue_alert"] && [dbLogin isLoginSuccess]){
-    //    [self performSegueWithIdentifier:@"segue_alert" sender:self];
-    //}
 }
 
 -(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
@@ -205,7 +197,7 @@ CustomBadge *iobj_customBadge;
         VC.iobj_target =self;
         VC.isel_action = @selector(fn_user_logout);
         NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
-        //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
+        //如果logo为空的话，弹出的视图size变小
         if (logo==NULL || logo==nil || logo.length==0) {
             [self PopupView:VC Size:SHEETSIZE2];
         }else{
@@ -223,9 +215,7 @@ CustomBadge *iobj_customBadge;
     
     //登陆后显示logo图片
     [self fn_show_user_logo];
-    //登陆成功后，UICollectionview重新加载数据，显示badge
-    //[iui_collectionview reloadData];
-    
+    //登陆成功后，显示alter项
     [self fn_refresh_menu];
 
 }
@@ -238,8 +228,7 @@ CustomBadge *iobj_customBadge;
     _imageView.image=nil;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
-    //退出登陆后，刷新collection
-    //[iui_collectionview reloadData];
+    //退出登陆后，隐藏alert项
     
     [self fn_refresh_menu];
 
@@ -284,46 +273,8 @@ CustomBadge *iobj_customBadge;
                 iobj_customBadge = nil;
             }
         }
-
+        
     }
-    /*
-    switch (li_item) {
-        case 0:
-        {
-            menu_item =  [ilist_menu objectAtIndex:0];
-            cell.ilb_label.text = menu_item.is_label;
-            [cell.itemButton setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
-            cell.itemButton.tag=indexPath.item;
-           
-        }
-            break;
-        case 1:{
-            
-            iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-            [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemButton.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
-            DB_login *dbLogin=[[DB_login alloc]init];
-            //登陆后和有新通知的时候，才显示badge
-            if ([dbLogin isLoginSuccess]) {
-                menu_item =  [ilist_menu objectAtIndex:1];
-                cell.ilb_label.text = menu_item.is_label;
-                [cell.itemButton setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
-                cell.itemButton.tag=indexPath.item;
-                 if (badge_Num>0) {
-                    [cell.itemButton addSubview:iobj_customBadge];
-                }
-               
-            }else{
-                cell.ilb_label.text = nil;
-                [cell.itemButton setImage:nil forState:UIControlStateNormal];
-                cell.itemButton.backgroundColor=[UIColor clearColor];
-                cell.itemButton.enabled=NO;
-            }
-        }
-            
-        default:
-            break;
-    }
-   */
     return cell;
 }
 

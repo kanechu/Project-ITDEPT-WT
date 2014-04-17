@@ -94,7 +94,15 @@
         SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:_user_ID.text];);
         
     }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"您输入的用户名或密码不匹配" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        NSString *str=nil;
+        if (_user_ID.text.length==0) {
+            str=@"User ID can not be empty!";
+        }else if(_user_Password.text.length==0){
+            str=@"User Password can not be empty!";
+        }else{
+            str=@"User ID and Password do not match!";
+        }
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
     
