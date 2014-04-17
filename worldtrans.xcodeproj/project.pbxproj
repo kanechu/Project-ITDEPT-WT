@@ -54,6 +54,7 @@
 		B26CAC6F18AA302A00C97C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4B18AA302A00C97C83 /* UIKit.framework */; };
 		B26CAC7718AA302A00C97C83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26CAC7518AA302A00C97C83 /* InfoPlist.strings */; };
 		B26CAC7918AA302A00C97C83 /* worldtransTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26CAC7818AA302A00C97C83 /* worldtransTests.m */; };
+		B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B27387D918FF85C500BF57F2 /* Custom_TextField.m */; };
 		B278A91C18D8218F0057DC37 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90B18D8218F0057DC37 /* MZAppearance.m */; };
 		B278A91D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m */; };
 		B278A91E18D8218F0057DC37 /* MZFormSheetBackgroundWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90F18D8218F0057DC37 /* MZFormSheetBackgroundWindowViewController.m */; };
@@ -217,6 +218,8 @@
 		B26CAC7418AA302A00C97C83 /* worldtransTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "worldtransTests-Info.plist"; sourceTree = "<group>"; };
 		B26CAC7618AA302A00C97C83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B26CAC7818AA302A00C97C83 /* worldtransTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = worldtransTests.m; sourceTree = "<group>"; };
+		B27387D818FF85C500BF57F2 /* Custom_TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_TextField.h; sourceTree = "<group>"; };
+		B27387D918FF85C500BF57F2 /* Custom_TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_TextField.m; sourceTree = "<group>"; };
 		B278A90A18D8218F0057DC37 /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
 		B278A90B18D8218F0057DC37 /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
 		B278A90C18D8218F0057DC37 /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
@@ -532,6 +535,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B27387D318FF854B00BF57F2 /* customControl */ = {
+			isa = PBXGroup;
+			children = (
+				B27387D818FF85C500BF57F2 /* Custom_TextField.h */,
+				B27387D918FF85C500BF57F2 /* Custom_TextField.m */,
+			);
+			name = customControl;
+			sourceTree = "<group>";
+		};
 		B278A90518D820F70057DC37 /* MZFormSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +572,7 @@
 		B2B020B018AB4CEE00EECD92 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				B27387D318FF854B00BF57F2 /* customControl */,
 				B242208818B747BE00D4A75C /* Cell */,
 				B2B020BE18AB5F0200EECD92 /* Candy */,
 			);
@@ -836,6 +849,7 @@
 				B22D6C1C18D1A7CB00DE4DB5 /* AehblHomeController.m in Sources */,
 				B2A9770818CF18290096BD4B /* FMDatabaseAdditions.m in Sources */,
 				B2C216DE18C8AC7A00A46809 /* NSDictionary.m in Sources */,
+				B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */,
 				B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */,
 				B21D992218D2E53800EE795A /* RespAehbl.m in Sources */,
 				B2307AFC18BC7E25000502BE /* Cell_exhbl_general_hdr.m in Sources */,

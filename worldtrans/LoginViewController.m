@@ -38,7 +38,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
+    _loginBtn.layer.cornerRadius=5;
+    _loginBtn.layer.borderWidth=1;
+    _loginBtn.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    //设置文本框的代理
+    _user_ID.delegate=self;
+    _user_Password.delegate=self;
 	// Do any additional setup after loading the view.
 }
 
@@ -46,6 +51,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (_user_ID.editing) {
+        _user_ID.layer.borderColor=[UIColor orangeColor].CGColor;
+    }else if(_user_Password.editing){
+        _user_Password.layer.borderColor=[UIColor orangeColor].CGColor;
+    }
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    _user_ID.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    _user_Password.layer.borderColor=[UIColor lightGrayColor].CGColor;
 }
 #pragma mark getData method
 - (void) fn_get_data: (NSString*)user_code :(NSString*)user_pass

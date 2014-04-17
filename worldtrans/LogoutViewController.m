@@ -65,7 +65,9 @@ enum HEIGHT {
     
     [super viewDidLoad];
     [_logoutBtn addTarget:self action:@selector(clickLogout:) forControlEvents:UIControlEventTouchUpInside];
-    _logoutBtn.layer.cornerRadius=7;
+    _logoutBtn.layer.cornerRadius=5;
+    _logoutBtn.layer.borderWidth=1;
+    _logoutBtn.layer.borderColor=[UIColor lightGrayColor].CGColor;
     [self showUserCodeAndLoginTime];
 	// Do any additional setup after loading the view.
 }
