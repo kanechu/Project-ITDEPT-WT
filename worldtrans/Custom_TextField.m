@@ -27,7 +27,7 @@
 {
     [self.layer addSublayer:[self fn_shadow_background]];
     self.layer.borderColor=[UIColor lightGrayColor].CGColor;
-    self.layer.cornerRadius=3;
+    self.layer.cornerRadius=5;
     self.layer.borderWidth=1;
 }
 -(CAGradientLayer*)fn_shadow_background{

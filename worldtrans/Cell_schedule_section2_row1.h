@@ -11,7 +11,7 @@
 @interface Cell_schedule_section2_row1 : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ii_calendar_img;
 
-@property (weak, nonatomic) IBOutlet Custom_TextField *itf_show_dateType;
+@property (weak, nonatomic) IBOutlet UITextField *itf_show_dateType;
 @property (weak, nonatomic) IBOutlet UIButton *ibt_drop_btn;
 
 @end

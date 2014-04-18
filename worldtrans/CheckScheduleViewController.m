@@ -91,6 +91,13 @@
             NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
             cell=[nib objectAtIndex:0];
         }
+        if (indexPath.row==0) {
+            cell.ilb_port.text=@"Discharge Port";
+        }
+        if (indexPath.row==1) {
+            cell.ilb_btn_image.image=[UIImage imageNamed:@"navigate_down"];
+            cell.ilb_port.text=@"Loading Port";
+        }
         return cell;
     }
     
@@ -102,6 +109,7 @@
                 NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row1" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
+            cell.itf_show_dateType.layer.cornerRadius=10;
             return cell;
         }
         if (indexPath.row==1) {
@@ -111,6 +119,8 @@
                 NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
+            cell.ilb_btn_image.image=[UIImage imageNamed:@"calendar"];
+            cell.ilb_port.text=@"Start Date";
             return cell;
         }
         if (indexPath.row==2) {
