@@ -162,7 +162,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="659" y="-929"/>
+            <point key="canvasLocation" x="511" y="-1001"/>
         </scene>
         <!--Exhbl Home Controller-->
         <scene sceneID="pgd-Oe-MvO">
@@ -729,9 +729,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR4-0f-osQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="149" y="525"/>
+            <point key="canvasLocation" x="157" y="481"/>
         </scene>
-        <!--Check Schedule View Controller-->
+        <!--Check Schedule View Controller - Schedule-->
         <scene sceneID="9sU-oj-AOu">
             <objects>
                 <tableViewController id="uQE-3O-Enw" customClass="CheckScheduleViewController" sceneMemberID="viewController">
@@ -754,10 +754,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PiT-Ol-41h" id="MhH-ZA-lW3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigate_up" id="A97-WD-lax">
-                                            <rect key="frame" x="7" y="12" width="40" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7hN-Li-CLV" customClass="Custom_TextField">
                                             <rect key="frame" x="65" y="20" width="225" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -771,11 +767,19 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3T0-pQ-783">
+                                            <rect key="frame" x="7" y="12" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" image="navigate_up">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="ilb_btn_image" destination="A97-WD-lax" id="5Cg-cF-45S"/>
+                                    <outlet property="ibt_navigate_btn" destination="3T0-pQ-783" id="sMP-b2-lQQ"/>
                                     <outlet property="ilb_port" destination="2gU-eW-oQn" id="kev-Uh-j7b"/>
                                     <outlet property="ilb_show_portName" destination="7hN-Li-CLV" id="izp-rF-G1S"/>
                                 </connections>
@@ -875,11 +879,11 @@
                             <outlet property="delegate" destination="uQE-3O-Enw" id="81L-lp-rcR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="IHZ-b0-RTx"/>
+                    <navigationItem key="navigationItem" title="Schedule" id="IHZ-b0-RTx"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQy-00-dAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-510" y="1025"/>
+            <point key="canvasLocation" x="-362" y="957"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RbV-sX-jtC">
@@ -1313,8 +1317,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="a6i-DQ-pU2"/>
-        <segue reference="Cr5-3k-Xhp"/>
         <segue reference="3hz-sA-2Up"/>
+        <segue reference="Cr5-3k-Xhp"/>
+        <segue reference="a6i-DQ-pU2"/>
     </inferredMetricsTieBreakers>
 </document>

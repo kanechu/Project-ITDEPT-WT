@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Custom_TextField.h"
 @interface Cell_schedule_section1 : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *ilb_btn_image;
+@property (weak, nonatomic) IBOutlet UIButton *ibt_navigate_btn;
+
 @property (weak, nonatomic) IBOutlet UILabel *ilb_port;
 @property (weak, nonatomic) IBOutlet Custom_TextField *ilb_show_portName;
 
