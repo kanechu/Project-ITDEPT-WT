@@ -36,7 +36,7 @@ CustomBadge *iobj_customBadge;
 {
     ilist_menu = [[NSMutableArray alloc] init];
     [ilist_menu addObject:[Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"]];
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"segue_Schedule"]];
+    [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"segue_checkSchedule"]];
     DB_login *dbLogin=[[DB_login alloc]init];
     if ([dbLogin isLoginSuccess]) {
         [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
