@@ -8,6 +8,8 @@
 
 #import "CheckScheduleViewController.h"
 #import "Cell_schedule_section1.h"
+#import "Cell_schedule_section2_row1.h"
+#import "Cell_schedule_section2_row3.h"
 @interface CheckScheduleViewController ()
 
 @end
@@ -39,8 +41,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark UITableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        return 30;
+    }
+    if (section==1) {
+        return 20;
+    }
+    return 0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
 
 #pragma mark - Table view data source
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        return @"Location";
+    }
+    if (section==1) {
+        return @"Date Type";
+    }
+    return nil;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,16 +84,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell_schedule_section1";
-    Cell_schedule_section1 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-    if (cell==nil) {
-        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
-        cell=[nib objectAtIndex:0];
+    if (indexPath.section==0) {
+        static NSString *CellIdentifier = @"Cell_schedule_section1";
+        Cell_schedule_section1 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+        if (cell==nil) {
+            NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
+            cell=[nib objectAtIndex:0];
+        }
+        return cell;
+    }
+    
+    if (indexPath.section==1) {
+        if (indexPath.row==0) {
+            static NSString *CellIdentifier = @"Cell_schedule_section2_row1";
+            Cell_schedule_section2_row1 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+            if (cell==nil) {
+                NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row1" owner:self options:nil];
+                cell=[nib objectAtIndex:0];
+            }
+            return cell;
+        }
+        if (indexPath.row==1) {
+            static NSString *CellIdentifier = @"Cell_schedule_section1";
+            Cell_schedule_section1 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+            if (cell==nil) {
+                NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
+                cell=[nib objectAtIndex:0];
+            }
+            return cell;
+        }
+        if (indexPath.row==2) {
+            static NSString *CellIdentifier = @"Cell_schedule_section2_row3";
+            Cell_schedule_section2_row3 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+            if (cell==nil) {
+                NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row3" owner:self options:nil];
+                cell=[nib objectAtIndex:0];
+            }
+            return cell;
+        }
     }
     
     // Configure the cell...
     
-    return cell;
+    return nil;
 }
 
 /*
