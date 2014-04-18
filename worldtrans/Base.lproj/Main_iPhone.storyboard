@@ -731,6 +731,35 @@
             </objects>
             <point key="canvasLocation" x="149" y="525"/>
         </scene>
+        <!--Schedule View Controller-->
+        <scene sceneID="0Jc-DS-6Wh">
+            <objects>
+                <tableViewController storyboardIdentifier="ScheduleViewController" id="nYI-sa-mVO" customClass="ScheduleViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T3z-xH-kd6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Odq-YO-pdG">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Odq-YO-pdG" id="eJb-P2-Utt">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nYI-sa-mVO" id="4wY-pi-2A9"/>
+                            <outlet property="delegate" destination="nYI-sa-mVO" id="6ct-Jb-WZy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cud-YD-gWc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1wq-ky-kC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="1381"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="RbV-sX-jtC">
             <objects>
@@ -992,6 +1021,7 @@
                         <outlet property="logoImageView" destination="IRA-Oy-xWS" id="lvk-76-fS8"/>
                         <segue destination="CZ4-MO-1fc" kind="push" identifier="segue_trackHome" id="0xG-Ym-wnJ"/>
                         <segue destination="3pE-kg-DfJ" kind="push" identifier="segue_alert" id="Cen-WN-xNt"/>
+                        <segue destination="nYI-sa-mVO" kind="push" identifier="segue_Schedule" id="vba-Ms-0aU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcY-K3-nMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1160,8 +1190,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ceN-QP-fyr"/>
-        <segue reference="IT6-cK-qMM"/>
+        <segue reference="3hz-sA-2Up"/>
+        <segue reference="Cr5-3k-Xhp"/>
         <segue reference="a6i-DQ-pU2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -93,6 +93,7 @@
 		B2C2380918B5EAB5001E13C9 /* RespExhbl.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C2380818B5EAB5001E13C9 /* RespExhbl.m */; };
 		B2C6ED7B18E58B570001837B /* Menu_home.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C6ED7A18E58B570001837B /* Menu_home.m */; };
 		B2C6ED8618E59FA80001837B /* Cell_menu_item.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C6ED8518E59FA80001837B /* Cell_menu_item.m */; };
+		B2DA549718FFD3D5008D7FD1 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DA549618FFD3D5008D7FD1 /* ScheduleViewController.m */; };
 		B2F9C2AC18CAC579006B7299 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C2171A18CAC41400A46809 /* libRestKit.a */; };
 /* End PBXBuildFile section */
 
@@ -288,6 +289,8 @@
 		B2C6ED7A18E58B570001837B /* Menu_home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu_home.m; sourceTree = "<group>"; };
 		B2C6ED8418E59FA80001837B /* Cell_menu_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_menu_item.h; sourceTree = "<group>"; };
 		B2C6ED8518E59FA80001837B /* Cell_menu_item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_menu_item.m; sourceTree = "<group>"; };
+		B2DA549518FFD3D5008D7FD1 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		B2DA549618FFD3D5008D7FD1 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +398,8 @@
 				B28209D218E518C90027227A /* MainHomeViewController.m */,
 				B25BE7BA18ECEF0000F41409 /* MapViewController.h */,
 				B25BE7BB18ECEF0000F41409 /* MapViewController.m */,
+				B2DA549518FFD3D5008D7FD1 /* ScheduleViewController.h */,
+				B2DA549618FFD3D5008D7FD1 /* ScheduleViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -865,6 +870,7 @@
 				B278A92318D8218F0057DC37 /* UIImage+Additional.m in Sources */,
 				B2C237FF18B37153001E13C9 /* AuthContract.m in Sources */,
 				B2C2380918B5EAB5001E13C9 /* RespExhbl.m in Sources */,
+				B2DA549718FFD3D5008D7FD1 /* ScheduleViewController.m in Sources */,
 				B242209818BB2F1C00D4A75C /* Cell_exhbl_general_detail.m in Sources */,
 				B26CAC6118AA302A00C97C83 /* TrackHomeController.m in Sources */,
 				B278A92A18D832AA0057DC37 /* LoginViewController.m in Sources */,
