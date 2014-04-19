@@ -7,6 +7,13 @@
 //
 
 #import "CheckScheduleViewController.h"
+#import "RequestContract.h"
+#import "AppConstants.h"
+#import "SearchFormContract.h"
+#import "DB_login.h"
+#import "Web_base.h"
+#import "NSArray.h"
+#import "RespSchedule.h"
 #import "Cell_schedule_section1.h"
 #import "Cell_schedule_section2_row1.h"
 #import "Cell_schedule_section2_row3.h"
@@ -15,7 +22,7 @@
 @end
 
 @implementation CheckScheduleViewController
-
+@synthesize ilist_schedule;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -28,18 +35,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark resquestData
+-(void)fn_get_data:(NSString*)as_search_no{
+    RequestContract *req_form=[[RequestContract alloc]init];
+    DB_login *dbLogin=[[DB_login alloc]init];
+    req_form.Auth=[dbLogin WayOfAuthorization];
+    SearchFormContract *search=[[SearchFormContract alloc]init];
+    search.os_column=@"search_no";
+    search.os_value=as_search_no;
+    req_form.SearchForm=[NSSet setWithObjects:search, nil];
+    Web_base *web_base=[[Web_base alloc]init];
+    web_base.il_url =STR_SCHEDULE_URL;
+    web_base.iresp_class =[RespSchedule class];
+    
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespSchedule     class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_schedule_list:);
+    [web_base fn_get_data:req_form];
+    
+    
+}
+-(void)fn_save_schedule_list:(NSMutableArray*)alist_result{
+    ilist_schedule=alist_result;
+    NSLog(@"%@",ilist_schedule);
 }
 #pragma mark UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -149,5 +175,8 @@
     // Pass the selected object to the new view controller.
 }
 
-
+#pragma mark 点击search按钮后，开始按条件获取数据
+- (IBAction)fn_click_searchBtn:(id)sender {
+    [self fn_get_data:@""];
+}
 @end

@@ -429,7 +429,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cD9-Ya-M9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719" y="-65"/>
+            <point key="canvasLocation" x="687" y="-165"/>
         </scene>
         <!--Exhbl General Controller-->
         <scene sceneID="VFG-5T-5bG">
@@ -742,10 +742,15 @@
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iB9-iW-o39">
                             <rect key="frame" x="0.0" y="309" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.51979677719999995" blue="0.2309016076" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button">
+                            <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                            <state key="normal" title="Search">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="fn_click_searchBtn:" destination="uQE-3O-Enw" eventType="touchUpInside" id="f0Y-AS-No2"/>
+                                <segue destination="wP9-Is-2uY" kind="push" identifier="segue_DetailSchedule" id="N1E-bI-hBD"/>
+                            </connections>
                         </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section1" rowHeight="60" id="PiT-Ol-41h" customClass="Cell_schedule_section1">
@@ -795,7 +800,7 @@
                                             <rect key="frame" x="7" y="15" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="bFh-gj-TH5">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETD/CY Closing/..." minimumFontSize="17" id="bFh-gj-TH5">
                                             <rect key="frame" x="65" y="20" width="225" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -879,11 +884,50 @@
                             <outlet property="delegate" destination="uQE-3O-Enw" id="81L-lp-rcR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedule" id="IHZ-b0-RTx"/>
+                    <navigationItem key="navigationItem" title="Schedule" id="IHZ-b0-RTx">
+                        <barButtonItem key="backBarButtonItem" title="Search" id="Z4G-5F-wuz"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQy-00-dAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-362" y="957"/>
+            <point key="canvasLocation" x="162" y="1109"/>
+        </scene>
+        <!--Detail Schedule View Controller - Schedule-->
+        <scene sceneID="m0w-jQ-Mgt">
+            <objects>
+                <tableViewController id="wP9-Is-2uY" customClass="DetailScheduleViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="UNF-sV-JlB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" placeholder="Seacher" showsCancelButton="YES" id="x2M-uV-HCR">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ZqA-qP-Smu">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZqA-qP-Smu" id="9gR-ax-eOZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wP9-Is-2uY" id="ywB-P1-J6a"/>
+                            <outlet property="delegate" destination="wP9-Is-2uY" id="o4k-3k-ece"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Schedule" id="LiT-cP-i6i">
+                        <barButtonItem key="backBarButtonItem" title="Search" id="0r0-jO-UAY"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qvi-n1-avu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="957"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RbV-sX-jtC">
@@ -1317,8 +1361,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3hz-sA-2Up"/>
-        <segue reference="Cr5-3k-Xhp"/>
+        <segue reference="IT6-cK-qMM"/>
+        <segue reference="ceN-QP-fyr"/>
         <segue reference="a6i-DQ-pU2"/>
     </inferredMetricsTieBreakers>
 </document>

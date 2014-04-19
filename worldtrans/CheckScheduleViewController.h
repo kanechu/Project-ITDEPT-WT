@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CheckScheduleViewController : UITableViewController
+@property(strong,nonatomic) NSMutableArray *ilist_schedule;
+- (IBAction)fn_click_searchBtn:(id)sender;
 
 @end
