@@ -800,7 +800,7 @@
                                             <rect key="frame" x="7" y="15" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETD/CY Closing/..." minimumFontSize="17" id="bFh-gj-TH5">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ETD/CY Closing/..." minimumFontSize="17" id="bFh-gj-TH5">
                                             <rect key="frame" x="65" y="20" width="225" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -813,12 +813,16 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BeL-8g-Z9e">
-                                            <rect key="frame" x="238" y="19" width="46" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BeL-8g-Z9e">
+                                            <rect key="frame" x="250" y="25" width="50" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button">
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" image="down">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="fn_dropdown_btn:" destination="uQE-3O-Enw" eventType="touchUpInside" id="fAs-6e-odd"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -1347,6 +1351,7 @@
         <image name="alert" width="350" height="350"/>
         <image name="calendar" width="20" height="20"/>
         <image name="closeButtonImage" width="16" height="16"/>
+        <image name="down" width="20" height="20"/>
         <image name="ic_air" width="128" height="128"/>
         <image name="ic_ct" width="330" height="261"/>
         <image name="ic_ship" width="256" height="256"/>
