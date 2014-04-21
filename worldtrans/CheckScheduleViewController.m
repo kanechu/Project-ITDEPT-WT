@@ -49,8 +49,11 @@ static NSInteger day=0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //date type
     ia_listData=@[@"ETD  | value:ETD",@"ETA | ETA",@"CY Closing | CY",@"CFS Closing | CFS"];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
+    _ibt_search_btn.layer.cornerRadius=3;
+
 }
 
 - (void)didReceiveMemoryWarning

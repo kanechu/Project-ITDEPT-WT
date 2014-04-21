@@ -20,6 +20,7 @@
 @property (strong,nonatomic) DropDownListView *iddl_drop_view;
 @property (strong,nonatomic) NSMutableArray *ilist_schedule;
 @property (copy,nonatomic)NSString *is_dataType;
+@property (weak, nonatomic) IBOutlet UIButton *ibt_search_btn;
 
 - (IBAction)fn_click_searchBtn:(id)sender;
 - (IBAction)fn_dropdown_btn:(id)sender;
