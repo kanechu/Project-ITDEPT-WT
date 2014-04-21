@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SortByViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-
+@interface SortByViewController : UITableViewController
 @property (strong,nonatomic)NSArray *imt_sort_list;
-@property (weak, nonatomic) UITableView *it_sort_list;
 
 - (IBAction)fn_disappear_sortBy:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *ibt_cancel_btn;
+
 @end

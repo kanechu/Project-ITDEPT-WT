@@ -27,6 +27,9 @@
 @synthesize ilist_schedule;
 @synthesize is_dataType;
 @synthesize imd_searchDic;
+
+static NSInteger day=0;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -73,6 +76,22 @@
 - (IBAction)fn_dropdown_btn:(id)sender {
     [iddl_drop_view fadeOut];
     [self showPopUpWithTitle:@"DateType" withOption:ia_listData xy:CGPointMake(65, 150) size:CGSizeMake(225, 220) isMultiple:NO];
+}
+
+- (IBAction)fn_click_subBtn:(id)sender {
+    day--;
+    if (day<0) {
+        day=0;
+    }
+    [self.tableView reloadData];
+}
+
+- (IBAction)fn_click_addBtn:(id)sender {
+    day++;
+    if (day>31) {
+        day=31;
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark resquestData
@@ -236,6 +255,7 @@
                 cell=[nib objectAtIndex:0];
             }
             [imd_searchDic setObject:cell.ict_show_days.text forKey:@"dateto"];
+            cell.ict_show_days.text=[[NSString alloc]initWithFormat:@"%d",day ];
             return cell;
         }
     }

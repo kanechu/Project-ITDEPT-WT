@@ -15,7 +15,6 @@
 
 @implementation SortByViewController
 @synthesize imt_sort_list;
-@synthesize it_sort_list;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +29,8 @@
 {
     [super viewDidLoad];
     imt_sort_list=@[@"Carrier",@"ETD",@"CY Cut",@"CFS Cut"];
+    _ibt_cancel_btn.layer.cornerRadius=7;
     
-    it_sort_list.dataSource=self;
-    it_sort_list.delegate=self;
 	// Do any additional setup after loading the view.
 }
 
@@ -53,7 +51,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *indentifer=@"Cell_sortBy_list";
-    Cell_sortBy_list *cell=[it_sort_list dequeueReusableCellWithIdentifier:indentifer];
+    Cell_sortBy_list *cell=[self.tableView dequeueReusableCellWithIdentifier:indentifer];
     if (cell==nil) {
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_sortBy_list" owner:self options:nil];
         cell=[nib objectAtIndex:0];
@@ -66,9 +64,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
+}
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    static NSString *CellIdentifier = @"Cell_sortBy_list";
-    UITableViewCell *headerView = [it_sort_list dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"Cell_sortBy_header";
+    UITableViewCell *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (headerView == nil){
         [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
     }

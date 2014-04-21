@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailScheduleViewController : UITableViewController{
+@interface DetailScheduleViewController : UITableViewController<UISearchBarDelegate>{
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *fn_click_sortBy_btn;
 - (IBAction)fn_click_sortBy_btn:(id)sender;
+@property (weak, nonatomic) IBOutlet UISearchBar *is_seach_bar;
 
 @end
