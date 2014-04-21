@@ -39,6 +39,7 @@
 		B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24555CE18D166A500D47DC7 /* AehblListController.m */; };
 		B24E83AC18D2A50700C29034 /* AehblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24E83AB18D2A50700C29034 /* AehblGeneralController.m */; };
 		B25490121904A6D800D7197A /* SortByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25490111904A6D800D7197A /* SortByViewController.m */; };
+		B25490191904EFF200D7197A /* Cell_detail_schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = B25490181904EFF200D7197A /* Cell_detail_schedule.m */; };
 		B25649FF18E29C1B00030E05 /* NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = B25649FE18E29C1B00030E05 /* NSArray.m */; };
 		B2571CE218E5441F00C7DFA3 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2571CE018E5441F00C7DFA3 /* CustomBadge.m */; };
 		B25740B518EBE3BF0060190B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740B418EBE3BF0060190B /* MapKit.framework */; };
@@ -209,6 +210,8 @@
 		B24E83AB18D2A50700C29034 /* AehblGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblGeneralController.m; sourceTree = "<group>"; };
 		B25490101904A6D800D7197A /* SortByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortByViewController.h; sourceTree = "<group>"; };
 		B25490111904A6D800D7197A /* SortByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortByViewController.m; sourceTree = "<group>"; };
+		B25490171904EFF200D7197A /* Cell_detail_schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_detail_schedule.h; sourceTree = "<group>"; };
+		B25490181904EFF200D7197A /* Cell_detail_schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_detail_schedule.m; sourceTree = "<group>"; };
 		B25649FD18E29C1B00030E05 /* NSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray.h; sourceTree = "<group>"; };
 		B25649FE18E29C1B00030E05 /* NSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray.m; sourceTree = "<group>"; };
 		B2571CE018E5441F00C7DFA3 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
@@ -472,6 +475,8 @@
 				B2AD1FC01900D89300F0E0A7 /* Cell_schedule_section2_row3.m */,
 				B225B49D190261FE009F1F25 /* Cell_sortBy_list.h */,
 				B225B49E190261FE009F1F25 /* Cell_sortBy_list.m */,
+				B25490171904EFF200D7197A /* Cell_detail_schedule.h */,
+				B25490181904EFF200D7197A /* Cell_detail_schedule.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -918,6 +923,7 @@
 				B2307B1618BDC36B000502BE /* Cell_alert_list.m in Sources */,
 				B2307B0318BC9057000502BE /* Cell_milestone.m in Sources */,
 				B2AD1FBE1900D87300F0E0A7 /* Cell_schedule_section2_row1.m in Sources */,
+				B25490191904EFF200D7197A /* Cell_detail_schedule.m in Sources */,
 				B239B00318E66AA700C26552 /* LogoutViewController.m in Sources */,
 				B22D6C1418D18D0500DE4DB5 /* Cell_aehbl_list.m in Sources */,
 				B225B49B190247D2009F1F25 /* DropDownViewCell.m in Sources */,
