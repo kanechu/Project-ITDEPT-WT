@@ -14,6 +14,7 @@
     //下拉列表视图
     DropDownListView *iddl_drop_view;
 }
+//搜索的条件，放到一个字典中
 @property (strong,nonatomic) NSMutableDictionary *imd_searchDic;
 @property (strong,nonatomic) NSArray *ia_listData;
 @property (strong,nonatomic) DropDownListView *iddl_drop_view;

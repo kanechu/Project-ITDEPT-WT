@@ -17,10 +17,17 @@
 #import "Cell_schedule_section1.h"
 #import "Cell_schedule_section2_row1.h"
 #import "Cell_schedule_section2_row3.h"
+#import "DetailScheduleViewController.h"
+
+#define NUMOFSECTION 2
+
 @interface CheckScheduleViewController ()
 
 @end
-
+enum NUMOFROW {
+    ROW1 = 2,
+    ROW2 = 3
+};
 @implementation CheckScheduleViewController
 @synthesize ia_listData;
 @synthesize iddl_drop_view;
@@ -99,26 +106,7 @@ static NSInteger day=0;
     RequestContract *req_form=[[RequestContract alloc]init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth=[dbLogin WayOfAuthorization];
-    /*
-    SearchFormContract *search=[[SearchFormContract alloc]init];
-    search.os_column=@"load_port";
-    search.os_value=[as_search_dic valueForKey:@"load_port"];
-    
-    SearchFormContract *search1=[[SearchFormContract alloc]init];
-    search1.os_column=@"dish_port";
-    search1.os_value=[as_search_dic valueForKey:@"dish_port"];
-    
-    SearchFormContract *search2=[[SearchFormContract alloc]init];
-    search2.os_column=@"datetype";
-    search2.os_value=[as_search_dic valueForKey:@"datetype"];
-    
-    SearchFormContract *search3=[[SearchFormContract alloc]init];
-    search3.os_column=@"datefm";
-    search3.os_value=[as_search_dic valueForKey:@"datefm"];
-    
-    SearchFormContract *search4=[[SearchFormContract alloc]init];
-    search4.os_column=@"dateto";
-    search4.os_value=[as_search_dic valueForKey:@"dateto"];*/
+   
     SearchFormContract *search=[[SearchFormContract alloc]init];
     search.os_column=@"load_port";
     search.os_value=@"HKHKG";
@@ -152,7 +140,7 @@ static NSInteger day=0;
 }
 -(void)fn_save_schedule_list:(NSMutableArray*)alist_result{
     ilist_schedule=alist_result;
-    NSLog(@"%@",ilist_schedule);
+   
 }
 
 #pragma mark UITableViewDelegate
@@ -185,16 +173,16 @@ static NSInteger day=0;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return NUMOFSECTION;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) {
-        return 2;
+        return ROW1;
     }
     if (section==1) {
-        return 3;
+        return ROW2;
     }
     return 0;
 }
@@ -263,17 +251,24 @@ static NSInteger day=0;
     // Configure the cell...
     return nil;
 }
-
+#pragma mark segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    DetailScheduleViewController *VC=[segue destinationViewController];
+    VC.imd_searchDic=self.imd_searchDic;
 }
 
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
+    [imd_searchDic setObject:@"LAX" forKey:@"dish_port"];
+    [imd_searchDic setObject:@"HKHKG" forKey:@"load_port"];
+    [imd_searchDic setObject:@"etd" forKey:@"datetype"];
+    [imd_searchDic setObject:@"2013-01-01" forKey:@"datefm"];
+    [imd_searchDic setObject:@"2015-03-01" forKey:@"dateto"];
     [self fn_get_data:imd_searchDic];
+   
 }
+
 
 
 @end
