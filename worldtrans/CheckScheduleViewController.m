@@ -72,7 +72,7 @@
 }
 - (IBAction)fn_dropdown_btn:(id)sender {
     [iddl_drop_view fadeOut];
-    [self showPopUpWithTitle:@"DateType" withOption:ia_listData xy:CGPointMake(65, 220) size:CGSizeMake(225, 225) isMultiple:NO];
+    [self showPopUpWithTitle:@"DateType" withOption:ia_listData xy:CGPointMake(65, 150) size:CGSizeMake(225, 220) isMultiple:NO];
 }
 
 #pragma mark resquestData

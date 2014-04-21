@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailScheduleViewController : UITableViewController
+@interface DetailScheduleViewController : UITableViewController{
+}
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *fn_click_sortBy_btn;
+- (IBAction)fn_click_sortBy_btn:(id)sender;
 
 @end

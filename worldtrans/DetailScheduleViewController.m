@@ -7,7 +7,8 @@
 //
 
 #import "DetailScheduleViewController.h"
-
+#import "MZFormSheetController.h"
+#import "SortByViewController.h"
 @interface DetailScheduleViewController ()
 
 @end
@@ -116,5 +117,24 @@
 }
 
  */
+-(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
+    MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
+    //弹出视图的大小
+    formSheet.presentedFormSheetSize=sheetSize;
+    formSheet.shadowRadius = 2.0;
+    //阴影的不透明度
+    formSheet.shadowOpacity = 0.3;
+    //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
+    formSheet.shouldDismissOnBackgroundViewTap = NO;
+    //中心垂直，默认为NO
+    formSheet.shouldCenterVertically =YES;
+    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
+    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
+    
+}
 
+- (IBAction)fn_click_sortBy_btn:(id)sender {
+    SortByViewController *sortByVC=[self.storyboard instantiateViewControllerWithIdentifier:@"SortByViewController"];
+    [self PopupView:sortByVC Size:CGSizeMake(250, 300)];
+}
 @end
