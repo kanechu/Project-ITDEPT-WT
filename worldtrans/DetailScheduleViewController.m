@@ -85,11 +85,21 @@
     ;
     cell.ilb_vessel_voyage.text=[ldict_dictionary valueForKey:@"vessel_voyage"];
     cell.ilb_wh_address.text=[ldict_dictionary valueForKey:@"carrier_name"];
-    cell.ilb_cyCut.text=[NSString stringWithFormat:@"CY Cut:%@",[ldict_dictionary valueForKey:@"cy_cut"]];
-    cell.ilb_cfsCut.text=[NSString stringWithFormat:@"CFS Cut:%@",[ldict_dictionary valueForKey:@"cfs_cut"]];
-    cell.ilb_etd.text=[NSString stringWithFormat:@"ETD:%@",[ldict_dictionary valueForKey:@"etd"]];
-    cell.ilb_eta.text=[NSString stringWithFormat:@"ETA:%@",[ldict_dictionary valueForKey:@"eta"]];
-    cell.ilb_tt.text=[NSString stringWithFormat:@"T/T:%@",[ldict_dictionary valueForKey:@"port_tt"]];
+    
+    NSString *str_cycut=[NSString stringWithFormat:@"CY Cut:%@",[ldict_dictionary valueForKey:@"cy_cut"]];
+    cell.ilb_cyCut.attributedText=[self fn_different_fontcolor:str_cycut range:NSMakeRange(0, 7)];;
+    
+    NSString *str_cfscut=[NSString stringWithFormat:@"CFS Cut:%@",[ldict_dictionary valueForKey:@"cfs_cut"]];   cell.ilb_cfsCut.attributedText=[self fn_different_fontcolor:str_cfscut range:NSMakeRange(0, 8)];
+    
+    NSString *str_etd=[NSString stringWithFormat:@"ETD:%@",[ldict_dictionary valueForKey:@"etd"]];
+    cell.ilb_etd.attributedText=[self fn_different_fontcolor:str_etd range:NSMakeRange(0, 4)];
+    
+    NSString *str_eta=[NSString stringWithFormat:@"ETA:%@",[ldict_dictionary valueForKey:@"eta"]];
+    cell.ilb_eta.attributedText=[self fn_different_fontcolor:str_eta range:NSMakeRange(0, 4)];
+    
+    NSString *str_tt=[NSString stringWithFormat:@"T/T:%@",[ldict_dictionary valueForKey:@"port_tt"]];
+    cell.ilb_tt.attributedText=[self fn_different_fontcolor:str_tt range:NSMakeRange(0, 4)];
+    
     cell.ilb_load_port.text=[ldict_dictionary valueForKey:@"load_port"];
     cell.ilb_dish_port.text=[ldict_dictionary valueForKey:@"port_name"];
     // Configure the cell...
@@ -104,6 +114,17 @@
         return 165;
     }
 }
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+#pragma mark 同一个Label显示不同颜色的文字方法
+-(NSMutableAttributedString*)fn_different_fontcolor:(NSString*)_str range:(NSRange)_range{
+    NSMutableAttributedString *str=[[NSMutableAttributedString alloc]initWithString:_str];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:_range];
+    
+    return str;
+}
+
 #pragma mark popView
 -(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
