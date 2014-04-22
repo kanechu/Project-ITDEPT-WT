@@ -111,7 +111,7 @@
     if (ilist_schedule==nil||ilist_schedule==NULL||ilist_schedule.count==0) {
         return 40;
     }else{
-        return 165;
+        return 150;
     }
 }
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
