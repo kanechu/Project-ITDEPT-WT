@@ -120,12 +120,14 @@
     [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
     
 }
-
+#pragma mark 点击右上角的sortBy Button触发的方法
 - (IBAction)fn_click_sortBy_btn:(id)sender {
     SortByViewController *sortByVC=[self.storyboard instantiateViewControllerWithIdentifier:@"SortByViewController"];
+    
+    sortByVC.iobj_target=self;
+    sortByVC.isel_action=@selector(fn_sort_schedule:);
     [self PopupView:sortByVC Size:CGSizeMake(250, 300)];
 }
-
 #pragma mark UISearchBarDelegate
 //点击搜索按钮的cancel，键盘收起
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
@@ -133,33 +135,50 @@
 }
 //点击搜索的时候，触发的事件
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
+    [self handleSearch:searchBar];
 }
+
+
+- (void)handleSearch:(UISearchBar *)searchBar {
+    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    [dic setObject:searchBar.text forKey:@"vessel"];
+    [self fn_get_data:dic];
+    // if you want the keyboard to go away
+    [searchBar resignFirstResponder];
+}
+#pragma mark 按条件获取服务器的数据
 -(void)fn_get_data:(NSMutableDictionary*)as_search_dic{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     RequestContract *req_form=[[RequestContract alloc]init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth=[dbLogin WayOfAuthorization];
-    
-     SearchFormContract *search=[[SearchFormContract alloc]init];
-     search.os_column=@"load_port";
-     search.os_value=[as_search_dic valueForKey:@"load_port"];
-     
-     SearchFormContract *search1=[[SearchFormContract alloc]init];
-     search1.os_column=@"dish_port";
-     search1.os_value=[as_search_dic valueForKey:@"dish_port"];
-     
-     SearchFormContract *search2=[[SearchFormContract alloc]init];
-     search2.os_column=@"datetype";
-     search2.os_value=[as_search_dic valueForKey:@"datetype"];
-     
-     SearchFormContract *search3=[[SearchFormContract alloc]init];
-     search3.os_column=@"datefm";
-     search3.os_value=[as_search_dic valueForKey:@"datefm"];
-     
-     SearchFormContract *search4=[[SearchFormContract alloc]init];
-     search4.os_column=@"dateto";
-     search4.os_value=[as_search_dic valueForKey:@"dateto"];    req_form.SearchForm=[NSSet setWithObjects:search,search1,search2,search3,search4, nil];
+    if ([as_search_dic count]==1) {
+        SearchFormContract *search=[[SearchFormContract alloc]init];
+        search.os_column=@"vessel_voyage";
+        search.os_value=[as_search_dic valueForKey:@"vessel"];
+        req_form.SearchForm=[NSSet setWithObjects:search, nil];
+    }else{
+        SearchFormContract *search=[[SearchFormContract alloc]init];
+        search.os_column=@"load_port";
+        search.os_value=[as_search_dic valueForKey:@"load_port"];
+        
+        SearchFormContract *search1=[[SearchFormContract alloc]init];
+        search1.os_column=@"dish_port";
+        search1.os_value=[as_search_dic valueForKey:@"dish_port"];
+        
+        SearchFormContract *search2=[[SearchFormContract alloc]init];
+        search2.os_column=@"datetype";
+        search2.os_value=[as_search_dic valueForKey:@"datetype"];
+        
+        SearchFormContract *search3=[[SearchFormContract alloc]init];
+        search3.os_column=@"datefm";
+        search3.os_value=[as_search_dic valueForKey:@"datefm"];
+        
+        SearchFormContract *search4=[[SearchFormContract alloc]init];
+        search4.os_column=@"dateto";
+        search4.os_value=[as_search_dic valueForKey:@"dateto"];
+        req_form.SearchForm=[NSSet setWithObjects:search,search1,search2,search3,search4, nil];
+    }
     Web_base *web_base=[[Web_base alloc]init];
     web_base.il_url =STR_SCHEDULE_URL;
     web_base.iresp_class =[RespSchedule class];
@@ -177,5 +196,14 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
 }
-
+#pragma mark 排序调用的方法
+-(void)fn_sort_schedule:(NSString*)is_sortBy_name{
+    //如果需要降序，那么将ascending由YES改为NO
+    NSSortDescriptor *sortByName=[NSSortDescriptor sortDescriptorWithKey:is_sortBy_name ascending:YES];
+    NSArray *sortDescriptors=[NSArray arrayWithObject:sortByName];
+    NSMutableArray *sortedArray=[[ilist_schedule sortedArrayUsingDescriptors:sortDescriptors]mutableCopy];
+    //重新排序后，存回给原来的数组
+    ilist_schedule=sortedArray;
+    [self.tableView reloadData];
+}
 @end

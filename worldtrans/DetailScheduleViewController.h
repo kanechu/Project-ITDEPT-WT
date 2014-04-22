@@ -15,7 +15,8 @@
 @property (strong,nonatomic) NSMutableDictionary *imd_searchDic;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *fn_click_sortBy_btn;
-- (IBAction)fn_click_sortBy_btn:(id)sender;
 @property (weak, nonatomic) IBOutlet UISearchBar *is_seach_bar;
+
+- (IBAction)fn_click_sortBy_btn:(id)sender;
 
 @end

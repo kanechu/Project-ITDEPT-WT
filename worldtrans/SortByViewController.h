@@ -10,8 +10,12 @@
 
 @interface SortByViewController : UITableViewController
 @property (strong,nonatomic)NSArray *imt_sort_list;
+@property (strong,nonatomic)NSArray *imt_sort_key;
 
-- (IBAction)fn_disappear_sortBy:(id)sender;
+@property (strong,nonatomic) id iobj_target;
+@property (nonatomic, assign) SEL isel_action;
+
 @property (weak, nonatomic) IBOutlet UIButton *ibt_cancel_btn;
 
+- (IBAction)fn_disappear_sortBy:(id)sender;
 @end

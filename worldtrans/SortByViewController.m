@@ -9,12 +9,16 @@
 #import "SortByViewController.h"
 #import "MZFormSheetController.h"
 #import "Cell_sortBy_list.h"
+#import "AppConstants.h"
 @interface SortByViewController ()
 
 @end
 
 @implementation SortByViewController
 @synthesize imt_sort_list;
+@synthesize imt_sort_key;
+@synthesize iobj_target;
+@synthesize isel_action;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +33,8 @@
 {
     [super viewDidLoad];
     imt_sort_list=@[@"Carrier",@"ETD",@"CY Cut",@"CFS Cut"];
+    imt_sort_key=@[@"carrier_name",@"etd",@"cy_cut",@"cfs_cut"];
+    //设置按钮的圆角
     _ibt_cancel_btn.layer.cornerRadius=7;
     
 	// Do any additional setup after loading the view.
@@ -43,6 +49,7 @@
 - (IBAction)fn_disappear_sortBy:(id)sender {
     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
 }
+
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [imt_sort_list count];
@@ -76,6 +83,8 @@
     return headerView;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SuppressPerformSelectorLeakWarning(  [iobj_target performSelector:isel_action withObject:[imt_sort_key objectAtIndex:indexPath.row]];);
+    
       [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
 }
 @end
