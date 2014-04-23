@@ -7,6 +7,7 @@
 //
 
 #import "CheckScheduleViewController.h"
+#import "MZFormSheetController.h"
 #import "RequestContract.h"
 #import "AppConstants.h"
 #import "SearchFormContract.h"
@@ -14,11 +15,13 @@
 #import "Web_base.h"
 #import "NSArray.h"
 #import "RespSchedule.h"
+
 #import "Cell_schedule_section1.h"
 #import "Cell_schedule_section2_row1.h"
 #import "Cell_schedule_section2_row3.h"
-#import "DetailScheduleViewController.h"
 
+#import "DetailScheduleViewController.h"
+#import "SearchPortNameViewController.h"
 #define NUMOFSECTION 2
 
 @interface CheckScheduleViewController ()
@@ -31,12 +34,14 @@ enum NUMOFROW {
 @implementation CheckScheduleViewController
 @synthesize ia_listData;
 @synthesize iddl_drop_view;
-@synthesize ilist_schedule;
+@synthesize ilist_dateType;
 @synthesize is_dataType;
 @synthesize imd_searchDic;
 @synthesize idp_picker;
 @synthesize is_startdate;
-
+@synthesize idic_portname;
+@synthesize idic_dis_portname;
+@synthesize select_row;
 static NSInteger day=0;
 static NSInteger flag=0;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -51,8 +56,10 @@ static NSInteger flag=0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //date type
-    ia_listData=@[@"ETD  | value:ETD",@"ETA | ETA",@"CY Closing | CY",@"CFS Closing | CFS"];
+    //date type display
+    ia_listData=@[@"ETD",@"ETA",@"CY Closing",@"CFS Closing"];
+    //value
+    ilist_dateType=@[@"ETD",@"ETA",@"CY",@"CFS"];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     _ibt_search_btn.layer.cornerRadius=3;
     [self fn_create_datePick];
@@ -64,6 +71,22 @@ static NSInteger flag=0;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
+    MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
+    //弹出视图的大小
+    formSheet.presentedFormSheetSize=sheetSize;
+    formSheet.shadowRadius = 2.0;
+    //阴影的不透明度
+    formSheet.shadowOpacity = 0.3;
+    //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
+    formSheet.shouldDismissOnBackgroundViewTap = NO;
+    //中心垂直，默认为NO
+    formSheet.shouldCenterVertically =YES;
+    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
+    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
+    
+}
+
 #pragma mark dropDownlist
 -(void)showPopUpWithTitle:(NSString*)popupTitle withOption:(NSArray*)arrOptions xy:(CGPoint)point size:(CGSize)size isMultiple:(BOOL)isMultiple{
     iddl_drop_view = [[DropDownListView alloc] initWithTitle:popupTitle options:arrOptions xy:point size:size isMultiple:isMultiple];
@@ -77,6 +100,7 @@ static NSInteger flag=0;
 }
 - (void)DropDownListView:(DropDownListView *)dropdownListView didSelectedIndex:(NSInteger)anIndex{
     is_dataType=[ia_listData objectAtIndex:anIndex];
+    select_row=anIndex;
     [self.tableView reloadData];
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -115,6 +139,13 @@ static NSInteger flag=0;
 
 - (IBAction)fn_click_btn:(id)sender {
     UIButton *btn=(UIButton*)sender;
+    if (btn.tag==1) {
+        SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
+        VC.iobj_target=self;
+        VC.isel_action=@selector(fn_show_portname:);
+        [self PopupView:VC Size:CGSizeMake(320, 480)];
+        
+    }
     if (btn.tag==2) {
         if (flag==0) {
             idp_picker.hidden=NO;
@@ -125,19 +156,39 @@ static NSInteger flag=0;
         }
         
     }
+    if (btn.tag==3) {
+        SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
+        VC.iobj_target=self;
+        VC.isel_action=@selector(fn_show_dis_portname:);
+        [self PopupView:VC Size:CGSizeMake(320, 480)];
+        
+    }
 }
+-(void)fn_show_portname:(NSMutableDictionary*)portname{
+    idic_portname=portname;
+    [self.tableView reloadData];
+}
+-(void)fn_show_dis_portname:(NSMutableDictionary*)disportname{
+    idic_dis_portname=disportname;
+    [self.tableView reloadData];
+}
+
 #pragma mark UIDatePick
 -(void)fn_create_datePick{
+    //初始化UIDatePicker
     idp_picker=[[UIDatePicker alloc]initWithFrame:CGRectMake(0, 20, 0, 0)];
     idp_picker.backgroundColor=[UIColor blueColor];
     [idp_picker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    //设置UIDatePicker的显示模式
     [idp_picker setDatePickerMode:UIDatePickerModeDate];
+    //当值发生改变的时候调用的方法
     [idp_picker addTarget:self action:@selector(fn_change_date) forControlEvents:UIControlEventValueChanged];
     idp_picker.hidden=YES;
     [self.view addSubview:idp_picker];
     
 }
 -(void)fn_change_date{
+    //获得当前UIPickerDate所在的日期
     NSDate *selected_date=[idp_picker date];
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -145,47 +196,6 @@ static NSInteger flag=0;
     [self.tableView reloadData];
 }
 
-#pragma mark resquestData
--(void)fn_get_data:(NSMutableDictionary*)as_search_dic{
-    RequestContract *req_form=[[RequestContract alloc]init];
-    DB_login *dbLogin=[[DB_login alloc]init];
-    req_form.Auth=[dbLogin WayOfAuthorization];
-   
-    SearchFormContract *search=[[SearchFormContract alloc]init];
-    search.os_column=@"load_port";
-    search.os_value=@"HKHKG";
-    
-    SearchFormContract *search1=[[SearchFormContract alloc]init];
-    search1.os_column=@"dish_port";
-    search1.os_value=@"LAX";
-    
-    SearchFormContract *search2=[[SearchFormContract alloc]init];
-    search2.os_column=@"datetype";
-    search2.os_value=@"etd";
-    
-    SearchFormContract *search3=[[SearchFormContract alloc]init];
-    search3.os_column=@"datefm";
-    search3.os_value=@"2013-01-01";
-    
-    SearchFormContract *search4=[[SearchFormContract alloc]init];
-    search4.os_column=@"dateto";
-    search4.os_value=@"2015-03-01";
-    req_form.SearchForm=[NSSet setWithObjects:search,search1,search2,search3,search4, nil];
-    Web_base *web_base=[[Web_base alloc]init];
-    web_base.il_url =STR_SCHEDULE_URL;
-    web_base.iresp_class =[RespSchedule class];
-    
-    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespSchedule     class]];
-    web_base.iobj_target = self;
-    web_base.isel_action = @selector(fn_save_schedule_list:);
-    [web_base fn_get_data:req_form];
-    
-    
-}
--(void)fn_save_schedule_list:(NSMutableArray*)alist_result{
-    ilist_schedule=alist_result;
-   
-}
 
 #pragma mark UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -242,12 +252,23 @@ static NSInteger flag=0;
         }
         if (indexPath.row==0) {
             cell.ilb_port.text=@"Loading Port";
-            [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"load_port"];
+            
+            cell.ibt_navigate_btn.tag=1;
+            cell.ilb_show_portName.text=[idic_portname valueForKey:@"display"];
+            if (idic_portname!=nil) {
+                 [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:@"load_port"];
+            }
+           
         }
         if (indexPath.row==1) {
             [cell.ibt_navigate_btn setImage:[UIImage imageNamed:@"navigate_down"] forState:UIControlStateNormal];
-             cell.ilb_port.text=@"Discharge Port";
-            [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"dish_port"];
+            cell.ilb_port.text=@"Discharge Port";
+            cell.ibt_navigate_btn.tag=3;
+            cell.ilb_show_portName.text=[idic_dis_portname valueForKey:@"display"];
+            if (idic_dis_portname!=nil) {
+                 [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:@"dish_port"];
+            }
+           
         }
         
         return cell;
@@ -263,7 +284,10 @@ static NSInteger flag=0;
             }
             cell.itf_show_dateType.layer.cornerRadius=10;
             cell.itf_show_dateType.text=is_dataType;
-            [imd_searchDic setObject:cell.itf_show_dateType.text forKey:@"datetype"];
+            if (ilist_dateType!=nil) {
+                [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:@"datetype"];
+            }
+            
             return cell;
         }
         if (indexPath.row==1) {
@@ -288,7 +312,8 @@ static NSInteger flag=0;
                 NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row3" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
-            [imd_searchDic setObject:cell.ict_show_days.text forKey:@"dateto"];
+           // [imd_searchDic setObject:@"" forKey:@"dateto"];
+            [imd_searchDic setObject:@"2015-03-01" forKey:@"dateto"];
             cell.ict_show_days.text=[[NSString alloc]initWithFormat:@"%d",day ];
             return cell;
         }
@@ -307,12 +332,11 @@ static NSInteger flag=0;
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
 
-    [imd_searchDic setObject:@"LAX" forKey:@"dish_port"];
+  /* [imd_searchDic setObject:@"LAX" forKey:@"dish_port"];
     [imd_searchDic setObject:@"HKHKG" forKey:@"load_port"];
     [imd_searchDic setObject:@"etd" forKey:@"datetype"];
     [imd_searchDic setObject:@"2013-01-01" forKey:@"datefm"];
-    [imd_searchDic setObject:@"2015-03-01" forKey:@"dateto"];
-    [self fn_get_data:imd_searchDic];
+    [imd_searchDic setObject:@"2015-03-01" forKey:@"dateto"];*/
    
 }
 

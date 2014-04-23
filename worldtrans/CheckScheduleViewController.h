@@ -18,9 +18,15 @@
 @property (strong,nonatomic) NSMutableDictionary *imd_searchDic;
 @property (strong,nonatomic) NSArray *ia_listData;
 @property (strong,nonatomic) DropDownListView *iddl_drop_view;
-@property (strong,nonatomic) NSMutableArray *ilist_schedule;
+@property (strong,nonatomic) NSArray *ilist_dateType;
+//用来记录选择的dateType
 @property (copy,nonatomic)NSString *is_dataType;
-
+//用来记录选择的datetype所在的行数
+@property (assign,nonatomic)NSInteger select_row;
+//用来记录选择的portname
+@property (copy,nonatomic)NSMutableDictionary *idic_portname;
+//用来记录选择的discharge portname
+@property (copy,nonatomic)NSMutableDictionary *idic_dis_portname;
 @property (strong,nonatomic)UIDatePicker *idp_picker;
 //is_startdate用来记录日期拾取器获取的日期
 @property (copy,nonatomic)NSString *is_startdate;
