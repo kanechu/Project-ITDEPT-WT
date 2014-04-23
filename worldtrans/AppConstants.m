@@ -23,4 +23,5 @@ NSString* const STR_AIR_URL =@"itwebapi/api/cargotracking/aehbl";
 NSString* const STR_LOGIN_URL=@"itwebapi/api/users/login";
 NSString* const STR_ALERT_URL=@"itwebapi/api/cargotracking/alert";
 NSString* const STR_MILESTONE_URL=@"itwebapi/api/cargotracking/milestone";
+NSString* const STR_SCHEDULE_URL=@"itwebapi/api/cargotracking/schedule";
 #endif
