@@ -120,7 +120,11 @@ enum ROW_NUMOFSECTION {
     if ( indexPath.row == 0)
     {
         cell.ilb_header.text = @"ETD / ETA";
-        cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+        if ([[ldict_dictionary valueForKey:@"etd"] length]==0 || [[ldict_dictionary valueForKey:@"eta"] length]==0) {
+            cell.ilb_value.text = [NSString stringWithFormat:@"%@  %@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+        }else{
+            cell.ilb_value.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"etd"], [ldict_dictionary valueForKey:@"eta"]];
+        }
     }
     if ( indexPath.row == 1)
     {
@@ -166,6 +170,7 @@ enum ROW_NUMOFSECTION {
         }
         else {
             ls_os_column = @"LCL PKG / KGS / CBM";
+          
             ls_os_value = [NSString stringWithFormat:@"%@ / %@ / %@ ", ls_ship_pkg, ls_ship_kgs, ls_ship_cbm];
         }
         

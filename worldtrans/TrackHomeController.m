@@ -14,9 +14,7 @@
 @end
 
 @implementation TrackHomeController
--(void)initBackgroundColor{
-    [self.view setBackgroundColor:[UIColor blackColor]];
-}
+
 //给按钮添加边框的方法
 -(void)addBound:(UIButton*)_sender{
    
@@ -42,10 +40,28 @@
     _ltf_search_no.delegate=self;
     [self addBound:_lbtn_exhbl_search];
     [self addBound:_lbtn_exhbl_AirSearch];
-    [self initBackgroundColor];
+    [_lbtn_exhbl_search addTarget:self action:@selector(fn_click_seaExport) forControlEvents:UIControlEventTouchUpInside];
+    [_lbtn_exhbl_AirSearch addTarget:self action:@selector(fn_click_airExport) forControlEvents:UIControlEventTouchUpInside];
     
 }
-
+#pragma mark seaExport and airExport
+-(void)fn_click_seaExport{
+    if ([_ltf_search_no.text length]<1) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@" Booking / HBL/ HAWB No. cannot be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        [self performSegueWithIdentifier:@"segue_exhbl" sender:self];
+    }
+  
+}
+-(void)fn_click_airExport{
+    if ([_ltf_search_no.text length]<1) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@" Booking / HBL/ HAWB No. cannot be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        [self performSegueWithIdentifier:@"segue_aehbl" sender:self];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
