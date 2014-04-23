@@ -20,6 +20,11 @@
 @property (strong,nonatomic) DropDownListView *iddl_drop_view;
 @property (strong,nonatomic) NSMutableArray *ilist_schedule;
 @property (copy,nonatomic)NSString *is_dataType;
+
+@property (strong,nonatomic)UIDatePicker *idp_picker;
+//is_startdate用来记录日期拾取器获取的日期
+@property (copy,nonatomic)NSString *is_startdate;
+
 @property (weak, nonatomic) IBOutlet UIButton *ibt_search_btn;
 
 - (IBAction)fn_click_searchBtn:(id)sender;
@@ -27,5 +32,8 @@
 
 - (IBAction)fn_click_subBtn:(id)sender;
 - (IBAction)fn_click_addBtn:(id)sender;
+
+- (IBAction)fn_click_btn:(id)sender;
+
 
 @end

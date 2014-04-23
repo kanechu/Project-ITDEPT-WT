@@ -34,9 +34,11 @@ enum NUMOFROW {
 @synthesize ilist_schedule;
 @synthesize is_dataType;
 @synthesize imd_searchDic;
+@synthesize idp_picker;
+@synthesize is_startdate;
 
 static NSInteger day=0;
-
+static NSInteger flag=0;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -53,6 +55,7 @@ static NSInteger day=0;
     ia_listData=@[@"ETD  | value:ETD",@"ETA | ETA",@"CY Closing | CY",@"CFS Closing | CFS"];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     _ibt_search_btn.layer.cornerRadius=3;
+    [self fn_create_datePick];
 
 }
 
@@ -83,6 +86,12 @@ static NSInteger day=0;
         [iddl_drop_view fadeOut];
     }
 }
+- (void)DropDownListView:(DropDownListView *)dropdownListView Datalist:(NSMutableArray*)ArryData{
+    
+}
+- (void)DropDownListViewDidCancel{
+    
+}
 - (IBAction)fn_dropdown_btn:(id)sender {
     [iddl_drop_view fadeOut];
     [self showPopUpWithTitle:@"DateType" withOption:ia_listData xy:CGPointMake(65, 150) size:CGSizeMake(225, 220) isMultiple:NO];
@@ -101,6 +110,38 @@ static NSInteger day=0;
     if (day>31) {
         day=31;
     }
+    [self.tableView reloadData];
+}
+
+- (IBAction)fn_click_btn:(id)sender {
+    UIButton *btn=(UIButton*)sender;
+    if (btn.tag==2) {
+        if (flag==0) {
+            idp_picker.hidden=NO;
+            flag=1;
+        }else{
+            idp_picker.hidden=YES;
+            flag=0;
+        }
+        
+    }
+}
+#pragma mark UIDatePick
+-(void)fn_create_datePick{
+    idp_picker=[[UIDatePicker alloc]initWithFrame:CGRectMake(0, 20, 0, 0)];
+    idp_picker.backgroundColor=[UIColor blueColor];
+    [idp_picker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    [idp_picker setDatePickerMode:UIDatePickerModeDate];
+    [idp_picker addTarget:self action:@selector(fn_change_date) forControlEvents:UIControlEventValueChanged];
+    idp_picker.hidden=YES;
+    [self.view addSubview:idp_picker];
+    
+}
+-(void)fn_change_date{
+    NSDate *selected_date=[idp_picker date];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    is_startdate=[dateFormatter stringFromDate:selected_date];
     [self.tableView reloadData];
 }
 
@@ -234,7 +275,9 @@ static NSInteger day=0;
             }
             [cell.ibt_navigate_btn setBackgroundImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
             [cell.ibt_navigate_btn setImage:nil forState:UIControlStateNormal];
+            cell.ibt_navigate_btn.tag=2;
             cell.ilb_port.text=@"Start Date";
+            cell.ilb_show_portName.text=is_startdate;
             [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"datefm"];
             return cell;
         }
@@ -263,6 +306,7 @@ static NSInteger day=0;
 
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
+
     [imd_searchDic setObject:@"LAX" forKey:@"dish_port"];
     [imd_searchDic setObject:@"HKHKG" forKey:@"load_port"];
     [imd_searchDic setObject:@"etd" forKey:@"datetype"];

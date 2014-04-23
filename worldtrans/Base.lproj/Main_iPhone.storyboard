@@ -566,11 +566,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Booking / HBL / HAWB No." lineBreakMode="tailTruncation" minimumFontSize="10" id="Zhg-ve-WU7">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Booking / HBL/ HAWB No. cannot be empty" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="Zhg-ve-WU7">
                                 <rect key="frame" x="20" y="95" width="240" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -580,12 +580,9 @@
                                 <state key="normal" title="Air Export">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="eL7-ZN-uTZ" kind="push" identifier="segue_aehbl" id="uuS-Ec-6Si"/>
-                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="7b1-sq-Oyh">
-                                <rect key="frame" x="20" y="131" width="265" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Booking / HBL/ HAWB No. " minimumFontSize="17" clearButtonMode="whileEditing" id="7b1-sq-Oyh">
+                                <rect key="frame" x="20" y="135" width="265" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -594,12 +591,9 @@
                                 <rect key="frame" x="20" y="169" width="133" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sea Export"/>
-                                <connections>
-                                    <segue destination="UW2-Ws-x2P" kind="push" identifier="segue_exhbl" id="MMP-rX-fnL"/>
-                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sea Export" id="9fF-43-3kL">
                         <barButtonItem key="backBarButtonItem" title="Preivous" id="c0K-UR-DhD"/>
@@ -609,6 +603,8 @@
                         <outlet property="lbtn_exhbl_AirSearch" destination="RAX-aq-tDU" id="7EH-MK-yvY"/>
                         <outlet property="lbtn_exhbl_search" destination="oUh-Mo-0r5" id="ZFG-0Y-l7Z"/>
                         <outlet property="ltf_search_no" destination="7b1-sq-Oyh" id="MbY-gL-lkm"/>
+                        <segue destination="UW2-Ws-x2P" kind="push" identifier="segue_exhbl" id="pcg-RD-Yf7"/>
+                        <segue destination="eL7-ZN-uTZ" kind="push" identifier="segue_aehbl" id="3WO-ab-ykp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
@@ -779,6 +775,9 @@
                                             <state key="normal" image="navigate_up">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="fn_click_btn:" destination="uQE-3O-Enw" eventType="touchUpInside" id="oWW-a4-uPh"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -1043,7 +1042,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qvi-n1-avu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="712" y="1099"/>
+            <point key="canvasLocation" x="712" y="1123"/>
         </scene>
         <!--Sort By View Controller-->
         <scene sceneID="IGp-P2-57R">
