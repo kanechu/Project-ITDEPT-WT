@@ -794,7 +794,6 @@
                             </state>
                             <connections>
                                 <action selector="fn_click_searchBtn:" destination="uQE-3O-Enw" eventType="touchUpInside" id="f0Y-AS-No2"/>
-                                <segue destination="wP9-Is-2uY" kind="push" identifier="segue_DetailSchedule" id="N1E-bI-hBD"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -947,6 +946,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ibt_search_btn" destination="iB9-iW-o39" id="Uyh-GV-Gjb"/>
+                        <segue destination="wP9-Is-2uY" kind="push" identifier="segue_DetailSchedule" id="ynQ-EB-gQs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQy-00-dAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
