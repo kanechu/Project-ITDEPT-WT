@@ -46,6 +46,7 @@ enum TEXTFIELD_TAG {
 @synthesize idic_portname;
 @synthesize idic_dis_portname;
 @synthesize select_row;
+@synthesize it_textfield;
 static NSInteger day=0;
 static NSInteger flag=0;
 - (id)initWithStyle:(UITableViewStyle)style
@@ -66,6 +67,8 @@ static NSInteger flag=0;
     ilist_dateType=@[@"ETD",@"ETA",@"CY",@"CFS"];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     _ibt_search_btn.layer.cornerRadius=3;
+    it_textfield.delegate=self;
+    //创建一个UIDatePicker
     [self fn_create_datePick];
 
 }
@@ -80,6 +83,7 @@ static NSInteger flag=0;
     //弹出视图的大小
     formSheet.presentedFormSheetSize=sheetSize;
     formSheet.shadowRadius = 2.0;
+    [formSheet setCornerRadius:0];
     //阴影的不透明度
     formSheet.shadowOpacity = 0.3;
     //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
@@ -125,9 +129,10 @@ static NSInteger flag=0;
     UITextField *btn=(UITextField*)sender;
     if (btn.tag==TAG1) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
+        VC.is_placeholder=@"Loading Port";
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_portname:);
-        [self PopupView:VC Size:CGSizeMake(320, 450)];
+        [self PopupView:VC Size:CGSizeMake(320, 480)];
         
     }
     if (btn.tag==TAG3) {
@@ -144,7 +149,8 @@ static NSInteger flag=0;
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_dis_portname:);
-        [self PopupView:VC Size:CGSizeMake(320, 450)];
+         VC.is_placeholder=@"Discharge Port";
+        [self PopupView:VC Size:CGSizeMake(320, 480)];
         
     }
 }
@@ -258,7 +264,7 @@ static NSInteger flag=0;
             if (idic_portname!=nil) {
                  [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:@"load_port"];
             }
-           
+            
         }
         if (indexPath.row==1) {
             cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
@@ -270,7 +276,7 @@ static NSInteger flag=0;
             }
            
         }
-        
+        cell.ilb_show_portName.delegate=self;
         return cell;
     }
     
@@ -302,6 +308,7 @@ static NSInteger flag=0;
             cell.ilb_show_portName.text=[self fn_DateToStringDate:id_startdate];
             cell.ilb_show_portName.tag=TAG3;
             [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"datefm"];
+            cell.ilb_show_portName.delegate=self;
             return cell;
         }
         if (indexPath.row==2) {
@@ -318,6 +325,7 @@ static NSInteger flag=0;
                 [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:@"dateto"];
             }
              cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
+            cell.ict_show_days.delegate=self;
             return cell;
         }
     }
@@ -349,7 +357,16 @@ static NSInteger flag=0;
     }
    
 }
-
+#pragma mark UITextFieldDelegate
+-(void)textFieldDidBeginEditing:(UITextField*)textField{
+    it_textfield = textField;//设置被点击的对象
+    it_textfield.delegate=self;
+    
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [it_textfield  resignFirstResponder];
+    return YES;
+}
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
     if ([imd_searchDic count]==5) {

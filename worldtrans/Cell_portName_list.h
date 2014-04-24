@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface Cell_portName_list : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *ilb_portName;
+@property (strong, nonatomic)  UILabel *ilb_portName;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DropDownListView.h"
-@interface CheckScheduleViewController : UITableViewController<kDropDownListViewDelegate>{
+@interface CheckScheduleViewController : UITableViewController<kDropDownListViewDelegate,UITextFieldDelegate>{
     //下拉列表数据
     NSArray *ia_listData;
     //下拉列表视图
@@ -30,6 +30,8 @@
 @property (strong,nonatomic)UIDatePicker *idp_picker;
 //is_startdate用来记录日期拾取器获取的日期
 @property (copy,nonatomic)NSDate *id_startdate;
+//用来标识选择的是哪个文本框
+@property (strong,nonatomic)UITextField *it_textfield;
 
 @property (weak, nonatomic) IBOutlet UIButton *ibt_search_btn;
 

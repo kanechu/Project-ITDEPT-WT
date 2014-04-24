@@ -25,20 +25,18 @@
 @synthesize ilist_portname;
 @synthesize iobj_target;
 @synthesize isel_action;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize is_placeholder;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //设置search bar的代理
     _is_search_portName.delegate=self;
+    _is_search_portName.placeholder=is_placeholder;
+    //设置Table的代理
+    _it_table_portname.delegate=self;
+    _it_table_portname.dataSource=self;
+    
 
 }
 
@@ -75,7 +73,7 @@
 }
 -(void)fn_save_portname_list:(NSMutableArray*)alist_result{
     ilist_portname=alist_result;
-    [self.tableView reloadData];
+    [_it_table_portname reloadData];
 }
 
 
@@ -95,11 +93,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell_portName_list";
+    static NSString *CellIdentifier = @"Cell_portName_list2";
     Cell_portName_list *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell==0) {
-        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_portName_list" owner:self options:nil];
-        cell=[nib objectAtIndex:0];
+    if (cell==nil) {
+        cell=[[Cell_portName_list alloc]init];
     }
     
     cell.ilb_portName.text=[[ilist_portname objectAtIndex:indexPath.row] valueForKey:@"display"];
@@ -134,4 +131,7 @@
     // if you want the keyboard to go away
 }
 
+- (IBAction)fn_click_close:(id)sender {
+      [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
+}
 @end
