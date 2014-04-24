@@ -768,6 +768,7 @@
                             <outlet property="delegate" destination="Ias-cX-JHi" id="0fg-PS-Oi8"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="V1T-FA-iPy"/>
                     <connections>
                         <outlet property="is_search_portName" destination="S6C-Ui-TFo" id="vqz-x4-JZk"/>
                     </connections>
@@ -803,11 +804,14 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PiT-Ol-41h" id="MhH-ZA-lW3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7hN-Li-CLV" customClass="Custom_TextField">
-                                            <rect key="frame" x="65" y="20" width="225" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7hN-Li-CLV" customClass="Custom_TextField">
+                                            <rect key="frame" x="66" y="20" width="225" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="fn_click_textfield:" destination="uQE-3O-Enw" eventType="editingDidBegin" id="IQC-Gc-bVb"/>
+                                            </connections>
                                         </textField>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gU-eW-oQn">
                                             <rect key="frame" x="65" y="-1" width="226" height="21"/>
@@ -816,24 +820,17 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3T0-pQ-783">
-                                            <rect key="frame" x="7" y="12" width="40" height="40"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigate_up" id="XfG-BC-rgF">
+                                            <rect key="frame" x="7" y="15" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" image="navigate_up">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="fn_click_btn:" destination="uQE-3O-Enw" eventType="touchUpInside" id="oWW-a4-uPh"/>
-                                            </connections>
-                                        </button>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="ibt_navigate_btn" destination="3T0-pQ-783" id="sMP-b2-lQQ"/>
                                     <outlet property="ilb_port" destination="2gU-eW-oQn" id="kev-Uh-j7b"/>
                                     <outlet property="ilb_show_portName" destination="7hN-Li-CLV" id="izp-rF-G1S"/>
+                                    <outlet property="im_navigate_img" destination="XfG-BC-rgF" id="jTj-QB-2lF"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section2_row1" rowHeight="60" id="uDo-R0-YrJ" customClass="Cell_schedule_section2_row1">
@@ -877,7 +874,7 @@
                                 <connections>
                                     <outlet property="ibt_drop_btn" destination="BeL-8g-Z9e" id="1np-lZ-OwZ"/>
                                     <outlet property="ii_calendar_img" destination="0zn-0b-aYb" id="gMh-BH-5EV"/>
-                                    <outlet property="itf_show_dateType" destination="bFh-gj-TH5" id="Bz2-VT-mR6"/>
+                                    <outlet property="itf_show_dateType" destination="bFh-gj-TH5" id="AEA-OY-PCj"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section2_row3" rowHeight="60" id="Ckj-6f-zRo" customClass="Cell_schedule_section2_row3">
@@ -908,7 +905,7 @@
                                                 <action selector="fn_click_subBtn:" destination="uQE-3O-Enw" eventType="touchUpInside" id="1ZB-bd-b8n"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="DAy-4W-qSl" customClass="Custom_TextField">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="DAy-4W-qSl" customClass="Custom_TextField">
                                             <rect key="frame" x="106" y="20" width="71" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
