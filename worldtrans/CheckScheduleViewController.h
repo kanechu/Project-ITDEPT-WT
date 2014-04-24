@@ -33,13 +33,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *ibt_search_btn;
 
-- (IBAction)fn_click_searchBtn:(id)sender;
+- (IBAction)fn_click_textfield:(id)sender;
 - (IBAction)fn_dropdown_btn:(id)sender;
 
 - (IBAction)fn_click_subBtn:(id)sender;
 - (IBAction)fn_click_addBtn:(id)sender;
 
-- (IBAction)fn_click_btn:(id)sender;
 
+
+- (IBAction)fn_click_searchBtn:(id)sender;
 
 @end

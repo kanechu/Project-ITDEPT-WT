@@ -31,6 +31,10 @@ enum NUMOFROW {
     ROW1 = 2,
     ROW2 = 3
 };
+enum TEXTFIELD_TAG {
+    TAG1 = 1,
+    TAG2 ,TAG3
+};
 @implementation CheckScheduleViewController
 @synthesize ia_listData;
 @synthesize iddl_drop_view;
@@ -116,6 +120,34 @@ static NSInteger flag=0;
 - (void)DropDownListViewDidCancel{
     
 }
+#pragma mark sent event
+- (IBAction)fn_click_textfield:(id)sender{
+    UITextField *btn=(UITextField*)sender;
+    if (btn.tag==TAG1) {
+        SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
+        VC.iobj_target=self;
+        VC.isel_action=@selector(fn_show_portname:);
+        [self PopupView:VC Size:CGSizeMake(320, 450)];
+        
+    }
+    if (btn.tag==TAG3) {
+        if (flag==0) {
+            idp_picker.hidden=NO;
+            flag=1;
+        }else{
+            idp_picker.hidden=YES;
+            flag=0;
+        }
+        
+    }
+    if (btn.tag==TAG2) {
+        SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
+        VC.iobj_target=self;
+        VC.isel_action=@selector(fn_show_dis_portname:);
+        [self PopupView:VC Size:CGSizeMake(320, 450)];
+        
+    }
+}
 - (IBAction)fn_dropdown_btn:(id)sender {
     [iddl_drop_view fadeOut];
     [self showPopUpWithTitle:@"DateType" withOption:ia_listData xy:CGPointMake(65, 150) size:CGSizeMake(225, 220) isMultiple:NO];
@@ -131,39 +163,10 @@ static NSInteger flag=0;
 
 - (IBAction)fn_click_addBtn:(id)sender {
     day++;
-    if (day>31) {
-        day=31;
-    }
     [self.tableView reloadData];
 }
 
-- (IBAction)fn_click_btn:(id)sender {
-    UIButton *btn=(UIButton*)sender;
-    if (btn.tag==1) {
-        SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
-        VC.iobj_target=self;
-        VC.isel_action=@selector(fn_show_portname:);
-        [self PopupView:VC Size:CGSizeMake(320, 480)];
-        
-    }
-    if (btn.tag==2) {
-        if (flag==0) {
-            idp_picker.hidden=NO;
-            flag=1;
-        }else{
-            idp_picker.hidden=YES;
-            flag=0;
-        }
-        
-    }
-    if (btn.tag==3) {
-        SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
-        VC.iobj_target=self;
-        VC.isel_action=@selector(fn_show_dis_portname:);
-        [self PopupView:VC Size:CGSizeMake(320, 480)];
-        
-    }
-}
+
 -(void)fn_show_portname:(NSMutableDictionary*)portname{
     idic_portname=portname;
     [self.tableView reloadData];
@@ -250,19 +253,18 @@ static NSInteger flag=0;
         }
         if (indexPath.row==0) {
             cell.ilb_port.text=@"Loading Port";
-            
-            cell.ibt_navigate_btn.tag=1;
             cell.ilb_show_portName.text=[idic_portname valueForKey:@"display"];
+            cell.ilb_show_portName.tag=TAG1;
             if (idic_portname!=nil) {
                  [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:@"load_port"];
             }
            
         }
         if (indexPath.row==1) {
-            [cell.ibt_navigate_btn setImage:[UIImage imageNamed:@"navigate_down"] forState:UIControlStateNormal];
+            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
             cell.ilb_port.text=@"Discharge Port";
-            cell.ibt_navigate_btn.tag=3;
             cell.ilb_show_portName.text=[idic_dis_portname valueForKey:@"display"];
+            cell.ilb_show_portName.tag=TAG2;
             if (idic_dis_portname!=nil) {
                  [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:@"dish_port"];
             }
@@ -295,11 +297,10 @@ static NSInteger flag=0;
                 NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
-            [cell.ibt_navigate_btn setBackgroundImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
-            [cell.ibt_navigate_btn setImage:nil forState:UIControlStateNormal];
-            cell.ibt_navigate_btn.tag=2;
+            cell.im_navigate_img.image=[UIImage imageNamed:@"calendar"];
             cell.ilb_port.text=@"Start Date";
             cell.ilb_show_portName.text=[self fn_DateToStringDate:id_startdate];
+            cell.ilb_show_portName.tag=TAG3;
             [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"datefm"];
             return cell;
         }
@@ -342,8 +343,11 @@ static NSInteger flag=0;
 #pragma mark segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    DetailScheduleViewController *VC=[segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"segue_DetailSchedule"]) {
+         DetailScheduleViewController *VC=[segue destinationViewController];
     VC.imd_searchDic=self.imd_searchDic;
+    }
+   
 }
 
 #pragma mark 点击search按钮后，开始按条件获取数据
@@ -354,7 +358,7 @@ static NSInteger flag=0;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-  
+     
 }
 
 
