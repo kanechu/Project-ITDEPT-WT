@@ -38,7 +38,7 @@ enum NUMOFROW {
 @synthesize is_dataType;
 @synthesize imd_searchDic;
 @synthesize idp_picker;
-@synthesize is_startdate;
+@synthesize id_startdate;
 @synthesize idic_portname;
 @synthesize idic_dis_portname;
 @synthesize select_row;
@@ -190,9 +190,7 @@ static NSInteger flag=0;
 -(void)fn_change_date{
     //获得当前UIPickerDate所在的日期
     NSDate *selected_date=[idp_picker date];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    is_startdate=[dateFormatter stringFromDate:selected_date];
+    id_startdate=selected_date;
     [self.tableView reloadData];
 }
 
@@ -301,7 +299,7 @@ static NSInteger flag=0;
             [cell.ibt_navigate_btn setImage:nil forState:UIControlStateNormal];
             cell.ibt_navigate_btn.tag=2;
             cell.ilb_port.text=@"Start Date";
-            cell.ilb_show_portName.text=is_startdate;
+            cell.ilb_show_portName.text=[self fn_DateToStringDate:id_startdate];
             [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"datefm"];
             return cell;
         }
@@ -312,16 +310,35 @@ static NSInteger flag=0;
                 NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row3" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
-           // [imd_searchDic setObject:@"" forKey:@"dateto"];
-            [imd_searchDic setObject:@"2015-03-01" forKey:@"dateto"];
-            cell.ict_show_days.text=[[NSString alloc]initWithFormat:@"%d",day ];
+            if ([self fn_DateToStringDate:id_startdate].length!=0 && day!=0) {
+                [imd_searchDic setObject:[self fn_get_finishDate:day] forKey:@"dateto"];
+               
+            }else if([self fn_DateToStringDate:id_startdate].length!=0 ){
+                [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:@"dateto"];
+            }
+             cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
             return cell;
         }
     }
-    
     // Configure the cell...
     return nil;
 }
+#pragma mark 开始日期加天数，得结束日期
+-(NSString*)fn_get_finishDate:(NSInteger)_days{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSTimeInterval interval=60*60*24*_days;
+    NSString *finishDate=[formatter stringFromDate:[id_startdate initWithTimeInterval:interval sinceDate:id_startdate]];
+    return finishDate;
+}
+#pragma mark DateToStringDate
+-(NSString*)fn_DateToStringDate:(NSDate*)date{
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *str=[dateFormatter stringFromDate:date];
+    return str;
+}
+
 #pragma mark segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -331,15 +348,14 @@ static NSInteger flag=0;
 
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
-
-  /* [imd_searchDic setObject:@"LAX" forKey:@"dish_port"];
-    [imd_searchDic setObject:@"HKHKG" forKey:@"load_port"];
-    [imd_searchDic setObject:@"etd" forKey:@"datetype"];
-    [imd_searchDic setObject:@"2013-01-01" forKey:@"datefm"];
-    [imd_searchDic setObject:@"2015-03-01" forKey:@"dateto"];*/
-   
+    if ([imd_searchDic count]==5) {
+        [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+    }
+  
 }
-
 
 
 @end

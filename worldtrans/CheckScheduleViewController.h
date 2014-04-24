@@ -29,7 +29,7 @@
 @property (copy,nonatomic)NSMutableDictionary *idic_dis_portname;
 @property (strong,nonatomic)UIDatePicker *idp_picker;
 //is_startdate用来记录日期拾取器获取的日期
-@property (copy,nonatomic)NSString *is_startdate;
+@property (copy,nonatomic)NSDate *id_startdate;
 
 @property (weak, nonatomic) IBOutlet UIButton *ibt_search_btn;
 
