@@ -136,13 +136,14 @@ static NSInteger flag=0;
         
     }
     if (btn.tag==TAG3) {
-        if (flag==0) {
+       /* if (flag==0) {
             idp_picker.hidden=NO;
             flag=1;
         }else{
             idp_picker.hidden=YES;
             flag=0;
-        }
+        }*/
+        btn.inputView=idp_picker;
         
     }
     if (btn.tag==TAG2) {
@@ -185,21 +186,20 @@ static NSInteger flag=0;
 #pragma mark UIDatePick
 -(void)fn_create_datePick{
     //初始化UIDatePicker
-    idp_picker=[[UIDatePicker alloc]initWithFrame:CGRectMake(0, 20, 0, 0)];
+    idp_picker=[[UIDatePicker alloc]init];
     idp_picker.backgroundColor=[UIColor blueColor];
     [idp_picker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
     //设置UIDatePicker的显示模式
     [idp_picker setDatePickerMode:UIDatePickerModeDate];
     //当值发生改变的时候调用的方法
     [idp_picker addTarget:self action:@selector(fn_change_date) forControlEvents:UIControlEventValueChanged];
-    idp_picker.hidden=YES;
-    [self.view addSubview:idp_picker];
+   // idp_picker.hidden=YES;
+   // [self.view addSubview:idp_picker];
     
 }
 -(void)fn_change_date{
     //获得当前UIPickerDate所在的日期
-    NSDate *selected_date=[idp_picker date];
-    id_startdate=selected_date;
+    id_startdate=[idp_picker date];
     [self.tableView reloadData];
 }
 
