@@ -33,13 +33,12 @@ enum NUMOFROW {
 };
 enum TEXTFIELD_TAG {
     TAG1 = 1,
-    TAG2 ,TAG3
+    TAG2 ,TAG3,TAG4,TAG5
 };
 @implementation CheckScheduleViewController
 @synthesize ia_listData;
-@synthesize iddl_drop_view;
+@synthesize ipic_drop_view;
 @synthesize ilist_dateType;
-@synthesize is_dataType;
 @synthesize imd_searchDic;
 @synthesize idp_picker;
 @synthesize id_startdate;
@@ -48,7 +47,7 @@ enum TEXTFIELD_TAG {
 @synthesize select_row;
 @synthesize it_textfield;
 static NSInteger day=0;
-static NSInteger flag=0;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -70,6 +69,9 @@ static NSInteger flag=0;
     it_textfield.delegate=self;
     //创建一个UIDatePicker
     [self fn_create_datePick];
+    
+    //创建一个UIPickerView
+    [self fn_create_pickerView];
    
 
 }
@@ -110,39 +112,38 @@ static NSInteger flag=0;
     
 }
 
-#pragma mark dropDownlist
--(void)showPopUpWithTitle:(NSString*)popupTitle withOption:(NSArray*)arrOptions xy:(CGPoint)point size:(CGSize)size isMultiple:(BOOL)isMultiple{
-    iddl_drop_view = [[DropDownListView alloc] initWithTitle:popupTitle options:arrOptions xy:point size:size isMultiple:isMultiple];
-    
-    iddl_drop_view.delegate = self;
-    
-    [iddl_drop_view showInView:self.view animated:YES];
-    //Set DropDown backGroundColor
-    [iddl_drop_view SetBackGroundDropDwon_R:0.0 G:108.0 B:194.0 alpha:0.90];
-    
+#pragma mark pickerView
+-(void)fn_create_pickerView{
+    ipic_drop_view=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 225, 320, 200)];
+    [ipic_drop_view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    ipic_drop_view.delegate=self;
+    //显示选中框
+    ipic_drop_view.showsSelectionIndicator=YES;
+ 
+   
 }
-- (void)DropDownListView:(DropDownListView *)dropdownListView didSelectedIndex:(NSInteger)anIndex{
-    is_dataType=[ia_listData objectAtIndex:anIndex];
-    select_row=anIndex;
-    [self.tableView reloadData];
+#pragma mark UIPickerViewDataSource
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    UITouch *touch = [touches anyObject];
-    if ([touch.view isKindOfClass:[UIView class]]) {
-        [iddl_drop_view fadeOut];
-    }
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [ia_listData count];
 }
-- (void)DropDownListView:(DropDownListView *)dropdownListView Datalist:(NSMutableArray*)ArryData{
-    
+#pragma mark UIPickerViewDelegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [ia_listData objectAtIndex:row];
 }
-- (void)DropDownListViewDidCancel{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    select_row=row;
     
 }
 #pragma mark sent event
 - (IBAction)fn_click_textfield:(id)sender{
-    UITextField *btn=(UITextField*)sender;
-    if (btn.tag==TAG1) {
+    UITextField *textfield=(UITextField*)sender;
+    if (textfield.tag==TAG1) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.is_placeholder=@"Loading Port";
         VC.iobj_target=self;
@@ -150,32 +151,23 @@ static NSInteger flag=0;
         [self PopupView:VC Size:CGSizeMake(320, 480)];
         
     }
-    if (btn.tag==TAG3) {
-       /* if (flag==0) {
-            idp_picker.hidden=NO;
-            flag=1;
-        }else{
-            idp_picker.hidden=YES;
-            flag=0;
-        }*/
-        btn.inputView=idp_picker;
-        
+    if (textfield.tag==TAG3) {
+     
+        textfield.inputView=idp_picker;
         UIToolbar *toolbar=[self fn_create_toolbar];
-        btn.inputAccessoryView=toolbar;
+        textfield.inputAccessoryView=toolbar;
     }
-    if (btn.tag==TAG2) {
+    if (textfield.tag==TAG2) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_dis_portname:);
          VC.is_placeholder=@"Discharge Port";
         [self PopupView:VC Size:CGSizeMake(320, 480)];
         
+        
     }
 }
-- (IBAction)fn_dropdown_btn:(id)sender {
-    [iddl_drop_view fadeOut];
-    [self showPopUpWithTitle:@"DateType" withOption:ia_listData xy:CGPointMake(65, 150) size:CGSizeMake(225, 220) isMultiple:NO];
-}
+
 
 - (IBAction)fn_click_subBtn:(id)sender {
     day--;
@@ -189,7 +181,23 @@ static NSInteger flag=0;
     day++;
     [self.tableView reloadData];
 }
-
+//输入天数结束的时候(endEdit)，触发的方法
+- (IBAction)fn_click_day:(id)sender {
+    UITextField *textfield=(UITextField*)sender;
+    if (textfield.tag==TAG5) {
+        day=[textfield.text integerValue];
+    }
+    [self.tableView reloadData];
+}
+//dateType文本框beginEdit，触发的方法
+- (IBAction)fn_click_dateType:(id)sender {
+    UITextField *textfield=(UITextField*)sender;
+    if (textfield.tag==TAG4) {
+        textfield.inputView=ipic_drop_view;
+        textfield.inputAccessoryView=[self fn_create_toolbar];
+        
+    }
+}
 
 -(void)fn_show_portname:(NSMutableDictionary*)portname{
     idic_portname=portname;
@@ -211,7 +219,6 @@ static NSInteger flag=0;
     //当值发生改变的时候调用的方法
     [idp_picker addTarget:self action:@selector(fn_change_date) forControlEvents:UIControlEventValueChanged];
   
-    
 }
 -(void)fn_change_date{
     //获得当前UIPickerDate所在的日期
@@ -305,7 +312,10 @@ static NSInteger flag=0;
                 cell=[nib objectAtIndex:0];
             }
             cell.itf_show_dateType.layer.cornerRadius=10;
-            cell.itf_show_dateType.text=is_dataType;
+            cell.itf_show_dateType.text=[ia_listData objectAtIndex:select_row];
+            ;
+            cell.itf_show_dateType.tag=TAG4;
+            
             if (ilist_dateType!=nil) {
                 [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:@"datetype"];
             }
@@ -337,9 +347,10 @@ static NSInteger flag=0;
             if ([self fn_DateToStringDate:id_startdate].length!=0 && day!=0) {
                 [imd_searchDic setObject:[self fn_get_finishDate:day] forKey:@"dateto"];
                
-            }else if([self fn_DateToStringDate:id_startdate].length!=0 ){
+            }else if([self fn_DateToStringDate:id_startdate].length!=0 && day==0){
                 [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:@"dateto"];
             }
+            cell.ict_show_days.tag=TAG5;
              cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
             cell.ict_show_days.delegate=self;
             return cell;
@@ -391,7 +402,7 @@ static NSInteger flag=0;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-     
+    [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];     
 }
 
 
