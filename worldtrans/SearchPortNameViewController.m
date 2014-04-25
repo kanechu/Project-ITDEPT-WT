@@ -122,7 +122,9 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
+   
     [_is_search_portName resignFirstResponder];
+     
 }
 - (void)handleSearch:(UISearchBar *)searchBar {
     
@@ -132,6 +134,7 @@
 }
 
 - (IBAction)fn_click_close:(id)sender {
-      [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
+    
+     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];   
 }
 @end

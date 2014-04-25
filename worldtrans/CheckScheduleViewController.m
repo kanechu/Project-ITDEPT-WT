@@ -70,6 +70,7 @@ static NSInteger flag=0;
     it_textfield.delegate=self;
     //创建一个UIDatePicker
     [self fn_create_datePick];
+   
 
 }
 
@@ -77,6 +78,20 @@ static NSInteger flag=0;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark create toolbar
+-(UIToolbar*)fn_create_toolbar{
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    [toolbar setBarStyle:UIBarStyleBlackOpaque];
+    [toolbar sizeToFit];
+    UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(fn_Click_done:)];
+    
+    [toolbar setItems:[NSArray arrayWithObjects:buttonflexible,buttonDone, nil]];
+    return toolbar;
+}
+-(void)fn_Click_done:(id)sender{
+    [self.tableView reloadData];
 }
 -(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
     MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
@@ -145,6 +160,8 @@ static NSInteger flag=0;
         }*/
         btn.inputView=idp_picker;
         
+        UIToolbar *toolbar=[self fn_create_toolbar];
+        btn.inputAccessoryView=toolbar;
     }
     if (btn.tag==TAG2) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
@@ -187,20 +204,19 @@ static NSInteger flag=0;
 -(void)fn_create_datePick{
     //初始化UIDatePicker
     idp_picker=[[UIDatePicker alloc]init];
-    idp_picker.backgroundColor=[UIColor blueColor];
+   // idp_picker.backgroundColor=[UIColor blueColor];
     [idp_picker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
     //设置UIDatePicker的显示模式
     [idp_picker setDatePickerMode:UIDatePickerModeDate];
     //当值发生改变的时候调用的方法
     [idp_picker addTarget:self action:@selector(fn_change_date) forControlEvents:UIControlEventValueChanged];
-   // idp_picker.hidden=YES;
-   // [self.view addSubview:idp_picker];
+  
     
 }
 -(void)fn_change_date{
     //获得当前UIPickerDate所在的日期
     id_startdate=[idp_picker date];
-    [self.tableView reloadData];
+    
 }
 
 
