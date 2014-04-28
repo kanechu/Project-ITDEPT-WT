@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailScheduleViewController : UITableViewController<UISearchBarDelegate>{
-}
+@interface DetailScheduleViewController : UITableViewController<UISearchBarDelegate>
 
 @property (strong,nonatomic) NSMutableArray *ilist_schedule;
 @property (strong,nonatomic) NSMutableDictionary *imd_searchDic;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *fn_click_sortBy_btn;
 @property (weak, nonatomic) IBOutlet UISearchBar *is_seach_bar;
+@property (weak, nonatomic) IBOutlet UIButton *ibtn_sortBy_btn;
 
 - (IBAction)fn_click_sortBy_btn:(id)sender;
+
 
 @end

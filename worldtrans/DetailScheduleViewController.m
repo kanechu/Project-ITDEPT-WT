@@ -39,12 +39,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _fn_click_sortBy_btn.style=UIBarButtonSystemItemCamera;
     //searchBar的代理
     _is_seach_bar.delegate=self;
     [self fn_get_data:imd_searchDic];
+    [self BtnGraphicMixed];
+
+}
+//实现按钮的图文混排
+-(void)BtnGraphicMixed{
     
-  
+    [_ibtn_sortBy_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_ibtn_sortBy_btn setTitle:@"sort By" forState:UIControlStateNormal];
+    [_ibtn_sortBy_btn setImage:[UIImage imageNamed:@"ic_sort"] forState:UIControlStateNormal];
+    
+    [_ibtn_sortBy_btn setTitleEdgeInsets:UIEdgeInsetsMake(0,0, -30, -5)];
+    
+    [_ibtn_sortBy_btn setImageEdgeInsets:UIEdgeInsetsMake(5, _ibtn_sortBy_btn.frame.size.width-30, 5, 0)];
+    
 }
 
 - (void)didReceiveMemoryWarning

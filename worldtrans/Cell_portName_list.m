@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        ilb_portName=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 250, 40)];
+        ilb_portName=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 250, 40)];
         ilb_portName.textAlignment=NSTextAlignmentLeft;
         [self addSubview:ilb_portName];
     }
