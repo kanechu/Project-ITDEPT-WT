@@ -48,7 +48,8 @@
 }
 #pragma mark resquest portName Data
 -(void)fn_get_data:(NSString*)as_search_portname{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
+                                   selector: @selector(fn_hide_HUDView) userInfo: nil repeats: NO];    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     RequestContract *req_form=[[RequestContract alloc]init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth=[dbLogin WayOfAuthorization];
@@ -78,8 +79,10 @@
     [_it_table_portname reloadData];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
-
-
+-(void)fn_hide_HUDView{
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
