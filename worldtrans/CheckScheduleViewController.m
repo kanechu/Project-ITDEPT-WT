@@ -46,7 +46,7 @@ enum TEXTFIELD_TAG {
 @synthesize idic_dis_portname;
 @synthesize select_row;
 @synthesize it_textfield;
-static NSInteger day=0;
+static NSInteger day=30;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -214,6 +214,7 @@ static NSInteger day=0;
     [idp_picker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
     //设置UIDatePicker的显示模式
     [idp_picker setDatePickerMode:UIDatePickerModeDate];
+    id_startdate=[idp_picker date];
     //当值发生改变的时候调用的方法
     [idp_picker addTarget:self action:@selector(fn_change_date) forControlEvents:UIControlEventValueChanged];
   
@@ -398,7 +399,7 @@ static NSInteger day=0;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-   
+    [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];   
 }
 
 
