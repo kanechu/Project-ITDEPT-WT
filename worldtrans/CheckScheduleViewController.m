@@ -114,7 +114,7 @@ static NSInteger day=0;
 
 #pragma mark pickerView
 -(void)fn_create_pickerView{
-    ipic_drop_view=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 225, 320, 200)];
+    ipic_drop_view=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 225, 0,0)];
     [ipic_drop_view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
     ipic_drop_view.delegate=self;
     //显示选中框

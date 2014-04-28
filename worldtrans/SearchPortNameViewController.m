@@ -113,7 +113,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSMutableDictionary *dic=[ilist_portname objectAtIndex:indexPath.row];
-    SuppressPerformSelectorLeakWarning(  [iobj_target performSelector:isel_action withObject:dic];);
+    SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:dic];);
     
     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
 
