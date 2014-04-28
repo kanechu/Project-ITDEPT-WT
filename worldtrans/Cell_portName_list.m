@@ -10,14 +10,24 @@
 
 @implementation Cell_portName_list
 @synthesize ilb_portName;
+@synthesize ilb_desc;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        ilb_portName=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 250, 40)];
+        ilb_portName=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 250, 21)];
+        ilb_portName.font=[UIFont systemFontOfSize:15];
         ilb_portName.textAlignment=NSTextAlignmentLeft;
+        ilb_portName.textColor=[UIColor blackColor];
         [self addSubview:ilb_portName];
+        ilb_desc=[[UILabel alloc]initWithFrame:CGRectMake(20, 21, 250, 39)];
+        ilb_desc.font=[UIFont systemFontOfSize:14];
+        ilb_desc.textAlignment=NSTextAlignmentLeft;
+        ilb_desc.textColor=[UIColor grayColor];
+        ilb_desc.numberOfLines=0;
+        [self addSubview:ilb_desc];
     }
     return self;
 }

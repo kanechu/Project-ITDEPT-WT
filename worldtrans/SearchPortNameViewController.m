@@ -106,13 +106,15 @@
     }
     
     cell.ilb_portName.text=[[ilist_portname objectAtIndex:indexPath.row] valueForKey:@"display"];
+    cell.ilb_desc.text=[[ilist_portname objectAtIndex:indexPath.row] valueForKey:@"desc"];
     // Configure the cell...
     
     return cell;
 }
+
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return 60;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSMutableDictionary *dic=[ilist_portname objectAtIndex:indexPath.row];

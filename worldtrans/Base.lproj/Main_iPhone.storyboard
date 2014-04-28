@@ -885,6 +885,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="ibtn_down_btn" destination="BeL-8g-Z9e" id="6Ou-8h-uuG"/>
                                     <outlet property="ii_calendar_img" destination="0zn-0b-aYb" id="gMh-BH-5EV"/>
                                     <outlet property="ilb_show_dateAndtype" destination="cdr-Zn-1ru" id="GhN-jx-SCt"/>
                                     <outlet property="itf_show_dateType" destination="bFh-gj-TH5" id="AEA-OY-PCj"/>

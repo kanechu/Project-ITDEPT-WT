@@ -145,7 +145,7 @@ static NSInteger day=30;
     Custom_Button *Btn=(Custom_Button*)sender;
     if (Btn.tag==TAG1) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
-        VC.is_placeholder=@"Loading Port";
+        VC.is_placeholder=@"Please fill in Load Port!";
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_portname:);
         [self PopupView:VC Size:CGSizeMake(320, 480)];
@@ -156,7 +156,7 @@ static NSInteger day=30;
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_dis_portname:);
-         VC.is_placeholder=@"Discharge Port";
+         VC.is_placeholder=@"Please fill in Discharge Port!";
         [self PopupView:VC Size:CGSizeMake(320, 480)];
         
         
@@ -332,6 +332,7 @@ static NSInteger day=30;
             cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
             cell.itf_show_dateType.tag=TAG4;
             [imd_searchDic setObject:cell.itf_show_dateType.text forKey:@"datefm"];
+            [cell.ibtn_down_btn setImage:nil forState:UIControlStateNormal];
             return cell;
         }
         if (indexPath.row==2) {
@@ -376,8 +377,8 @@ static NSInteger day=30;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"segue_DetailSchedule"]) {
-         DetailScheduleViewController *VC=[segue destinationViewController];
-    VC.imd_searchDic=self.imd_searchDic;
+        DetailScheduleViewController *VC=[segue destinationViewController];
+        VC.imd_searchDic=self.imd_searchDic;
     }
    
 }
@@ -399,7 +400,7 @@ static NSInteger day=30;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-    [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];   
+    //[self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];
 }
 
 

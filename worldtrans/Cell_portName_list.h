@@ -10,5 +10,5 @@
 
 @interface Cell_portName_list : UITableViewCell
 @property (strong, nonatomic)  UILabel *ilb_portName;
-
+@property (strong, nonatomic)  UILabel *ilb_desc;
 @end
