@@ -42,6 +42,7 @@
     _fn_click_sortBy_btn.style=UIBarButtonSystemItemCamera;
     //searchBar的代理
     _is_seach_bar.delegate=self;
+    NSLog(@"%@",imd_searchDic);
     [self fn_get_data:imd_searchDic];
     
   

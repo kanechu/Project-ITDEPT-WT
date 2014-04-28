@@ -402,7 +402,7 @@ static NSInteger day=0;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-    [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];     
+   // [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];
 }
 
 

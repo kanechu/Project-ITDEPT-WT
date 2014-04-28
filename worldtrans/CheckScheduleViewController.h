@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DropDownListView.h"
 @interface CheckScheduleViewController : UITableViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 //搜索的条件，放到一个字典中

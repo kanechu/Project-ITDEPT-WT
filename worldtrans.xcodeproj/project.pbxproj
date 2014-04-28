@@ -12,8 +12,6 @@
 		B22446D518CF2C7500049F8C /* NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = B22446D418CF2C7500049F8C /* NSString.m */; };
 		B225B472190204FE009F1F25 /* DetailScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B225B471190204FE009F1F25 /* DetailScheduleViewController.m */; };
 		B225B47A19020AC3009F1F25 /* RespSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = B225B47919020AC3009F1F25 /* RespSchedule.m */; };
-		B225B49B190247D2009F1F25 /* DropDownViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B225B498190247D2009F1F25 /* DropDownViewCell.m */; };
-		B225B49C190247D2009F1F25 /* DropDownListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B225B49A190247D2009F1F25 /* DropDownListView.m */; };
 		B225B49F190261FE009F1F25 /* Cell_sortBy_list.m in Sources */ = {isa = PBXBuildFile; fileRef = B225B49E190261FE009F1F25 /* Cell_sortBy_list.m */; };
 		B22D6C1418D18D0500DE4DB5 /* Cell_aehbl_list.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D6C1318D18D0500DE4DB5 /* Cell_aehbl_list.m */; };
 		B22D6C1C18D1A7CB00DE4DB5 /* AehblHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D6C1B18D1A7CB00DE4DB5 /* AehblHomeController.m */; };
@@ -159,10 +157,6 @@
 		B225B471190204FE009F1F25 /* DetailScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailScheduleViewController.m; sourceTree = "<group>"; };
 		B225B47819020AC3009F1F25 /* RespSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RespSchedule.h; sourceTree = "<group>"; };
 		B225B47919020AC3009F1F25 /* RespSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RespSchedule.m; sourceTree = "<group>"; };
-		B225B497190247D2009F1F25 /* DropDownViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownViewCell.h; sourceTree = "<group>"; };
-		B225B498190247D2009F1F25 /* DropDownViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownViewCell.m; sourceTree = "<group>"; };
-		B225B499190247D2009F1F25 /* DropDownListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownListView.h; sourceTree = "<group>"; };
-		B225B49A190247D2009F1F25 /* DropDownListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownListView.m; sourceTree = "<group>"; };
 		B225B49D190261FE009F1F25 /* Cell_sortBy_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_sortBy_list.h; sourceTree = "<group>"; };
 		B225B49E190261FE009F1F25 /* Cell_sortBy_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_sortBy_list.m; sourceTree = "<group>"; };
 		B22D6C1218D18D0500DE4DB5 /* Cell_aehbl_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_aehbl_list.h; sourceTree = "<group>"; };
@@ -368,21 +362,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B225B4921902467E009F1F25 /* kDropDown */ = {
-			isa = PBXGroup;
-			children = (
-				B225B497190247D2009F1F25 /* DropDownViewCell.h */,
-				B225B498190247D2009F1F25 /* DropDownViewCell.m */,
-				B225B499190247D2009F1F25 /* DropDownListView.h */,
-				B225B49A190247D2009F1F25 /* DropDownListView.m */,
-			);
-			name = kDropDown;
-			sourceTree = "<group>";
-		};
 		B2307B0C18BD8423000502BE /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				B225B4921902467E009F1F25 /* kDropDown */,
 				B2571CDB18E543D200C7DFA3 /* CustomBadge */,
 				B278A90518D820F70057DC37 /* MZFormSheet */,
 				B2307B0D18BD8436000502BE /* MBProgressHUD */,
@@ -943,11 +925,9 @@
 				B25490191904EFF200D7197A /* Cell_detail_schedule.m in Sources */,
 				B239B00318E66AA700C26552 /* LogoutViewController.m in Sources */,
 				B22D6C1418D18D0500DE4DB5 /* Cell_aehbl_list.m in Sources */,
-				B225B49B190247D2009F1F25 /* DropDownViewCell.m in Sources */,
 				B2307B1C18BDD532000502BE /* RespAlert.m in Sources */,
 				B2AD1FCA1901075100F0E0A7 /* CheckScheduleViewController.m in Sources */,
 				B2B020BD18AB5DFE00EECD92 /* Candy.m in Sources */,
-				B225B49C190247D2009F1F25 /* DropDownListView.m in Sources */,
 				B278A92318D8218F0057DC37 /* UIImage+Additional.m in Sources */,
 				B2C237FF18B37153001E13C9 /* AuthContract.m in Sources */,
 				B2C2380918B5EAB5001E13C9 /* RespExhbl.m in Sources */,
