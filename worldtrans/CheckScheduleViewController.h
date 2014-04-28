@@ -24,8 +24,6 @@
 @property (strong,nonatomic)UIDatePicker *idp_picker;
 //id_startdate用来记录日期拾取器获取的日期
 @property (copy,nonatomic)NSDate *id_startdate;
-//用来标识选择的是哪个文本框
-@property (strong,nonatomic)UITextField *it_textfield;
 
 @property (weak, nonatomic) IBOutlet UIButton *ibt_search_btn;
 

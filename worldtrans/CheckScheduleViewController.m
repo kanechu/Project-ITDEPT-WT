@@ -45,7 +45,7 @@ enum TEXTFIELD_TAG {
 @synthesize idic_portname;
 @synthesize idic_dis_portname;
 @synthesize select_row;
-@synthesize it_textfield;
+
 static NSInteger day=30;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -66,12 +66,14 @@ static NSInteger day=30;
     ilist_dateType=@[@"ETD",@"ETA",@"CY",@"CFS"];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     _ibt_search_btn.layer.cornerRadius=3;
-    it_textfield.delegate=self;
+    
     //创建一个UIDatePicker
     [self fn_create_datePick];
     
     //创建一个UIPickerView
     [self fn_create_pickerView];
+    
+    [self fn_dismiss_keyboard];
    
 
 }
@@ -382,15 +384,25 @@ static NSInteger day=30;
     }
    
 }
-#pragma mark UITextFieldDelegate
--(void)textFieldDidBeginEditing:(UITextField*)textField{
-    it_textfield = textField;//设置被点击的对象
-    it_textfield.delegate=self;
-    
+-(void)fn_dismiss_keyboard{
+    NSNotificationCenter *notification=[NSNotificationCenter defaultCenter];
+    UITapGestureRecognizer *singleTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fn_tap_anyplace:)];
+    NSOperationQueue *mainQuene=[NSOperationQueue mainQueue];
+    [notification addObserverForName:UIKeyboardWillShowNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view addGestureRecognizer:singleTap];
+                }];
+    [notification addObserverForName:UIKeyboardWillHideNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view removeGestureRecognizer:singleTap];
+                }];
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [it_textfield  resignFirstResponder];
-    return YES;
+-(void)fn_tap_anyplace:(UIGestureRecognizer *)gestureRecognizer{
+    [self.view endEditing:YES];
 }
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
@@ -400,7 +412,7 @@ static NSInteger day=30;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-    //[self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];
+  
 }
 
 
