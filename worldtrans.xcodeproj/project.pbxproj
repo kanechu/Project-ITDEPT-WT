@@ -62,6 +62,7 @@
 		B26CAC6F18AA302A00C97C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4B18AA302A00C97C83 /* UIKit.framework */; };
 		B26CAC7718AA302A00C97C83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26CAC7518AA302A00C97C83 /* InfoPlist.strings */; };
 		B26CAC7918AA302A00C97C83 /* worldtransTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26CAC7818AA302A00C97C83 /* worldtransTests.m */; };
+		B2700B07190E0D2A001E824C /* Custom_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = B2700B06190E0D2A001E824C /* Custom_Button.m */; };
 		B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B27387D918FF85C500BF57F2 /* Custom_TextField.m */; };
 		B278A91C18D8218F0057DC37 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90B18D8218F0057DC37 /* MZAppearance.m */; };
 		B278A91D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m */; };
@@ -246,6 +247,8 @@
 		B26CAC7418AA302A00C97C83 /* worldtransTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "worldtransTests-Info.plist"; sourceTree = "<group>"; };
 		B26CAC7618AA302A00C97C83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B26CAC7818AA302A00C97C83 /* worldtransTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = worldtransTests.m; sourceTree = "<group>"; };
+		B2700B05190E0D2A001E824C /* Custom_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_Button.h; sourceTree = "<group>"; };
+		B2700B06190E0D2A001E824C /* Custom_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_Button.m; sourceTree = "<group>"; };
 		B27387D818FF85C500BF57F2 /* Custom_TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_TextField.h; sourceTree = "<group>"; };
 		B27387D918FF85C500BF57F2 /* Custom_TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_TextField.m; sourceTree = "<group>"; };
 		B278A90A18D8218F0057DC37 /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
@@ -596,6 +599,8 @@
 			children = (
 				B27387D818FF85C500BF57F2 /* Custom_TextField.h */,
 				B27387D918FF85C500BF57F2 /* Custom_TextField.m */,
+				B2700B05190E0D2A001E824C /* Custom_Button.h */,
+				B2700B06190E0D2A001E824C /* Custom_Button.m */,
 			);
 			name = customControl;
 			sourceTree = "<group>";
@@ -949,6 +954,7 @@
 				B225B472190204FE009F1F25 /* DetailScheduleViewController.m in Sources */,
 				B2A9770B18CF18290096BD4B /* FMResultSet.m in Sources */,
 				B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */,
+				B2700B07190E0D2A001E824C /* Custom_Button.m in Sources */,
 				B25BE7BC18ECEF0000F41409 /* MapViewController.m in Sources */,
 				B26CAC5418AA302A00C97C83 /* main.m in Sources */,
 				B22446D518CF2C7500049F8C /* NSString.m in Sources */,

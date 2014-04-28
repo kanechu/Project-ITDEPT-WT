@@ -141,9 +141,9 @@ static NSInteger day=0;
     
 }
 #pragma mark sent event
-- (IBAction)fn_click_textfield:(id)sender{
-    UITextField *textfield=(UITextField*)sender;
-    if (textfield.tag==TAG1) {
+- (IBAction)fn_click_portBtn:(id)sender{
+    Custom_Button *Btn=(Custom_Button*)sender;
+    if (Btn.tag==TAG1) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.is_placeholder=@"Loading Port";
         VC.iobj_target=self;
@@ -151,13 +151,8 @@ static NSInteger day=0;
         [self PopupView:VC Size:CGSizeMake(320, 480)];
         
     }
-    if (textfield.tag==TAG3) {
-     
-        textfield.inputView=idp_picker;
-        UIToolbar *toolbar=[self fn_create_toolbar];
-        textfield.inputAccessoryView=toolbar;
-    }
-    if (textfield.tag==TAG2) {
+   
+    if (Btn.tag==TAG2) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_dis_portname:);
@@ -189,13 +184,16 @@ static NSInteger day=0;
     }
     [self.tableView reloadData];
 }
-//dateType文本框beginEdit，触发的方法
-- (IBAction)fn_click_dateType:(id)sender {
+//文本框beginEdit，触发的方法
+- (IBAction)fn_click_textfield:(id)sender {
     UITextField *textfield=(UITextField*)sender;
-    if (textfield.tag==TAG4) {
+    if (textfield.tag==TAG3) {
         textfield.inputView=ipic_drop_view;
         textfield.inputAccessoryView=[self fn_create_toolbar];
-        
+    }
+    if (textfield.tag==TAG4) {
+        textfield.inputView=idp_picker;
+        textfield.inputAccessoryView=[self fn_create_toolbar];
     }
 }
 
@@ -282,8 +280,8 @@ static NSInteger day=0;
         }
         if (indexPath.row==0) {
             cell.ilb_port.text=@"Loading Port";
-            cell.ilb_show_portName.text=[idic_portname valueForKey:@"display"];
-            cell.ilb_show_portName.tag=TAG1;
+            cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
+             cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];            cell.ilb_show_portName.tag=TAG1;
             if (idic_portname!=nil) {
                  [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:@"load_port"];
             }
@@ -292,14 +290,13 @@ static NSInteger day=0;
         if (indexPath.row==1) {
             cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
             cell.ilb_port.text=@"Discharge Port";
-            cell.ilb_show_portName.text=[idic_dis_portname valueForKey:@"display"];
+            cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
             cell.ilb_show_portName.tag=TAG2;
             if (idic_dis_portname!=nil) {
                  [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:@"dish_port"];
             }
            
         }
-        cell.ilb_show_portName.delegate=self;
         return cell;
     }
     
@@ -311,10 +308,10 @@ static NSInteger day=0;
                 NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row1" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
-            cell.itf_show_dateType.layer.cornerRadius=10;
+            
             cell.itf_show_dateType.text=[ia_listData objectAtIndex:select_row];
             ;
-            cell.itf_show_dateType.tag=TAG4;
+            cell.itf_show_dateType.tag=TAG3;
             
             if (ilist_dateType!=nil) {
                 [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:@"datetype"];
@@ -323,18 +320,17 @@ static NSInteger day=0;
             return cell;
         }
         if (indexPath.row==1) {
-            static NSString *CellIdentifier = @"Cell_schedule_section1";
-            Cell_schedule_section1 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+            static NSString *CellIdentifier = @"Cell_schedule_section2_row1";
+            Cell_schedule_section2_row1 *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
             if (cell==nil) {
-                NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section1" owner:self options:nil];
+                NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_schedule_section2_row1" owner:self options:nil];
                 cell=[nib objectAtIndex:0];
             }
-            cell.im_navigate_img.image=[UIImage imageNamed:@"calendar"];
-            cell.ilb_port.text=@"Start Date";
-            cell.ilb_show_portName.text=[self fn_DateToStringDate:id_startdate];
-            cell.ilb_show_portName.tag=TAG3;
-            [imd_searchDic setObject:cell.ilb_show_portName.text forKey:@"datefm"];
-            cell.ilb_show_portName.delegate=self;
+            cell.ii_calendar_img.image=[UIImage imageNamed:@"calendar"];
+            cell.ilb_show_dateAndtype.text=@"Start Date";
+            cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
+            cell.itf_show_dateType.tag=TAG4;
+            [imd_searchDic setObject:cell.itf_show_dateType.text forKey:@"datefm"];
             return cell;
         }
         if (indexPath.row==2) {
@@ -402,7 +398,7 @@ static NSInteger day=0;
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@"Every text box cannot be empty!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-   // [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];
+   
 }
 
 
