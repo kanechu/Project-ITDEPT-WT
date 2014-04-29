@@ -20,7 +20,7 @@
         ilb_portName=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 250, 21)];
         ilb_portName.font=[UIFont systemFontOfSize:15];
         ilb_portName.textAlignment=NSTextAlignmentLeft;
-        ilb_portName.textColor=[UIColor blackColor];
+        ilb_portName.textColor=[UIColor whiteColor];
         [self addSubview:ilb_portName];
         ilb_desc=[[UILabel alloc]initWithFrame:CGRectMake(20, 21, 250, 39)];
         ilb_desc.font=[UIFont systemFontOfSize:14];
