@@ -873,19 +873,10 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BeL-8g-Z9e">
-                                            <rect key="frame" x="245" y="25" width="45" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" image="down">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="ibtn_down_btn" destination="BeL-8g-Z9e" id="6Ou-8h-uuG"/>
                                     <outlet property="ii_calendar_img" destination="0zn-0b-aYb" id="gMh-BH-5EV"/>
                                     <outlet property="ilb_show_dateAndtype" destination="cdr-Zn-1ru" id="GhN-jx-SCt"/>
                                     <outlet property="itf_show_dateType" destination="bFh-gj-TH5" id="AEA-OY-PCj"/>
@@ -1603,7 +1594,6 @@
         <image name="alert" width="350" height="350"/>
         <image name="calendar" width="20" height="20"/>
         <image name="closeButtonImage" width="16" height="16"/>
-        <image name="down" width="20" height="20"/>
         <image name="ic_add" width="128" height="128"/>
         <image name="ic_air" width="128" height="128"/>
         <image name="ic_ct" width="330" height="261"/>

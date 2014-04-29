@@ -16,6 +16,5 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *itf_show_dateType;
 
-@property (weak, nonatomic) IBOutlet UIButton *ibtn_down_btn;
 
 @end

@@ -334,7 +334,7 @@ static NSInteger day=30;
             cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
             cell.itf_show_dateType.tag=TAG4;
             [imd_searchDic setObject:cell.itf_show_dateType.text forKey:@"datefm"];
-            [cell.ibtn_down_btn setImage:nil forState:UIControlStateNormal];
+           
             return cell;
         }
         if (indexPath.row==2) {
