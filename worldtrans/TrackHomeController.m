@@ -47,7 +47,7 @@
 #pragma mark seaExport and airExport
 -(void)fn_click_seaExport{
     if ([_ltf_search_no.text length]<1) {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@" Booking / HBL/ HAWB No. cannot be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@" Booking / HBL/ HAWB No cannot be empty！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }else{
         [self performSegueWithIdentifier:@"segue_exhbl" sender:self];
@@ -56,7 +56,7 @@
 }
 -(void)fn_click_airExport{
     if ([_ltf_search_no.text length]<1) {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@" Booking / HBL/ HAWB No. cannot be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:@" Booking / HBL/ HAWB No cannot be empty！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }else{
         [self performSegueWithIdentifier:@"segue_aehbl" sender:self];
