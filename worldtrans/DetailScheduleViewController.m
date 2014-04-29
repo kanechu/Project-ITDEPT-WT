@@ -91,6 +91,13 @@
         NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"Cell_detail_schedule" owner:self options:nil];
         cell=[nib objectAtIndex:0];
     }
+    if( [indexPath row] % 2){
+        cell.backgroundView=nil;
+        cell.backgroundColor=[UIColor blackColor];
+    }else{
+        cell.backgroundView=[[Custom_backgroundView alloc]init];
+    }
+
     NSMutableDictionary *ldict_dictionary=[[NSMutableDictionary alloc]init];
     ldict_dictionary=[ilist_schedule objectAtIndex:indexPath.row]
     ;
@@ -114,12 +121,7 @@
     cell.ilb_load_port.text=[ldict_dictionary valueForKey:@"load_port"];
     cell.ilb_dish_port.text=[ldict_dictionary valueForKey:@"port_name"];
    
-    if( [indexPath row] % 2){
-         cell.backgroundView=[[Custom_backgroundView alloc]init];
-    }else{
-         cell.backgroundColor=[UIColor blackColor];
-    }
-    // Configure the cell...
+        // Configure the cell...
     
     return cell;
 }
