@@ -917,6 +917,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
+                                                <action selector="fn_begin_click_day:" destination="uQE-3O-Enw" eventType="editingDidBegin" id="qSI-em-UPi"/>
                                                 <action selector="fn_click_day:" destination="uQE-3O-Enw" eventType="editingDidEnd" id="fXN-sD-0NO"/>
                                             </connections>
                                         </textField>

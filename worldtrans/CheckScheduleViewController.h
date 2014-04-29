@@ -35,5 +35,6 @@
 - (IBAction)fn_click_searchBtn:(id)sender;
 - (IBAction)fn_click_textfield:(id)sender;
 - (IBAction)fn_click_day:(id)sender;
+- (IBAction)fn_begin_click_day:(id)sender;
 
 @end

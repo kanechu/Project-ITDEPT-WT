@@ -72,10 +72,7 @@ static NSInteger day=30;
     
     //创建一个UIPickerView
     [self fn_create_pickerView];
-    
-    [self fn_dismiss_keyboard];
    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -182,9 +179,16 @@ static NSInteger day=30;
 - (IBAction)fn_click_day:(id)sender {
     UITextField *textfield=(UITextField*)sender;
     if (textfield.tag==TAG5) {
-        day=[textfield.text integerValue];
+       day=[textfield.text integerValue];
     }
     [self.tableView reloadData];
+}
+
+- (IBAction)fn_begin_click_day:(id)sender {
+    UITextField *textfield=(UITextField*)sender;
+    if (textfield.tag==TAG5) {
+        textfield.inputAccessoryView=[self fn_create_toolbar];
+    }
 }
 //文本框beginEdit，触发的方法
 - (IBAction)fn_click_textfield:(id)sender {
@@ -384,26 +388,7 @@ static NSInteger day=30;
     }
    
 }
--(void)fn_dismiss_keyboard{
-    NSNotificationCenter *notification=[NSNotificationCenter defaultCenter];
-    UITapGestureRecognizer *singleTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fn_tap_anyplace:)];
-    NSOperationQueue *mainQuene=[NSOperationQueue mainQueue];
-    [notification addObserverForName:UIKeyboardWillShowNotification
-                    object:nil
-                     queue:mainQuene
-                usingBlock:^(NSNotification *note){
-                    [self.view addGestureRecognizer:singleTap];
-                }];
-    [notification addObserverForName:UIKeyboardWillHideNotification
-                    object:nil
-                     queue:mainQuene
-                usingBlock:^(NSNotification *note){
-                    [self.view removeGestureRecognizer:singleTap];
-                }];
-}
--(void)fn_tap_anyplace:(UIGestureRecognizer *)gestureRecognizer{
-    [self.view endEditing:YES];
-}
+
 #pragma mark 点击search按钮后，开始按条件获取数据
 - (IBAction)fn_click_searchBtn:(id)sender {
     if ([imd_searchDic count]==5) {
