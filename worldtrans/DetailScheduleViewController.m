@@ -10,7 +10,7 @@
 #import "MZFormSheetController.h"
 #import "SortByViewController.h"
 #import "Cell_detail_schedule.h"
-
+#import "Custom_backgroundView.h"
 #import "RequestContract.h"
 #import "AppConstants.h"
 #import "SearchFormContract.h"
@@ -113,6 +113,12 @@
     
     cell.ilb_load_port.text=[ldict_dictionary valueForKey:@"load_port"];
     cell.ilb_dish_port.text=[ldict_dictionary valueForKey:@"port_name"];
+   
+    if( [indexPath row] % 2){
+         cell.backgroundView=[[Custom_backgroundView alloc]init];
+    }else{
+         cell.backgroundColor=[UIColor blackColor];
+    }
     // Configure the cell...
     
     return cell;

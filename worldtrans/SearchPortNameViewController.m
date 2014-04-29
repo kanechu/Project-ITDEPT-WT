@@ -17,7 +17,7 @@
 #import "RespPortName.h"
 #import "MZFormSheetController.h"
 #import "MBProgressHUD.h"
-#import "Custom_backgroundView.h"
+
 @interface SearchPortNameViewController ()
 
 @end
@@ -107,11 +107,7 @@
     
     cell.ilb_portName.text=[[ilist_portname objectAtIndex:indexPath.row] valueForKey:@"display"];
     cell.ilb_desc.text=[[ilist_portname objectAtIndex:indexPath.row] valueForKey:@"desc"];
-    if (indexPath.row%2) {
-        cell.backgroundView=[[Custom_backgroundView alloc]init];
-    }else{
-        cell.backgroundColor=[UIColor blackColor];
-    }
+    
     
     // Configure the cell...
     
