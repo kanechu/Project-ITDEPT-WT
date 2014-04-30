@@ -15,7 +15,6 @@
 @property (strong,nonatomic) id iobj_target;
 @property (nonatomic, assign) SEL isel_action;
 
-@property (weak, nonatomic) IBOutlet UIButton *ibt_cancel_btn;
 
 - (IBAction)fn_disappear_sortBy:(id)sender;
 @end

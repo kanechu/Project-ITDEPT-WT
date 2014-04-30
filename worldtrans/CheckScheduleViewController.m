@@ -65,16 +65,21 @@ static NSInteger day=30;
     //value
     ilist_dateType=@[@"ETD",@"ETA",@"CY",@"CFS"];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
-    _ibt_search_btn.layer.cornerRadius=3;
     
     //创建一个UIDatePicker
     [self fn_create_datePick];
     
     //创建一个UIPickerView
     [self fn_create_pickerView];
+    [self fn_create_image];
    
 }
-
+-(void)fn_create_image{
+    UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(_ibt_search_btn.frame.origin.x+10, 5, 30, _ibt_search_btn.frame.size.height-10)];
+    image.image=[UIImage imageNamed:@"search"];
+    [_ibt_search_btn addSubview:image];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -34,9 +34,7 @@
     [super viewDidLoad];
     imt_sort_list=@[@"Carrier",@"ETD",@"CY Cut",@"CFS Cut"];
     imt_sort_key=@[@"carrier_name",@"etd",@"cy_cut",@"cfs_cut"];
-    //设置按钮的圆角
-    _ibt_cancel_btn.layer.cornerRadius=7;
-    
+       
 	// Do any additional setup after loading the view.
 }
 

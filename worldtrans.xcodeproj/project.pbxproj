@@ -107,6 +107,7 @@
 		B2C2380918B5EAB5001E13C9 /* RespExhbl.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C2380818B5EAB5001E13C9 /* RespExhbl.m */; };
 		B2C6ED7B18E58B570001837B /* Menu_home.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C6ED7A18E58B570001837B /* Menu_home.m */; };
 		B2C6ED8618E59FA80001837B /* Cell_menu_item.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C6ED8518E59FA80001837B /* Cell_menu_item.m */; };
+		B2CD156B1910B3A40025DD93 /* Custom_SearchBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD156A1910B3A40025DD93 /* Custom_SearchBtn.m */; };
 		B2F9C2AC18CAC579006B7299 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C2171A18CAC41400A46809 /* libRestKit.a */; };
 /* End PBXBuildFile section */
 
@@ -330,6 +331,8 @@
 		B2C6ED7A18E58B570001837B /* Menu_home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu_home.m; sourceTree = "<group>"; };
 		B2C6ED8418E59FA80001837B /* Cell_menu_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_menu_item.h; sourceTree = "<group>"; };
 		B2C6ED8518E59FA80001837B /* Cell_menu_item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_menu_item.m; sourceTree = "<group>"; };
+		B2CD15691910B3A40025DD93 /* Custom_SearchBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_SearchBtn.h; sourceTree = "<group>"; };
+		B2CD156A1910B3A40025DD93 /* Custom_SearchBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_SearchBtn.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -606,6 +609,8 @@
 				B2700B06190E0D2A001E824C /* Custom_Button.m */,
 				B2AFA526190F44C900778F75 /* Custom_backgroundView.h */,
 				B2AFA527190F44C900778F75 /* Custom_backgroundView.m */,
+				B2CD15691910B3A40025DD93 /* Custom_SearchBtn.h */,
+				B2CD156A1910B3A40025DD93 /* Custom_SearchBtn.m */,
 			);
 			name = customControl;
 			sourceTree = "<group>";
@@ -943,6 +948,7 @@
 				B2C2380918B5EAB5001E13C9 /* RespExhbl.m in Sources */,
 				B242209818BB2F1C00D4A75C /* Cell_exhbl_general_detail.m in Sources */,
 				B26CAC6118AA302A00C97C83 /* TrackHomeController.m in Sources */,
+				B2CD156B1910B3A40025DD93 /* Custom_SearchBtn.m in Sources */,
 				B278A92A18D832AA0057DC37 /* LoginViewController.m in Sources */,
 				B225B49F190261FE009F1F25 /* Cell_sortBy_list.m in Sources */,
 				B278A92018D8218F0057DC37 /* MZFormSheetSegue.m in Sources */,
