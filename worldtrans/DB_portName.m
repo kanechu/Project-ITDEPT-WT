@@ -42,7 +42,7 @@
     NSMutableArray *llist_results = [NSMutableArray array];
     if ([[idb fn_get_db] open]) {
         
-        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:@"SELECT * FROM portName  where display LIKE ?",[NSString stringWithFormat:@"%%%@%%",is_search]];
+        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:@"SELECT * FROM portName  where display LIKE ?",[NSString stringWithFormat:@"%@%%",is_search]];
         while ([lfmdb_result next]) {
             [llist_results addObject:[lfmdb_result resultDictionary]];
         }
