@@ -17,6 +17,7 @@
 #import "RespPortName.h"
 #import "MZFormSheetController.h"
 #import "MBProgressHUD.h"
+#import "DB_portName.h"
 
 @interface SearchPortNameViewController ()
 
@@ -76,6 +77,8 @@
 }
 -(void)fn_save_portname_list:(NSMutableArray*)alist_result{
     ilist_portname=alist_result;
+    DB_portName *db=[[DB_portName alloc]init];
+    [db fn_save_data:alist_result];
     [_it_table_portname reloadData];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
@@ -137,8 +140,14 @@
      
 }
 - (void)handleSearch:(UISearchBar *)searchBar {
-    
-    [self fn_get_data:_is_search_portName.text];
+    DB_portName *db=[[DB_portName alloc]init];
+    NSMutableArray *arr=[db fn_get_data:searchBar.text];
+    if (arr.count==0) {
+         [self fn_get_data:_is_search_portName.text];
+    }else{
+        ilist_portname=arr;
+        [_it_table_portname reloadData];
+    }
     [_is_search_portName resignFirstResponder];
     // if you want the keyboard to go away
 }

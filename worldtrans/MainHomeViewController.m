@@ -18,6 +18,7 @@
 #import "LogoutViewController.h"
 #import "TrackHomeController.h"
 #import "AlertController.h"
+#import "DB_portName.h"
 @interface MainHomeViewController ()
 
 @end
@@ -223,14 +224,17 @@ CustomBadge *iobj_customBadge;
 
 #pragma mark -UserLogOut menthod
 - (void)fn_user_logout{
+    
     DB_login *dbLogin=[[DB_login alloc]init];
     [dbLogin fn_delete_record];
     _imageView.image=nil;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     //退出登陆后，隐藏alert项
-    
     [self fn_refresh_menu];
+    //清除portName的缓存
+    DB_portName *db=[[DB_portName alloc]init];
+    [db fn_delete_all_data];
 
 }
 

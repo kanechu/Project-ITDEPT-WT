@@ -63,6 +63,7 @@
 		B26CAC7718AA302A00C97C83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26CAC7518AA302A00C97C83 /* InfoPlist.strings */; };
 		B26CAC7918AA302A00C97C83 /* worldtransTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26CAC7818AA302A00C97C83 /* worldtransTests.m */; };
 		B2700B07190E0D2A001E824C /* Custom_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = B2700B06190E0D2A001E824C /* Custom_Button.m */; };
+		B272410419132E5800E6EE5F /* DB_portName.m in Sources */ = {isa = PBXBuildFile; fileRef = B272410319132E5800E6EE5F /* DB_portName.m */; };
 		B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B27387D918FF85C500BF57F2 /* Custom_TextField.m */; };
 		B278A91C18D8218F0057DC37 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90B18D8218F0057DC37 /* MZAppearance.m */; };
 		B278A91D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A90D18D8218F0057DC37 /* MZFormSheetBackgroundWindow.m */; };
@@ -251,6 +252,8 @@
 		B26CAC7818AA302A00C97C83 /* worldtransTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = worldtransTests.m; sourceTree = "<group>"; };
 		B2700B05190E0D2A001E824C /* Custom_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_Button.h; sourceTree = "<group>"; };
 		B2700B06190E0D2A001E824C /* Custom_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_Button.m; sourceTree = "<group>"; };
+		B272410219132E5800E6EE5F /* DB_portName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_portName.h; sourceTree = "<group>"; };
+		B272410319132E5800E6EE5F /* DB_portName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_portName.m; sourceTree = "<group>"; };
 		B27387D818FF85C500BF57F2 /* Custom_TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_TextField.h; sourceTree = "<group>"; };
 		B27387D918FF85C500BF57F2 /* Custom_TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_TextField.m; sourceTree = "<group>"; };
 		B278A90A18D8218F0057DC37 /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
@@ -690,6 +693,8 @@
 				B288CFDF18DA945E0089F877 /* DB_login.m */,
 				B26B684618E6969200E2E67B /* DB_device.h */,
 				B26B684718E6969200E2E67B /* DB_device.m */,
+				B272410219132E5800E6EE5F /* DB_portName.h */,
+				B272410319132E5800E6EE5F /* DB_portName.m */,
 			);
 			name = DataAccess;
 			sourceTree = "<group>";
@@ -911,6 +916,7 @@
 				B2B020C418AB5F6500EECD92 /* CandyTableViewController.m in Sources */,
 				B2A9770718CF18290096BD4B /* FMDatabase.m in Sources */,
 				B23D80F218E18D4700316700 /* Web_base.m in Sources */,
+				B272410419132E5800E6EE5F /* DB_portName.m in Sources */,
 				B26B684818E6969200E2E67B /* DB_device.m in Sources */,
 				B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */,
 				B2307B2618BEEA82000502BE /* Web_get_alert.m in Sources */,
