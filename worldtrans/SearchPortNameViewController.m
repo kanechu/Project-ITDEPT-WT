@@ -131,7 +131,8 @@
 
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-   [_is_search_portName resignFirstResponder];
+    [self fn_get_data:_is_search_portName.text];
+    [_is_search_portName resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
@@ -142,12 +143,8 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     DB_portName *db=[[DB_portName alloc]init];
     NSMutableArray *arr=[db fn_get_data:searchBar.text];
-    if (arr.count==0) {
-        [self fn_get_data:_is_search_portName.text];
-    }else{
-        ilist_portname=arr;
-        [_it_table_portname reloadData];
-    }
+    ilist_portname=arr;
+    [_it_table_portname reloadData];
     
 }
 
