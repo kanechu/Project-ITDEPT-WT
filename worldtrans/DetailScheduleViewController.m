@@ -175,6 +175,8 @@
 }
 //点击搜索的时候，触发的事件
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    ilist_schedule=nil;
+    [self.tableView reloadData];
     [self handleSearch:searchBar];
 }
 
