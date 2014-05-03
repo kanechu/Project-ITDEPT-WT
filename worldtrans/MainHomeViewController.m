@@ -25,6 +25,7 @@
 #define LOGINSHEETSIZE CGSizeMake(280, 220)
 #define SHEETSIZE1 CGSizeMake(280, 250)
 #define SHEETSIZE2 CGSizeMake(280, 180)
+static NSInteger flag=0;
 @implementation MainHomeViewController
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
@@ -38,8 +39,7 @@ CustomBadge *iobj_customBadge;
     ilist_menu = [[NSMutableArray alloc] init];
     [ilist_menu addObject:[Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"]];
     [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"segue_checkSchedule"]];
-    DB_login *dbLogin=[[DB_login alloc]init];
-    if ([dbLogin isLoginSuccess]) {
+    if (flag==1) {
         [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
     }
     [ilist_menu addObject:[Menu_home fn_create_item:@"Search" image:@"search" segue:@"segue_SearchPage"]];
@@ -73,7 +73,7 @@ CustomBadge *iobj_customBadge;
         });
     });
     
-    [self fn_refresh_menu];
+   
 	// Do any additional setup after loading the view.
 }
 //登陆后显示logo图片
@@ -89,7 +89,7 @@ CustomBadge *iobj_customBadge;
     }
    
 }
-//这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致滚动视图不能滑动
+//这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致视图不能滑动
 -(void)viewDidAppear:(BOOL)animated{
     
     DB_login *dbLogin=[[DB_login alloc]init];
@@ -98,11 +98,13 @@ CustomBadge *iobj_customBadge;
         NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
         [_loginBtn setTitle:str forState:UIControlStateNormal];
         [self fn_show_user_logo];
+        //如果已经登录，设置flag=1，显示alert项
+        flag=1;
         
     }else{
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
-    
+     [self fn_refresh_menu];
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,10 +216,10 @@ CustomBadge *iobj_customBadge;
     
     [self BtnGraphicMixed];
     [_loginBtn setTitle:userName forState:UIControlStateNormal];
-    
     //登陆后显示logo图片
     [self fn_show_user_logo];
-    //登陆成功后，显示alter项
+    //登陆成功后，设置flag=1,显示alert项
+     flag=1;
     [self fn_refresh_menu];
 
 }
@@ -231,7 +233,8 @@ CustomBadge *iobj_customBadge;
     _imageView.image=nil;
     [self BtnGraphicMixed];
     [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
-    //退出登陆后，隐藏alert项
+    //退出登陆后，设置flag=0,隐藏alert项
+    flag=0;
     [self fn_refresh_menu];
     //清除portName的缓存
     DB_portName *db=[[DB_portName alloc]init];
