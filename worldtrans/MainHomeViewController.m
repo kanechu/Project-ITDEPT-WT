@@ -9,9 +9,14 @@
 #import "MainHomeViewController.h"
 #import "LoginViewController.h"
 #import "MZFormSheetController.h"
+#import "RequestContract.h"
+#import "AppConstants.h"
+#import "SearchFormContract.h"
+#import "Web_base.h"
 #import "DB_login.h"
 #import "Web_get_alert.h"
 #import "DB_alert.h"
+#import "DB_searchCriteria.h"
 #import "CustomBadge.h"
 #import "Menu_home.h"
 #import "Cell_menu_item.h"
@@ -19,6 +24,9 @@
 #import "TrackHomeController.h"
 #import "AlertController.h"
 #import "DB_portName.h"
+#import "SearchCriteriaViewController.h"
+#import "RespSearchCriteria.h"
+#import "NSArray.h"
 @interface MainHomeViewController ()
 
 @end
@@ -42,7 +50,7 @@ CustomBadge *iobj_customBadge;
     if (flag==1) {
         [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
     }
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Search" image:@"search" segue:@"segue_SearchPage"]];
+    [ilist_menu addObject:[Menu_home fn_create_item:@"Search" image:@"search" segue:@"SearchCriteria"]];
     
     self.iui_collectionview.delegate = self;
     
@@ -100,6 +108,8 @@ CustomBadge *iobj_customBadge;
         [self fn_show_user_logo];
         //如果已经登录，设置flag=1，显示alert项
         flag=1;
+        //如果已经登陆，请求搜索标准的数据
+        [self fn_get_data];
         
     }else{
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
@@ -221,9 +231,36 @@ CustomBadge *iobj_customBadge;
     //登陆成功后，设置flag=1,显示alert项
      flag=1;
     [self fn_refresh_menu];
+    //登陆成功后，请求搜索标准的数据
+    [self fn_get_data];
 
 }
-
+-(void)fn_get_data{
+   
+    RequestContract *req_form=[[RequestContract alloc]init];
+    DB_login *dbLogin=[[DB_login alloc]init];
+    req_form.Auth=[dbLogin WayOfAuthorization];
+    
+    SearchFormContract *search=[[SearchFormContract alloc]init];
+    search.os_column=@"form";
+    search.os_value=@"ctschedule";
+    
+    req_form.SearchForm=[NSSet setWithObjects:search,nil];
+    Web_base *web_base=[[Web_base alloc]init];
+    web_base.il_url =STR_SEARCHCRITERIA_URL;
+    web_base.iresp_class =[RespSearchCriteria class];
+    
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespSearchCriteria class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_searchCriteria_list:);
+    [web_base fn_get_data:req_form];
+    
+}
+//搜索标准的数据存入数据库中
+-(void)fn_save_searchCriteria_list:(NSMutableArray*)ilist_result{
+    DB_searchCriteria *db=[[DB_searchCriteria alloc]init];
+    [db fn_save_data:ilist_result];
+}
 
 #pragma mark -UserLogOut menthod
 - (void)fn_user_logout{
@@ -239,7 +276,9 @@ CustomBadge *iobj_customBadge;
     //清除portName的缓存
     DB_portName *db=[[DB_portName alloc]init];
     [db fn_delete_all_data];
-
+    //清除搜索标准的数据
+    DB_searchCriteria *dbSearch=[[DB_searchCriteria alloc]init];
+    [dbSearch fn_delete_all_data];
 }
 
 #pragma mark - UICollectionView Datasource
