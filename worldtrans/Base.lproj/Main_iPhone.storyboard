@@ -791,6 +791,155 @@
             </objects>
             <point key="canvasLocation" x="730" y="587"/>
         </scene>
+        <!--Search Criteria View Controller - Schedule-->
+        <scene sceneID="0EF-CB-uWk">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchCriteriaViewController" id="cXe-oz-Kh7" customClass="SearchCriteriaViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Gp3-rq-rKG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qiZ-1c-fMy" customClass="Custom_SearchBtn">
+                            <rect key="frame" x="0.0" y="309" width="320" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                            <state key="normal" title="Search">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section1" rowHeight="60" id="Cby-Yg-bb4" customClass="Cell_schedule_section1">
+                                <rect key="frame" x="0.0" y="119" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cby-Yg-bb4" id="MXI-D6-HOb">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mBo-f6-n9x">
+                                            <rect key="frame" x="65" y="0.0" width="226" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigate_up" id="HyN-tz-GzA">
+                                            <rect key="frame" x="7" y="15" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uab-Yx-PvS" customClass="Custom_Button">
+                                            <rect key="frame" x="66" y="22" width="225" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="ilb_port" destination="mBo-f6-n9x" id="KdM-jD-k7g"/>
+                                    <outlet property="im_navigate_img" destination="HyN-tz-GzA" id="hBR-FE-4lg"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section2_row1" rowHeight="60" id="jme-Z9-paP" customClass="Cell_schedule_section2_row1">
+                                <rect key="frame" x="0.0" y="179" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jme-Z9-paP" id="8IY-e9-pM2">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" id="FvT-bL-jjb">
+                                            <rect key="frame" x="7" y="15" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1Yw-Xn-Z7z">
+                                            <rect key="frame" x="65" y="20" width="225" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date  Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IZa-bO-lFp">
+                                            <rect key="frame" x="65" y="0.0" width="82" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="ii_calendar_img" destination="FvT-bL-jjb" id="pBF-Ec-egR"/>
+                                    <outlet property="ilb_show_dateAndtype" destination="IZa-bO-lFp" id="bfd-gx-4jR"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section2_row3" rowHeight="60" id="ubq-2b-eXT" customClass="Cell_schedule_section2_row3">
+                                <rect key="frame" x="0.0" y="239" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ubq-2b-eXT" id="O04-HH-A5J">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" id="nVd-Go-VlL">
+                                            <rect key="frame" x="7" y="15" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="woT-WM-TFj">
+                                            <rect key="frame" x="65" y="0.0" width="91" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Gsv-u5-yjF">
+                                            <rect key="frame" x="65" y="20" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" image="ic_minus">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="Y3b-wQ-ezs" customClass="Custom_TextField">
+                                            <rect key="frame" x="108" y="20" width="71" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CkH-LF-IiX">
+                                            <rect key="frame" x="192" y="20" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" image="ic_add">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="ibt_add_btn" destination="CkH-LF-IiX" id="THu-XO-WzQ"/>
+                                    <outlet property="ibt_decrease_btn" destination="Gsv-u5-yjF" id="MAj-zU-hnc"/>
+                                    <outlet property="ict_show_days" destination="Y3b-wQ-ezs" id="T69-ON-CN0"/>
+                                    <outlet property="ii_calendar_img" destination="nVd-Go-VlL" id="8Oz-8q-DrT"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="cXe-oz-Kh7" id="Efc-dc-qyq"/>
+                            <outlet property="delegate" destination="cXe-oz-Kh7" id="4gc-8H-l76"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Schedule" id="iAI-a6-wfb">
+                        <barButtonItem key="backBarButtonItem" title="Search" id="pDh-se-lKn"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wfi-Vt-Nmn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="1621"/>
+        </scene>
         <!--Check Schedule View Controller - Schedule-->
         <scene sceneID="9sU-oj-AOu">
             <objects>
@@ -964,21 +1113,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQy-00-dAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="150" y="1013"/>
-        </scene>
-        <!--Search Page View Controller-->
-        <scene sceneID="JtN-H9-7iU">
-            <objects>
-                <viewController storyboardIdentifier="SearchPageViewController" id="Ihz-8S-SXA" customClass="SearchPageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6Mx-Sx-rpK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="3YQ-Ga-Lg0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qPq-Fc-pz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="158" y="1843"/>
         </scene>
         <!--Detail Schedule View Controller - Schedule-->
         <scene sceneID="m0w-jQ-Mgt">
@@ -1455,7 +1589,7 @@
                         <segue destination="CZ4-MO-1fc" kind="push" identifier="segue_trackHome" id="0xG-Ym-wnJ"/>
                         <segue destination="3pE-kg-DfJ" kind="push" identifier="segue_alert" id="Cen-WN-xNt"/>
                         <segue destination="uQE-3O-Enw" kind="push" identifier="segue_checkSchedule" id="Jtc-q3-tZn"/>
-                        <segue destination="Ihz-8S-SXA" kind="push" identifier="segue_SearchPage" id="KC5-g0-20C"/>
+                        <segue destination="cXe-oz-Kh7" kind="push" identifier="SearchCriteria" id="cfp-33-tDx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcY-K3-nMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
