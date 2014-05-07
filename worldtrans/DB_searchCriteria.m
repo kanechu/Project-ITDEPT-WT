@@ -18,15 +18,22 @@
 }
 
 -(BOOL)fn_save_data:(NSMutableArray*)alist_searchCriteria{
+    // get current date/time
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    // display in 12HR/24HR (i.e. 11:25PM or 23:25) format according to User Settings
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *ls_currentTime = [dateFormatter stringFromDate:today];
+    
     if ([[idb fn_get_db] open]) {
         for (RespSearchCriteria *lmap_searchCriteria in alist_searchCriteria) {
             NSMutableDictionary *ldict_row = [[NSDictionary dictionaryWithPropertiesOfObject:lmap_searchCriteria] mutableCopy];
-            
-            BOOL ib_delete =[[idb fn_get_db] executeUpdate:@"delete from searchCriteria where seq = :seq and col_code = :col_code and col_label = :col_label and col_type =:col_type and col_option=:col_option and col_def=:col_def and group_name=:group_name and is_mandatory=:is_mandatory" withParameterDictionary:ldict_row];
+            [ldict_row setObject:ls_currentTime forKey:@"save_time"];
+            BOOL ib_delete =[[idb fn_get_db] executeUpdate:@"delete from searchCriteria where seq = :seq and col_code = :col_code and col_label = :col_label and col_type =:col_type and col_option=:col_option and col_def=:col_def and group_name=:group_name and is_mandatory=:is_mandatory and save_time=:save_time " withParameterDictionary:ldict_row];
             if (! ib_delete)
                 return NO;
             
-            BOOL ib_updated =[[idb fn_get_db] executeUpdate:@"insert into searchCriteria (seq, col_code, col_label, col_type, col_option, col_def, group_name, is_mandatory) values (:seq, :col_code, :col_label, :col_type, :col_option, :col_def, :group_name, :is_mandatory)" withParameterDictionary:ldict_row];
+            BOOL ib_updated =[[idb fn_get_db] executeUpdate:@"insert into searchCriteria (seq, col_code, col_label, col_type, col_option, col_def, group_name, is_mandatory, save_time) values (:seq, :col_code, :col_label, :col_type, :col_option, :col_def, :group_name, :is_mandatory, :save_time)" withParameterDictionary:ldict_row];
             if (! ib_updated)
                 return NO;
         }
