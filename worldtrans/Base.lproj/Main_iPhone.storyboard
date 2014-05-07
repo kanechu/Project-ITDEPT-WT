@@ -791,7 +791,7 @@
             </objects>
             <point key="canvasLocation" x="730" y="587"/>
         </scene>
-        <!--Search Criteria View Controller - Schedule-->
+        <!--Search Criteria View Controller - searchCriteria-->
         <scene sceneID="0EF-CB-uWk">
             <objects>
                 <tableViewController storyboardIdentifier="SearchCriteriaViewController" id="cXe-oz-Kh7" customClass="SearchCriteriaViewController" sceneMemberID="viewController">
@@ -799,7 +799,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qiZ-1c-fMy" customClass="Custom_SearchBtn">
+                        <button key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qiZ-1c-fMy" customClass="Custom_SearchBtn">
                             <rect key="frame" x="0.0" y="309" width="320" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
@@ -807,6 +807,9 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="fn_click_searchBtn:" destination="cXe-oz-Kh7" eventType="touchUpInside" id="Aa8-kq-5J3"/>
+                            </connections>
                         </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section1" rowHeight="60" id="Cby-Yg-bb4" customClass="Cell_schedule_section1">
@@ -834,12 +837,16 @@
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="fn_click_portBtn:" destination="cXe-oz-Kh7" eventType="touchUpInside" id="qdx-4F-vOS"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="ilb_port" destination="mBo-f6-n9x" id="KdM-jD-k7g"/>
+                                    <outlet property="ilb_show_portName" destination="uab-Yx-PvS" id="XpM-c1-C9h"/>
                                     <outlet property="im_navigate_img" destination="HyN-tz-GzA" id="hBR-FE-4lg"/>
                                 </connections>
                             </tableViewCell>
@@ -859,6 +866,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="fn_click_textfield:" destination="cXe-oz-Kh7" eventType="editingDidBegin" id="fsY-yB-GOe"/>
+                                            </connections>
                                         </textField>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date  Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IZa-bO-lFp">
                                             <rect key="frame" x="65" y="0.0" width="82" height="21"/>
@@ -873,6 +883,7 @@
                                 <connections>
                                     <outlet property="ii_calendar_img" destination="FvT-bL-jjb" id="pBF-Ec-egR"/>
                                     <outlet property="ilb_show_dateAndtype" destination="IZa-bO-lFp" id="bfd-gx-4jR"/>
+                                    <outlet property="itf_show_dateType" destination="1Yw-Xn-Z7z" id="QpT-X4-TgK"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell_schedule_section2_row3" rowHeight="60" id="ubq-2b-eXT" customClass="Cell_schedule_section2_row3">
@@ -900,12 +911,19 @@
                                             <state key="normal" image="ic_minus">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="fn_click_subBtn:" destination="cXe-oz-Kh7" eventType="touchUpInside" id="cdo-Zy-9Lr"/>
+                                            </connections>
                                         </button>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="Y3b-wQ-ezs" customClass="Custom_TextField">
                                             <rect key="frame" x="108" y="20" width="71" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            <connections>
+                                                <action selector="fn_begin_click_day:" destination="cXe-oz-Kh7" eventType="editingDidBegin" id="voA-21-nG2"/>
+                                                <action selector="fn_click_day:" destination="cXe-oz-Kh7" eventType="editingDidEnd" id="h18-Pn-L1L"/>
+                                            </connections>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CkH-LF-IiX">
                                             <rect key="frame" x="192" y="20" width="30" height="30"/>
@@ -914,6 +932,9 @@
                                             <state key="normal" image="ic_add">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="fn_click_addBtn:" destination="cXe-oz-Kh7" eventType="touchUpInside" id="acW-U9-CHA"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -932,9 +953,13 @@
                             <outlet property="delegate" destination="cXe-oz-Kh7" id="4gc-8H-l76"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedule" id="iAI-a6-wfb">
+                    <navigationItem key="navigationItem" title="searchCriteria" id="iAI-a6-wfb">
                         <barButtonItem key="backBarButtonItem" title="Search" id="pDh-se-lKn"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ibt_search_btn" destination="qiZ-1c-fMy" id="NHC-vs-geu"/>
+                        <segue destination="wP9-Is-2uY" kind="push" identifier="segue_DetailSchedule1" id="7PN-N3-Fc0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfi-Vt-Nmn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1763,6 +1788,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="7PN-N3-Fc0"/>
         <segue reference="3hz-sA-2Up"/>
         <segue reference="Cr5-3k-Xhp"/>
         <segue reference="a6i-DQ-pU2"/>

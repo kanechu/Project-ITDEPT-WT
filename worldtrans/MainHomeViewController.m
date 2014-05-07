@@ -108,8 +108,6 @@ CustomBadge *iobj_customBadge;
         [self fn_show_user_logo];
         //如果已经登录，设置flag=1，显示alert项
         flag=1;
-        //如果已经登陆，请求搜索标准的数据
-        [self fn_get_data];
         
     }else{
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
