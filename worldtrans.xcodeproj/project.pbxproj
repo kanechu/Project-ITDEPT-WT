@@ -88,7 +88,6 @@
 		B2AD1FB71900CA7900F0E0A7 /* Cell_schedule_section1.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AD1FB61900CA7900F0E0A7 /* Cell_schedule_section1.m */; };
 		B2AD1FBE1900D87300F0E0A7 /* Cell_schedule_section2_row1.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AD1FBD1900D87300F0E0A7 /* Cell_schedule_section2_row1.m */; };
 		B2AD1FC11900D89300F0E0A7 /* Cell_schedule_section2_row3.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AD1FC01900D89300F0E0A7 /* Cell_schedule_section2_row3.m */; };
-		B2AD1FCA1901075100F0E0A7 /* CheckScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AD1FC91901075100F0E0A7 /* CheckScheduleViewController.m */; };
 		B2AFA528190F44C900778F75 /* Custom_backgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AFA527190F44C900778F75 /* Custom_backgroundView.m */; };
 		B2B020B818AB52D100EECD92 /* ExhblListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B020B718AB52D100EECD92 /* ExhblListController.m */; };
 		B2B020BD18AB5DFE00EECD92 /* Candy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B020BC18AB5DFE00EECD92 /* Candy.m */; };
@@ -305,8 +304,6 @@
 		B2AD1FBD1900D87300F0E0A7 /* Cell_schedule_section2_row1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_schedule_section2_row1.m; sourceTree = "<group>"; };
 		B2AD1FBF1900D89300F0E0A7 /* Cell_schedule_section2_row3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_schedule_section2_row3.h; sourceTree = "<group>"; };
 		B2AD1FC01900D89300F0E0A7 /* Cell_schedule_section2_row3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell_schedule_section2_row3.m; sourceTree = "<group>"; };
-		B2AD1FC81901075100F0E0A7 /* CheckScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckScheduleViewController.h; sourceTree = "<group>"; };
-		B2AD1FC91901075100F0E0A7 /* CheckScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckScheduleViewController.m; sourceTree = "<group>"; };
 		B2AFA526190F44C900778F75 /* Custom_backgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_backgroundView.h; sourceTree = "<group>"; };
 		B2AFA527190F44C900778F75 /* Custom_backgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_backgroundView.m; sourceTree = "<group>"; };
 		B2B020B618AB52D100EECD92 /* ExhblListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhblListController.h; sourceTree = "<group>"; };
@@ -452,8 +449,6 @@
 				B28209D218E518C90027227A /* MainHomeViewController.m */,
 				B25BE7BA18ECEF0000F41409 /* MapViewController.h */,
 				B25BE7BB18ECEF0000F41409 /* MapViewController.m */,
-				B2AD1FC81901075100F0E0A7 /* CheckScheduleViewController.h */,
-				B2AD1FC91901075100F0E0A7 /* CheckScheduleViewController.m */,
 				B225B470190204FE009F1F25 /* DetailScheduleViewController.h */,
 				B225B471190204FE009F1F25 /* DetailScheduleViewController.m */,
 				B25490101904A6D800D7197A /* SortByViewController.h */,
@@ -965,7 +960,6 @@
 				B284FBD31917694A00EDEBA8 /* DB_searchCriteria.m in Sources */,
 				B22D6C1418D18D0500DE4DB5 /* Cell_aehbl_list.m in Sources */,
 				B2307B1C18BDD532000502BE /* RespAlert.m in Sources */,
-				B2AD1FCA1901075100F0E0A7 /* CheckScheduleViewController.m in Sources */,
 				B2B020BD18AB5DFE00EECD92 /* Candy.m in Sources */,
 				B278A92318D8218F0057DC37 /* UIImage+Additional.m in Sources */,
 				B2C237FF18B37153001E13C9 /* AuthContract.m in Sources */,

@@ -46,11 +46,10 @@ CustomBadge *iobj_customBadge;
 {
     ilist_menu = [[NSMutableArray alloc] init];
     [ilist_menu addObject:[Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"]];
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"segue_checkSchedule"]];
+    [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"SearchCriteria"]];
     if (flag==1) {
         [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
     }
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Search" image:@"search" segue:@"SearchCriteria"]];
     
     self.iui_collectionview.delegate = self;
     
