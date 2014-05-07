@@ -19,6 +19,7 @@
 #import "NSArray.h"
 #import "RespSchedule.h"
 #import "MBProgressHUD.h"
+#import "PopViewManager.h"
 @interface DetailScheduleViewController ()
 
 @end
@@ -145,29 +146,14 @@
     return str;
 }
 
-#pragma mark popView
--(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
-    MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
-    //弹出视图的大小
-    formSheet.presentedFormSheetSize=sheetSize;
-    formSheet.shadowRadius = 2.0;
-    //阴影的不透明度
-    formSheet.shadowOpacity = 0.3;
-    //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
-    formSheet.shouldDismissOnBackgroundViewTap = NO;
-    //中心垂直，默认为NO
-    formSheet.shouldCenterVertically =YES;
-    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
-    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
-    
-}
 #pragma mark 点击右上角的sortBy Button触发的方法
 - (IBAction)fn_click_sortBy_btn:(id)sender {
     SortByViewController *sortByVC=[self.storyboard instantiateViewControllerWithIdentifier:@"SortByViewController"];
     
     sortByVC.iobj_target=self;
     sortByVC.isel_action=@selector(fn_sort_schedule:);
-    [self PopupView:sortByVC Size:CGSizeMake(250, 300)];
+    PopViewManager *popV=[[PopViewManager alloc]init];
+    [popV PopupView:sortByVC Size:CGSizeMake(250, 300) uponView:self];
 }
 #pragma mark UISearchBarDelegate
 //点击搜索按钮的cancel，键盘收起

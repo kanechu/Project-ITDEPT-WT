@@ -27,6 +27,7 @@
 #import "SearchCriteriaViewController.h"
 #import "RespSearchCriteria.h"
 #import "NSArray.h"
+#import "PopViewManager.h"
 @interface MainHomeViewController ()
 
 @end
@@ -176,21 +177,6 @@ CustomBadge *iobj_customBadge;
     }
 }
 
--(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
-    MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
-    //弹出视图的大小
-    formSheet.presentedFormSheetSize=sheetSize;
-    formSheet.shadowRadius = 2.0;
-    //阴影的不透明度
-    formSheet.shadowOpacity = 0.3;
-    //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
-    formSheet.shouldDismissOnBackgroundViewTap = NO;
-    //中心垂直，默认为NO
-    formSheet.shouldCenterVertically =YES;
-    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
-    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
-    
-}
 //实现按钮的图文混排
 -(void)BtnGraphicMixed{
     DB_login *dbLogin=[[DB_login alloc]init];
@@ -219,11 +205,12 @@ CustomBadge *iobj_customBadge;
 }
 - (void)fn_pre_login_or_logout:(id)sender {
     DB_login *dbLogin=[[DB_login alloc]init];
+    PopViewManager *popV=[[PopViewManager alloc]init];
     if ([dbLogin isLoginSuccess]==NO) {
         LoginViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
         VC.iobj_target =self;
         VC.isel_action = @selector(fn_after_login:);
-        [self PopupView:VC Size:LOGINSHEETSIZE];
+        [popV PopupView:VC Size:LOGINSHEETSIZE uponView:self];
     }else{
         //点击用户名称项，执行下面的语句
         LogoutViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Logout"];
@@ -232,9 +219,9 @@ CustomBadge *iobj_customBadge;
         NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
         //如果logo为空的话，弹出的视图size变小
         if (logo==NULL || logo==nil || logo.length==0) {
-            [self PopupView:VC Size:SHEETSIZE2];
+            [popV PopupView:VC Size:SHEETSIZE2 uponView:self];
         }else{
-            [self PopupView:VC Size:SHEETSIZE1];
+             [popV PopupView:VC Size:SHEETSIZE1 uponView:self];
         }
 
     }

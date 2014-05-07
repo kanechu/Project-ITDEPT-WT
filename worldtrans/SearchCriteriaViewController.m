@@ -15,6 +15,7 @@
 #import "DetailScheduleViewController.h"
 #import "SearchPortNameViewController.h"
 #import "MZFormSheetController.h"
+#import "PopViewManager.h"
 #define NUMOFSECTION 2
 @interface SearchCriteriaViewController ()
 
@@ -146,23 +147,6 @@ static NSInteger day=0;
 -(void)fn_Click_done:(id)sender{
     [self.tableView reloadData];
 }
--(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
-    MZFormSheetController *formSheet=[[MZFormSheetController alloc]initWithViewController:VC];
-    //弹出视图的大小
-    formSheet.presentedFormSheetSize=sheetSize;
-    formSheet.shadowRadius = 2.0;
-    [formSheet setCornerRadius:0];
-    //阴影的不透明度
-    formSheet.shadowOpacity = 0.3;
-    //Yes是点击背景任何地方，弹出视图都消失,反之为No.默认为NO
-    formSheet.shouldDismissOnBackgroundViewTap = NO;
-    //中心垂直，默认为NO
-    formSheet.shouldCenterVertically =YES;
-    formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
-    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController){}];
-    
-}
-
 #pragma mark pickerView
 -(void)fn_create_pickerView{
     ipic_drop_view=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 225, 0,0)];
@@ -194,23 +178,21 @@ static NSInteger day=0;
 #pragma mark sent event
 - (IBAction)fn_click_portBtn:(id)sender{
     Custom_Button *Btn=(Custom_Button*)sender;
+    PopViewManager *popV=[[PopViewManager alloc]init];
     if (Btn.tag==TAG1) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.is_placeholder=@"Please fill in Load Port!";
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_load_portname:);
-        [self PopupView:VC Size:CGSizeMake(320, 480)];
+        [popV PopupView:VC Size:CGSizeMake(320, 480) uponView:self];
         
     }
-    
     if (Btn.tag==TAG2) {
         SearchPortNameViewController *VC=(SearchPortNameViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"SearchPortNameViewController"];
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_dis_portname:);
         VC.is_placeholder=@"Please fill in Discharge Port!";
-        [self PopupView:VC Size:CGSizeMake(320, 480)];
-        
-        
+       [popV PopupView:VC Size:CGSizeMake(320, 480) uponView:self];
     }
 }
 
