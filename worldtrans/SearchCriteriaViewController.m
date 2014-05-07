@@ -65,7 +65,6 @@ static NSInteger day=0;
 {
     [super viewDidLoad];
     [self fn_init_arrAnddic];
-    
     section1_rows=0;
     section2_rows=0;
     

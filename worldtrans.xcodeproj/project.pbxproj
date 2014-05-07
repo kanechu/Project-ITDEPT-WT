@@ -449,14 +449,14 @@
 				B28209D218E518C90027227A /* MainHomeViewController.m */,
 				B25BE7BA18ECEF0000F41409 /* MapViewController.h */,
 				B25BE7BB18ECEF0000F41409 /* MapViewController.m */,
+				B284FBCB19174B2C00EDEBA8 /* SearchCriteriaViewController.h */,
+				B284FBCC19174B2C00EDEBA8 /* SearchCriteriaViewController.m */,
 				B225B470190204FE009F1F25 /* DetailScheduleViewController.h */,
 				B225B471190204FE009F1F25 /* DetailScheduleViewController.m */,
 				B25490101904A6D800D7197A /* SortByViewController.h */,
 				B25490111904A6D800D7197A /* SortByViewController.m */,
 				B26B3C91190795C700CB41F9 /* SearchPortNameViewController.h */,
 				B26B3C92190795C700CB41F9 /* SearchPortNameViewController.m */,
-				B284FBCB19174B2C00EDEBA8 /* SearchCriteriaViewController.h */,
-				B284FBCC19174B2C00EDEBA8 /* SearchCriteriaViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

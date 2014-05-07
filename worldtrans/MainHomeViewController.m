@@ -112,6 +112,11 @@ CustomBadge *iobj_customBadge;
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
      [self fn_refresh_menu];
+    DB_searchCriteria *dbSearch=[[DB_searchCriteria alloc]init];
+    NSMutableArray* arr=[dbSearch fn_get_all_data];
+    if (arr.count==0) {
+        [self fn_get_data];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -151,7 +156,24 @@ CustomBadge *iobj_customBadge;
     //button.tag用来区分点击那个Item
     menu_item=[ilist_menu objectAtIndex:button.tag];
     [self performSegueWithIdentifier:menu_item.is_segue sender:self];
-    
+    if ([menu_item.is_segue isEqualToString:@"SearchCriteria"]) {
+        NSDate *now_time=[NSDate date];
+        NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        DB_searchCriteria *dbSearch=[[DB_searchCriteria alloc]init];
+        NSMutableArray* arr=[dbSearch fn_get_all_data];
+        NSString *str=nil;
+        if ([arr count]!=0) {
+            str =[[arr objectAtIndex:0] valueForKey:@"save_time"];
+            NSDate *save_time=[formatter dateFromString:str];
+            NSTimeInterval time=[now_time timeIntervalSinceDate:save_time];
+            int  hours=((int)time)%(3600*24)/3600;
+            NSLog(@"%d",hours);
+            if (hours>=3) {
+                [self fn_get_data];
+            }
+        }
+    }
 }
 
 -(void)PopupView:(UIViewController*)VC Size:(CGSize) sheetSize{
@@ -256,7 +278,10 @@ CustomBadge *iobj_customBadge;
 //搜索标准的数据存入数据库中
 -(void)fn_save_searchCriteria_list:(NSMutableArray*)ilist_result{
     DB_searchCriteria *db=[[DB_searchCriteria alloc]init];
-    [db fn_save_data:ilist_result];
+    if ([db fn_delete_all_data]) {
+        [db fn_save_data:ilist_result];
+    }
+    
 }
 
 #pragma mark -UserLogOut menthod
@@ -273,9 +298,6 @@ CustomBadge *iobj_customBadge;
     //清除portName的缓存
     DB_portName *db=[[DB_portName alloc]init];
     [db fn_delete_all_data];
-    //清除搜索标准的数据
-    DB_searchCriteria *dbSearch=[[DB_searchCriteria alloc]init];
-    [dbSearch fn_delete_all_data];
 }
 
 #pragma mark - UICollectionView Datasource
