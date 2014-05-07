@@ -110,10 +110,12 @@ static NSInteger day=0;
             NSArray *option1=nil;
             for (NSString *str in option) {
                 option1=[str componentsSeparatedByString:@":"];
+                if (option1.count>=2) {
                 //date type display
                 [ia_listData addObject:[option1 objectAtIndex:0]];
                 //value
                 [ilist_dateType addObject:[option1 objectAtIndex:1]];
+                }
             }
         }
     }

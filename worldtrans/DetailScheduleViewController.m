@@ -80,7 +80,6 @@
         return 0;
     }else{
         return [ilist_schedule count];
-        [self.tableView reloadData];
     }
     
 }
