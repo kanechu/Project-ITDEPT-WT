@@ -36,6 +36,9 @@
 		B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209A18BB303600D4A75C /* ExhblGeneralController.m */; };
 		B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24555CE18D166A500D47DC7 /* AehblListController.m */; };
 		B24E83AC18D2A50700C29034 /* AehblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24E83AB18D2A50700C29034 /* AehblGeneralController.m */; };
+		B2531101191C728C0049AFDA /* SKSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25310FE191C728C0049AFDA /* SKSTableView.m */; };
+		B2531102191C728C0049AFDA /* SKSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2531100191C728C0049AFDA /* SKSTableViewCell.m */; };
+		B2531108191C73E10049AFDA /* ExpandSearchCriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2531107191C73E10049AFDA /* ExpandSearchCriteriaViewController.m */; };
 		B25490121904A6D800D7197A /* SortByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25490111904A6D800D7197A /* SortByViewController.m */; };
 		B25490191904EFF200D7197A /* Cell_detail_schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = B25490181904EFF200D7197A /* Cell_detail_schedule.m */; };
 		B25649FF18E29C1B00030E05 /* NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = B25649FE18E29C1B00030E05 /* NSArray.m */; };
@@ -212,6 +215,12 @@
 		B24555CE18D166A500D47DC7 /* AehblListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblListController.m; sourceTree = "<group>"; };
 		B24E83AA18D2A50700C29034 /* AehblGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblGeneralController.h; sourceTree = "<group>"; };
 		B24E83AB18D2A50700C29034 /* AehblGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblGeneralController.m; sourceTree = "<group>"; };
+		B25310FD191C728C0049AFDA /* SKSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableView.h; sourceTree = "<group>"; };
+		B25310FE191C728C0049AFDA /* SKSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableView.m; sourceTree = "<group>"; };
+		B25310FF191C728C0049AFDA /* SKSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableViewCell.h; sourceTree = "<group>"; };
+		B2531100191C728C0049AFDA /* SKSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableViewCell.m; sourceTree = "<group>"; };
+		B2531106191C73E10049AFDA /* ExpandSearchCriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandSearchCriteriaViewController.h; sourceTree = "<group>"; };
+		B2531107191C73E10049AFDA /* ExpandSearchCriteriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandSearchCriteriaViewController.m; sourceTree = "<group>"; };
 		B25490101904A6D800D7197A /* SortByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortByViewController.h; sourceTree = "<group>"; };
 		B25490111904A6D800D7197A /* SortByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortByViewController.m; sourceTree = "<group>"; };
 		B25490171904EFF200D7197A /* Cell_detail_schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell_detail_schedule.h; sourceTree = "<group>"; };
@@ -460,6 +469,9 @@
 				B25490111904A6D800D7197A /* SortByViewController.m */,
 				B26B3C91190795C700CB41F9 /* SearchPortNameViewController.h */,
 				B26B3C92190795C700CB41F9 /* SearchPortNameViewController.m */,
+				B2531106191C73E10049AFDA /* ExpandSearchCriteriaViewController.h */,
+				B2531107191C73E10049AFDA /* ExpandSearchCriteriaViewController.m */,
+				B25310F8191C72250049AFDA /* Expandable Table */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -508,6 +520,17 @@
 				B2923513191A119C00F9F8B8 /* PopViewManager.m */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		B25310F8191C72250049AFDA /* Expandable Table */ = {
+			isa = PBXGroup;
+			children = (
+				B25310FD191C728C0049AFDA /* SKSTableView.h */,
+				B25310FE191C728C0049AFDA /* SKSTableView.m */,
+				B25310FF191C728C0049AFDA /* SKSTableViewCell.h */,
+				B2531100191C728C0049AFDA /* SKSTableViewCell.m */,
+			);
+			name = "Expandable Table";
 			sourceTree = "<group>";
 		};
 		B2571CDB18E543D200C7DFA3 /* CustomBadge */ = {
@@ -935,6 +958,7 @@
 				B26B684818E6969200E2E67B /* DB_device.m in Sources */,
 				B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */,
 				B2307B2618BEEA82000502BE /* Web_get_alert.m in Sources */,
+				B2531108191C73E10049AFDA /* ExpandSearchCriteriaViewController.m in Sources */,
 				B2B020B818AB52D100EECD92 /* ExhblListController.m in Sources */,
 				B26B3C96190797A700CB41F9 /* Cell_portName_list.m in Sources */,
 				B26CAC6418AA302A00C97C83 /* SecondViewController.m in Sources */,
@@ -949,6 +973,7 @@
 				B2A9770818CF18290096BD4B /* FMDatabaseAdditions.m in Sources */,
 				B2C216DE18C8AC7A00A46809 /* NSDictionary.m in Sources */,
 				B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */,
+				B2531102191C728C0049AFDA /* SKSTableViewCell.m in Sources */,
 				B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */,
 				B284FBCD19174B2C00EDEBA8 /* SearchCriteriaViewController.m in Sources */,
 				B21D992218D2E53800EE795A /* RespAehbl.m in Sources */,
@@ -1001,6 +1026,7 @@
 				B2571CE218E5441F00C7DFA3 /* CustomBadge.m in Sources */,
 				B26B3C8C19078A4000CB41F9 /* RespPortName.m in Sources */,
 				B242209218BAED3000D4A75C /* ExhblHomeController.m in Sources */,
+				B2531101191C728C0049AFDA /* SKSTableView.m in Sources */,
 				B2A9770A18CF18290096BD4B /* FMDatabaseQueue.m in Sources */,
 				B2AFA528190F44C900778F75 /* Custom_backgroundView.m in Sources */,
 				B2AD1FC11900D89300F0E0A7 /* Cell_schedule_section2_row3.m in Sources */,

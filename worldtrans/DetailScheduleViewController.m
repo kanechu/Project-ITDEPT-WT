@@ -43,7 +43,8 @@
     [super viewDidLoad];
     //searchBar的代理
     _is_seach_bar.delegate=self;
-   // NSLog(@"%@",imd_searchDic);
+    NSLog(@"%@",imd_searchDic);
+    NSLog(@"%@",imd_searchDic1);
     [self fn_get_data:imd_searchDic];
     [self BtnGraphicMixed];
 

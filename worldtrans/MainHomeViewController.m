@@ -51,6 +51,7 @@ CustomBadge *iobj_customBadge;
     if (flag==1) {
         [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
     }
+    [ilist_menu addObject:[Menu_home fn_create_item:@"Expandable" image:@"search" segue:@"Segue_ExpandSearch"]];
     
     self.iui_collectionview.delegate = self;
     
