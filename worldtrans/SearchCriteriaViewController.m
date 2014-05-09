@@ -268,13 +268,8 @@ static NSInteger day=0;
 
 #pragma mark UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section==0) {
-        return 30;
-    }
-    if (section==1) {
-        return 20;
-    }
-    return 0;
+   
+    return 30;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
@@ -284,14 +279,22 @@ static NSInteger day=0;
 }
 
 #pragma mark - Table view data source
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
+    headerView.backgroundColor=[UIColor blackColor];
+    UILabel *headertitle=[[UILabel alloc]initWithFrame:CGRectMake(5, 5, 200, 21)];
+    headertitle.backgroundColor=[UIColor clearColor];
+    headertitle.textColor=[UIColor colorWithRed:234.0/255.0 green:191.0/255.0 blue:229.0/255.0 alpha:1.0];
+    headertitle.font=[UIFont systemFontOfSize:15];
+    [headerView addSubview:headertitle];
     if (section==0) {
-        return [[alist_searchCriteria_section1 objectAtIndex:0]valueForKey:@"group_name"];
+        headertitle.text= [[alist_searchCriteria_section1 objectAtIndex:0]valueForKey:@"group_name"];
     }
     if (section==1) {
-        return [[alist_searchCriteria_section2 objectAtIndex:0]valueForKey:@"group_name"];
+        headertitle.text= [[alist_searchCriteria_section2 objectAtIndex:0]valueForKey:@"group_name"];
     }
-    return nil;
+    return headerView;
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
