@@ -348,7 +348,6 @@ static NSInteger day=0;
     static NSString *CellIdentifier = @"SKSTableViewCell";
     
     SKSTableViewCell *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     if (!cell)
         cell = [[SKSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     //设置文本字体的颜色
@@ -360,12 +359,7 @@ static NSInteger day=0;
     if (indexPath.section==1) {
         cell.textLabel.text=[[alist_searchCriteria_section2 objectAtIndex:0]valueForKey:@"group_name"];
     }
-    
-    
-    if ((indexPath.section == 0 && (indexPath.row == 1 || indexPath.row == 0)) || (indexPath.section == 1 && (indexPath.row == 0 || indexPath.row == 2||indexPath.row==4)))
-        cell.expandable = YES;
-    else
-        cell.expandable = NO;
+    cell.expandable = YES;
     
     return cell;
 }
