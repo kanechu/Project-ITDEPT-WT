@@ -65,9 +65,8 @@ CGFloat const kDefaultCellHeight = 60.0f;
     self.dataSource = self;
     self.delegate = self;
     
-   // [self setSeparatorColor:[UIColor colorWithRed:236.0/255.0 green:236.0/255.0 blue:236.0/255.0 alpha:1.0]];
-    //设置sub的背景颜色
-    [self setSeparatorColor:[UIColor blackColor]];
+    //设置sub的分线颜色
+    [self setSeparatorColor:[UIColor whiteColor]];
     
     if (SKSTableViewDelegate)
         _SKSTableViewDelegate = SKSTableViewDelegate;
@@ -165,7 +164,6 @@ CGFloat const kDefaultCellHeight = 60.0f;
     else
     {
         UITableViewCell *cell = [_SKSTableViewDelegate tableView:(SKSTableView *)tableView cellForSubRowAtIndexPath:correspondingIndexPath];
-        cell.backgroundColor = [self separatorColor];
         cell.backgroundView = nil;
         cell.indentationLevel = 2;
         
