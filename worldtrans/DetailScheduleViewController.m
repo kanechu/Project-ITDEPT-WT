@@ -222,7 +222,7 @@
 }
 -(void)fn_save_schedule_list:(NSMutableArray*)alist_result{
     ilist_schedule=alist_result;
-    [self.tableView reloadData];
+    [self fn_sort_schedule:@"etd"];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
 }
