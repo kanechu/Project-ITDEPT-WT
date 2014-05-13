@@ -63,23 +63,7 @@ static NSInteger day=0;
     ia_listData=[[NSMutableArray alloc]initWithCapacity:10];
     flag_mandatory_key=[[NSMutableArray alloc]initWithCapacity:10];
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.skstableView.SKSTableViewDelegate=self;
-    [self fn_init_arrAnddic];
-    section1_rows=0;
-    section2_rows=0;
-    
-    //创建一个UIDatePicker
-    [self fn_create_datePick];
-    
-    //创建一个UIPickerView
-    [self fn_create_pickerView];
-    [self fn_create_image];
-    
-    [self fn_get_searchCriteria_data];
-    [self.skstableView expandall];
+-(void)fn_register_notifiction{
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
@@ -97,6 +81,27 @@ static NSInteger day=0;
     }
     
 #endif
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.skstableView.SKSTableViewDelegate=self;
+    [self fn_init_arrAnddic];
+    section1_rows=0;
+    section2_rows=0;
+    
+    //创建一个UIDatePicker
+    [self fn_create_datePick];
+    
+    //创建一个UIPickerView
+    [self fn_create_pickerView];
+    [self fn_create_image];
+    
+    [self fn_get_searchCriteria_data];
+    //loadview的时候，打开所有expandable
+    [self.skstableView expandall];
+    //注册通知
+    [self fn_register_notifiction];
     
 	// Do any additional setup after loading the view.
 }

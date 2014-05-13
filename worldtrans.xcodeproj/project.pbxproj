@@ -79,7 +79,6 @@
 		B278A92418D8218F0057DC37 /* UIViewController+TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A91B18D8218F0057DC37 /* UIViewController+TargetViewController.m */; };
 		B278A92A18D832AA0057DC37 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B278A92918D832AA0057DC37 /* LoginViewController.m */; };
 		B28209D318E518C90027227A /* MainHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B28209D218E518C90027227A /* MainHomeViewController.m */; };
-		B284FBCD19174B2C00EDEBA8 /* SearchCriteriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBCC19174B2C00EDEBA8 /* SearchCriteriaViewController.m */; };
 		B284FBD019175F0300EDEBA8 /* RespSearchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBCF19175F0300EDEBA8 /* RespSearchCriteria.m */; };
 		B284FBD31917694A00EDEBA8 /* DB_searchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBD21917694A00EDEBA8 /* DB_searchCriteria.m */; };
 		B288CFE018DA945E0089F877 /* DB_login.m in Sources */ = {isa = PBXBuildFile; fileRef = B288CFDF18DA945E0089F877 /* DB_login.m */; };
@@ -290,8 +289,6 @@
 		B278A92918D832AA0057DC37 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B28209D118E518C90027227A /* MainHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeViewController.h; sourceTree = "<group>"; };
 		B28209D218E518C90027227A /* MainHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeViewController.m; sourceTree = "<group>"; };
-		B284FBCB19174B2C00EDEBA8 /* SearchCriteriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCriteriaViewController.h; sourceTree = "<group>"; };
-		B284FBCC19174B2C00EDEBA8 /* SearchCriteriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCriteriaViewController.m; sourceTree = "<group>"; };
 		B284FBCE19175F0300EDEBA8 /* RespSearchCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RespSearchCriteria.h; sourceTree = "<group>"; };
 		B284FBCF19175F0300EDEBA8 /* RespSearchCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RespSearchCriteria.m; sourceTree = "<group>"; };
 		B284FBD11917694A00EDEBA8 /* DB_searchCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_searchCriteria.h; sourceTree = "<group>"; };
@@ -461,16 +458,14 @@
 				B28209D218E518C90027227A /* MainHomeViewController.m */,
 				B25BE7BA18ECEF0000F41409 /* MapViewController.h */,
 				B25BE7BB18ECEF0000F41409 /* MapViewController.m */,
-				B284FBCB19174B2C00EDEBA8 /* SearchCriteriaViewController.h */,
-				B284FBCC19174B2C00EDEBA8 /* SearchCriteriaViewController.m */,
+				B2531106191C73E10049AFDA /* ExpandSearchCriteriaViewController.h */,
+				B2531107191C73E10049AFDA /* ExpandSearchCriteriaViewController.m */,
 				B225B470190204FE009F1F25 /* DetailScheduleViewController.h */,
 				B225B471190204FE009F1F25 /* DetailScheduleViewController.m */,
 				B25490101904A6D800D7197A /* SortByViewController.h */,
 				B25490111904A6D800D7197A /* SortByViewController.m */,
 				B26B3C91190795C700CB41F9 /* SearchPortNameViewController.h */,
 				B26B3C92190795C700CB41F9 /* SearchPortNameViewController.m */,
-				B2531106191C73E10049AFDA /* ExpandSearchCriteriaViewController.h */,
-				B2531107191C73E10049AFDA /* ExpandSearchCriteriaViewController.m */,
 				B25310F8191C72250049AFDA /* Expandable Table */,
 			);
 			name = Controller;
@@ -975,7 +970,6 @@
 				B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */,
 				B2531102191C728C0049AFDA /* SKSTableViewCell.m in Sources */,
 				B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */,
-				B284FBCD19174B2C00EDEBA8 /* SearchCriteriaViewController.m in Sources */,
 				B21D992218D2E53800EE795A /* RespAehbl.m in Sources */,
 				B2307AFC18BC7E25000502BE /* Cell_exhbl_general_hdr.m in Sources */,
 				B2C2380518B37466001E13C9 /* SearchFormContract.m in Sources */,

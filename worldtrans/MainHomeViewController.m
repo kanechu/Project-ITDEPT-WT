@@ -24,7 +24,6 @@
 #import "TrackHomeController.h"
 #import "AlertController.h"
 #import "DB_portName.h"
-#import "SearchCriteriaViewController.h"
 #import "RespSearchCriteria.h"
 #import "NSArray.h"
 #import "PopViewManager.h"
@@ -47,11 +46,10 @@ CustomBadge *iobj_customBadge;
 {
     ilist_menu = [[NSMutableArray alloc] init];
     [ilist_menu addObject:[Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"]];
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"SearchCriteria"]];
+    [ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"Segue_ExpandSearch"]];
     if (flag==1) {
         [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
     }
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Expandable" image:@"search" segue:@"Segue_ExpandSearch"]];
     
     self.iui_collectionview.delegate = self;
     
