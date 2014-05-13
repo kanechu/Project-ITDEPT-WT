@@ -51,9 +51,25 @@ static NSInteger day=0;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+       
     }
     return self;
 }
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self=[super initWithCoder:aDecoder];
+    if (self) {
+        //ios7的navigation不占位置，所以scollview自动空出一个nav的高度
+        if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+            
+            if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
+                self.automaticallyAdjustsScrollViewInsets = NO;
+            }
+        }
+       
+    }
+    return self;
+}
+
 -(void)fn_init_arrAnddic{
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     imd_searchDic1=[[NSMutableDictionary alloc]initWithCapacity:10];
@@ -98,11 +114,10 @@ static NSInteger day=0;
     [self fn_create_image];
     
     [self fn_get_searchCriteria_data];
-    //loadview的时候，打开所有expandable
-    [self.skstableView expandall];
     //注册通知
     [self fn_register_notifiction];
-    
+    //loadview的时候，打开所有expandable
+    [self.skstableView fn_expandall];
 	// Do any additional setup after loading the view.
 }
 
@@ -164,8 +179,8 @@ static NSInteger day=0;
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
      checkText = textField;//设置被点击的对象
 }
-#pragma mark Responding to keyboard events
 
+#pragma mark Responding to keyboard events
 - (void)keyboardWillShow:(NSNotification*)notification{
     if (nil == checkText) {
         
@@ -187,11 +202,10 @@ static NSInteger day=0;
 }
 
 //键盘被隐藏的时候调用的方法
-
 -(void)keyboardWillHide:(NSNotification*)notification {
     if (checkText) {
-        //设置表视图frame
-        [skstableView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        //设置表视图frame,ios7的导航条加上状态栏是64
+        [skstableView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
     }
 }
 

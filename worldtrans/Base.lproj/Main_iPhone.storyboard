@@ -939,7 +939,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="p0H-Bd-pi6" customClass="Custom_SearchBtn">
-                                <rect key="frame" x="5" y="438" width="310" height="40"/>
+                                <rect key="frame" x="2" y="438" width="316" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92099808670000005" green="0.61994286639999996" blue="0.90190898389999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Search">
