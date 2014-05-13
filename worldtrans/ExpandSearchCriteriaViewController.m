@@ -118,13 +118,22 @@ static NSInteger day=0;
     [self fn_register_notifiction];
     //loadview的时候，打开所有expandable
     [self.skstableView fn_expandall];
+    [self setExtraCellLineHidden:skstableView];
 	// Do any additional setup after loading the view.
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+//将额外的cell的线隐藏
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view =[ [UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
 }
 //截取搜索标准的有用数据
 -(void)fn_get_searchCriteria_data{
@@ -441,41 +450,41 @@ static NSInteger day=0;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForSubRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-    static NSString *CellIdentifier = @"Cell_schedule_section11";
-    Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-    if (cell==nil) {
-        cell=[[Cell_schedule_section1 alloc]init];
-    }
-        
-    //提取分区1的数据
-    NSMutableDictionary *dic=[alist_searchCriteria_section1 objectAtIndex:indexPath.subRow-1];
-    if (indexPath.subRow==1) {
-        cell.ilb_port.text=[dic valueForKey:@"col_label"];
-        cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
-        cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
-        cell.ilb_show_portName.tag=TAG1;
-        if (idic_portname!=nil) {
-            [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.row+indexPath.section*2)]];
-            [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"load_port"];
-            [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"1"];
+        static NSString *CellIdentifier = @"Cell_schedule_section11";
+        Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+        if (cell==nil) {
+            cell=[[Cell_schedule_section1 alloc]init];
         }
         
-    }
-    if (indexPath.subRow==2) {
-        cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
-        cell.ilb_port.text=[dic valueForKey:@"col_label"];
-        cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
-        cell.ilb_show_portName.tag=TAG2;
-        if (idic_dis_portname!=nil) {
-            [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-            [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"dish_port"];
-            [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"2"];
+        //提取分区1的数据
+        NSMutableDictionary *dic=[alist_searchCriteria_section1 objectAtIndex:indexPath.subRow-1];
+        if (indexPath.subRow==1) {
+            cell.ilb_port.text=[dic valueForKey:@"col_label"];
+            cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
+            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
+            cell.ilb_show_portName.tag=TAG1;
+            if (idic_portname!=nil) {
+                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.row+indexPath.section*2)]];
+                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"load_port"];
+                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"1"];
+            }
+            
+        }
+        if (indexPath.subRow==2) {
+            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
+            cell.ilb_port.text=[dic valueForKey:@"col_label"];
+            cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
+            cell.ilb_show_portName.tag=TAG2;
+            if (idic_dis_portname!=nil) {
+                [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"dish_port"];
+                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"2"];
+            }
+            
         }
         
+        return cell;
     }
-    
-    return cell;
-}
     
     if (indexPath.section==1) {
         //提取分区2的数据
