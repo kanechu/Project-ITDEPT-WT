@@ -103,7 +103,7 @@
  *  @discussion You must set only this protocol for the delegation and the datasource of SKSTableView instance.
  */
 @property (nonatomic, weak) id <SKSTableViewDelegate> SKSTableViewDelegate;
-
+- (void) expandall;
 /**
  * A Boolean value indicating whether only one cell can be expanded at a time.
  *

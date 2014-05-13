@@ -78,6 +78,7 @@ static NSInteger day=0;
     [self fn_create_image];
     
     [self fn_get_searchCriteria_data];
+    [self.skstableView expandall];
 	// Do any additional setup after loading the view.
 }
 
