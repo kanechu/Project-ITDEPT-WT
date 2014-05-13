@@ -392,6 +392,7 @@
 		B2307B0C18BD8423000502BE /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				B25310F8191C72250049AFDA /* Expandable Table */,
 				B2571CDB18E543D200C7DFA3 /* CustomBadge */,
 				B278A90518D820F70057DC37 /* MZFormSheet */,
 				B2307B0D18BD8436000502BE /* MBProgressHUD */,
@@ -466,7 +467,6 @@
 				B25490111904A6D800D7197A /* SortByViewController.m */,
 				B26B3C91190795C700CB41F9 /* SearchPortNameViewController.h */,
 				B26B3C92190795C700CB41F9 /* SearchPortNameViewController.m */,
-				B25310F8191C72250049AFDA /* Expandable Table */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

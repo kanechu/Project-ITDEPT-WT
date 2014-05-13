@@ -124,6 +124,7 @@ CGFloat const kDefaultCellHeight = 60.0f;
     if ([correspondingIndexPath subRow] == 0)
     {
         SKSTableViewCell *expandableCell = (SKSTableViewCell *)[_SKSTableViewDelegate tableView:tableView cellForRowAtIndexPath:correspondingIndexPath];
+        expandableCell.selectionStyle=UITableViewCellSelectionStyleNone;
         if ([expandableCell respondsToSelector:@selector(setSeparatorInset:)])
         {
             expandableCell.separatorInset = UIEdgeInsetsZero;
@@ -164,6 +165,7 @@ CGFloat const kDefaultCellHeight = 60.0f;
     else
     {
         UITableViewCell *cell = [_SKSTableViewDelegate tableView:(SKSTableView *)tableView cellForSubRowAtIndexPath:correspondingIndexPath];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.backgroundView = nil;
         cell.indentationLevel = 2;
         

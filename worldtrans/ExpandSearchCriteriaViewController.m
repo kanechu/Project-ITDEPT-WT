@@ -260,7 +260,7 @@ static NSInteger day=0;
         VC.is_placeholder=@"Please fill in Load Port!";
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_load_portname:);
-        [popV PopupView:VC Size:CGSizeMake(320, 480) uponView:self];
+        [popV PopupView:VC Size:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height) uponView:self];
         
     }
     if (Btn.tag==TAG2) {
@@ -268,7 +268,7 @@ static NSInteger day=0;
         VC.iobj_target=self;
         VC.isel_action=@selector(fn_show_dis_portname:);
         VC.is_placeholder=@"Please fill in Discharge Port!";
-        [popV PopupView:VC Size:CGSizeMake(320, 480) uponView:self];
+        [popV PopupView:VC Size:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height) uponView:self];
     }
 }
 
@@ -439,12 +439,14 @@ static NSInteger day=0;
     return cell;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForSubRowAtIndexPath:(NSIndexPath *)indexPath
-{ if (indexPath.section==0) {
+{
+    if (indexPath.section==0) {
     static NSString *CellIdentifier = @"Cell_schedule_section11";
     Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
     if (cell==nil) {
         cell=[[Cell_schedule_section1 alloc]init];
     }
+        
     //提取分区1的数据
     NSMutableDictionary *dic=[alist_searchCriteria_section1 objectAtIndex:indexPath.subRow-1];
     if (indexPath.subRow==1) {
