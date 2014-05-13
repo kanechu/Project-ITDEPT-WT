@@ -28,6 +28,7 @@ enum TEXTFIELD_TAG {
 static NSInteger day=0;
 
 @implementation ExpandSearchCriteriaViewController
+@synthesize checkText;
 @synthesize ia_listData;
 @synthesize ipic_drop_view;
 @synthesize ilist_dateType;
@@ -79,6 +80,24 @@ static NSInteger day=0;
     
     [self fn_get_searchCriteria_data];
     [self.skstableView expandall];
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // 键盘高度变化通知，ios5.0新增的
+    
+#ifdef __IPHONE_5_0
+    
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    
+    if (version >= 5.0) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)name:UIKeyboardWillChangeFrameNotification object:nil];
+        
+    }
+    
+#endif
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -136,6 +155,41 @@ static NSInteger day=0;
     [_ibt_search_btn addSubview:image];
     
 }
+#pragma mark UItextfieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+     checkText = textField;//设置被点击的对象
+}
+#pragma mark Responding to keyboard events
+
+- (void)keyboardWillShow:(NSNotification*)notification{
+    if (nil == checkText) {
+        
+        return;
+        
+    }
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get the origin of the keyboard when it's displayed.
+    
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect keyboardRect = [aValue CGRectValue];
+    
+    //设置表视图frame
+    [skstableView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keyboardRect.size.height-10)];
+    //设置表视图可见cell
+    [skstableView scrollToRowAtIndexPath:[NSIndexPath indexPathForSubRow:1 inRow:1 inSection:1] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+}
+
+//键盘被隐藏的时候调用的方法
+
+-(void)keyboardWillHide:(NSNotification*)notification {
+    if (checkText) {
+        //设置表视图frame
+        [skstableView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    }
+}
+
 #pragma mark create toolbar
 -(UIToolbar*)fn_create_toolbar{
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -230,6 +284,7 @@ static NSInteger day=0;
 //文本框beginEdit，触发的方法
 - (IBAction)fn_click_textfield:(id)sender {
     UITextField *textfield=(UITextField*)sender;
+    textfield.delegate=self;
     if (textfield.tag==TAG3) {
         textfield.inputView=ipic_drop_view;
         textfield.inputAccessoryView=[self fn_create_toolbar];
@@ -467,12 +522,11 @@ static NSInteger day=0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Section: %d, Row:%d, Subrow:%d", indexPath.section, indexPath.row, indexPath.subRow);
 }
 
 - (void)tableView:(SKSTableView *)tableView didSelectSubRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"Section: %d, Row:%d, Subrow:%d", indexPath.section, indexPath.row, indexPath.subRow);
+   
 }
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40;

@@ -10,6 +10,8 @@
 #import "SKSTableView.h"
 #import "Custom_SearchBtn.h"
 @interface ExpandSearchCriteriaViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,SKSTableViewDelegate>
+//用来标记哪一个UITextfield；
+@property(nonatomic)UITextField *checkText;
 //计算分区的行数
 @property (assign,nonatomic)NSInteger section1_rows;
 @property (assign,nonatomic)NSInteger section2_rows;
