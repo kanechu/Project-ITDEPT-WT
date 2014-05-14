@@ -442,18 +442,18 @@ static NSInteger day=0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForSubRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //提取每行的数据
+    NSMutableDictionary *dic=alist_filtered_data[indexPath.section][indexPath.subRow-1];
+    //显示的名称
+    NSString *col_label=[dic valueForKey:@"col_label"];
     if (indexPath.section==0) {
         static NSString *CellIdentifier = @"Cell_schedule_section11";
         Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
         if (cell==nil) {
             cell=[[Cell_schedule_section1 alloc]init];
         }
-        
-        //提取分区1的数据
-        NSMutableDictionary *dic=alist_filtered_data[indexPath.section][indexPath.subRow-1];
-        NSLog(@"%@",dic);
         if (indexPath.subRow==1) {
-            cell.ilb_port.text=[dic valueForKey:@"col_label"];
+            cell.ilb_port.text=col_label;
             cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
             cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
             cell.ilb_show_portName.tag=TAG1;
@@ -466,7 +466,7 @@ static NSInteger day=0;
         }
         if (indexPath.subRow==2) {
             cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
-            cell.ilb_port.text=[dic valueForKey:@"col_label"];
+            cell.ilb_port.text=col_label;
             cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
             cell.ilb_show_portName.tag=TAG2;
             if (idic_dis_portname!=nil) {
@@ -481,8 +481,6 @@ static NSInteger day=0;
     }
     
     if (indexPath.section==1) {
-        //提取分区2的数据
-         NSMutableDictionary *dic1=alist_filtered_data[indexPath.section][indexPath.subRow-1];
         if (indexPath.subRow==1||indexPath.subRow==2) {
             static NSString *CellIdentifier = @"Cell_schedule_section2_row11";
             Cell_schedule_section2_row1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
@@ -490,28 +488,27 @@ static NSInteger day=0;
                 cell=[[Cell_schedule_section2_row1 alloc]init];
             }
             if (indexPath.subRow==1) {
-                cell.ilb_show_dateAndtype.text=[dic1 valueForKey:@"col_label"];
+                cell.ilb_show_dateAndtype.text=col_label;
                 cell.itf_show_dateType.text=[ia_listData objectAtIndex:select_row];
                 ;
                 cell.itf_show_dateType.tag=TAG3;
                 
                 if (ilist_dateType!=nil) {
                     [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                    [imd_searchDic setObject:[dic1 valueForKey:@"col_code"] forKey:@"datetype"];
+                    [imd_searchDic setObject:col_label forKey:@"datetype"];
                     [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"3"];
                 }
             }
             
             if (indexPath.subRow==2) {
                 
-                cell.ilb_show_dateAndtype.text=[dic1 valueForKey:@"col_label"];            cell.ii_calendar_img.image=[UIImage imageNamed:@"calendar"];
-                
-                cell.ilb_show_dateAndtype.text=@"Start Date";
+                cell.ilb_show_dateAndtype.text=col_label;
+                cell.ii_calendar_img.image=[UIImage imageNamed:@"calendar"];
                 cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
                 cell.itf_show_dateType.tag=TAG4;
                 
                 [imd_searchDic setObject:cell.itf_show_dateType.text forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:[dic1 valueForKey:@"col_code"] forKey:@"datefm"];
+                [imd_searchDic setObject:col_label forKey:@"datefm"];
                 [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"4"];
             }
             
@@ -530,7 +527,7 @@ static NSInteger day=0;
             }else if([self fn_DateToStringDate:id_startdate].length!=0 && day==0){
                 [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
             }
-            [imd_searchDic setObject:[dic1 valueForKey:@"col_code"] forKey:@"dateto"];
+            [imd_searchDic setObject:col_label forKey:@"dateto"];
             [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"5"];
             cell.ict_show_days.tag=TAG5;
             cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
