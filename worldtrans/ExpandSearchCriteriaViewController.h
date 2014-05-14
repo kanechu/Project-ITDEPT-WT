@@ -15,16 +15,12 @@
 @property(nonatomic,strong) DB_searchCriteria *db;
 //存储搜索标准数据
 @property(nonatomic,strong)NSMutableArray *alist_searchCriteria;
-//存储搜索标准的组名
-@property(nonatomic,strong)NSMutableArray *alist_groupName;
+//存储搜索标准的组名和该组的行数
+@property(nonatomic,strong)NSMutableArray *alist_groupNameAndNum;
 //存储过滤后的搜索标准数据
 @property(nonatomic,strong)NSMutableArray *alist_filtered_data;
 //用来标记哪一个UITextfield；
 @property(nonatomic)UITextField *checkText;
-
-//计算分区的行数
-@property (assign,nonatomic)NSInteger section1_rows;
-@property (assign,nonatomic)NSInteger section2_rows;
 
 //标识必填项的key
 @property (strong,nonatomic)NSMutableArray *flag_mandatory_key;

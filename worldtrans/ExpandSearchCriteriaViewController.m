@@ -38,14 +38,12 @@ static NSInteger day=0;
 @synthesize idic_portname;
 @synthesize idic_dis_portname;
 @synthesize select_row;
-@synthesize section1_rows;
-@synthesize section2_rows;
 @synthesize flag_mandatory_key;
 @synthesize imd_searchDic1;
 @synthesize skstableView;
 @synthesize db;
 @synthesize alist_searchCriteria;
-@synthesize alist_groupName;
+@synthesize alist_groupNameAndNum;
 @synthesize alist_filtered_data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -75,11 +73,9 @@ static NSInteger day=0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.skstableView.SKSTableViewDelegate=self;
     [self fn_init_global_Variable];
-    section1_rows=0;
-    section2_rows=0;
-    
+    [self fn_sort_criteriaData];
+    self.skstableView.SKSTableViewDelegate=self;
     //创建一个UIDatePicker
     [self fn_create_datePick];
     
@@ -92,7 +88,7 @@ static NSInteger day=0;
     [self fn_register_notifiction];
     //loadview的时候，打开所有expandable
     [self.skstableView fn_expandall];
-    [self fn_sort_criteriaData];
+    
     [self setExtraCellLineHidden:skstableView];
    	// Do any additional setup after loading the view.
 }
@@ -104,7 +100,7 @@ static NSInteger day=0;
 #pragma mark 对数组进行排序
 -(void)fn_sort_criteriaData{
     //如果需要降序，那么将ascending由YES改为NO
-    NSSortDescriptor *sortByName=[NSSortDescriptor sortDescriptorWithKey:@"group_name" ascending:YES];
+    NSSortDescriptor *sortByName=[NSSortDescriptor sortDescriptorWithKey:@"group_name" ascending:NO];
     NSSortDescriptor *sortByName1=[NSSortDescriptor sortDescriptorWithKey:@"seq" ascending:YES];
     
     NSArray *sortDescriptors=[NSArray arrayWithObjects:sortByName,sortByName1,nil];
@@ -161,17 +157,9 @@ static NSInteger day=0;
     if ([db fn_get_all_data].count!=0) {
         _ibt_search_btn.hidden=NO;
     }
-    alist_groupName=[db fn_get_groupName];
+    alist_groupNameAndNum=[db fn_get_groupNameAndNum];
     
     for (NSMutableDictionary *dic in [db fn_get_all_data]) {
-        //获取第一分区的行数
-        if ([[dic valueForKey:@"group_name"] isEqualToString:@"LOCATION"]) {
-            section1_rows++;
-        }
-        //获取第二分区的行数
-        if ([[dic valueForKey:@"group_name"] isEqualToString:@"Date"]) {
-            section2_rows++;
-        }
         if ([[dic valueForKey:@"is_mandatory"] isEqualToString:@"1"]) {
             [flag_mandatory_key addObject:[dic valueForKey:@"col_label"]];
         }
@@ -419,7 +407,7 @@ static NSInteger day=0;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [alist_groupName count];
+    return [alist_groupNameAndNum count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -429,13 +417,8 @@ static NSInteger day=0;
 
 - (NSInteger)tableView:(SKSTableView *)tableView numberOfSubRowsAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0) {
-        return section1_rows;
-    }
-    if (indexPath.section==1) {
-        return section2_rows;
-    }
-    return 0;
+    NSString *numOfrow=[[alist_groupNameAndNum objectAtIndex:indexPath.section] valueForKey:@"COUNT(group_name)"];
+    return [numOfrow integerValue];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -447,9 +430,9 @@ static NSInteger day=0;
     //设置文本字体的颜色
     cell.textLabel.textColor=[UIColor colorWithRed:234.0/255.0 green:191.0/255.0 blue:229.0/255.0 alpha:1.0];
     cell.textLabel.font=[UIFont systemFontOfSize:15];
-    cell.textLabel.text =[[alist_groupName objectAtIndex:indexPath.section] valueForKey:@"group_name"];
+    cell.textLabel.text =[[alist_groupNameAndNum objectAtIndex:indexPath.section] valueForKey:@"group_name"];
     
-    NSString *str=[[alist_groupName objectAtIndex:indexPath.section] valueForKey:@"group_name"];
+    NSString *str=[[alist_groupNameAndNum objectAtIndex:indexPath.section] valueForKey:@"group_name"];
     NSArray *arr=[self fn_filtered_criteriaData:str];
     if (arr!=nil) {
          [alist_filtered_data addObject:arr];
