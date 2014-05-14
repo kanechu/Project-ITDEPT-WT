@@ -446,41 +446,9 @@ static NSInteger day=0;
     NSMutableDictionary *dic=alist_filtered_data[indexPath.section][indexPath.subRow-1];
     //显示的名称
     NSString *col_label=[dic valueForKey:@"col_label"];
-    if (indexPath.section==0) {
-        static NSString *CellIdentifier = @"Cell_schedule_section11";
-        Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-        if (cell==nil) {
-            cell=[[Cell_schedule_section1 alloc]init];
-        }
-        if (indexPath.subRow==1) {
-            cell.ilb_port.text=col_label;
-            cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
-            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
-            cell.ilb_show_portName.tag=TAG1;
-            if (idic_portname!=nil) {
-                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"load_port"];
-                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"1"];
-            }
-            
-        }
-        if (indexPath.subRow==2) {
-            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
-            cell.ilb_port.text=col_label;
-            cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
-            cell.ilb_show_portName.tag=TAG2;
-            if (idic_dis_portname!=nil) {
-                [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"dish_port"];
-                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"2"];
-            }
-            
-        }
-        
-        return cell;
-    }
+    NSString *numOfrow=[[alist_groupNameAndNum objectAtIndex:indexPath.section] valueForKey:@"COUNT(group_name)"];
     
-    if (indexPath.section==1) {
+    if ([numOfrow integerValue]>=3) {
         if (indexPath.subRow==1||indexPath.subRow==2) {
             static NSString *CellIdentifier = @"Cell_schedule_section2_row11";
             Cell_schedule_section2_row1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
@@ -535,7 +503,40 @@ static NSInteger day=0;
             
             return cell;
         }
+    }else{
+        static NSString *CellIdentifier = @"Cell_schedule_section11";
+        Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+        if (cell==nil) {
+            cell=[[Cell_schedule_section1 alloc]init];
+        }
+        if (indexPath.subRow==1) {
+            cell.ilb_port.text=col_label;
+            cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
+            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
+            cell.ilb_show_portName.tag=TAG1;
+            if (idic_portname!=nil) {
+                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"load_port"];
+                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"1"];
+            }
+            
+        }
+        if (indexPath.subRow==2) {
+            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
+            cell.ilb_port.text=col_label;
+            cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
+            cell.ilb_show_portName.tag=TAG2;
+            if (idic_dis_portname!=nil) {
+                [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"dish_port"];
+                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"2"];
+            }
+            
+        }
+        
+        return cell;
     }
+    
     // Configure the cell...
     return nil;
 }
