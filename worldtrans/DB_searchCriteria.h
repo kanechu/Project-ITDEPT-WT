@@ -15,6 +15,5 @@
 -(BOOL)fn_save_data:(NSMutableArray*)alist_searchCriteria;
 -(NSMutableArray*)fn_get_all_data;
 -(BOOL)fn_delete_all_data;
--(NSInteger)fn_get_Groupnumber;
-
+-(NSMutableArray*)fn_get_groupName;
 @end

@@ -40,12 +40,13 @@ static NSInteger day=0;
 @synthesize select_row;
 @synthesize section1_rows;
 @synthesize section2_rows;
-@synthesize alist_searchCriteria_section1;
-@synthesize alist_searchCriteria_section2;
 @synthesize flag_mandatory_key;
 @synthesize imd_searchDic1;
 @synthesize skstableView;
 @synthesize db;
+@synthesize alist_searchCriteria;
+@synthesize alist_groupName;
+@synthesize alist_filtered_data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -91,23 +92,41 @@ static NSInteger day=0;
     [self fn_register_notifiction];
     //loadview的时候，打开所有expandable
     [self.skstableView fn_expandall];
+    [self fn_sort_criteriaData];
     [self setExtraCellLineHidden:skstableView];
-	// Do any additional setup after loading the view.
+   	// Do any additional setup after loading the view.
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark 对数组进行排序
+-(void)fn_sort_criteriaData{
+    //如果需要降序，那么将ascending由YES改为NO
+    NSSortDescriptor *sortByName=[NSSortDescriptor sortDescriptorWithKey:@"group_name" ascending:YES];
+    NSSortDescriptor *sortByName1=[NSSortDescriptor sortDescriptorWithKey:@"seq" ascending:YES];
+    
+    NSArray *sortDescriptors=[NSArray arrayWithObjects:sortByName,sortByName1,nil];
+    NSMutableArray *sortedArray=[[alist_searchCriteria sortedArrayUsingDescriptors:sortDescriptors]mutableCopy];
+    //重新排序后，存回给原来的数组
+    alist_searchCriteria=sortedArray;
+}
+#pragma mark 对数组进行过滤
+-(NSArray*)fn_filtered_criteriaData:(NSString*)key{
+    NSArray *filtered=[alist_searchCriteria filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(group_name==%@)",key]];
+    return filtered;
+}
+
 -(void)fn_init_global_Variable{
     db=[[DB_searchCriteria alloc]init];
+    alist_searchCriteria=[db fn_get_all_data];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     imd_searchDic1=[[NSMutableDictionary alloc]initWithCapacity:10];
-    alist_searchCriteria_section1=[[NSMutableArray alloc]initWithCapacity:10];
-    alist_searchCriteria_section2=[[NSMutableArray alloc]initWithCapacity:10];
     ilist_dateType=[[NSMutableArray alloc]initWithCapacity:10];
     ia_listData=[[NSMutableArray alloc]initWithCapacity:10];
     flag_mandatory_key=[[NSMutableArray alloc]initWithCapacity:10];
+    alist_filtered_data=[[NSMutableArray alloc]initWithCapacity:10];
 }
 -(void)fn_register_notifiction{
     //注册通知
@@ -142,16 +161,16 @@ static NSInteger day=0;
     if ([db fn_get_all_data].count!=0) {
         _ibt_search_btn.hidden=NO;
     }
+    alist_groupName=[db fn_get_groupName];
+    
     for (NSMutableDictionary *dic in [db fn_get_all_data]) {
-        //获取第一分区的行数和搜索标准数据
+        //获取第一分区的行数
         if ([[dic valueForKey:@"group_name"] isEqualToString:@"LOCATION"]) {
             section1_rows++;
-            [alist_searchCriteria_section1 addObject:dic];
         }
-        //获取第二分区的行数和搜索标准数据
+        //获取第二分区的行数
         if ([[dic valueForKey:@"group_name"] isEqualToString:@"Date"]) {
             section2_rows++;
-            [alist_searchCriteria_section2 addObject:dic];
         }
         if ([[dic valueForKey:@"is_mandatory"] isEqualToString:@"1"]) {
             [flag_mandatory_key addObject:[dic valueForKey:@"col_label"]];
@@ -198,7 +217,6 @@ static NSInteger day=0;
         
     }
     NSDictionary *userInfo = [notification userInfo];
-    
     // Get the origin of the keyboard when it's displayed.
     
     NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -401,7 +419,7 @@ static NSInteger day=0;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [db fn_get_Groupnumber];
+    return [alist_groupName count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -429,14 +447,14 @@ static NSInteger day=0;
     //设置文本字体的颜色
     cell.textLabel.textColor=[UIColor colorWithRed:234.0/255.0 green:191.0/255.0 blue:229.0/255.0 alpha:1.0];
     cell.textLabel.font=[UIFont systemFontOfSize:15];
-    if (indexPath.section==0) {
-        cell.textLabel.text =[[alist_searchCriteria_section1 objectAtIndex:0]valueForKey:@"group_name"];
-    }
-    if (indexPath.section==1) {
-        cell.textLabel.text=[[alist_searchCriteria_section2 objectAtIndex:0]valueForKey:@"group_name"];
+    cell.textLabel.text =[[alist_groupName objectAtIndex:indexPath.section] valueForKey:@"group_name"];
+    
+    NSString *str=[[alist_groupName objectAtIndex:indexPath.section] valueForKey:@"group_name"];
+    NSArray *arr=[self fn_filtered_criteriaData:str];
+    if (arr!=nil) {
+         [alist_filtered_data addObject:arr];
     }
     cell.expandable = YES;
-    
     return cell;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForSubRowAtIndexPath:(NSIndexPath *)indexPath
@@ -449,7 +467,8 @@ static NSInteger day=0;
         }
         
         //提取分区1的数据
-        NSMutableDictionary *dic=[alist_searchCriteria_section1 objectAtIndex:indexPath.subRow-1];
+        NSMutableDictionary *dic=alist_filtered_data[indexPath.section][indexPath.subRow-1];
+        NSLog(@"%@",dic);
         if (indexPath.subRow==1) {
             cell.ilb_port.text=[dic valueForKey:@"col_label"];
             cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
@@ -480,7 +499,7 @@ static NSInteger day=0;
     
     if (indexPath.section==1) {
         //提取分区2的数据
-        NSMutableDictionary *dic1=[alist_searchCriteria_section2 objectAtIndex:indexPath.subRow-1];
+         NSMutableDictionary *dic1=alist_filtered_data[indexPath.section][indexPath.subRow-1];
         if (indexPath.subRow==1||indexPath.subRow==2) {
             static NSString *CellIdentifier = @"Cell_schedule_section2_row11";
             Cell_schedule_section2_row1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
@@ -502,7 +521,7 @@ static NSInteger day=0;
             
             if (indexPath.subRow==2) {
                 
-                cell.ilb_show_dateAndtype.text=[[alist_searchCriteria_section2 objectAtIndex:indexPath.subRow-1]valueForKey:@"col_label"];            cell.ii_calendar_img.image=[UIImage imageNamed:@"calendar"];
+                cell.ilb_show_dateAndtype.text=[dic1 valueForKey:@"col_label"];            cell.ii_calendar_img.image=[UIImage imageNamed:@"calendar"];
                 
                 cell.ilb_show_dateAndtype.text=@"Start Date";
                 cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];

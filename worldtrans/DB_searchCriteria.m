@@ -68,15 +68,16 @@
     return YES;
     
 }
--(NSInteger)fn_get_Groupnumber{
-    
-    if ([[idb fn_get_db] open]) {
-        NSInteger li_count = [[idb fn_get_db] intForQuery:@"SELECT COUNT(DISTINCT group_name) FROM searchCriteria"];
-        [[idb fn_get_db] close];
-        return  li_count;
+
+-(NSMutableArray*)fn_get_groupName{
+    NSMutableArray *arr=[NSMutableArray array];
+    if ([[idb fn_get_db]open]) {
+        FMResultSet *lfmdb_result= [[idb fn_get_db] executeQuery:@"SELECT DISTINCT group_name FROM searchCriteria"];
+        while ([lfmdb_result next]) {
+            [arr addObject:[lfmdb_result resultDictionary]];
+        }
+        [[idb fn_get_db]close];
     }
-    return 0;
+    return arr;
 }
-
-
 @end
