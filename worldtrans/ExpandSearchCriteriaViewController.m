@@ -45,6 +45,7 @@ static NSInteger day=0;
 @synthesize flag_mandatory_key;
 @synthesize imd_searchDic1;
 @synthesize skstableView;
+@synthesize db;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,7 +71,36 @@ static NSInteger day=0;
     return self;
 }
 
--(void)fn_init_arrAnddic{
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.skstableView.SKSTableViewDelegate=self;
+    [self fn_init_global_Variable];
+    section1_rows=0;
+    section2_rows=0;
+    
+    //创建一个UIDatePicker
+    [self fn_create_datePick];
+    
+    //创建一个UIPickerView
+    [self fn_create_pickerView];
+    [self fn_create_image];
+    
+    [self fn_get_searchCriteria_data];
+    //注册通知
+    [self fn_register_notifiction];
+    //loadview的时候，打开所有expandable
+    [self.skstableView fn_expandall];
+    [self setExtraCellLineHidden:skstableView];
+	// Do any additional setup after loading the view.
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)fn_init_global_Variable{
+    db=[[DB_searchCriteria alloc]init];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     imd_searchDic1=[[NSMutableDictionary alloc]initWithCapacity:10];
     alist_searchCriteria_section1=[[NSMutableArray alloc]initWithCapacity:10];
@@ -98,36 +128,7 @@ static NSInteger day=0;
     
 #endif
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.skstableView.SKSTableViewDelegate=self;
-    [self fn_init_arrAnddic];
-    section1_rows=0;
-    section2_rows=0;
-    
-    //创建一个UIDatePicker
-    [self fn_create_datePick];
-    
-    //创建一个UIPickerView
-    [self fn_create_pickerView];
-    [self fn_create_image];
-    
-    [self fn_get_searchCriteria_data];
-    //注册通知
-    [self fn_register_notifiction];
-    //loadview的时候，打开所有expandable
-    [self.skstableView fn_expandall];
-    [self setExtraCellLineHidden:skstableView];
-	// Do any additional setup after loading the view.
-}
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 //将额外的cell的线隐藏
 - (void)setExtraCellLineHidden: (UITableView *)tableView
 {
@@ -137,7 +138,7 @@ static NSInteger day=0;
 }
 //截取搜索标准的有用数据
 -(void)fn_get_searchCriteria_data{
-    DB_searchCriteria *db=[[DB_searchCriteria alloc]init];
+   
     if ([db fn_get_all_data].count!=0) {
         _ibt_search_btn.hidden=NO;
     }
@@ -400,16 +401,7 @@ static NSInteger day=0;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSInteger flag=alist_searchCriteria_section1.count;
-    NSInteger flag1=alist_searchCriteria_section2.count;
-    if (flag!=0 && flag1!=0) {
-        return 2;
-    }else if (flag==0&&flag1==0){
-        return 0;
-    }else{
-        return 1;
-    }
-    return 1;
+    return [db fn_get_Groupnumber];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -464,7 +456,7 @@ static NSInteger day=0;
             cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
             cell.ilb_show_portName.tag=TAG1;
             if (idic_portname!=nil) {
-                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.row+indexPath.section*2)]];
+                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
                 [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"load_port"];
                 [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"1"];
             }

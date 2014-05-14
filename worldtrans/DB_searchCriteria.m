@@ -10,6 +10,7 @@
 #import "DBManager.h"
 #import "RespSearchCriteria.h"
 #import "NSDictionary.h"
+#import "FMDatabaseAdditions.h"
 @implementation DB_searchCriteria
 @synthesize idb;
 -(id)init{
@@ -67,7 +68,15 @@
     return YES;
     
 }
-
+-(NSInteger)fn_get_Groupnumber{
+    
+    if ([[idb fn_get_db] open]) {
+        NSInteger li_count = [[idb fn_get_db] intForQuery:@"SELECT COUNT(DISTINCT group_name) FROM searchCriteria"];
+        [[idb fn_get_db] close];
+        return  li_count;
+    }
+    return 0;
+}
 
 
 @end

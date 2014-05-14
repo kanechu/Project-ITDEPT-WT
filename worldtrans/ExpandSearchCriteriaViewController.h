@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SKSTableView.h"
 #import "Custom_SearchBtn.h"
+@class DB_searchCriteria;
 @interface ExpandSearchCriteriaViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,SKSTableViewDelegate>
+//存储搜索标准数据的数据库
+@property(nonatomic,strong) DB_searchCriteria *db;
 //用来标记哪一个UITextfield；
 @property(nonatomic)UITextField *checkText;
 //计算分区的行数
