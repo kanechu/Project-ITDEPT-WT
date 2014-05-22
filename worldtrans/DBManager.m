@@ -67,11 +67,14 @@ static int DB_VERSION = 1;
         NSString *ls_sql_device=@"CREATE TABLE IF NOT EXISTS device( unique_id INTEGER PRIMARY KEY,device_id TEXT NOT NULL DEFAULT '')";
         NSString *ls_sql_portName=@"CREATE TABLE IF NOT EXISTS portName( unique_id INTEGER PRIMARY KEY,display TEXT NOT NULL DEFAULT '',data TEXT NOT NULL DEFAULT '',desc TEXT NOT NULL DEFAULT '',image TEXT NOT NULL DEFAULT '')";
          NSString *ls_sql_searchCriteria=@"CREATE TABLE IF NOT EXISTS searchCriteria( unique_id INTEGER PRIMARY KEY,seq TEXT NOT NULL DEFAULT '',col_code TEXT NOT NULL DEFAULT '',col_label TEXT NOT NULL DEFAULT '',col_type TEXT NOT NULL DEFAULT '',col_option TEXT NOT NULL DEFAULT '',col_def TEXT NOT NULL DEFAULT '',group_name TEXT NOT NULL DEFAULT '',is_mandatory TEXT NOT NULL DEFAULT '',save_time TEXT NOT NULL DEFAULT '')";
+        NSString *ls_sql_icon=@"CREATE TABLE IF NOT EXISTS icon( unique_id INTEGER PRIMARY KEY,ic_name TEXT NOT NULL DEFAULT '',ic_content TEXT NOT NULL DEFAULT '',upd_date TEXT NOT NULL DEFAULT '')";
+        
         [database executeUpdate:ls_sql_stmt];
         [database executeUpdate:ls_sql_login];
         [database executeUpdate:ls_sql_device];
         [database executeUpdate:ls_sql_portName];
         [database executeUpdate:ls_sql_searchCriteria];
+        [database executeUpdate:ls_sql_icon];
         [database close];
         return  lb_Success;
     }
