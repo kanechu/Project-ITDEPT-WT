@@ -17,6 +17,7 @@
 #import "Web_get_alert.h"
 #import "DB_alert.h"
 #import "DB_searchCriteria.h"
+#import "DB_icon.h"
 #import "CustomBadge.h"
 #import "Menu_home.h"
 #import "Cell_menu_item.h"
@@ -27,6 +28,7 @@
 #import "RespSearchCriteria.h"
 #import "NSArray.h"
 #import "PopViewManager.h"
+#import "RespIcon.h"
 @interface MainHomeViewController ()
 
 @end
@@ -66,6 +68,7 @@ CustomBadge *iobj_customBadge;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self fn_get_allIcon];
     [_loginBtn addTarget:self action:@selector(fn_pre_login_or_logout:) forControlEvents:UIControlEventTouchUpInside];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -82,6 +85,14 @@ CustomBadge *iobj_customBadge;
     
    
 	// Do any additional setup after loading the view.
+}
+-(void)fn_get_allIcon{
+    DB_icon *db=[[DB_icon alloc]init];
+    if ([[db fn_get_all_iconData] count]==0) {
+        [self fn_get_icon_data:@"0"];
+    }else{
+        [self fn_get_icon_data:@"0"];
+    }
 }
 //登陆后显示logo图片
 -(void)fn_show_user_logo{
@@ -269,6 +280,33 @@ CustomBadge *iobj_customBadge;
     }
     
 }
+-(void)fn_get_icon_data:(NSString*)search_value{
+    
+    RequestContract *req_form=[[RequestContract alloc]init];
+    DB_login *dbLogin=[[DB_login alloc]init];
+    req_form.Auth=[dbLogin WayOfAuthorization];
+    
+    SearchFormContract *search=[[SearchFormContract alloc]init];
+    search.os_column=@"rec_upd_date";
+    search.os_value=search_value;
+    
+    req_form.SearchForm=[NSSet setWithObjects:search,nil];
+    Web_base *web_base=[[Web_base alloc]init];
+    web_base.il_url =STR_ICON_URL;
+    web_base.iresp_class =[RespIcon class];
+    
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespIcon class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_icon_list:);
+    [web_base fn_get_data:req_form];
+    
+}
+//搜索标准的图片存入数据库中
+-(void)fn_save_icon_list:(NSMutableArray*)ilist_result{
+    DB_icon *db=[[DB_icon alloc]init];
+    [db fn_save_data:ilist_result];
+}
+
 
 #pragma mark -UserLogOut menthod
 - (void)fn_user_logout{

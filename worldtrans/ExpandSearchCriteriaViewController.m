@@ -10,6 +10,7 @@
 #import "SKSTableView.h"
 #import "SKSTableViewCell.h"
 #import "DB_searchCriteria.h"
+#import "DB_icon.h"
 #import "Cell_schedule_section1.h"
 #import "Cell_schedule_section2_row1.h"
 #import "Cell_schedule_section2_row3.h"
@@ -45,6 +46,7 @@ static NSInteger day=0;
 @synthesize alist_searchCriteria;
 @synthesize alist_groupNameAndNum;
 @synthesize alist_filtered_data;
+@synthesize alist_icon;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -117,6 +119,8 @@ static NSInteger day=0;
 -(void)fn_init_global_Variable{
     db=[[DB_searchCriteria alloc]init];
     alist_searchCriteria=[db fn_get_all_data];
+    DB_icon *db_icon=[[DB_icon alloc]init];
+    alist_icon=[db_icon fn_get_all_iconData];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
     imd_searchDic1=[[NSMutableDictionary alloc]initWithCapacity:10];
     ilist_dateType=[[NSMutableArray alloc]initWithCapacity:10];
@@ -460,7 +464,7 @@ static NSInteger day=0;
                 cell.itf_show_dateType.text=[ia_listData objectAtIndex:select_row];
                 ;
                 cell.itf_show_dateType.tag=TAG3;
-                
+                cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmacct"]];
                 if (ilist_dateType!=nil) {
                     [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
                     [imd_searchDic setObject:col_label forKey:@"datetype"];
@@ -471,7 +475,7 @@ static NSInteger day=0;
             if (indexPath.subRow==2) {
                 
                 cell.ilb_show_dateAndtype.text=col_label;
-                cell.ii_calendar_img.image=[UIImage imageNamed:@"calendar"];
+                cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmregion"]];
                 cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
                 cell.itf_show_dateType.tag=TAG4;
                 
@@ -500,7 +504,9 @@ static NSInteger day=0;
             cell.ict_show_days.tag=TAG5;
             cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
             cell.ict_show_days.delegate=self;
-            
+            [cell.ibt_add_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_minus"]] forState:UIControlStateNormal];
+            [cell.ibt_decrease_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_add"]] forState:UIControlStateNormal];
+            cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"date"]];
             return cell;
         }
     }else{
@@ -512,7 +518,7 @@ static NSInteger day=0;
         if (indexPath.subRow==1) {
             cell.ilb_port.text=col_label;
             cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
-            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_up"];
+            cell.im_navigate_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmsubregion"]];
             cell.ilb_show_portName.tag=TAG1;
             if (idic_portname!=nil) {
                 [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
@@ -522,7 +528,7 @@ static NSInteger day=0;
             
         }
         if (indexPath.subRow==2) {
-            cell.im_navigate_img.image=[UIImage imageNamed:@"navigate_down"];
+            cell.im_navigate_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmsubregion"]];
             cell.ilb_port.text=col_label;
             cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
             cell.ilb_show_portName.tag=TAG2;
@@ -538,6 +544,17 @@ static NSInteger day=0;
     }
     
     // Configure the cell...
+    return nil;
+}
+#pragma mark 遍历数组
+-(NSData*)fn_get_imageData:(NSString*)str{
+    for (NSMutableDictionary *dic in alist_icon) {
+        if ([[dic valueForKey:@"ic_name"] isEqualToString:str]) {
+            NSString *icon=[dic valueForKey:@"ic_content"];
+            NSData *data=[[NSData alloc]initWithBase64EncodedString:icon options:0];
+            return data;
+        }
+    }
     return nil;
 }
 

@@ -19,6 +19,8 @@
 @property(nonatomic,strong)NSMutableArray *alist_groupNameAndNum;
 //存储过滤后的搜索标准数据
 @property(nonatomic,strong)NSMutableArray *alist_filtered_data;
+//存储图片
+@property(nonatomic,strong)NSMutableArray *alist_icon;
 //用来标记哪一个UITextfield；
 @property(nonatomic)UITextField *checkText;
 
