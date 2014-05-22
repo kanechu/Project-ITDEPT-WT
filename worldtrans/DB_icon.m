@@ -61,5 +61,16 @@
     
     return llist_results;
 }
+-(NSDictionary*)fn_get_recent_update{
+    NSDictionary *llist_results = [NSDictionary dictionary];
+    if ([[idb fn_get_db] open]) {
+        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:@"SELECT max(upd_date) FROM icon  order by upd_date desc"];
+        while ([lfmdb_result next]) {
+            llist_results=[lfmdb_result resultDictionary];
+        }
+    }
+    [[idb fn_get_db] close];
+    return llist_results;
+}
 
 @end

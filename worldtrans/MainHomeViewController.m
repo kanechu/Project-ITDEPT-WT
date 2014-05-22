@@ -91,7 +91,8 @@ CustomBadge *iobj_customBadge;
     if ([[db fn_get_all_iconData] count]==0) {
         [self fn_get_icon_data:@"0"];
     }else{
-        [self fn_get_icon_data:@"0"];
+        NSString *recent_update=[[db fn_get_recent_update] valueForKey:@"max(upd_date)"];
+        [self fn_get_icon_data:recent_update];
     }
 }
 //登陆后显示logo图片

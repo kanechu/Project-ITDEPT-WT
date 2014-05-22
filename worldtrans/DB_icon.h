@@ -15,4 +15,5 @@
 -(BOOL)fn_save_data:(NSMutableArray*)alist_icon;
 -(NSMutableArray*)fn_get_icon_data;
 -(NSMutableArray*)fn_get_all_iconData;
+-(NSDictionary*)fn_get_recent_update;
 @end
