@@ -28,5 +28,5 @@ extern NSString* const STR_MILESTONE_URL;
 extern NSString* const STR_SCHEDULE_URL;
 extern NSString* const STR_PORTNAME_URL;
 extern NSString* const STR_SEARCHCRITERIA_URL;
-
+extern NSString* const STR_ICON_URL;
 @end
