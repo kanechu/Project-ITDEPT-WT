@@ -450,72 +450,16 @@ static NSInteger day=0;
     NSMutableDictionary *dic=alist_filtered_data[indexPath.section][indexPath.subRow-1];
     //显示的名称
     NSString *col_label=[dic valueForKey:@"col_label"];
-    NSString *numOfrow=[[alist_groupNameAndNum objectAtIndex:indexPath.section] valueForKey:@"COUNT(group_name)"];
-    
-    if ([numOfrow integerValue]>=3) {
-        if (indexPath.subRow==1||indexPath.subRow==2) {
-            static NSString *CellIdentifier = @"Cell_schedule_section2_row11";
-            Cell_schedule_section2_row1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-            if (cell==nil) {
-                cell=[[Cell_schedule_section2_row1 alloc]init];
-            }
-            if (indexPath.subRow==1) {
-                cell.ilb_show_dateAndtype.text=col_label;
-                cell.itf_show_dateType.text=[ia_listData objectAtIndex:select_row];
-                ;
-                cell.itf_show_dateType.tag=TAG3;
-                cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmacct"]];
-                if (ilist_dateType!=nil) {
-                    [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                    [imd_searchDic setObject:col_label forKey:@"datetype"];
-                    [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"3"];
-                }
-            }
-            
-            if (indexPath.subRow==2) {
-                
-                cell.ilb_show_dateAndtype.text=col_label;
-                cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmregion"]];
-                cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
-                cell.itf_show_dateType.tag=TAG4;
-                
-                [imd_searchDic setObject:cell.itf_show_dateType.text forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:col_label forKey:@"datefm"];
-                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"4"];
-            }
-            
-            return cell;
-        }
+    //类型，用于判断使用的cell
+    NSString *col_type=[dic valueForKey:@"col_type"];
+    if ([col_type isEqualToString:@"LOOKUP"] || [col_type isEqualToString:@"lookup"]) {
         
-        if (indexPath.subRow==3) {
-            static NSString *CellIdentifier = @"Cell_schedule_section2_row31";
-            Cell_schedule_section2_row3 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-            if (cell==nil) {
-                cell=[[Cell_schedule_section2_row3 alloc]init];
-            }
-            if ([self fn_DateToStringDate:id_startdate].length!=0 && day!=0) {
-                [imd_searchDic setObject:[self fn_get_finishDate:day] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                
-            }else if([self fn_DateToStringDate:id_startdate].length!=0 && day==0){
-                [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-            }
-            [imd_searchDic setObject:col_label forKey:@"dateto"];
-            [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"5"];
-            cell.ict_show_days.tag=TAG5;
-            cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
-            cell.ict_show_days.delegate=self;
-            [cell.ibt_add_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_minus"]] forState:UIControlStateNormal];
-            [cell.ibt_decrease_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_add"]] forState:UIControlStateNormal];
-            cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"date"]];
-            return cell;
-        }
-    }else{
         static NSString *CellIdentifier = @"Cell_schedule_section11";
         Cell_schedule_section1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
         if (cell==nil) {
             cell=[[Cell_schedule_section1 alloc]init];
         }
-        if (indexPath.subRow==1) {
+        if ([col_type isEqualToString:@"LOOKUP"]) {
             cell.ilb_port.text=col_label;
             cell.ilb_show_portName.label.text=[idic_portname valueForKey:@"display"];
             cell.im_navigate_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmsubregion"]];
@@ -527,7 +471,7 @@ static NSInteger day=0;
             }
             
         }
-        if (indexPath.subRow==2) {
+        if ([col_type isEqualToString:@"lookup"]) {
             cell.im_navigate_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmsubregion"]];
             cell.ilb_port.text=col_label;
             cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
@@ -543,7 +487,62 @@ static NSInteger day=0;
         return cell;
     }
     
-    // Configure the cell...
+    if ([col_type isEqualToString:@"combo"] || [col_type isEqualToString:@"date"]){
+        static NSString *CellIdentifier = @"Cell_schedule_section2_row11";
+        Cell_schedule_section2_row1 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+        if (cell==nil) {
+            cell=[[Cell_schedule_section2_row1 alloc]init];
+        }
+        if ([col_type isEqualToString:@"combo"]) {
+            cell.ilb_show_dateAndtype.text=col_label;
+            cell.itf_show_dateType.text=[ia_listData objectAtIndex:select_row];
+            ;
+            cell.itf_show_dateType.tag=TAG3;
+            cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmacct"]];
+            if (ilist_dateType!=nil) {
+                [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+                [imd_searchDic setObject:col_label forKey:@"datetype"];
+                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"3"];
+            }
+        }
+        
+        if ([col_type isEqualToString:@"date"]) {
+            
+            cell.ilb_show_dateAndtype.text=col_label;
+            cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmregion"]];
+            cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
+            cell.itf_show_dateType.tag=TAG4;
+            
+            [imd_searchDic setObject:cell.itf_show_dateType.text forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+            [imd_searchDic setObject:col_label forKey:@"datefm"];
+            [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"4"];
+        }
+        
+        return cell;
+    }
+    if ([col_type isEqualToString:@"int"]) {
+        static NSString *CellIdentifier = @"Cell_schedule_section2_row31";
+        Cell_schedule_section2_row3 *cell = [self.skstableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+        if (cell==nil) {
+            cell=[[Cell_schedule_section2_row3 alloc]init];
+        }
+        if ([self fn_DateToStringDate:id_startdate].length!=0 && day!=0) {
+            [imd_searchDic setObject:[self fn_get_finishDate:day] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+            
+        }else if([self fn_DateToStringDate:id_startdate].length!=0 && day==0){
+            [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+        }
+        [imd_searchDic setObject:col_label forKey:@"dateto"];
+        [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"5"];
+        cell.ict_show_days.tag=TAG5;
+        cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
+        cell.ict_show_days.delegate=self;
+        [cell.ibt_add_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_minus"]] forState:UIControlStateNormal];
+        [cell.ibt_decrease_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_add"]] forState:UIControlStateNormal];
+        cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"date"]];
+        return cell;
+    }
+      // Configure the cell...
     return nil;
 }
 #pragma mark 遍历数组
@@ -557,7 +556,14 @@ static NSInteger day=0;
     }
     return nil;
 }
-
+-(NSMutableDictionary*)fn_get_DataOfRow:(NSString*)str{
+    for (NSMutableDictionary *dic in alist_filtered_data) {
+        if ([[dic valueForKey:@"col_type"] isEqualToString:str]) {
+            return dic;
+        }
+    }
+    return nil;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
