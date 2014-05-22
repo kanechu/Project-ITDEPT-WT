@@ -10,7 +10,7 @@
 
 @interface RespSearchCriteria : NSObject
 
-@property (assign,nonatomic)NSString *seq;
+@property (copy,nonatomic) NSString *seq;
 @property (copy,nonatomic) NSString *col_code;
 @property (copy,nonatomic) NSString *col_label;
 @property (copy,nonatomic) NSString *col_type;
