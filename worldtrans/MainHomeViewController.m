@@ -29,6 +29,7 @@
 #import "NSArray.h"
 #import "PopViewManager.h"
 #import "RespIcon.h"
+#import "NSDictionary.h"
 @interface MainHomeViewController ()
 
 @end
@@ -98,7 +99,7 @@ CustomBadge *iobj_customBadge;
         [self fn_get_icon_data:@"0"];
     }else{
         NSString *recent_update=[[db fn_get_recent_update] valueForKey:@"max(upd_date)"];
-        [self fn_get_icon_data:recent_update];
+       [self fn_get_icon_data:recent_update];
     }
 }
 //登陆后显示logo图片
@@ -311,7 +312,21 @@ CustomBadge *iobj_customBadge;
 //搜索标准的图片存入数据库中
 -(void)fn_save_icon_list:(NSMutableArray*)ilist_result{
     DB_icon *db=[[DB_icon alloc]init];
-    [db fn_save_data:ilist_result];
+    if ([[db fn_get_all_iconData]count]==0) {
+        [db fn_save_data:ilist_result];
+    }else{
+        for (RespIcon *lmap_icon in ilist_result) {
+             NSMutableDictionary *ldict_row = [[NSDictionary dictionaryWithPropertiesOfObject:lmap_icon] mutableCopy];
+            if ([db fn_isExist_icon:[ldict_row valueForKey:@"ic_name"]]) {
+                [db fn_save_update_data:ldict_row];
+            }else{
+                NSMutableArray *arr=[[NSMutableArray alloc]init];
+                [arr addObject:ldict_row];
+                [db fn_save_data:arr];
+            }
+        }
+    }
+    
 }
 
 

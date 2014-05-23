@@ -13,7 +13,8 @@
 
 @property(nonatomic,strong)DBManager *idb;
 -(BOOL)fn_save_data:(NSMutableArray*)alist_icon;
--(NSMutableArray*)fn_get_icon_data;
+-(BOOL)fn_save_update_data:(NSMutableDictionary*)alist_icon;
+-(BOOL)fn_isExist_icon:(NSString*)icon_name;
 -(NSMutableArray*)fn_get_all_iconData;
 -(NSDictionary*)fn_get_recent_update;
 @end
