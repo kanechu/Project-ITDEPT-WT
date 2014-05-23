@@ -24,12 +24,8 @@
 //用来标记哪一个UITextfield；
 @property(nonatomic)UITextField *checkText;
 
-//标识必填项的key
-@property (strong,nonatomic)NSMutableArray *flag_mandatory_key;
-
 //搜索的条件，放到一个字典中
 @property (strong,nonatomic) NSMutableDictionary *imd_searchDic;
-@property (strong,nonatomic) NSMutableDictionary *imd_searchDic1;
 //dateType下拉列表数据
 @property (strong,nonatomic) NSMutableArray *ia_listData;
 @property (strong,nonatomic) UIPickerView *ipic_drop_view;

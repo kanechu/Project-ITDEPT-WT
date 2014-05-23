@@ -39,8 +39,6 @@ static NSInteger day=0;
 @synthesize idic_portname;
 @synthesize idic_dis_portname;
 @synthesize select_row;
-@synthesize flag_mandatory_key;
-@synthesize imd_searchDic1;
 @synthesize skstableView;
 @synthesize db;
 @synthesize alist_searchCriteria;
@@ -122,10 +120,8 @@ static NSInteger day=0;
     DB_icon *db_icon=[[DB_icon alloc]init];
     alist_icon=[db_icon fn_get_all_iconData];
     imd_searchDic=[[NSMutableDictionary alloc]initWithCapacity:10];
-    imd_searchDic1=[[NSMutableDictionary alloc]initWithCapacity:10];
     ilist_dateType=[[NSMutableArray alloc]initWithCapacity:10];
     ia_listData=[[NSMutableArray alloc]initWithCapacity:10];
-    flag_mandatory_key=[[NSMutableArray alloc]initWithCapacity:10];
     alist_filtered_data=[[NSMutableArray alloc]initWithCapacity:10];
 }
 -(void)fn_register_notifiction{
@@ -164,9 +160,6 @@ static NSInteger day=0;
     alist_groupNameAndNum=[db fn_get_groupNameAndNum];
     
     for (NSMutableDictionary *dic in [db fn_get_all_data]) {
-        if ([[dic valueForKey:@"is_mandatory"] isEqualToString:@"1"]) {
-            [flag_mandatory_key addObject:[dic valueForKey:@"col_label"]];
-        }
         //获取date Range默认的天数
         if ([[dic valueForKey:@"col_type"] isEqualToString:@"int"]) {
             day=[[dic valueForKey:@"col_def"] integerValue];
@@ -383,7 +376,6 @@ static NSInteger day=0;
     if ([segue.identifier isEqualToString:@"segue_DetailSchedule"]) {
         DetailScheduleViewController *VC=[segue destinationViewController];
         VC.imd_searchDic=self.imd_searchDic;
-        VC.imd_searchDic1=self.imd_searchDic1;
     }
     
 }
@@ -392,16 +384,20 @@ static NSInteger day=0;
 - (IBAction)fn_click_searchBtn:(id)sender {
     
     NSInteger flag=0;
-    for (NSString *str in flag_mandatory_key) {
-        if ([[imd_searchDic valueForKey:str] length]==0) {
-            flag++;
-            if (flag==1) {
-                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%@ cannot be empty!",str] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-                [alert show];
+    for (NSMutableDictionary *dic in alist_searchCriteria) {
+        if ([dic valueForKey:@"is_mandatory"]) {
+            if ([[dic valueForKey:@"col_type"] isEqualToString:@"LOOKUP"] && [[imd_searchDic valueForKey:@"load_port_value"] length]==0) {
+                flag++;
             }
-            
+            if ([[dic valueForKey:@"col_type"] isEqualToString:@"lookup"] && [[imd_searchDic valueForKey:@"dish_port_value"] length]==0) {
+                flag++;
+            }
+            if (flag==1) {
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"%@ cannot be empty!",[dic valueForKey:@"col_label"]] delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alert show];
+                break;
+            }
         }
-        
     }
     if (flag==0) {
         [self performSegueWithIdentifier:@"segue_DetailSchedule" sender:self];
@@ -448,8 +444,10 @@ static NSInteger day=0;
 {
     //提取每行的数据
     NSMutableDictionary *dic=alist_filtered_data[indexPath.section][indexPath.subRow-1];
-    //显示的名称
+    //显示的提示名称
     NSString *col_label=[dic valueForKey:@"col_label"];
+    //传上服务器的volumn
+    NSString *col_code=[dic valueForKey:@"col_code"];
     //类型，用于判断使用的cell
     NSString *col_type=[dic valueForKey:@"col_type"];
     if ([col_type isEqualToString:@"LOOKUP"] || [col_type isEqualToString:@"lookup"]) {
@@ -465,9 +463,8 @@ static NSInteger day=0;
             cell.im_navigate_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmsubregion"]];
             cell.ilb_show_portName.tag=TAG1;
             if (idic_portname!=nil) {
-                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"load_port"];
-                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"1"];
+                [imd_searchDic setObject:[idic_portname valueForKey:@"data"] forKey:@"load_port_value"];
+                [imd_searchDic setObject:col_code forKey:@"load_port_column"];
             }
             
         }
@@ -477,9 +474,8 @@ static NSInteger day=0;
             cell.ilb_show_portName.label.text=[idic_dis_portname valueForKey:@"display"];
             cell.ilb_show_portName.tag=TAG2;
             if (idic_dis_portname!=nil) {
-                [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:[dic valueForKey:@"col_code"] forKey:@"dish_port"];
-                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"2"];
+                [imd_searchDic setObject:[idic_dis_portname valueForKey:@"data"] forKey:@"dish_port_value"];
+                [imd_searchDic setObject:col_code forKey:@"dish_port_column"];
             }
             
         }
@@ -500,9 +496,8 @@ static NSInteger day=0;
             cell.itf_show_dateType.tag=TAG3;
             cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmacct"]];
             if (ilist_dateType!=nil) {
-                [imd_searchDic setObject: [ilist_dateType objectAtIndex:select_row] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-                [imd_searchDic setObject:col_label forKey:@"datetype"];
-                [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"3"];
+                [imd_searchDic setObject:col_code forKey:@"datetype_column"];
+                [imd_searchDic setObject:[ilist_dateType objectAtIndex:select_row]forKey:@"datetype_value"];
             }
         }
         
@@ -512,10 +507,8 @@ static NSInteger day=0;
             cell.ii_calendar_img.image=[UIImage imageWithData:[self fn_get_imageData:@"crmregion"]];
             cell.itf_show_dateType.text=[self fn_DateToStringDate:id_startdate];
             cell.itf_show_dateType.tag=TAG4;
-            
-            [imd_searchDic setObject:cell.itf_show_dateType.text forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
-            [imd_searchDic setObject:col_label forKey:@"datefm"];
-            [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"4"];
+            [imd_searchDic setObject:col_code forKey:@"datefm_column"];
+            [imd_searchDic setObject: cell.itf_show_dateType.text forKey:@"datefm_value"];
         }
         
         return cell;
@@ -527,13 +520,14 @@ static NSInteger day=0;
             cell=[[Cell_schedule_section2_row3 alloc]init];
         }
         if ([self fn_DateToStringDate:id_startdate].length!=0 && day!=0) {
-            [imd_searchDic setObject:[self fn_get_finishDate:day] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+           
+            [imd_searchDic setObject:[self fn_get_finishDate:day]forKey:@"dateto_value"];
             
         }else if([self fn_DateToStringDate:id_startdate].length!=0 && day==0){
-            [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)]];
+            
+            [imd_searchDic setObject:[self fn_DateToStringDate:id_startdate] forKey:@"dateto_value"];
         }
-        [imd_searchDic setObject:col_label forKey:@"dateto"];
-        [imd_searchDic1 setObject:[flag_mandatory_key objectAtIndex:(indexPath.subRow-1+indexPath.section*2)] forKey:@"5"];
+        [imd_searchDic setObject:col_code forKey:@"dateto_column"];
         cell.ict_show_days.tag=TAG5;
         cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
         cell.ict_show_days.delegate=self;
