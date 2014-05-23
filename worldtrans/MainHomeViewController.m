@@ -64,11 +64,17 @@ CustomBadge *iobj_customBadge;
 
     [self.iui_collectionview reloadData];
 }
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self=[super initWithCoder:aDecoder];
+    if (self) {
+        [self fn_get_allIcon];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self fn_get_allIcon];
     [_loginBtn addTarget:self action:@selector(fn_pre_login_or_logout:) forControlEvents:UIControlEventTouchUpInside];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
