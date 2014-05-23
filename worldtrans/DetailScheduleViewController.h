@@ -12,7 +12,6 @@
 
 @property (strong,nonatomic) NSMutableArray *ilist_schedule;
 @property (strong,nonatomic) NSMutableDictionary *imd_searchDic;
-@property (strong,nonatomic) NSMutableDictionary *imd_searchDic1;
 @property (weak, nonatomic) IBOutlet UISearchBar *is_seach_bar;
 @property (weak, nonatomic) IBOutlet UIButton *ibtn_sortBy_btn;
 

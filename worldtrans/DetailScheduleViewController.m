@@ -27,7 +27,6 @@
 @implementation DetailScheduleViewController
 @synthesize ilist_schedule;
 @synthesize imd_searchDic;
-@synthesize imd_searchDic1;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,9 +42,8 @@
     [super viewDidLoad];
     //searchBar的代理
     _is_seach_bar.delegate=self;
-    NSLog(@"%@",imd_searchDic);
-    NSLog(@"%@",imd_searchDic1);
     [self fn_get_data:imd_searchDic];
+    NSLog(@"%@",imd_searchDic);
     [self BtnGraphicMixed];
 
 }
@@ -189,24 +187,24 @@
         req_form.SearchForm=[NSSet setWithObjects:search, nil];
     }else{
         SearchFormContract *search=[[SearchFormContract alloc]init];
-        search.os_column=[as_search_dic valueForKey:@"load_port"];
-        search.os_value=[as_search_dic valueForKey:[imd_searchDic1 valueForKey:@"1"]];
+        search.os_column=[as_search_dic valueForKey:@"load_port_column"];
+        search.os_value=[as_search_dic valueForKey:@"load_port_value"];
         
         SearchFormContract *search1=[[SearchFormContract alloc]init];
-        search1.os_column=[as_search_dic valueForKey:@"dish_port"];
-        search1.os_value=[as_search_dic valueForKey:[imd_searchDic1 valueForKey:@"2"]];
+        search1.os_column=[as_search_dic valueForKey:@"dish_port_column"];
+        search1.os_value=[as_search_dic valueForKey:@"dish_port_value"];
         
         SearchFormContract *search2=[[SearchFormContract alloc]init];
-        search2.os_column=[as_search_dic valueForKey:@"datetype"];
-        search2.os_value=[as_search_dic valueForKey:[imd_searchDic1 valueForKey:@"3"]];
+        search2.os_column=[as_search_dic valueForKey:@"datetype_column"];
+        search2.os_value=[as_search_dic valueForKey:@"datetype_value"];
         
         SearchFormContract *search3=[[SearchFormContract alloc]init];
-        search3.os_column=[as_search_dic valueForKey:@"datefm"];
-        search3.os_value=[as_search_dic valueForKey:[imd_searchDic1 valueForKey:@"4"]];
+        search3.os_column=[as_search_dic valueForKey:@"datefm_column"];
+        search3.os_value=[as_search_dic valueForKey:@"datefm_value"];
         
         SearchFormContract *search4=[[SearchFormContract alloc]init];
-        search4.os_column=[as_search_dic valueForKey:@"dateto"];
-        search4.os_value=[as_search_dic valueForKey:[imd_searchDic1 valueForKey:@"5"]];
+        search4.os_column=[as_search_dic valueForKey:@"dateto_column"];
+        search4.os_value=[as_search_dic valueForKey:@"dateto_value"];
         req_form.SearchForm=[NSSet setWithObjects:search,search1,search2,search3,search4, nil];
     }
     Web_base *web_base=[[Web_base alloc]init];
