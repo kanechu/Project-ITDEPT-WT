@@ -100,10 +100,9 @@ static NSInteger day=0;
 #pragma mark 对数组进行排序
 -(void)fn_sort_criteriaData{
     //如果需要降序，那么将ascending由YES改为NO
-    NSSortDescriptor *sortByName=[NSSortDescriptor sortDescriptorWithKey:@"group_name" ascending:NO];
     NSSortDescriptor *sortByName1=[NSSortDescriptor sortDescriptorWithKey:@"seq" ascending:YES];
     
-    NSArray *sortDescriptors=[NSArray arrayWithObjects:sortByName,sortByName1,nil];
+    NSArray *sortDescriptors=[NSArray arrayWithObjects:sortByName1,nil];
     NSMutableArray *sortedArray=[[alist_searchCriteria sortedArrayUsingDescriptors:sortDescriptors]mutableCopy];
     //重新排序后，存回给原来的数组
     alist_searchCriteria=sortedArray;
