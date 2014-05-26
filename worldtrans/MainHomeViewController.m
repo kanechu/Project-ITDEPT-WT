@@ -175,7 +175,7 @@ CustomBadge *iobj_customBadge;
     //button.tag用来区分点击那个Item
     menu_item=[ilist_menu objectAtIndex:button.tag];
     [self performSegueWithIdentifier:menu_item.is_segue sender:self];
-    if ([menu_item.is_segue isEqualToString:@"SearchCriteria"]) {
+    if ([menu_item.is_segue isEqualToString:@"Segue_ExpandSearch"]) {
         NSDate *now_time=[NSDate date];
         NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];

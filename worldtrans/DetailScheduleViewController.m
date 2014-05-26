@@ -220,6 +220,7 @@
 }
 -(void)fn_save_schedule_list:(NSMutableArray*)alist_result{
     ilist_schedule=alist_result;
+    //默认以etd排序
     [self fn_sort_schedule:@"etd"];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
