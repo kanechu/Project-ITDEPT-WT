@@ -11,11 +11,7 @@
 #import "AuthContract.h"
 #import "RequestContract.h"
 #import "SearchFormContract.h"
-#import "RespAlert.h"
-#import "Cell_alert_list.h"
-#import "Res_color.h"
 #import "AppConstants.h"
-
 
 @implementation Web_base
 
