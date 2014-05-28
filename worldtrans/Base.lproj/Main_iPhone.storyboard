@@ -899,7 +899,7 @@
                                                     <rect key="frame" x="65" y="20" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <state key="normal" title="Button">
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -919,7 +919,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p6j-h7-hla">
                                                     <rect key="frame" x="192" y="20" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button">
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -961,6 +961,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61e-op-q4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="121" y="945"/>
+        </scene>
+        <!--Guide View Controller - Guide-->
+        <scene sceneID="fxL-D0-a6g">
+            <objects>
+                <viewController storyboardIdentifier="GuideViewController" automaticallyAdjustsScrollViewInsets="NO" id="g43-7b-eE3" customClass="GuideViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8lQ-A0-lnJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="aMR-N2-FlF">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="11" id="bex-ZZ-c3L">
+                                <rect key="frame" x="125" y="443" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="fn_change_page:" destination="g43-7b-eE3" eventType="valueChanged" id="Vsh-HI-Xi1"/>
+                                </connections>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Guide" id="ApU-0z-ACV"/>
+                    <connections>
+                        <outlet property="ip_pagecontroller" destination="bex-ZZ-c3L" id="EhA-Gk-cdL"/>
+                        <outlet property="is_scrollview" destination="aMR-N2-FlF" id="gZZ-Mr-APC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C3r-vu-lbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121" y="1510"/>
         </scene>
         <!--Detail Schedule View Controller - Schedule-->
         <scene sceneID="m0w-jQ-Mgt">
@@ -1437,6 +1469,7 @@
                         <segue destination="CZ4-MO-1fc" kind="push" identifier="segue_trackHome" id="0xG-Ym-wnJ"/>
                         <segue destination="3pE-kg-DfJ" kind="push" identifier="segue_alert" id="Cen-WN-xNt"/>
                         <segue destination="ifm-S5-DYL" kind="push" identifier="Segue_ExpandSearch" id="0dC-eF-yLs"/>
+                        <segue destination="g43-7b-eE3" kind="push" identifier="Segue_GuideVC" id="b5U-6p-KGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcY-K3-nMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

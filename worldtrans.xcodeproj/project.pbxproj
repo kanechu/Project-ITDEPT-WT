@@ -45,6 +45,7 @@
 		B2571CE218E5441F00C7DFA3 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2571CE018E5441F00C7DFA3 /* CustomBadge.m */; };
 		B25740B518EBE3BF0060190B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740B418EBE3BF0060190B /* MapKit.framework */; };
 		B25740FA18EBF17F0060190B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25740F918EBF17F0060190B /* CoreLocation.framework */; };
+		B257F27019359AA700EC88F5 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B257F26F19359AA700EC88F5 /* GuideViewController.m */; };
 		B25BE7BC18ECEF0000F41409 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25BE7BB18ECEF0000F41409 /* MapViewController.m */; };
 		B26B3C8C19078A4000CB41F9 /* RespPortName.m in Sources */ = {isa = PBXBuildFile; fileRef = B26B3C8B19078A4000CB41F9 /* RespPortName.m */; };
 		B26B3C93190795C700CB41F9 /* SearchPortNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26B3C92190795C700CB41F9 /* SearchPortNameViewController.m */; };
@@ -232,6 +233,8 @@
 		B2571CE118E5441F00C7DFA3 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
 		B25740B418EBE3BF0060190B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B25740F918EBF17F0060190B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B257F26E19359AA700EC88F5 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		B257F26F19359AA700EC88F5 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		B25BE7BA18ECEF0000F41409 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		B25BE7BB18ECEF0000F41409 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		B26B3C8A19078A4000CB41F9 /* RespPortName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RespPortName.h; sourceTree = "<group>"; };
@@ -473,6 +476,8 @@
 				B25490111904A6D800D7197A /* SortByViewController.m */,
 				B26B3C91190795C700CB41F9 /* SearchPortNameViewController.h */,
 				B26B3C92190795C700CB41F9 /* SearchPortNameViewController.m */,
+				B257F26E19359AA700EC88F5 /* GuideViewController.h */,
+				B257F26F19359AA700EC88F5 /* GuideViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -969,6 +974,7 @@
 				B26CAC6418AA302A00C97C83 /* SecondViewController.m in Sources */,
 				B26CAC5818AA302A00C97C83 /* AppDelegate.m in Sources */,
 				B2307B0918BC960C000502BE /* RespMilestone.m in Sources */,
+				B257F27019359AA700EC88F5 /* GuideViewController.m in Sources */,
 				B24E83AC18D2A50700C29034 /* AehblGeneralController.m in Sources */,
 				B288CFE018DA945E0089F877 /* DB_login.m in Sources */,
 				B2307B1F18BDE888000502BE /* DBManager.m in Sources */,
