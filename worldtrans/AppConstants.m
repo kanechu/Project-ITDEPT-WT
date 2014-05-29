@@ -27,4 +27,7 @@ NSString* const STR_LOGIN_URL=@"itwebapi/api/users/login";
 NSString* const STR_ALERT_URL=@"itwebapi/api/cargotracking/alert";
 NSString* const STR_MILESTONE_URL=@"itwebapi/api/cargotracking/milestone";
 NSString* const STR_SCHEDULE_URL=@"itwebapi/api/cargotracking/schedule";
+NSString* const STR_PORTNAME_URL=@"itwebapi/api/master/maport";
+NSString* const STR_SEARCHCRITERIA_URL=@"itwebapi/api/search/searchcriteria";
+NSString* const STR_ICON_URL=@"itwebapi/api/system/icon";
 #endif

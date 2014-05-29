@@ -566,8 +566,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Booking / HBL/ HAWB No. cannot be empty！" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="Zhg-ve-WU7">
-                                <rect key="frame" x="20" y="95" width="240" height="35"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Booking / HBL/ HAWB No. :" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="10" id="Zhg-ve-WU7">
+                                <rect key="frame" x="20" y="102" width="240" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
