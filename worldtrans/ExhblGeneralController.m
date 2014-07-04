@@ -63,7 +63,7 @@ enum ROW_NUMOFSECTION {
     }
 }
 
--(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sepoction {
     static NSString *CellIdentifier = @"cell_exhbl_general_hdr";
     Cell_exhbl_general_hdr *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (headerView == nil){
@@ -203,11 +203,11 @@ enum ROW_NUMOFSECTION {
             cell.ilb_value.text =[ldict_dictionary valueForKey:@"cnee_name"];
         }
         if (indexPath.row==8) {
-            cell.ilb_header.text=@"PO.N";
+            cell.ilb_header.text=@"P/O #";
             cell.ilb_value.text=[ldict_dictionary valueForKey:@"po_no_list"];
         }
         if (indexPath.row==9) {
-            cell.ilb_header.text=@"Container NO";
+            cell.ilb_header.text=@"Container #";
             cell.ilb_value.text=[ldict_dictionary valueForKey:@"cntr_no_list"];
         }
     }

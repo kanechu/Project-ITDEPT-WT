@@ -16,6 +16,7 @@
 #import "NSArray.h"
 #import "Web_base.h"
 #import "DB_login.h"
+#import "AppDelegate.h"
 @implementation Web_get_alert
 
 @synthesize ilist_alert;
@@ -24,7 +25,8 @@
 
 - (void) fn_get_data
 {
-    
+    NSString *ls_device_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] is_device_token];
+
     DB_login *dbLogin = [[DB_login alloc] init];
     
     RequestContract *req_form = [[RequestContract alloc] init];
@@ -33,7 +35,7 @@
     
     SearchFormContract *search1 = [[SearchFormContract alloc]init];
     search1.os_column = @"device_id";
-    search1.os_value = @"dev";
+    search1.os_value = ls_device_token;
     
     
     
