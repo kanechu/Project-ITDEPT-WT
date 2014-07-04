@@ -35,6 +35,7 @@
 		B242209818BB2F1C00D4A75C /* Cell_exhbl_general_detail.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209718BB2F1C00D4A75C /* Cell_exhbl_general_detail.m */; };
 		B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B242209A18BB303600D4A75C /* ExhblGeneralController.m */; };
 		B24555CF18D166A500D47DC7 /* AehblListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24555CE18D166A500D47DC7 /* AehblListController.m */; };
+		B24A75571966A15800CB1C00 /* Calculate_lineHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = B24A75561966A15800CB1C00 /* Calculate_lineHeight.m */; };
 		B24E83AC18D2A50700C29034 /* AehblGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = B24E83AB18D2A50700C29034 /* AehblGeneralController.m */; };
 		B2531101191C728C0049AFDA /* SKSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25310FE191C728C0049AFDA /* SKSTableView.m */; };
 		B2531102191C728C0049AFDA /* SKSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2531100191C728C0049AFDA /* SKSTableViewCell.m */; };
@@ -215,6 +216,8 @@
 		B242209A18BB303600D4A75C /* ExhblGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhblGeneralController.m; sourceTree = "<group>"; };
 		B24555CD18D166A500D47DC7 /* AehblListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblListController.h; sourceTree = "<group>"; };
 		B24555CE18D166A500D47DC7 /* AehblListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblListController.m; sourceTree = "<group>"; };
+		B24A75551966A15800CB1C00 /* Calculate_lineHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculate_lineHeight.h; sourceTree = "<group>"; };
+		B24A75561966A15800CB1C00 /* Calculate_lineHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculate_lineHeight.m; sourceTree = "<group>"; };
 		B24E83AA18D2A50700C29034 /* AehblGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AehblGeneralController.h; sourceTree = "<group>"; };
 		B24E83AB18D2A50700C29034 /* AehblGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AehblGeneralController.m; sourceTree = "<group>"; };
 		B25310FD191C728C0049AFDA /* SKSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableView.h; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 				B230189718ED66CA004B6CCC /* MapAnnotation.m */,
 				B2923512191A119C00F9F8B8 /* PopViewManager.h */,
 				B2923513191A119C00F9F8B8 /* PopViewManager.m */,
+				B24A75551966A15800CB1C00 /* Calculate_lineHeight.h */,
+				B24A75561966A15800CB1C00 /* Calculate_lineHeight.m */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				B2A9770818CF18290096BD4B /* FMDatabaseAdditions.m in Sources */,
 				B2C216DE18C8AC7A00A46809 /* NSDictionary.m in Sources */,
 				B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */,
+				B24A75571966A15800CB1C00 /* Calculate_lineHeight.m in Sources */,
 				B2531102191C728C0049AFDA /* SKSTableViewCell.m in Sources */,
 				B2307B2A18BEEE36000502BE /* AppConstants.m in Sources */,
 				B2C92B2A192DAB7800B2B8D0 /* RespIcon.m in Sources */,

@@ -20,5 +20,6 @@
 - (NSMutableArray *) fn_get_previous_msg;
 - (BOOL)fn_update_isRead:(NSString*)as_indexRow;
 - (BOOL)fn_delete:(NSString*)as_indexRow;
+- (BOOL)fn_delete_all_data;
 @end
 

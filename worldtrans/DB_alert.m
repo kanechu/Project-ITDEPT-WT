@@ -88,9 +88,9 @@
         FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:@"SELECT * FROM alert order by msg_recv_date desc"];
         while ([lfmdb_result next]) {
             [llist_results addObject:[lfmdb_result resultDictionary]];
-        }    }
-    [[idb fn_get_db] close];
-    
+        }
+        [[idb fn_get_db] close];
+    }
     return llist_results;
 }
 -(NSString*)getToday_Date{
@@ -127,6 +127,17 @@
     [[idb fn_get_db] close];
     
     return llist_results;
+}
+- (BOOL)fn_delete_all_data{
+    if ([[idb fn_get_db]open]) {
+        BOOL isSuccess=[[idb fn_get_db]executeUpdate:@"delete from alert"];
+        if (!isSuccess) {
+            return NO;
+        }
+        [[idb fn_get_db]close];
+        return YES;
+    }
+    return NO;
 }
 @end
 
