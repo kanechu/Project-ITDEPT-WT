@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import "AuthContract.h"
 #import "RequestContract.h"
-
+#import "SearchFormContract.h"
+#import "AppConstants.h"
+#import "NSDictionary.h"
+#import "NSArray.h"
 @interface Web_base : NSObject
 
 @property (strong,nonatomic) NSString *il_url;

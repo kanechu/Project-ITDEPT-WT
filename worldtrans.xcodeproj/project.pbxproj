@@ -445,6 +445,12 @@
 		B242208718B7479900D4A75C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B278A92818D832AA0057DC37 /* LoginViewController.h */,
+				B278A92918D832AA0057DC37 /* LoginViewController.m */,
+				B239B00118E66AA700C26552 /* LogoutViewController.h */,
+				B239B00218E66AA700C26552 /* LogoutViewController.m */,
+				B28209D118E518C90027227A /* MainHomeViewController.h */,
+				B28209D218E518C90027227A /* MainHomeViewController.m */,
 				B26CAC5F18AA302A00C97C83 /* TrackHomeController.h */,
 				B26CAC6018AA302A00C97C83 /* TrackHomeController.m */,
 				B2B020B618AB52D100EECD92 /* ExhblListController.h */,
@@ -463,12 +469,6 @@
 				B22D6C1B18D1A7CB00DE4DB5 /* AehblHomeController.m */,
 				B24E83AA18D2A50700C29034 /* AehblGeneralController.h */,
 				B24E83AB18D2A50700C29034 /* AehblGeneralController.m */,
-				B278A92818D832AA0057DC37 /* LoginViewController.h */,
-				B278A92918D832AA0057DC37 /* LoginViewController.m */,
-				B239B00118E66AA700C26552 /* LogoutViewController.h */,
-				B239B00218E66AA700C26552 /* LogoutViewController.m */,
-				B28209D118E518C90027227A /* MainHomeViewController.h */,
-				B28209D218E518C90027227A /* MainHomeViewController.m */,
 				B25BE7BA18ECEF0000F41409 /* MapViewController.h */,
 				B25BE7BB18ECEF0000F41409 /* MapViewController.m */,
 				B2531106191C73E10049AFDA /* ExpandSearchCriteriaViewController.h */,
