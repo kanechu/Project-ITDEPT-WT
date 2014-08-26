@@ -7,15 +7,11 @@
 //
 
 #import "MilestoneController.h"
-#import "AppConstants.h"
-#import "RequestContract.h"
-#import "SearchFormContract.h"
 #import "RespMilestone.h"
 #import "Cell_milestone.h"
 #import "Res_color.h"
 #import "Web_base.h"
 #import "DB_login.h"
-#import "NSArray.h"
 #import "MBProgressHUD.h"
 @interface MilestoneController ()
 
@@ -43,7 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (ilist_milestone==nil || ilist_milestone==NULL) {
@@ -52,26 +48,6 @@
         return [ilist_milestone count];
     }
    
-}
-
--(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    static NSString *CellIdentifier = @"cell_milestone_hdr";
-    Cell_milestone *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (headerView == nil){
-        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
-    }
-    return headerView;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == 1 )
-        return 0.000001f;
-    else return 44; // put 22 in case of plain one..
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    return 55;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,13 +102,29 @@
         [cell.ilb_status_desc setTextColor:[UIColor grayColor]];
         [cell.ilb_status_remark setTextColor:[UIColor grayColor]];
     }
-    
-    
-    
+
     return cell;
 }
+#pragma mark -UITableViewDelegate
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"cell_milestone_hdr";
+    Cell_milestone *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (headerView == nil){
+        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+    }
+    return headerView;
+}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == 1 )
+        return 0.000001f;
+    else return 44; // put 22 in case of plain one..
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 55;
+}
 - (void)fn_get_milestone_info {
     int nextTag = 1;
     self.ii_max_row = [ilist_milestone count];
@@ -143,8 +135,7 @@
         nextTag++;
     }
 }
-
-
+#pragma mark -NetWork Request
 - (void) fn_get_data: (NSString*)as_docu_type :(NSString*)as_docu_uid
 {
     //显示loading
@@ -156,7 +147,6 @@
     SearchFormContract *search1 = [[SearchFormContract alloc]init];
     search1.os_column = @"docu_type";
     search1.os_value = as_docu_type;
-    
     
     SearchFormContract *search2 = [[SearchFormContract alloc]init];
     search2.os_column = @"docu_uid";
@@ -173,7 +163,6 @@
     web_base.isel_action = @selector(fn_save_milestone_list:);
     [web_base fn_get_data:req_form];
     
-   
 }
 -(void)fn_save_milestone_list:(NSMutableArray*)alist_result{
     ilist_milestone = alist_result;
@@ -183,6 +172,5 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
    
 }
-
 
 @end

@@ -14,9 +14,8 @@
 @interface LogoutViewController ()
 
 @end
-enum HEIGHT {
-    HEIGHT1 = 100
-};
+
+#define HEIGHT1 100 
 
 @implementation LogoutViewController
 @synthesize iobj_target;
@@ -30,36 +29,7 @@ enum HEIGHT {
     }
     return self;
 }
-//没有logo的时候，label整体往上移动
--(void)changeLabelFrame:(UILabel*)label{
-    label.frame=CGRectMake(label.frame.origin.x, label.frame.origin.y-HEIGHT1, label.frame.size.width, label.frame.size.height);
-}
-//没有logo的时候，Button往上移动
--(void)changeButtonFrame:(UIButton*)btn{
-    btn.frame=CGRectMake(btn.frame.origin.x, btn.frame.origin.y-HEIGHT1, btn.frame.size.width, btn.frame.size.height);
-}
--(void)showUserCodeAndLoginTime{
-    
-    DB_login *dbLogin=[[DB_login alloc]init];
-    NSString *str=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_code"];
-    NSString *str1=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"login_time"];
-    NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
-   //图片不存在，整体往上移动
-    if (logo==NULL || logo==nil || [logo length]==0) {
-        _userImage.image=nil;
-        [self changeLabelFrame:_userCode];
-        [self changeLabelFrame:_userLoginTime];
-        [self changeLabelFrame:_userID];
-        [self changeLabelFrame:_loginTime];
-        [self changeButtonFrame:_logoutBtn];
-    }else{
-        NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
-        _userImage.image=[UIImage imageWithData:data];
-    }
-    _userCode.text=str;
-    _userLoginTime.text=str1;
-    
-}
+
 - (void)viewDidLoad
 {
     
@@ -77,13 +47,49 @@ enum HEIGHT {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)clickLogout:(id)sender {
-     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
-    SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:nil];);
+#pragma mark adjust UI
+//没有logo的时候，label整体往上移动
+-(void)changeLabelFrame:(UILabel*)label{
+    label.frame=CGRectMake(label.frame.origin.x, label.frame.origin.y-HEIGHT1, label.frame.size.width, label.frame.size.height);
+}
+//没有logo的时候，Button往上移动
+-(void)changeButtonFrame:(UIButton*)btn{
+    btn.frame=CGRectMake(btn.frame.origin.x, btn.frame.origin.y-HEIGHT1, btn.frame.size.width, btn.frame.size.height);
+}
+-(void)showUserCodeAndLoginTime{
+    
+    DB_login *dbLogin=[[DB_login alloc]init];
+    NSString *user_code=@"";
+    NSString *login_time=@"";
+    NSString *logo=@"";
+    NSMutableArray *arr_result=[dbLogin fn_get_all_msg];
+    if ([arr_result count]!=0) {
+        user_code=[[arr_result objectAtIndex:0]valueForKey:@"user_code"];
+        login_time=[[arr_result objectAtIndex:0]valueForKey:@"login_time"];
+        logo=[[arr_result objectAtIndex:0]valueForKey:@"user_logo"];
+    }
+    //图片不存在，整体往上移动
+    if ([logo length]==0) {
+        _userImage.image=nil;
+        [self changeLabelFrame:_userCode];
+        [self changeLabelFrame:_userLoginTime];
+        [self changeLabelFrame:_userID];
+        [self changeLabelFrame:_loginTime];
+        [self changeButtonFrame:_logoutBtn];
+    }else{
+        NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
+        _userImage.image=[UIImage imageWithData:data];
+    }
+    _userCode.text=user_code;
+    _userLoginTime.text=login_time;
+    
 }
 
+- (void)clickLogout:(id)sender {
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
+    SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:nil];);
+}
 - (IBAction)closeLogoutUI:(id)sender {
-     [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
 }
 @end

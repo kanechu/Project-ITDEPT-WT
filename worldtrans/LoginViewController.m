@@ -7,15 +7,8 @@
 //
 
 #import "LoginViewController.h"
-#import "TrackHomeController.h"
 #import "MZFormSheetController.h"
-#import <RestKit/RestKit.h>
-#import "AuthContract.h"
-#import "AppConstants.h"
-#import "RequestContract.h"
-#import "SearchFormContract.h"
 #import "RespLogin.h"
-#import "NSDictionary.h"
 #import "DB_login.h"
 #import "Web_base.h"
 #import "MBProgressHUD.h"
@@ -24,9 +17,10 @@
 @end
 
 @implementation LoginViewController
-@synthesize loginData;
+
 @synthesize iobj_target;
 @synthesize isel_action;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,15 +55,13 @@
         _user_Password.layer.borderColor=[UIColor orangeColor].CGColor;
     }
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     _user_ID.layer.borderColor=[UIColor lightGrayColor].CGColor;
     _user_Password.layer.borderColor=[UIColor lightGrayColor].CGColor;
 }
--(void)fn_hide_HUDView{
-   
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
-#pragma mark getData method
+
+#pragma mark NewWork Request method
 - (void) fn_get_data: (NSString*)user_code :(NSString*)user_pass
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -91,26 +83,27 @@
     [web_base fn_get_data:req_form];
     
 }
+
+-(void)fn_hide_HUDView{
+   
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
 - (void) fn_save_login_list: (NSMutableArray *) alist_result {
-    
-    loginData=[NSDictionary dictionaryWithPropertiesOfObject:[alist_result objectAtIndex:0]];
-    if ([[loginData valueForKey:@"pass"] isEqualToString:@"true"]) {
+    RespLogin *login_mapObj=nil;
+    if ([alist_result count]!=0) {
+        login_mapObj=[alist_result objectAtIndex:0];
+    }
+    if ([login_mapObj.pass isEqualToString:@"true"]) {
         DB_login *dbLogin=[[DB_login alloc]init];
-        NSString *userlogo=[loginData valueForKey:@"user_logo"];
-        NSString *usercode=[loginData valueForKey:@"user_code"];
+        NSString *userlogo=login_mapObj.user_logo;
+        NSString *usercode=login_mapObj.user_code;
         [dbLogin fn_save_data:usercode password:_user_Password.text logo:userlogo];
         [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
         SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:_user_ID.text];);
         
     }else{
-        NSString *str=nil;
-        if (_user_ID.text.length==0) {
-            str=@"User ID can not be empty!";
-        }else if(_user_Password.text.length==0){
-            str=@"User Password can not be empty!";
-        }else{
-            str=@"User ID and Password do not match!";
-        }
+        NSString *str=@"User ID and Password do not match!";
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
@@ -118,13 +111,19 @@
     
 }
 
-
 #pragma mark -userLogin method
 - (IBAction)UserLogin:(id)sender {
-    
-    [self fn_get_data:_user_ID.text :_user_Password.text];
-   
-   
+    NSString *str=@"";
+    if (_user_ID.text.length==0) {
+        str=@"User ID can not be empty!";
+    }else if(_user_Password.text.length==0){
+        str=@"User Password can not be empty!";
+    }else{
+        [self fn_get_data:_user_ID.text :_user_Password.text];
+        return;
+    }    
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 - (IBAction)closeLoginUI:(id)sender {

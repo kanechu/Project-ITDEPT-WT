@@ -7,15 +7,11 @@
 //
 
 #import "AehblGeneralController.h"
-#import "AppConstants.h"
-#import "RequestContract.h"
-#import "SearchFormContract.h"
 #import "RespAehbl.h"
 #import "Cell_exhbl_general_detail.h"
 #import "Cell_exhbl_general_hdr.h"
 #import "Res_color.h"
 #import "Web_base.h"
-#import "NSArray.h"
 #import "MapViewController.h"
 #import "MBProgressHUD.h"
 #import "Calculate_lineHeight.h"
@@ -32,10 +28,7 @@ enum ROW_NUMOFSECTION {
 @synthesize calulate_obj;
 @synthesize ilist_aehbl;
 @synthesize dbLogin;
--(void)createDBLoginObj{
-    self.dbLogin =[[DB_login alloc]init];
-    calulate_obj=[[Calculate_lineHeight alloc]init];
-}
+
 - (void)viewDidLoad
 {
     [self createDBLoginObj];
@@ -49,8 +42,11 @@ enum ROW_NUMOFSECTION {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
+-(void)createDBLoginObj{
+    self.dbLogin =[[DB_login alloc]init];
+    calulate_obj=[[Calculate_lineHeight alloc]init];
+}
+#pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([dbLogin isLoginSuccess] && ilist_aehbl!=nil && ilist_aehbl!=NULL) {
@@ -60,62 +56,6 @@ enum ROW_NUMOFSECTION {
     }else{
         return 0;
     }
-}
-
--(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    static NSString *CellIdentifier = @"cell_aehbl_general_hdr";
-    Cell_exhbl_general_hdr *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (headerView == nil){
-        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
-    }
-    
-    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-    ldict_dictionary = [ilist_aehbl objectAtIndex:0];    // Configure Cell
-    
-    
-    headerView.ilb_display_no.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"so_no"], [ldict_dictionary valueForKey:@"hbl_no"]];
-    return headerView;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (ilist_aehbl==nil) {
-        return 0;
-    }else{
-        if(section == 1 )
-            return 0.000001f;
-        else return 102; // put 22 in case of plain one..
-    }
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    static NSString *ls_TableIdentifier = @"cell_aehbl_general_detail";
-    Cell_exhbl_general_detail *cell = (Cell_exhbl_general_detail *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
-    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-    ldict_dictionary = [ilist_aehbl objectAtIndex:0];
-    NSString *ls_os_value;
-    if ( indexPath.row == 5)
-    {
-        ls_os_value = [ldict_dictionary valueForKey:@"status_desc"];
-        if ([ls_os_value length] > 0 ){
-            ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@" / %@, ",[ldict_dictionary valueForKey:@"act_status_date"]]];
-        }
-    }
-    if ([dbLogin isLoginSuccess]) {
-        if (indexPath.row==6) {
-            ls_os_value =[ldict_dictionary valueForKey:@"shpr_name"];
-        }
-        if (indexPath.row==7) {
-            ls_os_value =[ldict_dictionary valueForKey:@"cnee_name"];
-        }
-    }
-   CGFloat height=[calulate_obj fn_heightWithString:ls_os_value font:cell.ilb_value.font constrainedToWidth:cell.ilb_value.frame.size.width];
-    height=height+23+10;
-    if (height<50) {
-        height=50;
-    }
-    return height;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -131,8 +71,7 @@ enum ROW_NUMOFSECTION {
     }
     cell.ilb_value.lineBreakMode=NSLineBreakByWordWrapping;
     cell.ilb_value.numberOfLines=0;
-    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-    ldict_dictionary = [ilist_aehbl objectAtIndex:0];    // Configure Cell
+    NSMutableDictionary *ldict_dictionary = [ilist_aehbl objectAtIndex:0];    // Configure Cell
     
     if( [indexPath row] % 2)
         [cell setBackgroundColor:COLOR_DARK_JUNGLE_GREEN];
@@ -195,9 +134,62 @@ enum ROW_NUMOFSECTION {
     [cell.ilb_value setFrame:CGRectMake(cell.ilb_value.frame.origin.x, cell.ilb_value.frame.origin.y, cell.ilb_value.frame.size.width, height)];
     return cell;
 }
+#pragma mark UITableViewDelegate
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"cell_aehbl_general_hdr";
+    Cell_exhbl_general_hdr *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (headerView == nil){
+        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+    }
+    NSMutableDictionary *ldict_dictionary = [ilist_aehbl objectAtIndex:0];    // Configure Cell
+    
+    headerView.ilb_display_no.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"so_no"], [ldict_dictionary valueForKey:@"hbl_no"]];
+    return headerView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (ilist_aehbl==nil) {
+        return 0;
+    }else{
+        if(section == 1 )
+            return 0.000001f;
+        else return 102; // put 22 in case of plain one..
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    static NSString *ls_TableIdentifier = @"cell_aehbl_general_detail";
+    Cell_exhbl_general_detail *cell = (Cell_exhbl_general_detail *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
+    NSMutableDictionary *ldict_dictionary = [ilist_aehbl objectAtIndex:0];
+    NSString *ls_os_value;
+    if ( indexPath.row == 5)
+    {
+        ls_os_value = [ldict_dictionary valueForKey:@"status_desc"];
+        if ([ls_os_value length] > 0 ){
+            ls_os_value = [ls_os_value stringByAppendingString:[NSString stringWithFormat:@" / %@, ",[ldict_dictionary valueForKey:@"act_status_date"]]];
+        }
+    }
+    if ([dbLogin isLoginSuccess]) {
+        if (indexPath.row==6) {
+            ls_os_value =[ldict_dictionary valueForKey:@"shpr_name"];
+        }
+        if (indexPath.row==7) {
+            ls_os_value =[ldict_dictionary valueForKey:@"cnee_name"];
+        }
+    }
+   CGFloat height=[calulate_obj fn_heightWithString:ls_os_value font:cell.ilb_value.font constrainedToWidth:cell.ilb_value.frame.size.width];
+    height=height+23+10;
+    if (height<50) {
+        height=50;
+    }
+    return height;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
-    ldict_dictionary = [ilist_aehbl objectAtIndex:0];
+
+   NSMutableDictionary * ldict_dictionary = [ilist_aehbl objectAtIndex:0];
     MapViewController *mapVC=nil;
     mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     if ([indexPath row]==1) {
@@ -208,7 +200,7 @@ enum ROW_NUMOFSECTION {
         [self.navigationController pushViewController:mapVC animated:YES];
     }
 }
-
+#pragma mark -NetWork Request
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -229,7 +221,6 @@ enum ROW_NUMOFSECTION {
     [web_base fn_get_data:req_form];
     
 }
-
 
 - (void) fn_save_aehbl_list: (NSMutableArray *) alist_result {
     ilist_aehbl = alist_result;

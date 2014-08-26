@@ -8,28 +8,25 @@
 
 #import "MainHomeViewController.h"
 #import "LoginViewController.h"
-#import "MZFormSheetController.h"
-#import "RequestContract.h"
-#import "AppConstants.h"
-#import "SearchFormContract.h"
-#import "Web_base.h"
-#import "DB_login.h"
-#import "Web_get_alert.h"
-#import "DB_alert.h"
-#import "DB_searchCriteria.h"
-#import "DB_icon.h"
-#import "CustomBadge.h"
-#import "Menu_home.h"
-#import "Cell_menu_item.h"
 #import "LogoutViewController.h"
 #import "TrackHomeController.h"
 #import "AlertController.h"
+
+#import "MZFormSheetController.h"
+#import "Web_base.h"
+#import "Web_get_alert.h"
+#import "DB_login.h"
+#import "DB_alert.h"
+#import "DB_searchCriteria.h"
+#import "DB_icon.h"
 #import "DB_portName.h"
+#import "CustomBadge.h"
+#import "Menu_home.h"
+#import "Cell_menu_item.h"
 #import "RespSearchCriteria.h"
-#import "NSArray.h"
-#import "PopViewManager.h"
 #import "RespIcon.h"
-#import "NSDictionary.h"
+#import "PopViewManager.h"
+
 @interface MainHomeViewController ()
 
 @end
@@ -44,28 +41,6 @@ static NSInteger flag=0;
 @synthesize menu_item;
 CustomBadge *iobj_customBadge;
 
-//初始化Item
-- (void) fn_refresh_menu;
-{
-    ilist_menu = [[NSMutableArray alloc] init];
-    [ilist_menu addObject:[Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"]];
-    //[ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"Segue_ExpandSearch"]];
-    //[ilist_menu addObject:[Menu_home fn_create_item:@"Guide" image:@"ic_ct" segue:@"Segue_GuideVC"]];
-    if (flag==1) {
-        [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
-    }
-    
-    self.iui_collectionview.delegate = self;
-    
-    self.iui_collectionview.dataSource = self;
-    
-    [self.iui_collectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell_menu"];
-    
-    [iobj_customBadge removeFromSuperview];
-    iobj_customBadge = nil;
-
-    [self.iui_collectionview reloadData];
-}
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if (self) {
@@ -91,31 +66,9 @@ CustomBadge *iobj_customBadge;
         });
     });
     
-   
 	// Do any additional setup after loading the view.
 }
--(void)fn_get_allIcon{
-    DB_icon *db=[[DB_icon alloc]init];
-    if ([[db fn_get_all_iconData] count]==0) {
-        [self fn_get_icon_data:@"0"];
-    }else{
-        NSString *recent_update=[[db fn_get_recent_update] valueForKey:@"max(upd_date)"];
-       [self fn_get_icon_data:recent_update];
-    }
-}
-//登陆后显示logo图片
--(void)fn_show_user_logo{
-    DB_login *dbLogin=[[DB_login alloc]init];
-    NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
-    //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
-    if (logo==NULL || logo==nil || logo.length==0) {
-        _imageView.image=nil;
-    }else{
-        NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
-        _imageView.image=[UIImage imageWithData:data];
-    }
-   
-}
+
 //这是在viewDidLoad执行后才执行的方法，避免因为autoLayer,导致视图不能滑动
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -170,6 +123,28 @@ CustomBadge *iobj_customBadge;
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
 }
+#pragma mark -Function options
+- (void) fn_refresh_menu;
+{
+    ilist_menu = [[NSMutableArray alloc] init];
+    [ilist_menu addObject:[Menu_home fn_create_item:@"Tracking" image:@"ic_ct" segue:@"segue_trackHome"]];
+    if (flag==1) {
+        [ilist_menu addObject:[Menu_home fn_create_item:@"Alert" image:@"alert" segue:@"segue_alert"]];
+    }
+    //[ilist_menu addObject:[Menu_home fn_create_item:@"Schedule" image:@"schedule_icon" segue:@"Segue_ExpandSearch"]];
+    //[ilist_menu addObject:[Menu_home fn_create_item:@"Guide" image:@"ic_ct" segue:@"Segue_GuideVC"]];
+    
+    self.iui_collectionview.delegate = self;
+    
+    self.iui_collectionview.dataSource = self;
+    
+    [self.iui_collectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell_menu"];
+    
+    [iobj_customBadge removeFromSuperview];
+    iobj_customBadge = nil;
+    
+    [self.iui_collectionview reloadData];
+}
 
 - (IBAction)fn_menu_btn_clicked:(id)sender {
     UIButton *button=(UIButton*)sender;
@@ -196,6 +171,19 @@ CustomBadge *iobj_customBadge;
     }
 }
 
+//登陆后显示logo图片
+-(void)fn_show_user_logo{
+    DB_login *dbLogin=[[DB_login alloc]init];
+    NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
+    //如果logo为空的话，是不能进行Base64编码的，需进行容错处理
+    if (logo==NULL || logo==nil || logo.length==0) {
+        _imageView.image=nil;
+    }else{
+        NSData *data=[[NSData alloc]initWithBase64EncodedString:logo options:0];
+        _imageView.image=[UIImage imageWithData:data];
+    }
+    
+}
 //实现按钮的图文混排
 -(void)BtnGraphicMixed{
     DB_login *dbLogin=[[DB_login alloc]init];
@@ -222,6 +210,7 @@ CustomBadge *iobj_customBadge;
         [_loginBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _loginBtn.frame.size.width-35, 0, 0)];
     }
 }
+#pragma mark -User Login or Logout
 - (void)fn_pre_login_or_logout:(id)sender {
     DB_login *dbLogin=[[DB_login alloc]init];
     PopViewManager *popV=[[PopViewManager alloc]init];
@@ -235,16 +224,17 @@ CustomBadge *iobj_customBadge;
         LogoutViewController *VC=[self.storyboard instantiateViewControllerWithIdentifier:@"Logout"];
         VC.iobj_target =self;
         VC.isel_action = @selector(fn_user_logout);
-        NSString *logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
+        NSString *logo=@"";
+        if ([[dbLogin fn_get_all_msg]count]!=0) {
+            logo=[[[dbLogin fn_get_all_msg] objectAtIndex:0] valueForKey:@"user_logo"];
+        }
         //如果logo为空的话，弹出的视图size变小
-        if (logo==NULL || logo==nil || logo.length==0) {
+        if (logo.length==0) {
             [popV PopupView:VC Size:SHEETSIZE2 uponView:self];
         }else{
              [popV PopupView:VC Size:SHEETSIZE1 uponView:self];
         }
-
     }
-    
 }
 //登录成功后，导航的按钮项显示为用户的名称
 -(void)fn_after_login:(NSString*)userName{
@@ -260,34 +250,34 @@ CustomBadge *iobj_customBadge;
     [self fn_get_data];
 
 }
--(void)fn_get_data{
-   
-    RequestContract *req_form=[[RequestContract alloc]init];
+
+- (void)fn_user_logout{
+    
     DB_login *dbLogin=[[DB_login alloc]init];
-    req_form.Auth=[dbLogin WayOfAuthorization];
-    
-    SearchFormContract *search=[[SearchFormContract alloc]init];
-    search.os_column=@"form";
-    search.os_value=@"ctschedule";
-    
-    req_form.SearchForm=[NSSet setWithObjects:search,nil];
-    Web_base *web_base=[[Web_base alloc]init];
-    web_base.il_url =STR_SEARCHCRITERIA_URL;
-    web_base.iresp_class =[RespSearchCriteria class];
-    
-    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespSearchCriteria class]];
-    web_base.iobj_target = self;
-    web_base.isel_action = @selector(fn_save_searchCriteria_list:);
-    [web_base fn_get_data:req_form];
+    [dbLogin fn_delete_record];
+    _imageView.image=nil;
+    [self BtnGraphicMixed];
+    [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
+    //退出登陆后，设置flag=0,隐藏alert项
+    flag=0;
+    [self fn_refresh_menu];
+    //清除portName的缓存
+    DB_portName *db=[[DB_portName alloc]init];
+    [db fn_delete_all_data];
+    //清除alert的记录
+    DB_alert *db_alert=[[DB_alert alloc]init];
+    [db_alert fn_delete_all_data];
     
 }
-//搜索标准的数据存入数据库中
--(void)fn_save_searchCriteria_list:(NSMutableArray*)ilist_result{
-    DB_searchCriteria *db=[[DB_searchCriteria alloc]init];
-    if ([db fn_delete_all_data]) {
-        [db fn_save_data:ilist_result];
+#pragma mark -NetWork Request
+-(void)fn_get_allIcon{
+    DB_icon *db=[[DB_icon alloc]init];
+    if ([[db fn_get_all_iconData] count]==0) {
+        [self fn_get_icon_data:@"0"];
+    }else{
+        NSString *recent_update=[[db fn_get_recent_update] valueForKey:@"max(upd_date)"];
+        [self fn_get_icon_data:recent_update];
     }
-    
 }
 -(void)fn_get_icon_data:(NSString*)search_value{
     
@@ -317,7 +307,7 @@ CustomBadge *iobj_customBadge;
         [db fn_save_data:ilist_result];
     }else{
         for (RespIcon *lmap_icon in ilist_result) {
-             NSMutableDictionary *ldict_row = [[NSDictionary dictionaryWithPropertiesOfObject:lmap_icon] mutableCopy];
+            NSMutableDictionary *ldict_row = [[NSDictionary dictionaryWithPropertiesOfObject:lmap_icon] mutableCopy];
             if ([db fn_isExist_icon:[ldict_row valueForKey:@"ic_name"]]) {
                 [db fn_save_update_data:ldict_row];
             }else{
@@ -327,30 +317,35 @@ CustomBadge *iobj_customBadge;
             }
         }
     }
-    
 }
-
-
-#pragma mark -UserLogOut menthod
-- (void)fn_user_logout{
+-(void)fn_get_data{
     
+    RequestContract *req_form=[[RequestContract alloc]init];
     DB_login *dbLogin=[[DB_login alloc]init];
-    [dbLogin fn_delete_record];
-    _imageView.image=nil;
-    [self BtnGraphicMixed];
-    [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
-    //退出登陆后，设置flag=0,隐藏alert项
-    flag=0;
-    [self fn_refresh_menu];
-    //清除portName的缓存
-    DB_portName *db=[[DB_portName alloc]init];
-    [db fn_delete_all_data];
-    //清除alert的记录
-    DB_alert *db_alert=[[DB_alert alloc]init];
-    [db_alert fn_delete_all_data];
+    req_form.Auth=[dbLogin WayOfAuthorization];
+    
+    SearchFormContract *search=[[SearchFormContract alloc]init];
+    search.os_column=@"form";
+    search.os_value=@"ctschedule";
+    
+    req_form.SearchForm=[NSSet setWithObjects:search,nil];
+    Web_base *web_base=[[Web_base alloc]init];
+    web_base.il_url =STR_SEARCHCRITERIA_URL;
+    web_base.iresp_class =[RespSearchCriteria class];
+    
+    web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespSearchCriteria class]];
+    web_base.iobj_target = self;
+    web_base.isel_action = @selector(fn_save_searchCriteria_list:);
+    [web_base fn_get_data:req_form];
     
 }
-
+//搜索标准的数据存入数据库中
+-(void)fn_save_searchCriteria_list:(NSMutableArray*)ilist_result{
+    DB_searchCriteria *db=[[DB_searchCriteria alloc]init];
+    if ([db fn_delete_all_data]) {
+        [db fn_save_data:ilist_result];
+    }
+}
 #pragma mark - UICollectionView Datasource
 // 1
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
@@ -368,7 +363,6 @@ CustomBadge *iobj_customBadge;
     cell.itemButton.layer.cornerRadius=7;
     int li_item = [indexPath item];
     
-    
     menu_item =  [ilist_menu objectAtIndex:li_item];
     cell.ilb_label.text = menu_item.is_label;
     [cell.itemButton setImage:[UIImage imageNamed:menu_item.is_image] forState:UIControlStateNormal];
@@ -377,7 +371,7 @@ CustomBadge *iobj_customBadge;
     if (li_item == 1) {
         
         iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-        [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width-2,cell.itemButton.frame.origin.y-7, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+        [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width+4,cell.itemButton.frame.origin.y-12, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
         DB_login *dbLogin=[[DB_login alloc]init];
         //登陆后和有新通知的时候，才显示badge
         if ([dbLogin isLoginSuccess]) {
@@ -400,7 +394,6 @@ CustomBadge *iobj_customBadge;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
-
 
 // 3
 - (UIEdgeInsets)collectionView:
