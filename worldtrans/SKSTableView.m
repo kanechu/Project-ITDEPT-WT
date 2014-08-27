@@ -503,14 +503,16 @@ static void *SubRowObjectKey;
 
 - (NSInteger)subRow
 {
-    id subRowObj = objc_getAssociatedObject(self, SubRowObjectKey);
+    id myClass=[SKSTableView class];
+    id subRowObj = objc_getAssociatedObject(myClass, SubRowObjectKey);
     return [subRowObj integerValue];
 }
 
 - (void)setSubRow:(NSInteger)subRow
 {
+    id myClass=[SKSTableView class];
     id subRowObj = [NSNumber numberWithInteger:subRow];
-    objc_setAssociatedObject(self, SubRowObjectKey, subRowObj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(myClass, SubRowObjectKey, subRowObj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 + (NSIndexPath *)indexPathForSubRow:(NSInteger)subrow inRow:(NSInteger)row inSection:(NSInteger)section
