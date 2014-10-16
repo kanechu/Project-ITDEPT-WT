@@ -37,7 +37,8 @@
     // add viewController so you can switch them later.
     UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self addChildViewController:vc];
-    vc.view.frame = self.contentView.bounds;
+    CGRect frame = self.contentView.bounds;
+    [vc.view setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height-64)];
     [self.contentView addSubview:vc.view];
     self.currentViewController = vc;
 }
@@ -46,21 +47,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(IBAction) segmentedControlIndexChanged
-{
-    switch (self.segmentedControl.selectedSegmentIndex)
-    {
-        case 0:
-            //self.textLabel.text =@"Segment 1 selected.";
-            break;
-        case 1:
-            //self.textLabel.text =@"Segment 2 selected.";
-            break;
-        default: 
-            break; 
-    } 
 }
 
 - (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {

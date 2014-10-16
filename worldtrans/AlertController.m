@@ -16,6 +16,12 @@
 
 @interface AlertController ()
 
+@property (strong,nonatomic) NSMutableArray *ilist_alert;
+@property (strong,nonatomic) NSMutableArray *today_alert;
+@property (strong,nonatomic) NSMutableArray *previous_alert;
+@property (strong,nonatomic) NSMutableDictionary *deleteDic;
+@property ( nonatomic) UIButton *cancleButton;
+
 @end
 
 @implementation AlertController

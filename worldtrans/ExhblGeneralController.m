@@ -72,6 +72,7 @@ enum ROW_NUMOFSECTION {
     NSString *ls_os_value = @"", *ls_os_column = @"";
     
     Cell_exhbl_general_detail *cell = (Cell_exhbl_general_detail *)[self.tableView dequeueReusableCellWithIdentifier:ls_TableIdentifier];
+    cell.accessoryType=UITableViewCellAccessoryNone;
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"Cell_exhbl_general_detail" owner:self options:nil];
@@ -202,7 +203,11 @@ enum ROW_NUMOFSECTION {
     NSMutableDictionary *ldict_dictionary = [ilist_exhbl objectAtIndex:0];    // Configure Cell
     
         headerView.ilb_display_no.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"so_no"], [ldict_dictionary valueForKey:@"hbl_no"]];
-    
+    CGFloat height=[calulate_obj fn_heightWithString:headerView.ilb_display_no.text font:headerView.ilb_display_no.font constrainedToWidth:headerView.ilb_display_no.frame.size.width];
+    if (height<21) {
+        height=21;
+    }
+    [headerView.ilb_display_no setFrame:CGRectMake(headerView.ilb_display_no.frame.origin.x, headerView.ilb_display_no.frame.origin.y, headerView.ilb_display_no.frame.size.width, height)];
     return headerView;
 }
 
@@ -210,9 +215,18 @@ enum ROW_NUMOFSECTION {
     if (ilist_exhbl==nil) {
         return 0;
     }else{
+        static NSString *CellIdentifier = @"cell_exhbl_general_hdr";
+        Cell_exhbl_general_hdr *headerView = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        NSMutableDictionary * ldict_dictionary = [ilist_exhbl objectAtIndex:0];    // Configure Cell
+        
+        headerView.ilb_display_no.text = [NSString stringWithFormat:@"%@ / %@", [ldict_dictionary valueForKey:@"so_no"], [ldict_dictionary valueForKey:@"hbl_no"]];
+        CGFloat height=[calulate_obj fn_heightWithString:headerView.ilb_display_no.text font:headerView.ilb_display_no.font constrainedToWidth:headerView.ilb_display_no.frame.size.width];
+        if (height<21) {
+            height=21;
+        }
         if(section == 1 )
             return 0.000001f;
-        else return 102; // put 22 in case of plain one..
+        else return 81+height; // put 22 in case of plain one..
     }
 }
 
