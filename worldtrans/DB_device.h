@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBManager.h"
+#import "DatabaseQueue.h"
 @interface DB_device : NSObject
-@property (strong,nonatomic)DBManager *idb;
+@property (strong,nonatomic)DatabaseQueue *queue;
 - (BOOL)fn_save_data:(NSString*)device_id;
 -(NSMutableArray*)fn_get_all_msg;
 @end

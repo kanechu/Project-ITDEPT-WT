@@ -88,7 +88,8 @@
         }
         cell.ilb_status_remark.text = [NSString stringWithFormat:@"%@ %@ %@", @"(Done)", ls_act_status_date
                                        , [ldict_dictionary valueForKey:@"remark"]];
-        
+        [cell.ilb_status_desc setTextColor:COLOR_LIGHT_GREEN];
+        [cell.ilb_status_remark setTextColor:COLOR_LIGHT_GREEN];
     } else {
         // pic setting
         if (indexPath.row == 0 ) {

@@ -7,36 +7,42 @@
 //
 
 #import "DB_device.h"
-
+#import "DatabaseQueue.h"
+#import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
 @implementation DB_device
-@synthesize idb;
+@synthesize queue;
+- (id)init{
+    self=[super init];
+    if (self) {
+        queue=[DatabaseQueue fn_sharedInstance];
+    }
+    return self;
+}
 - (BOOL)fn_save_data:(NSString*)device_id
 {
-
-    
-    if ([[idb fn_get_db] open]) {
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into device (device_id ) values ( \"%@\")", device_id];
-        BOOL ib_updated =[[idb fn_get_db] executeUpdate:insertSQL];
-        
-        if (! ib_updated)
-            return NO;
-        [[idb fn_get_db] close];
-    }
-    
-    return  YES;
-    
+    __block BOOL ib_updated=NO;
+    [queue inDataBase:^(FMDatabase *db){
+        if ([db open]) {
+            NSString *insertSQL = [NSString stringWithFormat:@"insert into device (device_id ) values ( \"%@\")", device_id];
+            ib_updated =[db executeUpdate:insertSQL];
+            [db close];
+        }
+    }];
+    return ib_updated;
 }
 -(NSMutableArray*)fn_get_all_msg{
     
-    NSMutableArray *llist_results = [NSMutableArray array];
-    if ([[idb fn_get_db] open]) {
-        
-        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:@"SELECT * FROM device"];
-        while ([lfmdb_result next]) {
-            [llist_results addObject:[lfmdb_result resultDictionary]];
+    __block NSMutableArray *llist_results = [NSMutableArray array];
+    [queue inDataBase:^(FMDatabase *db){
+        if ([db open]) {
+            FMResultSet *lfmdb_result = [db executeQuery:@"SELECT * FROM device"];
+            while ([lfmdb_result next]) {
+                [llist_results addObject:[lfmdb_result resultDictionary]];
+            }
+            [db close];
         }
-        [[idb fn_get_db] close];
-    }
+    }];
     
     return llist_results;
 }

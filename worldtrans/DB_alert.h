@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBManager.h"
+#import "DatabaseQueue.h"
 
 @interface DB_alert : NSObject
 
-@property (strong,nonatomic) DBManager *idb;
+@property (strong,nonatomic) DatabaseQueue *queue;
 
 - (BOOL) fn_save_data:(NSMutableArray*) alist_alert;
 - (NSInteger) fn_get_unread_msg_count;
@@ -20,6 +20,6 @@
 - (NSMutableArray *) fn_get_previous_msg;
 - (BOOL)fn_update_isRead:(NSString*)as_indexRow;
 - (BOOL)fn_delete:(NSString*)as_indexRow;
-- (BOOL)fn_delete_all_data;
+- (BOOL)fn_delete_all_alert;
 @end
 

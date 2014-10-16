@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DBManager;
+@class DatabaseQueue;
 @interface DB_portName : NSObject
 
-@property (strong,nonatomic)DBManager *idb;
+@property (strong,nonatomic)DatabaseQueue *queue;
 
 -(BOOL)fn_save_data:(NSMutableArray*)alist_portname;
 

@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-@class DBManager;
+@class DatabaseQueue;
 @interface DB_searchCriteria : NSObject
 
-@property (nonatomic,strong)DBManager *idb;
+@property (nonatomic,strong)DatabaseQueue *queue;
 
 -(BOOL)fn_save_data:(NSMutableArray*)alist_searchCriteria;
 -(NSMutableArray*)fn_get_all_data;
--(BOOL)fn_delete_all_data;
 -(NSMutableArray*)fn_get_groupNameAndNum;
+-(BOOL)fn_delete_all_data;
+
 @end

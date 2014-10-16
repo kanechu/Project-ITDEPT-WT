@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBManager.h"
+#import "DatabaseQueue.h"
 #import "AuthContract.h"
 @interface DB_login : NSObject
 {
-    DBManager *idb;
+    DatabaseQueue *queue;
 }
-@property(nonatomic,strong) DBManager *idb;
+@property(nonatomic,strong) DatabaseQueue *queue;
 
 - (BOOL) fn_save_data:(NSString*)user_ID password:(NSString*)user_pass logo:(NSString*)user_logo;
 

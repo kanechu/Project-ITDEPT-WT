@@ -182,7 +182,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GsZ-1h-yhR">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="K4e-OJ-810">
+                        <barButtonItem key="rightBarButtonItem" id="K4e-OJ-810">
                             <segmentedControl key="customView" opaque="NO" contentMode="top" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="dSx-zN-DOh">
                                 <rect key="frame" x="157" y="8" width="147" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -703,7 +703,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Message" id="o63-6Q-ooV">
                         <barButtonItem key="backBarButtonItem" title="Back" id="8G2-B0-Eba"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="2WS-J4-jNw">
+                        <barButtonItem key="rightBarButtonItem" id="2WS-J4-jNw">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="0lE-aI-SDf">
                                 <rect key="frame" x="194" y="8" width="110" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -770,7 +770,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Select the port name" id="2Dx-WD-FuQ">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="reply" id="sQd-yL-HUo">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="sQd-yL-HUo">
                                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="fn_click_close:" destination="urU-sB-sfC" id="6KW-6f-aAo"/>
@@ -1109,7 +1109,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Schedule" id="LiT-cP-i6i">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="UZ6-3o-vwc">
+                        <barButtonItem key="rightBarButtonItem" id="UZ6-3o-vwc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SIt-Ch-SNx">
                                 <rect key="frame" x="224" y="5" width="80" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1438,7 +1438,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="GZJ-4W-PIT">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="BMY-aC-XQe">
+                        <barButtonItem key="leftBarButtonItem" id="BMY-aC-XQe">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qgd-tt-2d1">
                                 <rect key="frame" x="16" y="12" width="120" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1448,7 +1448,7 @@
                                 </state>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="lFa-4w-4B4">
+                        <barButtonItem key="rightBarButtonItem" id="lFa-4w-4B4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tva-Dd-2uP">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1494,7 +1494,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="gnR-70-wUT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="wNj-CX-Im8">
+                        <barButtonItem key="rightBarButtonItem" id="wNj-CX-Im8">
                             <segmentedControl key="customView" opaque="NO" contentMode="top" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="nZv-Vi-ui5">
                                 <rect key="frame" x="157" y="8" width="147" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1641,7 +1641,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="3hz-sA-2Up"/>
-        <segue reference="IT6-cK-qMM"/>
+        <segue reference="Cr5-3k-Xhp"/>
         <segue reference="wFa-ZF-dhE"/>
     </inferredMetricsTieBreakers>
 </document>

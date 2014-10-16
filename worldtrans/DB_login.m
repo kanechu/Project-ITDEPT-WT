@@ -7,7 +7,7 @@
 //
 
 #import "DB_login.h"
-#import "DBManager.h"
+#import "DatabaseQueue.h"
 #import "NSDictionary.h"
 #import "FMDatabaseAdditions.h"
 #import "AppDelegate.h"
@@ -15,10 +15,13 @@
 #import "AppConstants.h"
 @implementation DB_login
 
-@synthesize idb;
+@synthesize queue;
 
 -(id) init {
-    idb = [DBManager getSharedInstance];
+    self=[super init];
+    if (self) {
+        queue=[DatabaseQueue fn_sharedInstance];
+    }
     return self;
 }
 
@@ -30,55 +33,58 @@
     // display in 12HR/24HR (i.e. 11:25PM or 23:25) format according to User Settings
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *ls_currentTime = [dateFormatter stringFromDate:today];
-    
-    if ([[idb fn_get_db] open]) {
-        NSString *insertSQL = [NSString stringWithFormat:@"insert into loginInfo (user_code,password,login_time,user_logo) values (\"%@\",\"%@\",\"%@\",\"%@\")", user_ID,user_pass,ls_currentTime,user_logo];
-        BOOL ib_updated =[[idb fn_get_db] executeUpdate:insertSQL];
-        if (! ib_updated)
-            return NO;
-        [[idb fn_get_db] close];
-    }
-    
-    return  YES;
+    __block BOOL ib_updated=NO;
+    [queue inDataBase:^(FMDatabase *db){
+        if ([db open]) {
+            NSString *insertSQL = [NSString stringWithFormat:@"insert into loginInfo (user_code,password,login_time,user_logo) values (\"%@\",\"%@\",\"%@\",\"%@\")", user_ID,user_pass,ls_currentTime,user_logo];
+            ib_updated =[db executeUpdate:insertSQL];
+            [db close];
+        }
+    }];
+    return ib_updated;
 }
 
 -(BOOL)fn_delete_record{
-    if ([[idb fn_get_db] open]) {
-        NSString *delete = [NSString stringWithFormat:@"delete from loginInfo"];
-        BOOL ib_updated =[[idb fn_get_db] executeUpdate:delete];
-        
-        if (! ib_updated)
-            return NO;
-        [[idb fn_get_db] close];
-    }
-    return YES;
+    __block BOOL ib_deleted=NO;
+    [queue inDataBase:^(FMDatabase* db){
+        if ([db open]) {
+            NSString *delete = [NSString stringWithFormat:@"delete from loginInfo"];
+            ib_deleted =[db executeUpdate:delete];
+            
+            [db close];
+        }
+    }];
+    return ib_deleted;
 }
 - (NSMutableArray *) fn_get_all_msg
 {
-    NSMutableArray *llist_results = [NSMutableArray array];
-    if ([[idb fn_get_db] open]) {
-        
-        FMResultSet *lfmdb_result = [[idb fn_get_db] executeQuery:@"SELECT * FROM loginInfo"];
-        while ([lfmdb_result next]) {
-            [llist_results addObject:[lfmdb_result resultDictionary]];
+    __block NSMutableArray *llist_results = [NSMutableArray array];
+    [queue inDataBase:^(FMDatabase *db){
+        if ([db open]) {
+            
+            FMResultSet *lfmdb_result = [db executeQuery:@"SELECT * FROM loginInfo"];
+            while ([lfmdb_result next]) {
+                [llist_results addObject:[lfmdb_result resultDictionary]];
+            }
+            [db close];
         }
-        [[idb fn_get_db] close];
-    }
-    
+        
+    }];
     return llist_results;
 }
 -(BOOL)isLoginSuccess{
-    if ([[idb fn_get_db] open]) {
-        NSInteger li_count = [[idb fn_get_db] intForQuery:@"SELECT COUNT(*) FROM loginInfo"];
-        
-        if (li_count==0) {
-            return NO;
-        }else{
-            return YES;
+    __block NSInteger li_count=0;
+    [queue inDataBase:^(FMDatabase *db){
+        if ([db open]) {
+            li_count = [db intForQuery:@"SELECT COUNT(*) FROM loginInfo"];
+            [db close];
         }
-        [[idb fn_get_db] close];
+    }];
+    if (li_count==0) {
+        return NO;
+    }else{
+        return YES;
     }
-    return NO;
 }
 -(AuthContract*)WayOfAuthorization{
     AuthContract *auth=[[AuthContract alloc]init];
