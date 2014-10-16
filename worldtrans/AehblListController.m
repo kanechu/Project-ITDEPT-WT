@@ -47,6 +47,7 @@
     [iSearchBar.layer insertSublayer:gradient atIndex:0];
     self.view.backgroundColor = [UIColor blackColor];
     iSearchBar.delegate = (id)self;
+    [self fn_hideCell_Extraline];
     [self fn_get_data:is_search_no];
 }
 
@@ -151,7 +152,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         aehblHomeController.is_search_value = ls_os_value;
     }
 }
-
+-(void)fn_hideCell_Extraline{
+    UIView *view=[[UIView alloc]initWithFrame:self.tableView.frame];
+    view.backgroundColor=[UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+}
 #pragma mark -NetWork Request
 - (void) fn_get_data: (NSString*)as_search_no
 {    

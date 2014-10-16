@@ -43,8 +43,9 @@
     [iSearchBar.layer insertSublayer:gradient atIndex:0];
     self.view.backgroundColor = [UIColor blackColor];
     iSearchBar.delegate = (id)self;
+    [self fn_hideCell_Extraline];
     [self fn_get_data:is_search_no];
-    
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,6 +145,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         exhblHomeController.is_search_column = ls_os_column;
         exhblHomeController.is_search_value = ls_os_value;
     }
+}
+-(void)fn_hideCell_Extraline{
+    UIView *view=[[UIView alloc]initWithFrame:self.tableView.frame];
+    view.backgroundColor=[UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 #pragma mark -NetWork Request

@@ -52,6 +52,7 @@
     NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
     [self setToolbarItems:arr animated:YES];
     [[self navigationController] setToolbarHidden:YES animated:YES];
+    [self fn_hideCell_Extraline];
    
 }
 #pragma mark UITableViewDelegate
@@ -166,7 +167,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     }
     
 }
-
+-(void)fn_hideCell_Extraline{
+    UIView *view=[[UIView alloc]initWithFrame:self.tableView.frame];
+    view.backgroundColor=[UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+}
 #pragma mark segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
