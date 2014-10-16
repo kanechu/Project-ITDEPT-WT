@@ -23,8 +23,7 @@
 
 #define COLOR_AQUA [UIColor colorWithRed:0 green:255.0/255.0 blue:255.0/255.0 alpha:1]
 
-
-
+#define COLOR_LIGHT_GREEN [UIColor colorWithRed:0 green:255.0/255.0 blue:0 alpha:1.0]
 @interface Res_color : NSObject
 
 

@@ -10,6 +10,7 @@
 
 @interface RespSearchCriteria : NSObject
 
+@property (copy,nonatomic) NSString *srch_type;
 @property (copy,nonatomic) NSString *seq;
 @property (copy,nonatomic) NSString *col_code;
 @property (copy,nonatomic) NSString *col_label;
@@ -18,5 +19,5 @@
 @property (copy,nonatomic) NSString *col_def;
 @property (copy,nonatomic) NSString *group_name;
 @property (copy,nonatomic) NSString *is_mandatory;
-
+@property (copy,nonatomic) NSString *icon_name;
 @end

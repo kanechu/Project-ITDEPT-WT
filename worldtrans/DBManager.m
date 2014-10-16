@@ -37,12 +37,14 @@ static int DB_VERSION = 1;
 -(FMDatabase*) fn_get_db{
     return database;
 }
-
--(BOOL)fn_create_db{
+-(NSString*)fn_get_databaseFilePath{
     NSArray *llist_paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *ls_documentDirectory = [llist_paths objectAtIndex:0];
     NSString *ls_dbPath = [ls_documentDirectory stringByAppendingPathComponent:@"itdept.db"];
-    
+    return ls_dbPath;
+}
+-(BOOL)fn_create_db{
+    NSString *ls_dbPath=[self fn_get_databaseFilePath];
     BOOL lb_Success = YES;
     database= [FMDatabase databaseWithPath:ls_dbPath] ;
     if (![database open]) {
@@ -62,11 +64,11 @@ static int DB_VERSION = 1;
         NSLog(@"Failed to open/create database");
     } else {
         NSString *ls_sql_stmt =
-        @"CREATE TABLE IF NOT EXISTS alert ( unique_id INTEGER PRIMARY KEY, ct_type TEXT NOT NULL DEFAULT '', so_uid TEXT NOT NULL DEFAULT '', so_no TEXT NOT NULL DEFAULT '', hbl_uid TEXT NOT NULL DEFAULT '', hbl_no TEXT NOT NULL DEFAULT '', status_desc TEXT NOT NULL DEFAULT '', act_status_date TEXT NOT NULL DEFAULT '', act_status_time TEXT NOT NULL DEFAULT '', msg_recv_date TEXT NOT NULL DEFAULT '', is_read INT DEFAULT 0);";
+        @"CREATE TABLE IF NOT EXISTS alert ( unique_id INTEGER PRIMARY KEY,user_code TEXT NOT NULL DEFAULT '', ct_type TEXT NOT NULL DEFAULT '', so_uid TEXT NOT NULL DEFAULT '', so_no TEXT NOT NULL DEFAULT '', hbl_uid TEXT NOT NULL DEFAULT '', hbl_no TEXT NOT NULL DEFAULT '', status_desc TEXT NOT NULL DEFAULT '', act_status_date TEXT NOT NULL DEFAULT '', act_status_time TEXT NOT NULL DEFAULT '', msg_recv_date TEXT NOT NULL DEFAULT '', is_read INT DEFAULT 0);";
         NSString *ls_sql_login = @"CREATE TABLE IF NOT EXISTS loginInfo( unique_id INTEGER PRIMARY KEY,user_code TEXT NOT NULL DEFAULT '',password TEXT NOT NULL DEFAULT '',login_time TEXT NOT NULL DEFAULT '',user_logo TEXT)";
         NSString *ls_sql_device=@"CREATE TABLE IF NOT EXISTS device( unique_id INTEGER PRIMARY KEY,device_id TEXT NOT NULL DEFAULT '')";
         NSString *ls_sql_portName=@"CREATE TABLE IF NOT EXISTS portName( unique_id INTEGER PRIMARY KEY,display TEXT NOT NULL DEFAULT '',data TEXT NOT NULL DEFAULT '',desc TEXT NOT NULL DEFAULT '',image TEXT NOT NULL DEFAULT '')";
-         NSString *ls_sql_searchCriteria=@"CREATE TABLE IF NOT EXISTS searchCriteria( unique_id INTEGER PRIMARY KEY,seq TEXT NOT NULL DEFAULT '',col_code TEXT NOT NULL DEFAULT '',col_label TEXT NOT NULL DEFAULT '',col_type TEXT NOT NULL DEFAULT '',col_option TEXT NOT NULL DEFAULT '',col_def TEXT NOT NULL DEFAULT '',group_name TEXT NOT NULL DEFAULT '',is_mandatory TEXT NOT NULL DEFAULT '',save_time TEXT NOT NULL DEFAULT '')";
+         NSString *ls_sql_searchCriteria=@"CREATE TABLE IF NOT EXISTS searchCriteria( unique_id INTEGER PRIMARY KEY,srch_type TEXT NOT NULL DEFAULT '',seq TEXT NOT NULL DEFAULT '',col_code TEXT NOT NULL DEFAULT '',col_label TEXT NOT NULL DEFAULT '',col_type TEXT NOT NULL DEFAULT '',col_option TEXT NOT NULL DEFAULT '',col_def TEXT NOT NULL DEFAULT '',group_name TEXT NOT NULL DEFAULT '',is_mandatory TEXT NOT NULL DEFAULT '',icon_name TEXT NOT NULL DEFAULT '',save_time TEXT NOT NULL DEFAULT '')";
         NSString *ls_sql_icon=@"CREATE TABLE IF NOT EXISTS icon( unique_id INTEGER PRIMARY KEY,ic_name TEXT NOT NULL DEFAULT '',ic_content TEXT NOT NULL DEFAULT '',upd_date TEXT NOT NULL DEFAULT '')";
         
         [database executeUpdate:ls_sql_stmt];
