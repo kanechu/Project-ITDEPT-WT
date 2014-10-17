@@ -20,6 +20,7 @@
     
     [super viewDidLoad];
     _ltf_search_no.delegate=self;
+    [self fn_custom_GestureRecognizer];
     [self addBound:_lbtn_exhbl_search];
     [self addBound:_lbtn_aehbl_AirSearch];
     [_lbtn_exhbl_search addTarget:self action:@selector(fn_click_seaExport) forControlEvents:UIControlEventTouchUpInside];
@@ -82,11 +83,19 @@
     }
    
 }
+#pragma mark -Custom GestureRecognizer
+-(void)fn_custom_GestureRecognizer{
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fn_hide_keyboard)];
+    [self.view addGestureRecognizer:gesture];
+}
+-(void)fn_hide_keyboard{
+    [_ltf_search_no resignFirstResponder];
+}
+
 #pragma mark UITextFieldDelegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [_ltf_search_no resignFirstResponder];
     return YES;
 }
-
 
 @end

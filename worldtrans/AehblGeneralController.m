@@ -15,13 +15,19 @@
 #import "MapViewController.h"
 #import "MBProgressHUD.h"
 #import "Calculate_lineHeight.h"
+#import "DB_login.h"
 enum ROW_NUMOFSECTION {
     ROW_NUM1 = 8,
     RoW_NUM2 = 6
 };
 @interface AehblGeneralController ()
+
 @property(nonatomic,strong)Calculate_lineHeight *calulate_obj;
+@property (strong,nonatomic) NSMutableArray *ilist_aehbl;
+@property (strong,nonatomic)DB_login *dbLogin;
+
 @end
+
 @implementation AehblGeneralController
 @synthesize is_search_column;
 @synthesize is_search_value;
@@ -209,11 +215,11 @@ enum ROW_NUMOFSECTION {
     mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     if ([indexPath row]==1) {
         mapVC.adress_name=[ldict_dictionary valueForKey:@"load_port"];
-        [self.navigationController pushViewController:mapVC animated:YES];
+    
     }else if ([indexPath row]==2){
         mapVC.adress_name=[ldict_dictionary valueForKey:@"dest_name"];
-        [self.navigationController pushViewController:mapVC animated:YES];
     }
+    [self.navigationController pushViewController:mapVC animated:YES];
 }
 #pragma mark -NetWork Request
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value

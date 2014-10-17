@@ -8,24 +8,25 @@
 //
 
 #import "ExhblGeneralController.h"
-#import "RequestContract.h"
-#import "SearchFormContract.h"
 #import "RespExhbl.h"
 #import "Cell_exhbl_general_detail.h"
 #import "Cell_exhbl_general_hdr.h"
 #import "Res_color.h"
-#import "AppConstants.h"
 #import "Web_base.h"
-#import "NSArray.h"
 #import "MapViewController.h"
 #import "MBProgressHUD.h"
 #import "Calculate_lineHeight.h"
+#import "DB_login.h"
 enum ROW_NUMOFSECTION {
     ROW_NUM1 = 10,
     RoW_NUM2 = 6
 };
 @interface ExhblGeneralController ()
+
 @property(nonatomic,strong)Calculate_lineHeight *calulate_obj;
+@property (strong,nonatomic) NSMutableArray *ilist_exhbl;
+@property (strong,nonatomic)DB_login *dbLogin;
+
 @end
 
 @implementation ExhblGeneralController
@@ -40,9 +41,7 @@ enum ROW_NUMOFSECTION {
 - (void)viewDidLoad
 {
     [self createDBLoginObj];
-    self.view.backgroundColor = [UIColor blackColor];
     [self fn_get_data:is_search_column :is_search_value];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -271,11 +270,10 @@ enum ROW_NUMOFSECTION {
     mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     if ([indexPath row]==1) {
         mapVC.adress_name=[ldict_dictionary valueForKey:@"load_port"];
-        [self.navigationController pushViewController:mapVC animated:YES];
     }else if([indexPath row]==2){
         mapVC.adress_name=[ldict_dictionary valueForKey:@"dest_name"];
-        [self.navigationController pushViewController:mapVC animated:YES];
     }
+    [self.navigationController pushViewController:mapVC animated:YES];
 }
 
 #pragma mark get data
