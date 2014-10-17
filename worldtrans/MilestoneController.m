@@ -100,6 +100,7 @@
         else {
             [cell.ipic_row_status setImage:[UIImage imageNamed:@"unread"]];
         }
+        cell.ilb_status_remark.text=@"";
         [cell.ilb_status_desc setTextColor:[UIColor grayColor]];
         [cell.ilb_status_remark setTextColor:[UIColor grayColor]];
     }
