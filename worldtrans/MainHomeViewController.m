@@ -29,11 +29,18 @@
 
 @interface MainHomeViewController ()
 
+@property (strong,nonatomic) NSMutableArray *ilist_menu;
+//存储 alert 数量
+@property (assign,nonatomic)NSInteger badge_Num;
+@property (nonatomic,weak)Menu_home *menu_item;
+
 @end
+
 #define LOGINSHEETSIZE CGSizeMake(280, 220)
 #define SHEETSIZE1 CGSizeMake(280, 250)
 #define SHEETSIZE2 CGSizeMake(280, 180)
 static NSInteger flag=0;
+
 @implementation MainHomeViewController
 @synthesize ilist_menu;
 @synthesize iui_collectionview;
@@ -366,7 +373,6 @@ CustomBadge *iobj_customBadge;
     cell.itemButton.tag=indexPath.item;
     
     if (li_item == 1) {
-        
         iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
         [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width+4,cell.itemButton.frame.origin.y-12, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
         DB_login *dbLogin=[[DB_login alloc]init];

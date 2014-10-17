@@ -146,7 +146,7 @@
                             <outlet property="delegate" destination="UW2-Ws-x2P" id="Q2T-Ss-I4F"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Got-ld-FaO"/>
+                    <navigationItem key="navigationItem" title="Sea Export" id="Got-ld-FaO"/>
                     <connections>
                         <outlet property="iSearchBar" destination="Lo0-3p-QUg" id="jM2-iw-W7e"/>
                         <outlet property="searchDisplayController" destination="gYg-tF-kOM" id="zvN-pj-Lki"/>
@@ -163,7 +163,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="511" y="-1001"/>
+            <point key="canvasLocation" x="671" y="-945"/>
         </scene>
         <!--Exhbl Home Controller-->
         <scene sceneID="pgd-Oe-MvO">
@@ -424,7 +424,7 @@
                             <outlet property="delegate" destination="eL7-ZN-uTZ" id="O3g-nT-Pa1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="psz-Sm-zEY"/>
+                    <navigationItem key="navigationItem" title="Air Export" id="psz-Sm-zEY"/>
                     <connections>
                         <outlet property="iSearchBar" destination="E1R-BS-PFI" id="Gbd-MN-qny"/>
                         <segue destination="O1K-i7-1iG" kind="push" identifier="segue_aehbl_home" id="ceN-QP-fyr"/>
@@ -432,7 +432,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cD9-Ya-M9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="-165"/>
+            <point key="canvasLocation" x="710" y="-57"/>
         </scene>
         <!--Exhbl General Controller-->
         <scene sceneID="VFG-5T-5bG">
@@ -560,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhb-ma-fnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2134" y="-1241"/>
+            <point key="canvasLocation" x="2178" y="-789"/>
         </scene>
         <!--Track Home Controller - First-->
         <scene sceneID="W3I-pn-N6e">
@@ -599,9 +599,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sea Export" id="9fF-43-3kL">
-                        <barButtonItem key="backBarButtonItem" title="Preivous" id="c0K-UR-DhD"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Tracking" id="9fF-43-3kL"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="lbtn_aehbl_AirSearch" destination="RAX-aq-tDU" id="BTP-24-m86"/>
@@ -613,7 +611,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121" y="-278"/>
+            <point key="canvasLocation" x="119" y="-290"/>
         </scene>
         <!--Alert Controller - Message-->
         <scene sceneID="I1H-YH-5Qd">
@@ -729,7 +727,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR4-0f-osQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121" y="357"/>
+            <point key="canvasLocation" x="129" y="421"/>
         </scene>
         <!--Search Port Name View Controller-->
         <scene sceneID="5e9-Ng-iAo">
@@ -964,7 +962,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61e-op-q4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121" y="945"/>
+            <point key="canvasLocation" x="137" y="1143"/>
         </scene>
         <!--Guide View Controller - Guide-->
         <scene sceneID="fxL-D0-a6g">
@@ -996,7 +994,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3r-vu-lbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121" y="1510"/>
+            <point key="canvasLocation" x="129" y="1790"/>
         </scene>
         <!--Detail Schedule View Controller - Schedule-->
         <scene sceneID="m0w-jQ-Mgt">
@@ -1136,7 +1134,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qvi-n1-avu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="1143"/>
+            <point key="canvasLocation" x="710" y="1143"/>
         </scene>
         <!--Sort By View Controller-->
         <scene sceneID="IGp-P2-57R">
@@ -1209,7 +1207,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7w-uh-zQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="861"/>
+            <point key="canvasLocation" x="1143" y="861"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RbV-sX-jtC">
@@ -1369,7 +1367,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myk-gZ-zB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1013" y="235"/>
+            <point key="canvasLocation" x="-1021" y="265"/>
         </scene>
         <!--Main Home Controller-->
         <scene sceneID="H8f-Kw-UnZ">
@@ -1520,7 +1518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5U-K2-jlb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="43"/>
+            <point key="canvasLocation" x="1266" y="-57"/>
         </scene>
         <!--Aehbl General Controller-->
         <scene sceneID="AG0-z3-lQG">
@@ -1623,7 +1621,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLu-La-Jrn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719" y="18"/>
+            <point key="canvasLocation" x="1639" y="-46"/>
         </scene>
     </scenes>
     <resources>
@@ -1644,8 +1642,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Cr5-3k-Xhp"/>
+        <segue reference="IT6-cK-qMM"/>
         <segue reference="ceN-QP-fyr"/>
-        <segue reference="wFa-ZF-dhE"/>
+        <segue reference="a6i-DQ-pU2"/>
     </inferredMetricsTieBreakers>
 </document>
