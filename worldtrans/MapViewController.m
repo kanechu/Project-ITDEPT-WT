@@ -46,8 +46,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title=_adress_name;
     [self GeocodeAddress];
 	// Do any additional setup after loading the view.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent=NO;
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.mapView removeFromSuperview];
+    self.navigationController.navigationBar.translucent=YES;
 }
 
 - (void)didReceiveMemoryWarning
