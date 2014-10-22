@@ -85,6 +85,9 @@
 		B284FBD019175F0300EDEBA8 /* RespSearchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBCF19175F0300EDEBA8 /* RespSearchCriteria.m */; };
 		B284FBD31917694A00EDEBA8 /* DB_searchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBD21917694A00EDEBA8 /* DB_searchCriteria.m */; };
 		B288CFE018DA945E0089F877 /* DB_login.m in Sources */ = {isa = PBXBuildFile; fileRef = B288CFDF18DA945E0089F877 /* DB_login.m */; };
+		B290DA6619F73F8800D7534B /* Resp_Sypara.m in Sources */ = {isa = PBXBuildFile; fileRef = B290DA6519F73F8800D7534B /* Resp_Sypara.m */; };
+		B290DA6D19F7412A00D7534B /* Web_get_sypara.m in Sources */ = {isa = PBXBuildFile; fileRef = B290DA6C19F7412A00D7534B /* Web_get_sypara.m */; };
+		B290DA7019F742E300D7534B /* DB_sypara.m in Sources */ = {isa = PBXBuildFile; fileRef = B290DA6F19F742E300D7534B /* DB_sypara.m */; };
 		B2923514191A119C00F9F8B8 /* PopViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2923513191A119C00F9F8B8 /* PopViewManager.m */; };
 		B2A9770718CF18290096BD4B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A976FE18CF18290096BD4B /* FMDatabase.m */; };
 		B2A9770818CF18290096BD4B /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A9770018CF18290096BD4B /* FMDatabaseAdditions.m */; };
@@ -306,6 +309,12 @@
 		B284FBD21917694A00EDEBA8 /* DB_searchCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_searchCriteria.m; sourceTree = "<group>"; };
 		B288CFDE18DA945E0089F877 /* DB_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_login.h; sourceTree = "<group>"; };
 		B288CFDF18DA945E0089F877 /* DB_login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_login.m; sourceTree = "<group>"; };
+		B290DA6419F73F8800D7534B /* Resp_Sypara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resp_Sypara.h; sourceTree = "<group>"; };
+		B290DA6519F73F8800D7534B /* Resp_Sypara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resp_Sypara.m; sourceTree = "<group>"; };
+		B290DA6B19F7412A00D7534B /* Web_get_sypara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Web_get_sypara.h; sourceTree = "<group>"; };
+		B290DA6C19F7412A00D7534B /* Web_get_sypara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Web_get_sypara.m; sourceTree = "<group>"; };
+		B290DA6E19F742E300D7534B /* DB_sypara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_sypara.h; sourceTree = "<group>"; };
+		B290DA6F19F742E300D7534B /* DB_sypara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_sypara.m; sourceTree = "<group>"; };
 		B2923512191A119C00F9F8B8 /* PopViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewManager.h; sourceTree = "<group>"; };
 		B2923513191A119C00F9F8B8 /* PopViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewManager.m; sourceTree = "<group>"; };
 		B2A976FD18CF18290096BD4B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -430,6 +439,8 @@
 			children = (
 				B2307B2418BEEA82000502BE /* Web_get_alert.h */,
 				B2307B2518BEEA82000502BE /* Web_get_alert.m */,
+				B290DA6B19F7412A00D7534B /* Web_get_sypara.h */,
+				B290DA6C19F7412A00D7534B /* Web_get_sypara.m */,
 				B23D80F018E18D4700316700 /* Web_base.h */,
 				B23D80F118E18D4700316700 /* Web_base.m */,
 			);
@@ -741,6 +752,8 @@
 				B2C216D518C85E5900A46809 /* DB_alert.m */,
 				B288CFDE18DA945E0089F877 /* DB_login.h */,
 				B288CFDF18DA945E0089F877 /* DB_login.m */,
+				B290DA6E19F742E300D7534B /* DB_sypara.h */,
+				B290DA6F19F742E300D7534B /* DB_sypara.m */,
 				B26B684618E6969200E2E67B /* DB_device.h */,
 				B26B684718E6969200E2E67B /* DB_device.m */,
 				B272410219132E5800E6EE5F /* DB_portName.h */,
@@ -780,6 +793,8 @@
 				B284FBCF19175F0300EDEBA8 /* RespSearchCriteria.m */,
 				B2C92B28192DAB7800B2B8D0 /* RespIcon.h */,
 				B2C92B29192DAB7800B2B8D0 /* RespIcon.m */,
+				B290DA6419F73F8800D7534B /* Resp_Sypara.h */,
+				B290DA6519F73F8800D7534B /* Resp_Sypara.m */,
 				B2C6ED7918E58B570001837B /* Menu_home.h */,
 				B2C6ED7A18E58B570001837B /* Menu_home.m */,
 			);
@@ -1003,6 +1018,7 @@
 				B2307AFC18BC7E25000502BE /* Cell_exhbl_general_hdr.m in Sources */,
 				B2C2380518B37466001E13C9 /* SearchFormContract.m in Sources */,
 				B230189818ED66CA004B6CCC /* MapAnnotation.m in Sources */,
+				B290DA6619F73F8800D7534B /* Resp_Sypara.m in Sources */,
 				B278A92218D8218F0057DC37 /* NSInvocation+Copy.m in Sources */,
 				B2307B1618BDC36B000502BE /* Cell_alert_list.m in Sources */,
 				B26B3C93190795C700CB41F9 /* SearchPortNameViewController.m in Sources */,
@@ -1039,8 +1055,10 @@
 				B242209B18BB303600D4A75C /* ExhblGeneralController.m in Sources */,
 				B2700B07190E0D2A001E824C /* Custom_Button.m in Sources */,
 				B25BE7BC18ECEF0000F41409 /* MapViewController.m in Sources */,
+				B290DA7019F742E300D7534B /* DB_sypara.m in Sources */,
 				B26CAC5418AA302A00C97C83 /* main.m in Sources */,
 				B22446D518CF2C7500049F8C /* NSString.m in Sources */,
+				B290DA6D19F7412A00D7534B /* Web_get_sypara.m in Sources */,
 				B225B47A19020AC3009F1F25 /* RespSchedule.m in Sources */,
 				B2307B1918BDC748000502BE /* AlertController.m in Sources */,
 				B2155E5618D930B900180EF9 /* RespLogin.m in Sources */,

@@ -21,7 +21,11 @@
     
     for (int i = 0; i < count; i++) {
         NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-        [dict setObject:[obj valueForKey:key] forKey:key];
+        if ([obj valueForKey:key]==nil) {
+            [dict setObject:@"" forKey:key];
+        }else{
+            [dict setObject:[obj valueForKey:key] forKey:key];
+        }
     }
     
     free(properties);

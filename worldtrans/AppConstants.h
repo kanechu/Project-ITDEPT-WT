@@ -20,9 +20,10 @@ _Pragma("clang diagnostic pop") \
 @interface AppConstants : NSObject
 
 extern NSString* const STR_BASE_URL;
+extern NSString* const STR_LOGIN_URL;
+extern NSString* const STR_SYPARA_URL;
 extern NSString* const STR_SEA_URL;
 extern NSString* const STR_AIR_URL;
-extern NSString* const STR_LOGIN_URL;
 extern NSString* const STR_ALERT_URL;
 extern NSString* const STR_MILESTONE_URL;
 extern NSString* const STR_SCHEDULE_URL;

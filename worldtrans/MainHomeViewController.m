@@ -20,6 +20,7 @@
 #import "DB_searchCriteria.h"
 #import "DB_icon.h"
 #import "DB_portName.h"
+#import "DB_sypara.h"
 #import "CustomBadge.h"
 #import "Menu_home.h"
 #import "Cell_menu_item.h"
@@ -271,7 +272,9 @@ CustomBadge *iobj_customBadge;
     //清除portName的缓存
     DB_portName *db=[[DB_portName alloc]init];
     [db fn_delete_all_data];
-    
+    //删除sypara信息
+    DB_sypara *db_sypara=[[DB_sypara alloc]init];
+    [db_sypara fn_delete_all_sypara_data];
 }
 #pragma mark -NetWork Request
 -(void)fn_get_allIcon{

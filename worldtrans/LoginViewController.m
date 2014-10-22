@@ -11,6 +11,7 @@
 #import "RespLogin.h"
 #import "DB_login.h"
 #import "Web_base.h"
+#import "Web_get_sypara.h"
 #import "MBProgressHUD.h"
 @interface LoginViewController ()
 
@@ -101,6 +102,8 @@
         [dbLogin fn_save_data:usercode password:_user_Password.text logo:userlogo];
         [self mz_dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController* formSheet){}];
         SuppressPerformSelectorLeakWarning([iobj_target performSelector:isel_action withObject:_user_ID.text];);
+        Web_get_sypara *sypara_obj=[[Web_get_sypara alloc]init];
+        [sypara_obj fn_get_sypara_data:usercode pass:_user_Password.text];
         
     }else{
         NSString *str=@"User ID and Password do not match!";

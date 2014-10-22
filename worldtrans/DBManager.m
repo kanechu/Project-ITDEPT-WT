@@ -71,12 +71,15 @@ static int DB_VERSION = 1;
          NSString *ls_sql_searchCriteria=@"CREATE TABLE IF NOT EXISTS searchCriteria( unique_id INTEGER PRIMARY KEY,srch_type TEXT NOT NULL DEFAULT '',seq TEXT NOT NULL DEFAULT '',col_code TEXT NOT NULL DEFAULT '',col_label TEXT NOT NULL DEFAULT '',col_type TEXT NOT NULL DEFAULT '',col_option TEXT NOT NULL DEFAULT '',col_def TEXT NOT NULL DEFAULT '',group_name TEXT NOT NULL DEFAULT '',is_mandatory TEXT NOT NULL DEFAULT '',icon_name TEXT NOT NULL DEFAULT '',save_time TEXT NOT NULL DEFAULT '')";
         NSString *ls_sql_icon=@"CREATE TABLE IF NOT EXISTS icon( unique_id INTEGER PRIMARY KEY,ic_name TEXT NOT NULL DEFAULT '',ic_content TEXT NOT NULL DEFAULT '',upd_date TEXT NOT NULL DEFAULT '')";
         
+         NSString *ls_sql_sypara=@"CREATE TABLE IF NOT EXISTS sypara( id INTEGER PRIMARY KEY,unique_id TEXT NOT NULL DEFAULT '',para_code TEXT NOT NULL DEFAULT '',company_code TEXT NOT NULL DEFAULT '',data1 TEXT NOT NULL DEFAULT '',data2 TEXT NOT NULL DEFAULT '',data3 TEXT NOT NULL DEFAULT '',data4 TEXT NOT NULL DEFAULT '',data5 TEXT NOT NULL DEFAULT '',para_desc TEXT NOT NULL DEFAULT '',rec_crt_user TEXT NOT NULL DEFAULT '',rec_upd_user TEXT NOT NULL DEFAULT '',rec_crt_date TEXT NOT NULL DEFAULT '',rec_upd_date TEXT NOT NULL DEFAULT '',db_id TEXT NOT NULL DEFAULT '',is_ct TEXT NOT NULL DEFAULT '',crt_user TEXT NOT NULL DEFAULT '',req_user TEXT NOT NULL DEFAULT '',rmk TEXT NOT NULL DEFAULT '')";
+        
         [database executeUpdate:ls_sql_stmt];
         [database executeUpdate:ls_sql_login];
         [database executeUpdate:ls_sql_device];
         [database executeUpdate:ls_sql_portName];
         [database executeUpdate:ls_sql_searchCriteria];
         [database executeUpdate:ls_sql_icon];
+        [database executeUpdate:ls_sql_sypara];
         [database close];
         return  lb_Success;
     }
