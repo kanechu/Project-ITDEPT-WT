@@ -16,7 +16,7 @@ _Pragma("clang diagnostic pop") \
 } while (0)
 #define DEFAULT_USERCODE @"ANONYMOUS"
 #define DEFAULT_PASS @"ANONYMOUS1"
-#define DEFAULT_SYSTEM @"ITNEW"
+#define DEFAULT_SYSTEM @"ITTRACK_WTRAN"
 @interface AppConstants : NSObject
 
 extern NSString* const STR_BASE_URL;

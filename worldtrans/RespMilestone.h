@@ -15,5 +15,8 @@
 @property(nonatomic, copy) NSString *status_desc;
 @property(nonatomic, copy) NSString *act_status_date;
 @property(nonatomic, copy) NSString *remark;
+@property(nonatomic, copy) NSString *status_pic;
+@property(nonatomic, copy) NSString *status_pic_url;
+@property(nonatomic, copy) NSString *is_finished;
 
 @end

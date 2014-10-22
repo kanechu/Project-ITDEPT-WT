@@ -13,10 +13,4 @@
 @property(nonatomic) NSString *is_docu_type;
 @property(nonatomic) NSString *is_docu_uid;
 
-@property(nonatomic) NSInteger ii_max_row;
-@property(nonatomic) NSInteger ii_last_status_row;
-
-@property (strong,nonatomic) NSMutableArray *ilist_milestone;
-
-
 @end
