@@ -12,7 +12,6 @@
 
 @property (nonatomic,assign)NSInteger flag_milestone_type;
 @property (nonatomic,assign)NSInteger flag_milestone_finished;
-@property (nonatomic,assign)CGFloat maxRow_height;
 
 @property (nonatomic) IBOutlet UILabel* ilb_row_num;
 @property (nonatomic) IBOutlet UIImageView* ipic_row_status;

@@ -27,8 +27,7 @@
 @property(nonatomic,assign)NSInteger flag_milestone_type;
 //存储图片
 @property(nonatomic,strong)NSMutableArray *alist_images;
-//存储所有行中，最高的哪行
-@property(nonatomic,assign)CGFloat maxRow_height;
+
 @end
 
 @implementation MilestoneController
@@ -93,7 +92,6 @@
     cell.selectionStyle=UITableViewCellSeparatorStyleNone;
     
     cell.flag_milestone_type=flag_milestone_type;
-    cell.maxRow_height=_maxRow_height;
     
     NSMutableDictionary *ldict_dictionary = [[NSMutableDictionary alloc] init];
     ldict_dictionary = [ilist_milestone objectAtIndex:indexPath.row];    // Configure Cell
@@ -157,6 +155,8 @@
     }
     
     [cell.ilb_status_remark setFrame:CGRectMake(cell.ilb_status_remark.frame.origin.x, cell.ilb_status_desc.frame.origin.y+height, cell.ilb_status_remark.frame.size.width,height1)];
+    [cell.ipic_row_status setFrame:CGRectMake(cell.ipic_row_status.frame.origin.x, cell.ipic_row_status.frame.origin.y, cell.ipic_row_status.frame.size.width, height+height1+17)];   
+    
     return cell;
 }
 #pragma mark -UITableViewDelegate
@@ -199,9 +199,7 @@
     if (height1<21) {
         height1=21;
     }
-    if (_maxRow_height<(height1+height+17)) {
-        _maxRow_height=height+height1+17;
-    }
+
     return height+height1+17;
 }
 - (void)fn_get_milestone_info {
