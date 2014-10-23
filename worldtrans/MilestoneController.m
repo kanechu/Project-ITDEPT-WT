@@ -44,7 +44,10 @@
 - (void)viewDidLoad
 {
     [self fn_get_milestone_style];
-    [self fn_get_data:is_docu_type :is_docu_uid];
+    CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+    if ([check_obj fn_isPopUp_alert]==NO) {
+        [self fn_get_data:is_docu_type :is_docu_uid];
+    }
     cal_obj=[[Calculate_lineHeight alloc]init];
 }
 

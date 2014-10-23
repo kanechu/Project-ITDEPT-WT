@@ -14,6 +14,7 @@
 #import "AppConstants.h"
 #import "NSDictionary.h"
 #import "NSArray.h"
+#import "CheckNetWork.h"
 @interface Web_base : NSObject
 
 @property (strong,nonatomic) NSString *il_url;

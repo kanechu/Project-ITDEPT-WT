@@ -85,11 +85,6 @@
     
 }
 
--(void)fn_hide_HUDView{
-   
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
-
 - (void) fn_save_login_list: (NSMutableArray *) alist_result {
     RespLogin *login_mapObj=nil;
     if ([alist_result count]!=0) {
@@ -107,26 +102,37 @@
         
     }else{
         NSString *str=@"User ID and Password do not match!";
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+        [self fn_Pop_up_alert:str];
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
 }
+#pragma mark -function
+-(void)fn_hide_HUDView{
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+-(void)fn_Pop_up_alert:(NSString*)str_alert{
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str_alert delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
 
 #pragma mark -userLogin method
 - (IBAction)UserLogin:(id)sender {
-    NSString *str=@"";
-    if (_user_ID.text.length==0) {
-        str=@"User ID can not be empty!";
-    }else if(_user_Password.text.length==0){
-        str=@"User Password can not be empty!";
-    }else{
-        [self fn_get_data:_user_ID.text :_user_Password.text];
-        return;
-    }    
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:nil message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+    if ([check_obj fn_isPopUp_alert]==NO) {
+        NSString *str=@"";
+        if (_user_ID.text.length==0) {
+            str=@"User ID can not be empty!";
+        }else if(_user_Password.text.length==0){
+            str=@"User Password can not be empty!";
+        }else{
+            [self fn_get_data:_user_ID.text :_user_Password.text];
+            return;
+        }
+        [self fn_Pop_up_alert:str];
+    }
+    
 }
 
 - (IBAction)closeLoginUI:(id)sender {

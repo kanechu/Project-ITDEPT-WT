@@ -48,7 +48,10 @@
     self.view.backgroundColor = [UIColor blackColor];
     iSearchBar.delegate = (id)self;
     [self fn_hideCell_Extraline];
-    [self fn_get_data:is_search_no];
+    CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+    if ([check_obj fn_isPopUp_alert]==NO) {
+         [self fn_get_data:is_search_no];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -194,8 +197,10 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 }
 
 - (void)handleSearch:(UISearchBar *)searchBar {
-    
-    [self fn_get_data:searchBar.text];
+    CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+    if ([check_obj fn_isPopUp_alert]==NO) {
+        [self fn_get_data:searchBar.text];
+    }
     
     [searchBar resignFirstResponder]; // if you want the keyboard to go away
 }

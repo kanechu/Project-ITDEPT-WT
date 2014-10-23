@@ -68,6 +68,8 @@
 		B26CAC6F18AA302A00C97C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CAC4B18AA302A00C97C83 /* UIKit.framework */; };
 		B26CAC7718AA302A00C97C83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26CAC7518AA302A00C97C83 /* InfoPlist.strings */; };
 		B26CAC7918AA302A00C97C83 /* worldtransTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26CAC7818AA302A00C97C83 /* worldtransTests.m */; };
+		B26EF4B519F8AD3300737442 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B26EF4B419F8AD3300737442 /* Reachability.m */; };
+		B26EF4BC19F8AD6900737442 /* CheckNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = B26EF4BB19F8AD6900737442 /* CheckNetWork.m */; };
 		B2700B07190E0D2A001E824C /* Custom_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = B2700B06190E0D2A001E824C /* Custom_Button.m */; };
 		B272410419132E5800E6EE5F /* DB_portName.m in Sources */ = {isa = PBXBuildFile; fileRef = B272410319132E5800E6EE5F /* DB_portName.m */; };
 		B27387DA18FF85C500BF57F2 /* Custom_TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B27387D918FF85C500BF57F2 /* Custom_TextField.m */; };
@@ -275,6 +277,10 @@
 		B26CAC7418AA302A00C97C83 /* worldtransTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "worldtransTests-Info.plist"; sourceTree = "<group>"; };
 		B26CAC7618AA302A00C97C83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B26CAC7818AA302A00C97C83 /* worldtransTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = worldtransTests.m; sourceTree = "<group>"; };
+		B26EF4B319F8AD3300737442 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B26EF4B419F8AD3300737442 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B26EF4BA19F8AD6900737442 /* CheckNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckNetWork.h; sourceTree = "<group>"; };
+		B26EF4BB19F8AD6900737442 /* CheckNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckNetWork.m; sourceTree = "<group>"; };
 		B2700B05190E0D2A001E824C /* Custom_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Custom_Button.h; sourceTree = "<group>"; };
 		B2700B06190E0D2A001E824C /* Custom_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Custom_Button.m; sourceTree = "<group>"; };
 		B272410219132E5800E6EE5F /* DB_portName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_portName.h; sourceTree = "<group>"; };
@@ -416,6 +422,7 @@
 		B2307B0C18BD8423000502BE /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				B26EF4B219F8AD3300737442 /* Reachability */,
 				B25310F8191C72250049AFDA /* Expandable Table */,
 				B2571CDB18E543D200C7DFA3 /* CustomBadge */,
 				B278A90518D820F70057DC37 /* MZFormSheet */,
@@ -535,6 +542,8 @@
 		B242208918B8464200D4A75C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				B26EF4BA19F8AD6900737442 /* CheckNetWork.h */,
+				B26EF4BB19F8AD6900737442 /* CheckNetWork.m */,
 				B242208A18B8467300D4A75C /* Res_color.h */,
 				B242208B18B8467300D4A75C /* Res_color.m */,
 				B230189618ED66CA004B6CCC /* MapAnnotation.h */,
@@ -660,6 +669,15 @@
 				B26CAC7518AA302A00C97C83 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B26EF4B219F8AD3300737442 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B26EF4B319F8AD3300737442 /* Reachability.h */,
+				B26EF4B419F8AD3300737442 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		B27387D318FF854B00BF57F2 /* customControl */ = {
@@ -1041,7 +1059,9 @@
 				B278A92018D8218F0057DC37 /* MZFormSheetSegue.m in Sources */,
 				B2C2380218B372D6001E13C9 /* RequestContract.m in Sources */,
 				B2C6ED7B18E58B570001837B /* Menu_home.m in Sources */,
+				B26EF4BC19F8AD6900737442 /* CheckNetWork.m in Sources */,
 				B278A91F18D8218F0057DC37 /* MZFormSheetController.m in Sources */,
+				B26EF4B519F8AD3300737442 /* Reachability.m in Sources */,
 				B25490121904A6D800D7197A /* SortByViewController.m in Sources */,
 				B2923514191A119C00F9F8B8 /* PopViewManager.m in Sources */,
 				B2307B0618BC920F000502BE /* MilestoneController.m in Sources */,

@@ -37,9 +37,7 @@ enum ROW_NUMOFSECTION {
 
 - (void)viewDidLoad
 {
-    [self createDBLoginObj];
-    self.view.backgroundColor = [UIColor blackColor];
-    [self fn_get_data:is_search_column :is_search_value];
+    [self fn_get_related_obj];
     
 }
 
@@ -48,9 +46,14 @@ enum ROW_NUMOFSECTION {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)createDBLoginObj{
+-(void)fn_get_related_obj{
     self.dbLogin =[[DB_login alloc]init];
     calulate_obj=[[Calculate_lineHeight alloc]init];
+    self.view.backgroundColor = [UIColor blackColor];
+    CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+    if ([check_obj fn_isPopUp_alert]==NO) {
+        [self fn_get_data:is_search_column :is_search_value];
+    }
 }
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

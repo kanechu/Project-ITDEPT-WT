@@ -40,8 +40,8 @@ enum ROW_NUMOFSECTION {
 
 - (void)viewDidLoad
 {
-    [self createDBLoginObj];
-    [self fn_get_data:is_search_column :is_search_value];
+    [self fn_get_related_obj];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,16 +49,20 @@ enum ROW_NUMOFSECTION {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)createDBLoginObj{
+-(void)fn_get_related_obj{
     self.dbLogin =[[DB_login alloc]init];
     calulate_obj=[[Calculate_lineHeight alloc]init];
+    CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+    if ([check_obj fn_isPopUp_alert]== NO) {
+        [self fn_get_data:is_search_column :is_search_value];
+    }
 }
 #pragma mark -UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([dbLogin isLoginSuccess] && ilist_exhbl!=nil && ilist_exhbl!=NULL ) {
+    if ([dbLogin isLoginSuccess] && [ilist_exhbl count]!=0) {
         return ROW_NUM1;
-    }else if(ilist_exhbl!=nil && ilist_exhbl!=NULL){
+    }else if([ilist_exhbl count]!=0){
          return RoW_NUM2;
     }else{
         return 0;

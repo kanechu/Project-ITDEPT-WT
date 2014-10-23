@@ -11,14 +11,29 @@
 #import "Web_get_alert.h"
 #import "DB_login.h"
 #import "DB_alert.h"
-
+#import "Reachability.h"
 @implementation AppDelegate
 
 @synthesize is_device_token;
+-(void)fn_reachabilityChanged:(NSNotification*)note{
+    Reachability *curReach=[note object];
+    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    NetworkStatus status=[curReach currentReachabilityStatus];
+    if (status==NotReachable) {
+        NSString *str_alert=@"Unable to connect to the network, you must connect Wi-Fi network or mobile data network to access Worldtrans.";
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Worldtrans" message:str_alert delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Override point for customization after application launch.
+    //監測網絡情況
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fn_reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    hostReach=[Reachability reachabilityForInternetConnection];
+    [hostReach startNotifier];
+    
     NSLog(@"Registering for push notifications...");
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge)];
