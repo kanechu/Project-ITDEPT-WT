@@ -49,14 +49,6 @@ static NSInteger flag=0;
 @synthesize menu_item;
 CustomBadge *iobj_customBadge;
 
--(id)initWithCoder:(NSCoder *)aDecoder{
-    self=[super initWithCoder:aDecoder];
-    if (self) {
-        [self fn_get_allIcon];
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -277,6 +269,7 @@ CustomBadge *iobj_customBadge;
     [db_sypara fn_delete_all_sypara_data];
 }
 #pragma mark -NetWork Request
+/* unused systemIcon,so you don,t have to request 
 -(void)fn_get_allIcon{
     DB_icon *db=[[DB_icon alloc]init];
     if ([[db fn_get_all_iconData] count]==0) {
@@ -324,7 +317,7 @@ CustomBadge *iobj_customBadge;
             }
         }
     }
-}
+}*/
 -(void)fn_get_data{
     
     RequestContract *req_form=[[RequestContract alloc]init];
