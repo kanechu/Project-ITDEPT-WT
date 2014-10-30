@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExhblGeneralController : UITableViewController
+@interface ExhblGeneralController : UITableViewController<UIAlertViewDelegate>
 
 @property(nonatomic) NSString *is_search_column;
 @property(nonatomic) NSString *is_search_value;

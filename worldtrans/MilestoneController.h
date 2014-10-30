@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MilestoneController : UITableViewController
+@interface MilestoneController : UITableViewController<UIAlertViewDelegate>
 
 @property(nonatomic) NSString *is_docu_type;
 @property(nonatomic) NSString *is_docu_uid;

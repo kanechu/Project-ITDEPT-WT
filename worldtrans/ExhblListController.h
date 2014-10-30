@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExhblListController : UITableViewController <UISearchBarDelegate>
+@interface ExhblListController : UITableViewController <UISearchBarDelegate,UIAlertViewDelegate>
 
 @property(nonatomic) NSString *is_search_no;
 
