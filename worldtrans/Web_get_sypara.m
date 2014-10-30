@@ -31,6 +31,7 @@
 -(void)fn_save_sypara:(NSMutableArray*)alist_result{
     if ([alist_result count]!=0) {
         DB_sypara *db_sypara=[[DB_sypara alloc]init];
+        [db_sypara fn_delete_all_sypara_data];
         [db_sypara fn_save_sypara_data:alist_result];
     }
 }

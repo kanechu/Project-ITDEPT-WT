@@ -12,8 +12,6 @@
 
 @property(nonatomic) NSString *is_search_no;
 
-@property (strong,nonatomic) NSMutableArray *ilist_exhbl;
-
 @property IBOutlet UISearchBar *iSearchBar;
 
 @end

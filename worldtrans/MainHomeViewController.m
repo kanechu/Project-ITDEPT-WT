@@ -15,6 +15,7 @@
 #import "MZFormSheetController.h"
 #import "Web_base.h"
 #import "Web_get_alert.h"
+#import "Web_get_sypara.h"
 #import "DB_login.h"
 #import "DB_alert.h"
 #import "DB_searchCriteria.h"
@@ -48,6 +49,13 @@ static NSInteger flag=0;
 @synthesize badge_Num;
 @synthesize menu_item;
 CustomBadge *iobj_customBadge;
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    self=[super initWithCoder:aDecoder];
+    if (self) {
+        [self fn_get_sypara_not_login];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -122,6 +130,14 @@ CustomBadge *iobj_customBadge;
 - (void) fn_save_alert_list: (NSMutableArray *) alist_alert {
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
+}
+#pragma mark -request sypara when not login
+-(void)fn_get_sypara_not_login{
+    DB_login *db=[[DB_login alloc]init];
+    if ([db isLoginSuccess]==NO) {
+        Web_get_sypara *web_obj=[[Web_get_sypara alloc]init];
+        [web_obj fn_get_sypara_data:DEFAULT_USERCODE pass:DEFAULT_PASS];
+    }
 }
 #pragma mark -Function options
 - (void) fn_refresh_menu;
@@ -267,6 +283,7 @@ CustomBadge *iobj_customBadge;
     //删除sypara信息
     DB_sypara *db_sypara=[[DB_sypara alloc]init];
     [db_sypara fn_delete_all_sypara_data];
+    [self fn_get_sypara_not_login];
 }
 #pragma mark -NetWork Request
 /* unused systemIcon,so you don,t have to request 

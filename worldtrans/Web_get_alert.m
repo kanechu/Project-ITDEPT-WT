@@ -7,13 +7,7 @@
 //
 
 #import "Web_get_alert.h"
-#import "RequestContract.h"
-#import "SearchFormContract.h"
 #import "RespAlert.h"
-#import "Cell_alert_list.h"
-#import "Res_color.h"
-#import "AppConstants.h"
-#import "NSArray.h"
 #import "Web_base.h"
 #import "DB_login.h"
 #import "AppDelegate.h"

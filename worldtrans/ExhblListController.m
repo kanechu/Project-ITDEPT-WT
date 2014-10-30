@@ -18,6 +18,8 @@
 #import "NSString.h"
 @interface ExhblListController ()
 
+@property (strong,nonatomic) NSMutableArray *ilist_exhbl;
+
 @end
 
 @implementation ExhblListController
@@ -43,7 +45,7 @@
     [iSearchBar.layer insertSublayer:gradient atIndex:0];
     self.view.backgroundColor = [UIColor blackColor];
     iSearchBar.delegate = (id)self;
-    [self fn_hideCell_Extraline];
+    [self fn_setExtraCellLineHidden];
     CheckNetWork *check_obj=[[CheckNetWork alloc]init];
     if ([check_obj fn_isPopUp_alert]==NO) {
         [self fn_get_data:is_search_no];
@@ -78,7 +80,6 @@
         [cell setBackgroundColor:COLOR_DARK_JUNGLE_GREEN];
     else
         [cell setBackgroundColor:COLOR_EERIE_BLACK];
-    
     
     cell.ilb_hbl_no.text = [NSString nullConvertEmpty:[ldict_dictionary valueForKey:@"hbl_no"]];
 
@@ -149,8 +150,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         exhblHomeController.is_search_value = ls_os_value;
     }
 }
--(void)fn_hideCell_Extraline{
-    UIView *view=[[UIView alloc]initWithFrame:self.tableView.frame];
+-(void)fn_setExtraCellLineHidden{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectZero];
     view.backgroundColor=[UIColor clearColor];
     [self.tableView setTableFooterView:view];
 }
