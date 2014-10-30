@@ -19,6 +19,7 @@
 @interface AehblListController ()
 
 @property(strong,nonatomic)NSMutableArray *ilist_aehbl;
+@property(assign,nonatomic)NSInteger flag_isTimeout;
 @end
 
 @implementation AehblListController
@@ -163,9 +164,10 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 }
 #pragma mark -NetWork Request
 - (void) fn_get_data: (NSString*)as_search_no
-{    
-     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-      RequestContract *req_form = [[RequestContract alloc] init];
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(fn_timeout_handle) userInfo:nil repeats:YES];
+    RequestContract *req_form = [[RequestContract alloc] init];
     
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth =[dbLogin WayOfAuthorization];
@@ -186,12 +188,21 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 }
 
 - (void) fn_save_aehbl_list: (NSMutableArray *) alist_result {
-    ilist_aehbl = alist_result;
-    [self.tableView reloadData];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+    if (_flag_isTimeout!=1) {
+        ilist_aehbl = alist_result;
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        _flag_isTimeout=2;
+    }
 }
-
+-(void)fn_timeout_handle{
+    if (_flag_isTimeout!=2) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        _flag_isTimeout=1;
+    }
+}
 #pragma mark -UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self handleSearch:searchBar];

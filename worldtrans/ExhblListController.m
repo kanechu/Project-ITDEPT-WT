@@ -19,6 +19,7 @@
 @interface ExhblListController ()
 
 @property (strong,nonatomic) NSMutableArray *ilist_exhbl;
+@property (assign,nonatomic) NSInteger flag_isTimeout;
 
 @end
 
@@ -26,7 +27,7 @@
 @synthesize ilist_exhbl;
 @synthesize iSearchBar;
 @synthesize is_search_no;
-
+@synthesize flag_isTimeout;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -160,6 +161,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 - (void) fn_get_data: (NSString*)as_search_no
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(fn_timeout_handle) userInfo:nil repeats:NO];
     RequestContract *req_form = [[RequestContract alloc] init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth =[dbLogin WayOfAuthorization];
@@ -180,10 +182,22 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     
 }
 - (void) fn_save_exhbl_list: (NSMutableArray *) alist_result {
-    ilist_exhbl = alist_result;
-    [self.tableView reloadData];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
+    if (flag_isTimeout!=1) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        ilist_exhbl = alist_result;
+        [self.tableView reloadData];
+        flag_isTimeout=2;
+    }
+}
+-(void)fn_timeout_handle{
+   
+    if (flag_isTimeout!=2) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show]; 
+        flag_isTimeout=1;
+    }
 }
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

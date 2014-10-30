@@ -27,6 +27,8 @@ enum ROW_NUMOFSECTION {
 @property (strong,nonatomic) NSMutableArray *ilist_exhbl;
 @property (strong,nonatomic)DB_login *dbLogin;
 
+@property (assign,nonatomic) NSInteger flag_isTimeout;
+
 @end
 
 @implementation ExhblGeneralController
@@ -284,6 +286,7 @@ enum ROW_NUMOFSECTION {
 - (void) fn_get_data: (NSString*)as_search_column :(NSString*)as_search_value
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(fn_timeout_handle) userInfo:nil repeats:NO];
     RequestContract *req_form = [[RequestContract alloc] init];
 
     req_form.Auth =[dbLogin WayOfAuthorization];
@@ -303,9 +306,19 @@ enum ROW_NUMOFSECTION {
     
 }
 - (void) fn_save_exhbl_list: (NSMutableArray *) alist_result {
-    ilist_exhbl = alist_result;
-    [self.tableView reloadData];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+    if (_flag_isTimeout!=1) {
+        ilist_exhbl = alist_result;
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        _flag_isTimeout=2;
+    }
+}
+-(void)fn_timeout_handle{
+    if (_flag_isTimeout!=2) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        _flag_isTimeout=1;
+    }
 }
 @end

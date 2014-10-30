@@ -21,7 +21,7 @@
 
 @property(nonatomic) NSInteger ii_max_row;
 @property(nonatomic) NSInteger ii_last_status_row;
-
+@property(nonatomic,assign)NSInteger flag_isTimeout;
 @property (strong,nonatomic) NSMutableArray *ilist_milestone;
 //用这个来判断是否显示ms image
 @property(nonatomic,assign)NSInteger flag_milestone_type;
@@ -220,6 +220,7 @@
 {
     //显示loading
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(fn_timeout_handle) userInfo:nil repeats:NO];
     RequestContract *req_form = [[RequestContract alloc] init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth =[dbLogin WayOfAuthorization];
@@ -245,22 +246,33 @@
     
 }
 -(void)fn_save_milestone_list:(NSMutableArray*)alist_result{
-    ilist_milestone = alist_result;
-    alist_images=[[NSMutableArray alloc]initWithCapacity:1];
-    for (RespMilestone *milestone in alist_result) {
-        NSString *pic_url=milestone.status_pic_url;
-        NSURL *url=[NSURL URLWithString:pic_url];
-        UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-        if (image==nil) {
-            image=[[UIImage alloc]init];
+    if (_flag_isTimeout!=1) {
+        ilist_milestone = alist_result;
+        alist_images=[[NSMutableArray alloc]initWithCapacity:1];
+        for (RespMilestone *milestone in alist_result) {
+            NSString *pic_url=milestone.status_pic_url;
+            NSURL *url=[NSURL URLWithString:pic_url];
+            UIImage *image=[UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+            if (image==nil) {
+                image=[[UIImage alloc]init];
+            }
+            [alist_images addObject:image];
         }
-        [alist_images addObject:image];
-    }    
-    [self fn_get_milestone_info];
-    [self.tableView reloadData];
-    //隐藏loading
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-   
+        [self fn_get_milestone_info];
+        [self.tableView reloadData];
+        //隐藏loading
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        _flag_isTimeout=2;
+    }
+    
+    
 }
-
+-(void)fn_timeout_handle{
+    if (_flag_isTimeout!=2) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+        _flag_isTimeout=1;
+    }
+}
 @end
