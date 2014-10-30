@@ -93,11 +93,12 @@ CustomBadge *iobj_customBadge;
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
      [self fn_refresh_menu];
+    /*
     DB_searchCriteria *dbSearch=[[DB_searchCriteria alloc]init];
     NSMutableArray* arr=[dbSearch fn_get_all_data];
     if (arr.count==0) {
         [self fn_get_data];
-    }
+    }*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -167,7 +168,7 @@ CustomBadge *iobj_customBadge;
     //button.tag用来区分点击那个Item
     menu_item=[ilist_menu objectAtIndex:button.tag];
     [self performSegueWithIdentifier:menu_item.is_segue sender:self];
-    if ([menu_item.is_segue isEqualToString:@"Segue_ExpandSearch"]) {
+   /* if ([menu_item.is_segue isEqualToString:@"Segue_ExpandSearch"]) {
         NSDate *now_time=[NSDate date];
         NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
@@ -184,7 +185,7 @@ CustomBadge *iobj_customBadge;
                 [self fn_get_data];
             }
         }
-    }
+    }*/
 }
 
 //登陆后显示logo图片
@@ -263,7 +264,7 @@ CustomBadge *iobj_customBadge;
      flag=1;
     [self fn_refresh_menu];
     //登陆成功后，请求搜索标准的数据
-    [self fn_get_data];
+   // [self fn_get_data];
 
 }
 
@@ -335,6 +336,7 @@ CustomBadge *iobj_customBadge;
         }
     }
 }*/
+/*暂时不需要schedule搜索版面
 -(void)fn_get_data{
     
     RequestContract *req_form=[[RequestContract alloc]init];
@@ -362,7 +364,7 @@ CustomBadge *iobj_customBadge;
     if ([db fn_delete_all_data]) {
         [db fn_save_data:ilist_result];
     }
-}
+}*/
 #pragma mark - UICollectionView Datasource
 // 1
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
