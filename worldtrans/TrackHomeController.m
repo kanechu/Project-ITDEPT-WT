@@ -21,6 +21,7 @@
     [super viewDidLoad];
     _ltf_search_no.delegate=self;
     _ltf_search_no.layer.cornerRadius=5;
+    [_ltf_search_no becomeFirstResponder];
     [self fn_custom_GestureRecognizer];
     [self addBound:_lbtn_exhbl_search];
     [self addBound:_lbtn_aehbl_AirSearch];
