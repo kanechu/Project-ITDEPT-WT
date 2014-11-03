@@ -70,12 +70,9 @@
         }
     }
 }
+//前后空格去掉
 -(NSString*)fn_cut_space:(NSString*)str{
-    NSString *subStr=str;
-    if ([str rangeOfString:@" "].length>0) {
-        NSRange range=[str rangeOfString:@" "];
-        subStr=[str substringToIndex:range.location];
-    }
+    NSString *subStr=[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return subStr;
 }
 #pragma mark UITableViewDataSource
