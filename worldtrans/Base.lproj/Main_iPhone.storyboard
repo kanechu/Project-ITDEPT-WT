@@ -200,6 +200,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="lRw-PE-7ZK" id="Ibd-0y-eyu"/>
+                        <outlet property="segmentedControl" destination="dSx-zN-DOh" id="EUf-Dq-RWT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YpT-hE-ddb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1651,6 +1652,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="ceN-QP-fyr"/>
         <segue reference="IT6-cK-qMM"/>
-        <segue reference="a6i-DQ-pU2"/>
+        <segue reference="wFa-ZF-dhE"/>
     </inferredMetricsTieBreakers>
 </document>
