@@ -163,6 +163,13 @@
 			remoteGlobalIDString = 25160E78145651060060A5C5;
 			remoteInfo = RestKitFrameworkTests;
 		};
+		B2FC97AD1A69095200132F77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2C2171218CAC41300A46809 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -881,6 +888,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B2FC97AE1A69095200132F77 /* PBXTargetDependency */,
 			);
 			name = worldtrans;
 			productName = worldtrans;
@@ -1117,6 +1125,11 @@
 			isa = PBXTargetDependency;
 			target = B26CAC4318AA302A00C97C83 /* worldtrans */;
 			targetProxy = B26CAC7018AA302A00C97C83 /* PBXContainerItemProxy */;
+		};
+		B2FC97AE1A69095200132F77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = B2FC97AD1A69095200132F77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

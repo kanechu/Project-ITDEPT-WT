@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dMq-gW-rBh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="dMq-gW-rBh">
     <dependencies>
-        <deployment version="1552" defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment version="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Exhbl List Controller - Sea Export-->
+        <!--Sea Export-->
         <scene sceneID="aHA-bs-WHc">
             <objects>
                 <tableViewController storyboardIdentifier="ExhblViewController" title="Sea Export" id="UW2-Ws-x2P" customClass="ExhblListController" sceneMemberID="viewController">
@@ -568,7 +568,7 @@
             </objects>
             <point key="canvasLocation" x="2178" y="-789"/>
         </scene>
-        <!--Track Home Controller - First-->
+        <!--First-->
         <scene sceneID="W3I-pn-N6e">
             <objects>
                 <viewController title="First" id="CZ4-MO-1fc" customClass="TrackHomeController" sceneMemberID="viewController">
@@ -620,7 +620,7 @@
             </objects>
             <point key="canvasLocation" x="119" y="-290"/>
         </scene>
-        <!--Alert Controller - Message-->
+        <!--Message-->
         <scene sceneID="I1H-YH-5Qd">
             <objects>
                 <tableViewController storyboardIdentifier="AlertController" title="Message" id="3pE-kg-DfJ" customClass="AlertController" sceneMemberID="viewController">
@@ -728,6 +728,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="is_segment" destination="0lE-aI-SDf" id="Si2-et-JZu"/>
                         <segue destination="7UD-qU-Ko9" kind="push" identifier="segue_exhbl_home1" id="Cr5-3k-Xhp"/>
                         <segue destination="O1K-i7-1iG" kind="push" identifier="segue_aehbl_home1" id="3hz-sA-2Up"/>
                     </connections>
@@ -800,7 +801,7 @@
             </objects>
             <point key="canvasLocation" x="710" y="543"/>
         </scene>
-        <!--Expand Search Criteria View Controller - Schedule-->
+        <!--Schedule-->
         <scene sceneID="kIX-GH-zdW">
             <objects>
                 <viewController storyboardIdentifier="ExpandSearchCriteriaViewController" id="ifm-S5-DYL" customClass="ExpandSearchCriteriaViewController" sceneMemberID="viewController">
@@ -971,7 +972,7 @@
             </objects>
             <point key="canvasLocation" x="137" y="1143"/>
         </scene>
-        <!--Guide View Controller - Guide-->
+        <!--Guide-->
         <scene sceneID="fxL-D0-a6g">
             <objects>
                 <viewController storyboardIdentifier="GuideViewController" automaticallyAdjustsScrollViewInsets="NO" id="g43-7b-eE3" customClass="GuideViewController" sceneMemberID="viewController">
@@ -1003,7 +1004,7 @@
             </objects>
             <point key="canvasLocation" x="129" y="1790"/>
         </scene>
-        <!--Detail Schedule View Controller - Schedule-->
+        <!--Schedule-->
         <scene sceneID="m0w-jQ-Mgt">
             <objects>
                 <tableViewController storyboardIdentifier="DetailScheduleViewController" id="wP9-Is-2uY" customClass="DetailScheduleViewController" sceneMemberID="viewController">
@@ -1650,8 +1651,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ceN-QP-fyr"/>
-        <segue reference="IT6-cK-qMM"/>
+        <segue reference="3hz-sA-2Up"/>
+        <segue reference="Cr5-3k-Xhp"/>
         <segue reference="wFa-ZF-dhE"/>
     </inferredMetricsTieBreakers>
 </document>
