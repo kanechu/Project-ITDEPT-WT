@@ -16,6 +16,7 @@
 
 @interface AlertController ()
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *is_segment;
 @property (strong,nonatomic) NSMutableArray *ilist_alert;
 @property (strong,nonatomic) NSMutableArray *today_alert;
 @property (strong,nonatomic) NSMutableArray *previous_alert;
@@ -41,6 +42,7 @@
    
     [self initDic];
     self.view.backgroundColor = [UIColor blackColor];
+    [_is_segment setApportionsSegmentWidthsByContent:YES];
     //初始nil文件，获取alert
     [self fn_get_data];
     //十分钟检查一次是否有新通知
