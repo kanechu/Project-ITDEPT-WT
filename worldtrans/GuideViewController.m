@@ -54,7 +54,7 @@
 }
 
 - (IBAction)fn_change_page:(id)sender {
-    int page=_ip_pagecontroller.currentPage;
+    NSInteger page=_ip_pagecontroller.currentPage;
     [_is_scrollview setContentOffset:CGPointMake(self.view.frame.size.width*page, 0) animated:YES];
 }
 #pragma mark UIScrollViewDelegate

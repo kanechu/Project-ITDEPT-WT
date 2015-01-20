@@ -528,7 +528,7 @@ static NSInteger day=0;
         }
         [imd_searchDic setObject:col_code forKey:@"dateto_column"];
         cell.ict_show_days.tag=TAG5;
-        cell.ict_show_days.text=[NSString stringWithFormat:@"%d",day];
+        cell.ict_show_days.text=@(day).stringValue;
         cell.ict_show_days.delegate=self;
         [cell.ibt_add_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_minus"]] forState:UIControlStateNormal];
         [cell.ibt_decrease_btn setImage:[UIImage imageWithData:[self fn_get_imageData:@"int_add"]] forState:UIControlStateNormal];
@@ -566,7 +566,7 @@ static NSInteger day=0;
 {
    
 }
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40;
 }
 

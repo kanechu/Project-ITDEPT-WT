@@ -50,7 +50,7 @@
                                    selector: @selector(reloadNeWData) userInfo: nil repeats: YES];
     
     //当点击编辑的时候，显示toolbar
-    UIBarButtonItem *deleteItem=[[UIBarButtonItem alloc]initWithTitle:@"delete" style:UIBarButtonItemStyleBordered target:self action:@selector(DeleteAllSelections:)];
+    UIBarButtonItem *deleteItem=[[UIBarButtonItem alloc]initWithTitle:@"delete" style:UIBarButtonItemStylePlain target:self action:@selector(DeleteAllSelections:)];
     NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
     [self setToolbarItems:arr animated:YES];
     [[self navigationController] setToolbarHidden:YES animated:YES];

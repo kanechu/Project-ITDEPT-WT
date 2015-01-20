@@ -218,7 +218,6 @@ CustomBadge *iobj_customBadge;
         if ([str length]<=2) {
             [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];        }
         else if([str length]<16){
-            NSLog(@"%d",(45+(str.length-2)/2*10));
             NSInteger left=-(45+(str.length-2)/2*10+30);
             [_loginBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,left , 0, 0)];
         }else{
@@ -380,7 +379,7 @@ CustomBadge *iobj_customBadge;
     Cell_menu_item *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cell_menu_item" forIndexPath:indexPath];
     //生成圆角图片，值越大，越圆
     cell.itemButton.layer.cornerRadius=7;
-    int li_item = [indexPath item];
+    NSInteger li_item = [indexPath item];
     
     menu_item =  [ilist_menu objectAtIndex:li_item];
     cell.ilb_label.text = menu_item.is_label;
@@ -388,7 +387,7 @@ CustomBadge *iobj_customBadge;
     cell.itemButton.tag=indexPath.item;
     
     if (li_item == 1) {
-        iobj_customBadge=[CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%d",badge_Num] withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
+        iobj_customBadge=[CustomBadge customBadgeWithString:@(badge_Num).stringValue withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
         [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width+4,cell.itemButton.frame.origin.y-12, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
         DB_login *dbLogin=[[DB_login alloc]init];
         //登陆后和有新通知的时候，才显示badge
