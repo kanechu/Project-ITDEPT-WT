@@ -35,8 +35,15 @@
     [hostReach startNotifier];
     
     NSLog(@"Registering for push notifications...");
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge)];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]<8.0) {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge)];
+    }else{
+        UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:( UIUserNotificationTypeBadge|UIUserNotificationTypeSound |UIUserNotificationTypeAlert ) categories:nil];
+        [application registerUserNotificationSettings:setting];
+        [application registerForRemoteNotifications];
+    }
+    
     return YES;
     
 }
