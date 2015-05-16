@@ -1637,7 +1637,7 @@
         <image name="alert" width="350" height="350"/>
         <image name="closeButtonImage" width="16" height="16"/>
         <image name="ic_air" width="128" height="128"/>
-        <image name="ic_ct" width="330" height="261"/>
+        <image name="ic_ct" width="80" height="75"/>
         <image name="ic_ship" width="256" height="256"/>
         <image name="navigate-down" width="256" height="256"/>
         <image name="navigate-up" width="256" height="256"/>
@@ -1651,7 +1651,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3hz-sA-2Up"/>
+        <segue reference="ceN-QP-fyr"/>
         <segue reference="Cr5-3k-Xhp"/>
         <segue reference="wFa-ZF-dhE"/>
     </inferredMetricsTieBreakers>

@@ -87,6 +87,7 @@
 		B284FBD019175F0300EDEBA8 /* RespSearchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBCF19175F0300EDEBA8 /* RespSearchCriteria.m */; };
 		B284FBD31917694A00EDEBA8 /* DB_searchCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = B284FBD21917694A00EDEBA8 /* DB_searchCriteria.m */; };
 		B288CFE018DA945E0089F877 /* DB_login.m in Sources */ = {isa = PBXBuildFile; fileRef = B288CFDF18DA945E0089F877 /* DB_login.m */; };
+		B28FD5351B072BC300791954 /* TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B28FD5341B072BC300791954 /* TipView.m */; };
 		B290DA6619F73F8800D7534B /* Resp_Sypara.m in Sources */ = {isa = PBXBuildFile; fileRef = B290DA6519F73F8800D7534B /* Resp_Sypara.m */; };
 		B290DA6D19F7412A00D7534B /* Web_get_sypara.m in Sources */ = {isa = PBXBuildFile; fileRef = B290DA6C19F7412A00D7534B /* Web_get_sypara.m */; };
 		B290DA7019F742E300D7534B /* DB_sypara.m in Sources */ = {isa = PBXBuildFile; fileRef = B290DA6F19F742E300D7534B /* DB_sypara.m */; };
@@ -322,6 +323,8 @@
 		B284FBD21917694A00EDEBA8 /* DB_searchCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_searchCriteria.m; sourceTree = "<group>"; };
 		B288CFDE18DA945E0089F877 /* DB_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DB_login.h; sourceTree = "<group>"; };
 		B288CFDF18DA945E0089F877 /* DB_login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DB_login.m; sourceTree = "<group>"; };
+		B28FD5331B072BC300791954 /* TipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipView.h; sourceTree = "<group>"; };
+		B28FD5341B072BC300791954 /* TipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipView.m; sourceTree = "<group>"; };
 		B290DA6419F73F8800D7534B /* Resp_Sypara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resp_Sypara.h; sourceTree = "<group>"; };
 		B290DA6519F73F8800D7534B /* Resp_Sypara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resp_Sypara.m; sourceTree = "<group>"; };
 		B290DA6B19F7412A00D7534B /* Web_get_sypara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Web_get_sypara.h; sourceTree = "<group>"; };
@@ -559,6 +562,8 @@
 				B2923513191A119C00F9F8B8 /* PopViewManager.m */,
 				B24A75551966A15800CB1C00 /* Calculate_lineHeight.h */,
 				B24A75561966A15800CB1C00 /* Calculate_lineHeight.m */,
+				B28FD5331B072BC300791954 /* TipView.h */,
+				B28FD5341B072BC300791954 /* TipView.m */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -1024,6 +1029,7 @@
 				B2B020B818AB52D100EECD92 /* ExhblListController.m in Sources */,
 				B26B3C96190797A700CB41F9 /* Cell_portName_list.m in Sources */,
 				B26CAC6418AA302A00C97C83 /* SecondViewController.m in Sources */,
+				B28FD5351B072BC300791954 /* TipView.m in Sources */,
 				B26CAC5818AA302A00C97C83 /* AppDelegate.m in Sources */,
 				B2307B0918BC960C000502BE /* RespMilestone.m in Sources */,
 				B257F27019359AA700EC88F5 /* GuideViewController.m in Sources */,

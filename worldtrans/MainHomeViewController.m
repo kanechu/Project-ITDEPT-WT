@@ -388,7 +388,7 @@ CustomBadge *iobj_customBadge;
     
     if (li_item == 1) {
         iobj_customBadge=[CustomBadge customBadgeWithString:@(badge_Num).stringValue withStringColor:[UIColor whiteColor] withInsetColor:[UIColor redColor] withBadgeFrame:YES withBadgeFrameColor:[UIColor whiteColor] withScale:0.7 withShining:YES];
-        [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width+4,cell.itemButton.frame.origin.y-12, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
+        [iobj_customBadge setFrame:CGRectMake(cell.itemButton.frame.size.width-iobj_customBadge.frame.size.width,cell.itemButton.frame.origin.y-CGRectGetHeight(iobj_customBadge.frame)/2, iobj_customBadge.frame.size.width, iobj_customBadge.frame.size.height)];
         DB_login *dbLogin=[[DB_login alloc]init];
         //登陆后和有新通知的时候，才显示badge
         if ([dbLogin isLoginSuccess]) {

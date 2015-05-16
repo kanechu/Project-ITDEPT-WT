@@ -186,6 +186,12 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     if (flag_isTimeout!=1) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         ilist_exhbl = alist_result;
+        if ([alist_result count]==0) {
+            TipView *tip_view=[[TipView alloc]initWithFrame:self.view.frame];
+            tip_view.str_msg=@"No Sea Export Data";
+            [self.tableView setTableFooterView:tip_view];
+            [self.tableView setScrollEnabled:NO];
+        }
         [self.tableView reloadData];
         flag_isTimeout=2;
     }

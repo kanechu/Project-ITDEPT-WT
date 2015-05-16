@@ -54,7 +54,6 @@
     NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
     [self setToolbarItems:arr animated:YES];
     [[self navigationController] setToolbarHidden:YES animated:YES];
-    [self fn_setExtraCellLineHidden];
    
 }
 #pragma mark UITableViewDelegate
@@ -173,6 +172,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     UIView *view=[[UIView alloc]initWithFrame:CGRectZero];
     view.backgroundColor=[UIColor clearColor];
     [self.tableView setTableFooterView:view];
+    [self.tableView setScrollEnabled:YES];
 }
 #pragma mark segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -208,6 +208,12 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         aehblHomeController.is_search_value = ls_os_value;
     }
 }
+- (void)fn_show_no_msg{
+    TipView *tip_view=[[TipView alloc]initWithFrame:self.view.frame];
+    tip_view.str_msg=@"No Message!";
+    [self.tableView setTableFooterView:tip_view];
+    [self.tableView setScrollEnabled:NO];
+}
 
 - (void) fn_get_data
 {
@@ -215,7 +221,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     today_alert=[ldb_alert fn_get_today_msg];
     previous_alert=[ldb_alert fn_get_previous_msg];
     ilist_alert=today_alert;
-    
+    if ([ilist_alert count]!=0) {
+        [self fn_setExtraCellLineHidden];
+    }else{
+        [self fn_show_no_msg];
+    }
 }
 -(void)reloadNeWData{
     
@@ -291,6 +301,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         ilist_alert=today_alert;
     }else if (segmentCon.selectedSegmentIndex==1){
         ilist_alert=previous_alert;
+    }
+    if ([ilist_alert count]!=0) {
+        [self fn_setExtraCellLineHidden];
+    }else{
+        [self fn_show_no_msg];
     }
     [self.tableView reloadData];
 }

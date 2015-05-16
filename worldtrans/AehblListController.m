@@ -190,6 +190,12 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 - (void) fn_save_aehbl_list: (NSMutableArray *) alist_result {
     if (_flag_isTimeout!=1) {
         ilist_aehbl = alist_result;
+        if ([alist_result count]==0) {
+            TipView *tip_view=[[TipView alloc]initWithFrame:self.view.frame];
+            tip_view.str_msg=@"No Air Export Data";
+            [self.tableView setTableFooterView:tip_view];
+            [self.tableView setScrollEnabled:NO];
+        }
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         _flag_isTimeout=2;
