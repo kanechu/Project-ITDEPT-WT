@@ -45,10 +45,7 @@
     [_is_segment setApportionsSegmentWidthsByContent:YES];
     //初始nil文件，获取alert
     [self fn_get_data];
-    //十分钟检查一次是否有新通知
-    [NSTimer scheduledTimerWithTimeInterval: 600.0 target: self
-                                   selector: @selector(reloadNeWData) userInfo: nil repeats: YES];
-    
+   
     //当点击编辑的时候，显示toolbar
     UIBarButtonItem *deleteItem=[[UIBarButtonItem alloc]initWithTitle:@"delete" style:UIBarButtonItemStylePlain target:self action:@selector(DeleteAllSelections:)];
     NSMutableArray *arr=[NSMutableArray arrayWithObject:deleteItem];
@@ -231,15 +228,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         [self fn_show_no_msg];
     }
 }
--(void)reloadNeWData{
-    
-    DB_alert * ldb_alert = [[DB_alert alloc] init];
-    if ([ldb_alert fn_get_unread_msg_count]>([previous_alert count]+[today_alert count])) {
-        today_alert=[ldb_alert fn_get_today_msg];
-        previous_alert=[ldb_alert fn_get_previous_msg];
-        [self.tableView reloadData];
-    }
-}
+
 - (IBAction)EditRow:(id)sender{
     self.cancleButton=(UIButton*)sender;
     //显示多选圆圈
