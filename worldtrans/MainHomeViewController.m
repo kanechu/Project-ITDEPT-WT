@@ -61,7 +61,6 @@ CustomBadge *iobj_customBadge;
 {
     [super viewDidLoad];
     [_loginBtn addTarget:self action:@selector(fn_pre_login_or_logout:) forControlEvents:UIControlEventTouchUpInside];
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self gettingNotification];
         dispatch_async( dispatch_get_main_queue(), ^{
@@ -92,7 +91,8 @@ CustomBadge *iobj_customBadge;
     }else{
         [_loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
     }
-     [self fn_refresh_menu];
+    [self fn_refresh_menu];
+    [self fn_set_unread_msg_badge];
     /*
     DB_searchCriteria *dbSearch=[[DB_searchCriteria alloc]init];
     NSMutableArray* arr=[dbSearch fn_get_all_data];
@@ -117,21 +117,27 @@ CustomBadge *iobj_customBadge;
         
         dispatch_async( dispatch_get_main_queue(), ^{
             // update UI here
-            
-            DB_alert * ldb_alert = [[DB_alert alloc] init];
-            NSInteger li_alert_count = [ldb_alert fn_get_unread_msg_count];
-            [iobj_customBadge removeFromSuperview];
-            iobj_customBadge = nil;
-            badge_Num=li_alert_count;
-            [iui_collectionview reloadData];
+            [self fn_set_unread_msg_badge];
         });
     });
 }
 
-- (void) fn_save_alert_list: (NSMutableArray *) alist_alert {
+- (void)fn_save_alert_list: (NSMutableArray *) alist_alert {
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
+    ldb_alert=nil;
 }
+
+- (void)fn_set_unread_msg_badge{
+    DB_alert * ldb_alert = [[DB_alert alloc] init];
+    NSInteger li_alert_count = [ldb_alert fn_get_unread_msg_count];
+    [iobj_customBadge removeFromSuperview];
+    iobj_customBadge = nil;
+    badge_Num=li_alert_count;
+    [iui_collectionview reloadData];
+    ldb_alert=nil;
+}
+
 #pragma mark -request sypara when not login
 -(void)fn_get_sypara_not_login{
     DB_login *db=[[DB_login alloc]init];

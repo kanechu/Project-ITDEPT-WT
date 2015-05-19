@@ -61,6 +61,12 @@
     _user_ID.layer.borderColor=[UIColor lightGrayColor].CGColor;
     _user_Password.layer.borderColor=[UIColor lightGrayColor].CGColor;
 }
+- (IBAction)fn_userName_textField_didEndOnExit:(id)sender {
+    [self.user_Password becomeFirstResponder];
+}
+- (IBAction)fn_pass_textField_didEndOnExit:(id)sender {
+    [sender resignFirstResponder];
+}
 
 #pragma mark NewWork Request method
 - (void) fn_get_data: (NSString*)user_code :(NSString*)user_pass
