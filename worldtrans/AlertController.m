@@ -146,7 +146,11 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         DB_alert * ldb_alert = [[DB_alert alloc] init];
         [ldb_alert fn_update_isRead:ls_unique_id];
         
-        ilist_alert=[ldb_alert fn_get_all_msg];
+        if (_is_segment.selectedSegmentIndex==0) {
+            ilist_alert=[ldb_alert fn_get_today_msg];
+        }else if (_is_segment.selectedSegmentIndex==1){
+            ilist_alert=[ldb_alert fn_get_previous_msg];
+        }
         [self.tableView reloadData];
     }
 }
