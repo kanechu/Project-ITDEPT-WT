@@ -37,6 +37,8 @@
     // add viewController so you can switch them later.
     UIViewController *vc = [self viewControllerForSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self addChildViewController:vc];
+    self.contentView.frame=CGRectMake(CGRectGetMinX(self.contentView.frame), CGRectGetMinY(self.contentView.frame),[[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-CGRectGetMinY(self.contentView.frame));
+    vc.view.frame=self.contentView.bounds;
     [self.contentView addSubview:vc.view];
     self.currentViewController = vc;
 }
@@ -79,7 +81,6 @@
     [self addChildViewController:vc];
     [self transitionFromViewController:self.currentViewController toViewController:vc duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
         [self.currentViewController.view removeFromSuperview];
-        self.contentView.frame=CGRectMake(0, 64,[[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-64);
         vc.view.frame = self.contentView.bounds;
         [self.contentView addSubview:vc.view];
     } completion:^(BOOL finished) {
