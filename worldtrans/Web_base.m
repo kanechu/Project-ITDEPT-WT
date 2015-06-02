@@ -82,7 +82,17 @@
             
                 } failure:^(RKObjectRequestOperation *operation, NSError *error) {
                     RKLogError(@"Operation failed with error: %@", error);
+                    NSString *str_error=[NSString stringWithFormat:@"%@",error];
+                    if ([str_error rangeOfString:@"Code=-1001"].location!=NSNotFound) {
+                        if (_callBack) {
+                            _callBack(YES);
+                        }
+                    }else{
+                        if (_callBack) {
+                            _callBack(NO);
+                        }
+                    }
+                    str_error=nil;
                 }];
-    
 }
 @end

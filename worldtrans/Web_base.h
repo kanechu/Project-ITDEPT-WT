@@ -15,7 +15,11 @@
 #import "NSDictionary.h"
 #import "NSArray.h"
 #import "CheckNetWork.h"
+typedef void(^callBack_isTimeOut)(BOOL isTimeOut);
+
 @interface Web_base : NSObject
+
+@property (strong,nonatomic) callBack_isTimeOut callBack;
 
 @property (strong,nonatomic) NSString *il_url;
 

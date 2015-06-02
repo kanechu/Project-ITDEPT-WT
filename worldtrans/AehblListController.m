@@ -19,9 +19,8 @@
 @interface AehblListController ()
 
 @property(strong,nonatomic)NSMutableArray *ilist_aehbl;
-@property(assign,nonatomic)NSInteger flag_isTimeout;
-@end
 
+@end
 @implementation AehblListController
 @synthesize ilist_aehbl;
 @synthesize iSearchBar;
@@ -166,7 +165,6 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 - (void) fn_get_data: (NSString*)as_search_no
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(fn_timeout_handle) userInfo:nil repeats:YES];
     RequestContract *req_form = [[RequestContract alloc] init];
     
     DB_login *dbLogin=[[DB_login alloc]init];
@@ -183,37 +181,39 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
     web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespAehbl class]];
     web_base.iobj_target = self;
     web_base.isel_action = @selector(fn_save_aehbl_list:);
+    web_base.callBack = ^(BOOL isTimeOut){
+        ilist_aehbl=nil;
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (isTimeOut) {
+            UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
+            [alertView show];
+        }else{
+            [self fn_show_tipView:@"Error occurs!"];
+        }
+    };
     [web_base fn_get_data:req_form];
 
 }
 
 - (void) fn_save_aehbl_list: (NSMutableArray *) alist_result {
-    if (_flag_isTimeout!=1) {
-        ilist_aehbl = alist_result;
-        if ([alist_result count]==0) {
-            TipView *tip_view=[[TipView alloc]initWithFrame:self.view.frame];
-            tip_view.str_msg=@"No Air Export Data";
-            [self.tableView setTableFooterView:tip_view];
-            [self.tableView setScrollEnabled:NO];
-        }
-        [self.tableView reloadData];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        _flag_isTimeout=2;
+    ilist_aehbl = alist_result;
+    if ([alist_result count]==0) {
+        [self fn_show_tipView:@"No Air Export Data"];
     }
+    [self.tableView reloadData];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
--(void)fn_timeout_handle{
-    if (_flag_isTimeout!=2) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
-        [alertView show];
-        _flag_isTimeout=1;
-    }
+- (void)fn_show_tipView:(NSString*)_str_msg{
+    TipView *tip_view=[[TipView alloc]initWithFrame:self.view.frame];
+    tip_view.str_msg=_str_msg;
+    [self.tableView setTableFooterView:tip_view];
+    [self.tableView setScrollEnabled:NO];
 }
 #pragma mark -UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex!=[alertView cancelButtonIndex]) {
         CheckNetWork *check_obj=[[CheckNetWork alloc]init];
-        _flag_isTimeout=0;
         if ([check_obj fn_isPopUp_alert]==NO) {
             if ([iSearchBar.text length]==0) {
                 [self fn_get_data:is_search_no];
