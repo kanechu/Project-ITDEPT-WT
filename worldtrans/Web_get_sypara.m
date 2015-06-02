@@ -13,13 +13,14 @@
 @implementation Web_get_sypara
 
 -(void)fn_get_sypara_data:(NSString*)user_code pass:(NSString*)password{
-    
     RequestContract *req_form = [[RequestContract alloc] init];
     AuthContract *auth=[[AuthContract alloc]init];
     auth.user_code=user_code;
     auth.password=password;
     auth.system = DEFAULT_SYSTEM;
     req_form.Auth =auth;
+    auth=nil;
+    
     Web_base *web_base=[[Web_base alloc]init];
     web_base.il_url=STR_SYPARA_URL;
     web_base.iresp_class=[Resp_Sypara class];
@@ -27,6 +28,8 @@
     web_base.iobj_target=self;
     web_base.isel_action=@selector(fn_save_sypara:);
     [web_base fn_get_data:req_form];
+    req_form=nil;
+    web_base=nil;
 }
 -(void)fn_save_sypara:(NSMutableArray*)alist_result{
     if ([alist_result count]!=0) {

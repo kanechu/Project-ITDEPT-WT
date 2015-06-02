@@ -166,14 +166,16 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     RequestContract *req_form = [[RequestContract alloc] init];
-    
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth =[dbLogin WayOfAuthorization];
+    dbLogin=nil;
+    
     SearchFormContract *search = [[SearchFormContract alloc]init];
     search.os_column = @"search_no";
     search.os_value = as_search_no;
     
     req_form.SearchForm = [NSSet setWithObjects:search, nil];
+    search=nil;
     
     Web_base *web_base = [[Web_base alloc] init];
     web_base.il_url =STR_AIR_URL;
@@ -193,7 +195,8 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
         }
     };
     [web_base fn_get_data:req_form];
-
+    req_form=nil;
+    web_base=nil;
 }
 
 - (void) fn_save_aehbl_list: (NSMutableArray *) alist_result {
@@ -222,7 +225,7 @@ didSelectRowAtIndexPath: (NSIndexPath *)indexPath
                 [self fn_get_data:iSearchBar.text];
             }
         }
-    
+        check_obj=nil;
     }
 }
 

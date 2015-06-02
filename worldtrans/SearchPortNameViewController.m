@@ -16,7 +16,7 @@
 #import "MZFormSheetController.h"
 #import "MBProgressHUD.h"
 
-@interface SearchPortNameViewController ()
+@interface SearchPortNameViewController ()<UIAlertViewDelegate>
 
 @end
 
@@ -46,12 +46,11 @@
 }
 #pragma mark resquest portName Data
 -(void)fn_get_data:(NSString*)as_search_portname{
-    [NSTimer scheduledTimerWithTimeInterval: 11.0 target: self
-                                   selector: @selector(fn_hide_HUDView) userInfo: nil repeats: NO];    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     RequestContract *req_form=[[RequestContract alloc]init];
     DB_login *dbLogin=[[DB_login alloc]init];
     req_form.Auth=[dbLogin WayOfAuthorization];
-    
+    dbLogin=nil;
     SearchFormContract *search=[[SearchFormContract alloc]init];
     search.os_column=@"port_name";
     search.os_value=as_search_portname;
@@ -61,6 +60,8 @@
     search1.os_value=@"";
     
     req_form.SearchForm=[NSSet setWithObjects:search,search1,nil];
+    search=nil;
+    search1=nil;
     Web_base *web_base=[[Web_base alloc]init];
     web_base.il_url =STR_PORTNAME_URL;
     web_base.iresp_class =[RespPortName class];
@@ -68,9 +69,16 @@
     web_base.ilist_resp_mapping =[NSArray arrayWithPropertiesOfObject:[RespPortName class]];
     web_base.iobj_target = self;
     web_base.isel_action = @selector(fn_save_portname_list:);
+    web_base.callBack= ^(BOOL isTimeOut){
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (isTimeOut) {
+            UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:nil message:@"Network requests data timeout !" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
+            [alertView show];
+        }
+    };
     [web_base fn_get_data:req_form];
-    
-    
+    req_form=nil;
+    web_base=nil;
 }
 -(void)fn_save_portname_list:(NSMutableArray*)alist_result{
     ilist_portname=alist_result;
@@ -79,9 +87,13 @@
     [_it_table_portname reloadData];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
--(void)fn_hide_HUDView{
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        CheckNetWork *check_obj=[[CheckNetWork alloc]init];
+        if ([check_obj fn_isPopUp_alert]==NO) {        [self fn_get_data:_is_search_portName.text];
+        }
+    }
 }
 #pragma mark - Table view data source
 
@@ -142,6 +154,7 @@
     NSMutableArray *arr=[db fn_get_data:searchBar.text];
     ilist_portname=arr;
     [_it_table_portname reloadData];
+    db=nil;
     
 }
 

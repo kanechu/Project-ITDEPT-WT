@@ -235,6 +235,7 @@ enum ROW_NUMOFSECTION {
     search.os_value =as_search_value ;
     
     req_form.SearchForm = [NSSet setWithObjects:search, nil];
+    search=nil;
     
     Web_base *web_base = [[Web_base alloc] init];
     web_base.il_url =STR_AIR_URL;
@@ -250,6 +251,8 @@ enum ROW_NUMOFSECTION {
         }
     };
     [web_base fn_get_data:req_form];
+    req_form=nil;
+    web_base=nil;
 }
 
 - (void) fn_save_aehbl_list: (NSMutableArray *) alist_result {
@@ -265,6 +268,7 @@ enum ROW_NUMOFSECTION {
         if ([check_obj fn_isPopUp_alert]==NO) {
             [self fn_get_data:is_search_column :is_search_value];
         }
+        check_obj=nil;
     }
 }
 @end
