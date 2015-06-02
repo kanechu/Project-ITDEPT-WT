@@ -112,6 +112,7 @@
 - (void) fn_save_alert_list: (NSMutableArray *) alist_alert {
     DB_alert * ldb_alert = [[DB_alert alloc] init];
     [ldb_alert fn_save_data:alist_alert];
+    ldb_alert=nil;
 }
 //禁止横屏
 -(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{

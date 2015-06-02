@@ -43,6 +43,7 @@
     // display in 12HR/24HR (i.e. 11:25PM or 23:25) format according to User Settings
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *ls_currentTime = [dateFormatter stringFromDate:today];
+    dateFormatter=nil;
     __block BOOL ib_updated=NO;
     [queue inDataBase:^(FMDatabase *db){
         if ([db open]) {

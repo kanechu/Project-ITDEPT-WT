@@ -114,7 +114,7 @@ CustomBadge *iobj_customBadge;
         web_get_alert.iobj_target = self;
         web_get_alert.isel_action = @selector(fn_save_alert_list:);
         [web_get_alert fn_get_data];
-        
+        web_get_alert=nil;
         dispatch_async( dispatch_get_main_queue(), ^{
             // update UI here
             [self fn_set_unread_msg_badge];
