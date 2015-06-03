@@ -5,7 +5,7 @@ PODS:
   - FMDB/standard (2.5):
     - FMDB/common
   - MBProgressHUD (0.9.1)
-  - MZAppearance (1.1.4)
+  - MZAppearance (1.1.5)
   - MZFormSheetController (3.0.3):
     - MZAppearance
     - MZFormSheetController/Core (= 3.0.3)
@@ -22,7 +22,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MZAppearance: 417ac97a5dd739329545e44372e06f715b7e5c15
+  MZAppearance: 6e9dc64e42074c0a19812a327f590746c3283bab
   MZFormSheetController: 36771856696eeef2eaec9b18c75791d3c95cb661
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
